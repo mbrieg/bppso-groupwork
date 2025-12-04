@@ -1,0 +1,132 @@
+<metadata>
+   <doi>doi:10.4121/uuid:5f3067df-f10b-45da-b98b-86ae4c7a310b</doi>
+   <name>BPI Challenge 2017.xes.gz</name>
+   <description>This event log pertains to a loan application process of a Dutch financial institute. The data contains all applications filed trough an online system in 2016 and their subsequent events until February 1st 2017, 15:11. The company providing the data and the process under consideration is the same as doi:10.4121/uuid:3926db30-f712-4394-aebc-75976070e91f. However, the system supporting the process has changed in the meantime. In particular, the system now allows for multiple offers per application. These offers can be tracked through their IDs in the log.</description>
+   <language>English</language>
+   <log_type>Real-life</log_type>
+   <process_type>Implicitly structured</process_type>
+   <creation>
+   <insitute>Eindhoven University of Technology</insitute>
+   <person>an Dongen, B.F.||orcid:0000-0002-3978-6464</person>
+   <place>Eindhoven</place>
+   <time>Thu Feb 02 00:00:00 CET 2017</time>
+   </creation>
+   <source>
+   <insitute>Eindhoven University of Technology</insitute>
+   <institute_type>University</institute_type>
+   <model>none</model>
+   <program>Proprietary Workflow System</program>
+   </source>
+   <rights type="Public">
+   </rights>
+   <number_of_traces>31509</number_of_traces>
+   <number_of_events>1202267</number_of_events>
+   <events_per_trace>38.156</events_per_trace>
+   <min_events_per_trace>10</min_events_per_trace>
+   <max_events_per_trace>180</max_events_per_trace>
+   <global_attributes>
+      <trace_level>
+         <attribute key="ApplicationType" default="UNKNOWN"/>
+         <attribute key="LoanGoal" default="UNKNOWN"/>
+         <attribute key="RequestedAmount" default="0.0"/>
+         <attribute key="concept:name" default="UNKNOWN"/>
+      </trace_level>
+      <event_level>
+         <attribute key="Action" default="UNKNOWN"/>
+         <attribute key="EventID" default="UNKNOWN"/>
+         <attribute key="EventOrigin" default="UNKNOWN"/>
+         <attribute key="concept:name" default="UNKNOWN"/>
+         <attribute key="lifecycle:transition" default="UNKNOWN"/>
+         <attribute key="org:resource" default="UNKNOWN"/>
+         <attribute key="time:timestamp" default="1970-01-01T01:00:00+01:00"/>
+      </event_level>
+   </global_attributes>
+   <meta_extensions>
+      <MetaData_Concept prefix="meta_concept" uri="http://www.xes-standard.org/meta_concept.xesext">
+         <different_names_average>15.532</different_names_average>
+         <different_names_max>21</different_names_max>
+         <different_names_min>8</different_names_min>
+         <different_names_standard_deviation>2.493</different_names_standard_deviation>
+         <different_names_total>26</different_names_total>
+         <named_events_average>38.156</named_events_average>
+         <named_events_max>180</named_events_max>
+         <named_events_min>10</named_events_min>
+         <named_events_standard_deviation>16.715</named_events_standard_deviation>
+         <named_events_total>1202267</named_events_total>
+      </MetaData_Concept>
+      <MetaData_General prefix="meta_general" uri="http://www.xes-standard.org/meta_general.xesext">
+         <classifiers>3</classifiers>
+         <events_average>38.156</events_average>
+         <events_max>180</events_max>
+         <events_min>10</events_min>
+         <events_standard_deviation>16.715</events_standard_deviation>
+         <events_total>1202267</events_total>
+         <traces_total>31509</traces_total>
+      </MetaData_General>
+      <MetaData_LifeCycle prefix="meta_life" uri="http://www.xes-standard.org/meta_life.xesext">
+         <different_transitions_average>6.523</different_transitions_average>
+         <different_transitions_max>7</different_transitions_max>
+         <different_transitions_min>3</different_transitions_min>
+         <different_transitions_standard_deviation>0.548</different_transitions_standard_deviation>
+         <different_transitions_total>7</different_transitions_total>
+         <transition_events_average>38.156</transition_events_average>
+         <transition_events_max>180</transition_events_max>
+         <transition_events_min>10</transition_events_min>
+         <transition_events_standard_deviation>16.715</transition_events_standard_deviation>
+         <transition_events_total>1202267</transition_events_total>
+      </MetaData_LifeCycle>
+      <MetaData_Organization prefix="meta_org" uri="http://www.xes-standard.org/meta_org.xesext">
+         <different_groups_average>1.0</different_groups_average>
+         <different_groups_max>1</different_groups_max>
+         <different_groups_min>1</different_groups_min>
+         <different_groups_standard_deviation>0.0</different_groups_standard_deviation>
+         <different_groups_total>1</different_groups_total>
+         <different_resources_average>6.976</different_resources_average>
+         <different_resources_max>31</different_resources_max>
+         <different_resources_min>1</different_resources_min>
+         <different_resources_standard_deviation>3.277</different_resources_standard_deviation>
+         <different_resources_total>149</different_resources_total>
+         <different_roles_average>1.0</different_roles_average>
+         <different_roles_max>1</different_roles_max>
+         <different_roles_min>1</different_roles_min>
+         <different_roles_standard_deviation>0.0</different_roles_standard_deviation>
+         <different_roles_total>1</different_roles_total>
+         <group_events_average>38.156</group_events_average>
+         <group_events_max>180</group_events_max>
+         <group_events_min>10</group_events_min>
+         <group_events_standard_deviation>16.715</group_events_standard_deviation>
+         <group_events_total>1202267</group_events_total>
+         <resource_events_average>38.156</resource_events_average>
+         <resource_events_max>180</resource_events_max>
+         <resource_events_min>10</resource_events_min>
+         <resource_events_standard_deviation>16.715</resource_events_standard_deviation>
+         <resource_events_total>1202267</resource_events_total>
+         <role_events_average>38.156</role_events_average>
+         <role_events_max>180</role_events_max>
+         <role_events_min>10</role_events_min>
+         <role_events_standard_deviation>16.715</role_events_standard_deviation>
+         <role_events_total>1202267</role_events_total>
+      </MetaData_Organization>
+      <MetaData_Time prefix="meta_time" uri="http://www.xes-standard.org/meta_time.xesext">
+         <duration_average>1892125.923</duration_average>
+         <duration_max>2.4716658654E7</duration_max>
+         <duration_min>201.062</duration_min>
+         <duration_standard_deviation>1137821.691</duration_standard_deviation>
+         <duration_total>5.9618995710011E10</duration_total>
+         <log_duration>3.4316388195E7</log_duration>
+         <log_end_time>2017-02-01T15:11:03.499+01:00</log_end_time>
+         <log_start_time>2016-01-01T10:51:15.304+01:00</log_start_time>
+      </MetaData_Time>
+   </meta_extensions>
+   <extensions>
+      <Concept prefix="concept" uri="http://www.xes-standard.org/concept.xesext">
+         <name>BPI Challenge 2017</name>
+      </Concept>
+      <Lifecycle prefix="lifecycle" uri="http://www.xes-standard.org/lifecycle.xesext">
+      </Lifecycle>
+      <Organizational prefix="org" uri="http://www.xes-standard.org/org.xesext">
+      </Organizational>
+      <Time prefix="time" uri="http://www.xes-standard.org/time.xesext">
+      </Time>
+   </extensions>
+</metadata>
