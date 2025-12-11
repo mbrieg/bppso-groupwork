@@ -8,6 +8,7 @@ import pandas as pd
 # -----------------------------
 
 # Für jeden Task: mögliche nächste Tasks (vereinfachter Kontrollfluss, Gateways "aufgelöst")
+# TODO Check if all logic is covered
 SUCCESSORS = {
     "A_Create Application": {"A_Concept", "A_Submitted", "W_Complete application"},
     "A_Submitted": {"W_Handle leads"},
@@ -97,6 +98,7 @@ END_ACTIVITIES = {
     "O_Refused",
     "A_Cancelled",
     "O_Cancelled",
+    "A_Pending"
 }
 
 
@@ -104,7 +106,7 @@ END_ACTIVITIES = {
 # 2) DAUER-MODELL FÜR AKTIVITÄTEN
 #    (Platzhalter, kannst du mit Log-Werten ersetzen)
 # -----------------------------
-
+# TODO Find out how long Activities take
 MEAN_DURATION_MINUTES = {
     "A_Create Application": 5,
     "A_Submitted": 1,
@@ -153,7 +155,7 @@ def next_activities(activity_name: str):
 
 def simulate_case(case_id: str,
                   start_time: datetime,
-                  max_steps: int = 100) -> list[dict]:
+                  max_steps: int = 100) -> list[dict]:   # TODO Longest case in steps??
     """
     Simulate one process instance (case) as a linear trace.
     """
@@ -179,8 +181,8 @@ def simulate_case(case_id: str,
             "concept:name": current_activity,
             "time:timestamp": end,   # oder start, je nach Konvention
             # optional: start/end getrennt speichern
-            "time:start_timestamp": start,
-            "time:end_timestamp": end,
+            # "time:start_timestamp": start,
+            # "time:end_timestamp": end,
         })
 
         current_time = end
@@ -207,13 +209,13 @@ def simulate_log(n_cases: int = 100,
     Simulate an event log with many cases.
     """
     if base_start is None:
-        base_start = datetime(2020, 1, 1, 8, 0, 0)
+        base_start = datetime(2016, 1, 1, 9, 51, 15)
 
     all_events: list[dict] = []
 
     for i in range(n_cases):
         case_id = str(i)
-        case_start = base_start + timedelta(minutes=i * interarrival_minutes)
+        case_start = base_start + timedelta(minutes=i * interarrival_minutes) # TODO ???
         case_events = simulate_case(case_id, case_start)
         all_events.extend(case_events)
 
