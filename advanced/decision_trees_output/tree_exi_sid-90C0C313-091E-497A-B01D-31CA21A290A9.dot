@@ -1,0 +1,32 @@
+digraph Tree {
+node [shape=box];
+node_0 [label="Split: prev_activity
+(n=8500)", style=filled, fillcolor=lightblue];
+node_1 [label="Leaf: A_Incomplete
+(n=8413)", style=filled, fillcolor=lightgreen];
+node_0 -> node_1 [label="W_Call incomplete files"];
+node_2 [label="Leaf: W_Shortened completion
+(n=39)", style=filled, fillcolor=lightgreen];
+node_0 -> node_2 [label="W_Shortened completion "];
+node_3 [label="Leaf: W_Shortened completion
+(n=1)", style=filled, fillcolor=lightgreen];
+node_0 -> node_3 [label="O_Cancelled"];
+node_4 [label="Leaf: W_Shortened completion
+(n=22)", style=filled, fillcolor=lightgreen];
+node_0 -> node_4 [label="A_Complete"];
+node_5 [label="Leaf: W_Shortened completion
+(n=3)", style=filled, fillcolor=lightgreen];
+node_0 -> node_5 [label="A_Concept"];
+node_6 [label="Leaf: W_Shortened completion
+(n=10)", style=filled, fillcolor=lightgreen];
+node_0 -> node_6 [label="W_Complete application"];
+node_7 [label="Leaf: W_Shortened completion
+(n=1)", style=filled, fillcolor=lightgreen];
+node_0 -> node_7 [label="O_Created"];
+node_8 [label="Leaf: W_Shortened completion
+(n=5)", style=filled, fillcolor=lightgreen];
+node_0 -> node_8 [label="A_Accepted"];
+node_9 [label="Leaf: W_Shortened completion
+(n=6)", style=filled, fillcolor=lightgreen];
+node_0 -> node_9 [label="W_Call after offers"];
+}
