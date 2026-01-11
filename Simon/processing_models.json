@@ -1,0 +1,130 @@
+{
+  "W_Assess potential fraud": {
+    "dist": "lognorm",
+    "params": {
+      "s": 2.5046280065161732,
+      "scale": 751.0406837175366
+    },
+    "aic": 5809.132999415391
+  },
+  "W_Call after offers": {
+    "dist": "lognorm",
+    "params": {
+      "s": 1.0153516971762895,
+      "scale": 195.14144864234495
+    },
+    "aic": 421622.237147297
+  },
+  "W_Call incomplete files": {
+    "dist": "lognorm",
+    "params": {
+      "s": 1.1439870559066228,
+      "scale": 296.8768721250291
+    },
+    "aic": 333544.09340686
+  },
+  "W_Complete application": {
+    "dist": "gamma",
+    "params": {
+      "a": 1.2032585184726416,
+      "scale": 546.5540481569567
+    },
+    "aic": 443762.90717549063
+  },
+  "W_Handle leads": {
+    "dist": "lognorm",
+    "params": {
+      "s": 1.095245239765069,
+      "scale": 82.15583456339792
+    },
+    "aic": 43138.28089291229
+  },
+  "W_Validate application": {
+    "dist": "lognorm",
+    "params": {
+      "s": 1.7842294530709804,
+      "scale": 234.03664176563467
+    },
+    "aic": 581503.5849653961
+  },
+  "A_Accepted": {
+    "dist": "const",
+    "value": 0.0
+  },
+  "A_Cancelled": {
+    "dist": "const",
+    "value": 0.0
+  },
+  "A_Complete": {
+    "dist": "const",
+    "value": 0.0
+  },
+  "A_Concept": {
+    "dist": "const",
+    "value": 0.0
+  },
+  "A_Create Application": {
+    "dist": "const",
+    "value": 0.0
+  },
+  "A_Denied": {
+    "dist": "const",
+    "value": 0.0
+  },
+  "A_Incomplete": {
+    "dist": "const",
+    "value": 0.0
+  },
+  "A_Pending": {
+    "dist": "const",
+    "value": 0.0
+  },
+  "A_Submitted": {
+    "dist": "const",
+    "value": 0.0
+  },
+  "A_Validating": {
+    "dist": "const",
+    "value": 0.0
+  },
+  "O_Accepted": {
+    "dist": "const",
+    "value": 0.0
+  },
+  "O_Cancelled": {
+    "dist": "const",
+    "value": 0.0
+  },
+  "O_Create Offer": {
+    "dist": "const",
+    "value": 0.0
+  },
+  "O_Created": {
+    "dist": "const",
+    "value": 0.0
+  },
+  "O_Refused": {
+    "dist": "const",
+    "value": 0.0
+  },
+  "O_Returned": {
+    "dist": "const",
+    "value": 0.0
+  },
+  "O_Sent (mail and online)": {
+    "dist": "const",
+    "value": 0.0
+  },
+  "O_Sent (online only)": {
+    "dist": "const",
+    "value": 0.0
+  },
+  "W_Personal Loan collection": {
+    "dist": "const",
+    "value": 0.0
+  },
+  "W_Shortened completion ": {
+    "dist": "const",
+    "value": 0.0
+  }
+}
