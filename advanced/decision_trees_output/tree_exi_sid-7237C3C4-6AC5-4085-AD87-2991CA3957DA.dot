@@ -1,0 +1,278 @@
+digraph Tree {
+node [shape=box];
+node_0 [label="Split: prev_activity
+(n=8500)", style=filled, fillcolor=lightblue];
+node_1 [label="Leaf: A_Concept
+(n=703)", style=filled, fillcolor=lightgreen];
+node_0 -> node_1 [label="A_Create Application"];
+node_2 [label="Split: hour_of_day
+(n=5168)", style=filled, fillcolor=lightblue];
+node_0 -> node_2 [label="W_Complete application"];
+node_3 [label="Leaf: A_Cancelled
+(n=9)", style=filled, fillcolor=lightgreen];
+node_2 -> node_3 [label="<= -0.50"];
+node_4 [label="Split: case_duration_hours
+(n=5159)", style=filled, fillcolor=lightblue];
+node_2 -> node_4 [label="> -0.50"];
+node_5 [label="Split: case:RequestedAmount
+(n=5152)", style=filled, fillcolor=lightblue];
+node_4 -> node_5 [label="<= 205.34"];
+node_6 [label="Split: case_duration_hours
+(n=419)", style=filled, fillcolor=lightblue];
+node_5 -> node_6 [label="<= 500.00"];
+node_7 [label="Leaf: A_Concept
+(n=413)", style=filled, fillcolor=lightgreen];
+node_6 -> node_7 [label="<= 0.36"];
+node_8 [label="Leaf: A_Concept
+(n=6)", style=filled, fillcolor=lightgreen];
+node_6 -> node_8 [label="> 0.36"];
+node_9 [label="Leaf: A_Concept
+(n=4733)", style=filled, fillcolor=lightgreen];
+node_5 -> node_9 [label="> 500.00"];
+node_10 [label="Leaf: A_Concept
+(n=7)", style=filled, fillcolor=lightgreen];
+node_4 -> node_10 [label="> 205.34"];
+node_11 [label="Split: case:ApplicationType
+(n=180)", style=filled, fillcolor=lightblue];
+node_0 -> node_11 [label="W_Call incomplete files"];
+node_12 [label="Split: case:RequestedAmount
+(n=164)", style=filled, fillcolor=lightblue];
+node_11 -> node_12 [label="New credit"];
+node_13 [label="Split: case_duration_hours
+(n=156)", style=filled, fillcolor=lightblue];
+node_12 -> node_13 [label="<= 52500.00"];
+node_14 [label="Split: case_duration_hours
+(n=151)", style=filled, fillcolor=lightblue];
+node_13 -> node_14 [label="<= 1197.92"];
+node_15 [label="Split: case_duration_hours
+(n=150)", style=filled, fillcolor=lightblue];
+node_14 -> node_15 [label="<= 1136.28"];
+node_16 [label="Split: case_duration_hours
+(n=135)", style=filled, fillcolor=lightblue];
+node_15 -> node_16 [label="<= 582.99"];
+node_17 [label="Split: case_duration_hours
+(n=133)", style=filled, fillcolor=lightblue];
+node_16 -> node_17 [label="<= 552.74"];
+node_18 [label="Split: case_duration_hours
+(n=123)", style=filled, fillcolor=lightblue];
+node_17 -> node_18 [label="<= 487.79"];
+node_19 [label="Split: case_duration_hours
+(n=120)", style=filled, fillcolor=lightblue];
+node_18 -> node_19 [label="<= 458.15"];
+node_20 [label="Leaf: A_Cancelled
+(n=116)", style=filled, fillcolor=lightgreen];
+node_19 -> node_20 [label="<= 425.62"];
+node_21 [label="Leaf: A_Cancelled
+(n=4)", style=filled, fillcolor=lightgreen];
+node_19 -> node_21 [label="> 425.62"];
+node_22 [label="Leaf: A_Denied
+(n=3)", style=filled, fillcolor=lightgreen];
+node_18 -> node_22 [label="> 458.15"];
+node_23 [label="Leaf: A_Cancelled
+(n=10)", style=filled, fillcolor=lightgreen];
+node_17 -> node_23 [label="> 487.79"];
+node_24 [label="Leaf: A_Denied
+(n=2)", style=filled, fillcolor=lightgreen];
+node_16 -> node_24 [label="> 552.74"];
+node_25 [label="Leaf: A_Cancelled
+(n=15)", style=filled, fillcolor=lightgreen];
+node_15 -> node_25 [label="> 582.99"];
+node_26 [label="Leaf: A_Denied
+(n=1)", style=filled, fillcolor=lightgreen];
+node_14 -> node_26 [label="> 1136.28"];
+node_27 [label="Leaf: A_Cancelled
+(n=5)", style=filled, fillcolor=lightgreen];
+node_13 -> node_27 [label="> 1197.92"];
+node_28 [label="Leaf: A_Cancelled
+(n=8)", style=filled, fillcolor=lightgreen];
+node_12 -> node_28 [label="> 52500.00"];
+node_29 [label="Leaf: A_Cancelled
+(n=16)", style=filled, fillcolor=lightgreen];
+node_11 -> node_29 [label="Limit raise"];
+node_30 [label="Split: hour_of_day
+(n=620)", style=filled, fillcolor=lightblue];
+node_0 -> node_30 [label="W_Validate application"];
+node_31 [label="Split: case_duration_hours
+(n=615)", style=filled, fillcolor=lightblue];
+node_30 -> node_31 [label="<= 21.50"];
+node_32 [label="Leaf: A_Denied
+(n=113)", style=filled, fillcolor=lightgreen];
+node_31 -> node_32 [label="<= 0.05"];
+node_33 [label="Split: case_duration_hours
+(n=502)", style=filled, fillcolor=lightblue];
+node_31 -> node_33 [label="> 0.05"];
+node_34 [label="Leaf: A_Cancelled
+(n=1)", style=filled, fillcolor=lightgreen];
+node_33 -> node_34 [label="<= 0.06"];
+node_35 [label="Split: case_duration_hours
+(n=501)", style=filled, fillcolor=lightblue];
+node_33 -> node_35 [label="> 0.06"];
+node_36 [label="Leaf: A_Denied
+(n=39)", style=filled, fillcolor=lightgreen];
+node_35 -> node_36 [label="<= 0.24"];
+node_37 [label="Split: hour_of_day
+(n=462)", style=filled, fillcolor=lightblue];
+node_35 -> node_37 [label="> 0.24"];
+node_38 [label="Split: case_duration_hours
+(n=451)", style=filled, fillcolor=lightblue];
+node_37 -> node_38 [label="<= 18.50"];
+node_39 [label="Leaf: A_Denied
+(n=74)", style=filled, fillcolor=lightgreen];
+node_38 -> node_39 [label="<= 23.96"];
+node_40 [label="Split: case_duration_hours
+(n=377)", style=filled, fillcolor=lightblue];
+node_38 -> node_40 [label="> 23.96"];
+node_41 [label="Leaf: A_Cancelled
+(n=1)", style=filled, fillcolor=lightgreen];
+node_40 -> node_41 [label="<= 24.16"];
+node_42 [label="Split: case_duration_hours
+(n=376)", style=filled, fillcolor=lightblue];
+node_40 -> node_42 [label="> 24.16"];
+node_43 [label="Leaf: A_Denied
+(n=124)", style=filled, fillcolor=lightgreen];
+node_42 -> node_43 [label="<= 125.77"];
+node_44 [label="Split: case_duration_hours
+(n=252)", style=filled, fillcolor=lightblue];
+node_42 -> node_44 [label="> 125.77"];
+node_45 [label="Leaf: A_Cancelled
+(n=1)", style=filled, fillcolor=lightgreen];
+node_44 -> node_45 [label="<= 127.54"];
+node_46 [label="Leaf: A_Denied
+(n=251)", style=filled, fillcolor=lightgreen];
+node_44 -> node_46 [label="> 127.54"];
+node_47 [label="Leaf: A_Denied
+(n=11)", style=filled, fillcolor=lightgreen];
+node_37 -> node_47 [label="> 18.50"];
+node_48 [label="Leaf: A_Denied
+(n=5)", style=filled, fillcolor=lightgreen];
+node_30 -> node_48 [label="> 21.50"];
+node_49 [label="Split: hour_of_day
+(n=1622)", style=filled, fillcolor=lightblue];
+node_0 -> node_49 [label="W_Call after offers"];
+node_50 [label="Split: hour_of_day
+(n=1387)", style=filled, fillcolor=lightblue];
+node_49 -> node_50 [label="<= 15.50"];
+node_51 [label="Leaf: A_Cancelled
+(n=218)", style=filled, fillcolor=lightgreen];
+node_50 -> node_51 [label="<= 6.50"];
+node_52 [label="Split: case_duration_hours
+(n=1169)", style=filled, fillcolor=lightblue];
+node_50 -> node_52 [label="> 6.50"];
+node_53 [label="Split: hour_of_day
+(n=1122)", style=filled, fillcolor=lightblue];
+node_52 -> node_53 [label="<= 580.20"];
+node_54 [label="Split: case:LoanGoal
+(n=103)", style=filled, fillcolor=lightblue];
+node_53 -> node_54 [label="<= 7.50"];
+node_55 [label="Leaf: A_Cancelled
+(n=12)", style=filled, fillcolor=lightgreen];
+node_54 -> node_55 [label="Other, see explanation"];
+node_56 [label="Leaf: A_Cancelled
+(n=30)", style=filled, fillcolor=lightgreen];
+node_54 -> node_56 [label="Car"];
+node_57 [label="Leaf: A_Cancelled
+(n=14)", style=filled, fillcolor=lightgreen];
+node_54 -> node_57 [label="Existing loan takeover"];
+node_58 [label="Leaf: A_Cancelled
+(n=8)", style=filled, fillcolor=lightgreen];
+node_54 -> node_58 [label="Unknown"];
+node_59 [label="Leaf: A_Cancelled
+(n=20)", style=filled, fillcolor=lightgreen];
+node_54 -> node_59 [label="Home improvement"];
+node_60 [label="Leaf: A_Cancelled
+(n=10)", style=filled, fillcolor=lightgreen];
+node_54 -> node_60 [label="Not speficied"];
+node_61 [label="Leaf: A_Cancelled
+(n=1)", style=filled, fillcolor=lightgreen];
+node_54 -> node_61 [label="Motorcycle"];
+node_62 [label="Leaf: A_Cancelled
+(n=1)", style=filled, fillcolor=lightgreen];
+node_54 -> node_62 [label="Caravan / Camper"];
+node_63 [label="Leaf: A_Cancelled
+(n=5)", style=filled, fillcolor=lightgreen];
+node_54 -> node_63 [label="Extra spending limit"];
+node_64 [label="Leaf: A_Cancelled
+(n=1)", style=filled, fillcolor=lightgreen];
+node_54 -> node_64 [label="Business goal"];
+node_65 [label="Leaf: A_Cancelled
+(n=1)", style=filled, fillcolor=lightgreen];
+node_54 -> node_65 [label="Remaining debt home"];
+node_66 [label="Split: case_duration_hours
+(n=1019)", style=filled, fillcolor=lightblue];
+node_53 -> node_66 [label="> 7.50"];
+node_67 [label="Split: case_duration_hours
+(n=534)", style=filled, fillcolor=lightblue];
+node_66 -> node_67 [label="<= 45.10"];
+node_68 [label="Split: case:RequestedAmount
+(n=533)", style=filled, fillcolor=lightblue];
+node_67 -> node_68 [label="<= 45.01"];
+node_69 [label="Split: case_duration_hours
+(n=423)", style=filled, fillcolor=lightblue];
+node_68 -> node_69 [label="<= 20500.00"];
+node_70 [label="Split: case_duration_hours
+(n=350)", style=filled, fillcolor=lightblue];
+node_69 -> node_70 [label="<= 35.41"];
+node_71 [label="Leaf: A_Cancelled
+(n=349)", style=filled, fillcolor=lightgreen];
+node_70 -> node_71 [label="<= 34.97"];
+node_72 [label="Leaf: A_Denied
+(n=1)", style=filled, fillcolor=lightgreen];
+node_70 -> node_72 [label="> 34.97"];
+node_73 [label="Leaf: A_Cancelled
+(n=73)", style=filled, fillcolor=lightgreen];
+node_69 -> node_73 [label="> 35.41"];
+node_74 [label="Leaf: A_Cancelled
+(n=110)", style=filled, fillcolor=lightgreen];
+node_68 -> node_74 [label="> 20500.00"];
+node_75 [label="Leaf: A_Denied
+(n=1)", style=filled, fillcolor=lightgreen];
+node_67 -> node_75 [label="> 45.01"];
+node_76 [label="Split: hour_of_day
+(n=485)", style=filled, fillcolor=lightblue];
+node_66 -> node_76 [label="> 45.10"];
+node_77 [label="Split: case:RequestedAmount
+(n=96)", style=filled, fillcolor=lightblue];
+node_76 -> node_77 [label="<= 8.50"];
+node_78 [label="Leaf: A_Cancelled
+(n=57)", style=filled, fillcolor=lightgreen];
+node_77 -> node_78 [label="<= 14500.00"];
+node_79 [label="Leaf: A_Cancelled
+(n=39)", style=filled, fillcolor=lightgreen];
+node_77 -> node_79 [label="> 14500.00"];
+node_80 [label="Leaf: A_Cancelled
+(n=389)", style=filled, fillcolor=lightgreen];
+node_76 -> node_80 [label="> 8.50"];
+node_81 [label="Leaf: A_Cancelled
+(n=47)", style=filled, fillcolor=lightgreen];
+node_52 -> node_81 [label="> 580.20"];
+node_82 [label="Leaf: A_Cancelled
+(n=235)", style=filled, fillcolor=lightgreen];
+node_49 -> node_82 [label="> 15.50"];
+node_83 [label="Leaf: A_Cancelled
+(n=92)", style=filled, fillcolor=lightgreen];
+node_0 -> node_83 [label="O_Sent (mail and online)"];
+node_84 [label="Leaf: A_Cancelled
+(n=37)", style=filled, fillcolor=lightgreen];
+node_0 -> node_84 [label="O_Cancelled"];
+node_85 [label="Leaf: A_Denied
+(n=5)", style=filled, fillcolor=lightgreen];
+node_0 -> node_85 [label="A_Validating"];
+node_86 [label="Leaf: A_Cancelled
+(n=17)", style=filled, fillcolor=lightgreen];
+node_0 -> node_86 [label="A_Complete"];
+node_87 [label="Leaf: A_Denied
+(n=1)", style=filled, fillcolor=lightgreen];
+node_0 -> node_87 [label="A_Incomplete"];
+node_88 [label="Leaf: A_Cancelled
+(n=17)", style=filled, fillcolor=lightgreen];
+node_0 -> node_88 [label="O_Created"];
+node_89 [label="Leaf: A_Denied
+(n=21)", style=filled, fillcolor=lightgreen];
+node_0 -> node_89 [label="W_Assess potential fraud"];
+node_90 [label="Leaf: A_Denied
+(n=7)", style=filled, fillcolor=lightgreen];
+node_0 -> node_90 [label="O_Returned"];
+node_91 [label="Leaf: A_Cancelled
+(n=10)", style=filled, fillcolor=lightgreen];
+node_0 -> node_91 [label="O_Sent (online only)"];
+}
