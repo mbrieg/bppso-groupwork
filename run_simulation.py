@@ -7,6 +7,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 sim_core_dir = os.path.join(current_dir, "sim_core")
 basic_dir = os.path.join(current_dir, "basic")
 advanced_dir = os.path.join(current_dir, "advanced")
+resources_dir = os.path.join(current_dir, "resources")
 
 sys.path.append(sim_core_dir)
 sys.path.append(basic_dir)
@@ -24,7 +25,7 @@ except ImportError:
 from sim_core.engine import Engine
 from sim_core.pn_model import wrap_net
 from basic_decision_point_analysis import load_petri_from_bpmn
-
+from resources.ResourceManager import ResourceManager
 # Integration Test
 
 def run_system_test():
@@ -64,10 +65,15 @@ def run_system_test():
     else:
         print(" Advanced Decision Trees not loaded. Engine will use Basic/Random)")
 
+    print("Initialize ResourceManager")
+
+    resource_manager = ResourceManager()
+
     print("Simulation Engine..")
 
     engine = Engine(
         pn=pn_structure,
+        resource_manager=resource_manager,
         mode="advanced",
         basic_model=basic_model,
         advanced_model=adv_model,

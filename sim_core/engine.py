@@ -270,4 +270,3 @@ class Engine:
             print(f"  {res}: {count} tasks")
         
         print('='*60)
-        pd.DataFrame(self.log).to_csv(path, index=False)
