@@ -4,6 +4,7 @@ import random
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 
+
 @dataclass(order=True)
 class Event:
     time: datetime
@@ -12,20 +13,20 @@ class Event:
     transition_id: str = field(compare=False, default=None)
     resource: str = field(compare=False, default=None)
 
+
 class Engine:
-    def __init__(self, pn, start_time=None):
+    def __init__(self, pn, resource_manager, start_time=None):
         self.pn = pn
+        self.resource_manager = resource_manager
         self.now = start_time or datetime(2016, 1, 1, 9, 15, 0)
         self.queue = []
         self.cases = {}
         self.log = []
         self.next_case_id = 0
-        self.available_resources = ["User_1", "User_2", "User_3"]
-
+        self.duration = random.randint(10, 70)
 
     def spawn(self, at_time=None):
         heapq.heappush(self.queue, Event(at_time or self.now, "SPAWN", self.next_case_id + 1))
-
 
     def run(self, max_events=1000):
         count = 0
@@ -37,29 +38,41 @@ class Engine:
                 self._handle_spawn(e)
             elif e.type == "START":
                 self._handle_start(e)
+            elif e.type == "RETRY":     # Used when no resource was available yet
+                self._process_flow(e.case_id)
             elif e.type == "COMPLETE":
                 self._handle_complete(e)
             count += 1
 
-
     def _process_flow(self, case_id):
         m = self.cases[case_id]
         enabled = [t for t in self.pn.trans_ids if all(m.get(p, 0) > 0 for p in self.pn.inputs.get(t, []))]
+        if not enabled:
+            return
 
         while enabled:
-            tid = random.choice(enabled) # 1.4 XOR logic random now
+            tid = random.choice(enabled)    # 1.4 XOR logic random now
             label = self.pn.labels.get(tid, "")
 
-            if label == "": # Silent Gateway, instant consume and produce
+            if label == "":     # Silent Gateway, instant consume and produce
                 self._consume(m, tid)
                 self._produce(m, tid)
                 enabled = [t for t in self.pn.trans_ids if all(m.get(p, 0) > 0 for p in self.pn.inputs.get(t, []))]
-            else: # Real Transition
-                if self.available_resources:
-                    res = self.available_resources.pop(0)
+            else:       # Real Transition
+                task_duration = timedelta(minutes=random.randint(10, 60))   # TODO: Insert duration of event
+                res = self.resource_manager.assign_resource(label, self.now, task_duration)
+                if res:     # Resource is assigned NOW
                     heapq.heappush(self.queue, Event(self.now, "START", case_id, tid, res))
+                else:
+                    # Find next possible starting time
+                    # print("DEBUG: No available resource right now!")
+                    next_avail_time = self.resource_manager.get_earliest_availability(label, self.now)
+                    # print("DEBUG: Earliest availability: ", self.resource_manager.get_earliest_availability(label, self.now))
+                    retry_time = self.now + timedelta(minutes=15)   # See if any resource has been released until then
+                    if next_avail_time and next_avail_time > self.now:
+                        retry_time = max(retry_time, next_avail_time)
+                    heapq.heappush(self.queue, Event(retry_time, "RETRY", case_id))
                 break
-
 
     def _handle_spawn(self, e):
         self.next_case_id += 1
@@ -67,36 +80,31 @@ class Engine:
 
         # 1.2 Basic: Static parametric distribution (e.g.: Exponential), only 10 for testing
         if self.next_case_id < 10:
-            inter_arrival_time = random.expovariate(1/30) # Average every 30 mins
+            inter_arrival_time = random.expovariate(1/30)   # Average every 30 mins
             next_arrival = self.now + timedelta(minutes=inter_arrival_time)
             heapq.heappush(self.queue, Event(next_arrival, "SPAWN", self.next_case_id + 1))
 
         self._process_flow(e.case_id)
 
-
     def _handle_start(self, e):
         self._consume(self.cases[e.case_id], e.transition_id)
         self._record(e, "start")
-        duration = timedelta(minutes=random.randint(5, 15))# 1.3 Processing times
+        duration = timedelta(minutes=random.randint(5, 15))     # 1.3 Processing times
         heapq.heappush(self.queue, Event(self.now + duration, "COMPLETE", e.case_id, e.transition_id, e.resource))
-
 
     def _handle_complete(self, e):
         self._produce(self.cases[e.case_id], e.transition_id)
         self._record(e, "complete")
-        self.available_resources.append(e.resource)
+        # self.available_resources.append(e.resource) --> not needed. resource automatically released
         self._process_flow(e.case_id)
-
 
     def _consume(self, m, tid):
         for p in self.pn.inputs.get(tid, []):
             m[p] -= 1
 
-
     def _produce(self, m, tid):
         for p in self.pn.outputs.get(tid, []):
             m[p] = m.get(p, 0) + 1
-
 
     def _record(self, e, phase):
         self.log.append({
@@ -106,7 +114,6 @@ class Engine:
             "lifecycle:transition": phase,
             "org:resource": e.resource
         })
-
 
     def export_log(self, path="simulation_log.csv"):
         pd.DataFrame(self.log).to_csv(path, index=False)
