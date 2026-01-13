@@ -1,0 +1,380 @@
+digraph Tree {
+node [shape=box];
+node_0 [label="Split: prev_activity
+(n=8500)", style=filled, fillcolor=lightblue];
+node_1 [label="Leaf: O_Cancelled
+(n=1407)", style=filled, fillcolor=lightgreen];
+node_0 -> node_1 [label="A_Cancelled"];
+node_2 [label="Split: hour_of_day
+(n=101)", style=filled, fillcolor=lightblue];
+node_0 -> node_2 [label="W_Complete application"];
+node_3 [label="Leaf: O_Cancelled
+(n=1)", style=filled, fillcolor=lightgreen];
+node_2 -> node_3 [label="<= -0.50"];
+node_4 [label="Split: hour_of_day
+(n=100)", style=filled, fillcolor=lightblue];
+node_2 -> node_4 [label="> -0.50"];
+node_5 [label="Split: case_duration_hours
+(n=99)", style=filled, fillcolor=lightblue];
+node_4 -> node_5 [label="<= 22.50"];
+node_6 [label="Leaf: O_Sent (mail and online)
+(n=16)", style=filled, fillcolor=lightgreen];
+node_5 -> node_6 [label="<= 0.00"];
+node_7 [label="Split: case:RequestedAmount
+(n=83)", style=filled, fillcolor=lightblue];
+node_5 -> node_7 [label="> 0.00"];
+node_8 [label="Leaf: O_Sent (mail and online)
+(n=37)", style=filled, fillcolor=lightgreen];
+node_7 -> node_8 [label="<= 11750.00"];
+node_9 [label="Leaf: O_Sent (mail and online)
+(n=46)", style=filled, fillcolor=lightgreen];
+node_7 -> node_9 [label="> 11750.00"];
+node_10 [label="Leaf: O_Cancelled
+(n=1)", style=filled, fillcolor=lightgreen];
+node_4 -> node_10 [label="> 22.50"];
+node_11 [label="Split: case_duration_hours
+(n=5171)", style=filled, fillcolor=lightblue];
+node_0 -> node_11 [label="O_Created"];
+node_12 [label="Split: hour_of_day
+(n=4872)", style=filled, fillcolor=lightblue];
+node_11 -> node_12 [label="<= 163.61"];
+node_13 [label="Leaf: O_Sent (mail and online)
+(n=15)", style=filled, fillcolor=lightgreen];
+node_12 -> node_13 [label="<= -0.50"];
+node_14 [label="Split: case_duration_hours
+(n=4857)", style=filled, fillcolor=lightblue];
+node_12 -> node_14 [label="> -0.50"];
+node_15 [label="Split: case:RequestedAmount
+(n=4850)", style=filled, fillcolor=lightblue];
+node_14 -> node_15 [label="<= 159.50"];
+node_16 [label="Split: case_duration_hours
+(n=487)", style=filled, fillcolor=lightblue];
+node_15 -> node_16 [label="<= 300.00"];
+node_17 [label="Split: hour_of_day
+(n=482)", style=filled, fillcolor=lightblue];
+node_16 -> node_17 [label="<= 93.21"];
+node_18 [label="Leaf: O_Sent (mail and online)
+(n=6)", style=filled, fillcolor=lightgreen];
+node_17 -> node_18 [label="<= 6.50"];
+node_19 [label="Split: hour_of_day
+(n=476)", style=filled, fillcolor=lightblue];
+node_17 -> node_19 [label="> 6.50"];
+node_20 [label="Split: case:LoanGoal
+(n=474)", style=filled, fillcolor=lightblue];
+node_19 -> node_20 [label="<= 19.50"];
+node_21 [label="Leaf: O_Sent (mail and online)
+(n=41)", style=filled, fillcolor=lightgreen];
+node_20 -> node_21 [label="Car"];
+node_22 [label="Split: hour_of_day
+(n=307)", style=filled, fillcolor=lightblue];
+node_20 -> node_22 [label="Unknown"];
+node_23 [label="Leaf: O_Sent (mail and online)
+(n=271)", style=filled, fillcolor=lightgreen];
+node_22 -> node_23 [label="<= 16.50"];
+node_24 [label="Leaf: O_Sent (mail and online)
+(n=36)", style=filled, fillcolor=lightgreen];
+node_22 -> node_24 [label="> 16.50"];
+node_25 [label="Leaf: O_Sent (mail and online)
+(n=22)", style=filled, fillcolor=lightgreen];
+node_20 -> node_25 [label="Other, see explanation"];
+node_26 [label="Split: hour_of_day
+(n=50)", style=filled, fillcolor=lightblue];
+node_20 -> node_26 [label="Home improvement"];
+node_27 [label="Leaf: O_Sent (mail and online)
+(n=29)", style=filled, fillcolor=lightgreen];
+node_26 -> node_27 [label="<= 12.50"];
+node_28 [label="Leaf: O_Sent (mail and online)
+(n=21)", style=filled, fillcolor=lightgreen];
+node_26 -> node_28 [label="> 12.50"];
+node_29 [label="Leaf: O_Sent (mail and online)
+(n=30)", style=filled, fillcolor=lightgreen];
+node_20 -> node_29 [label="Existing loan takeover"];
+node_30 [label="Leaf: O_Sent (mail and online)
+(n=9)", style=filled, fillcolor=lightgreen];
+node_20 -> node_30 [label="Remaining debt home"];
+node_31 [label="Leaf: O_Sent (mail and online)
+(n=7)", style=filled, fillcolor=lightgreen];
+node_20 -> node_31 [label="Extra spending limit"];
+node_32 [label="Leaf: O_Sent (mail and online)
+(n=2)", style=filled, fillcolor=lightgreen];
+node_20 -> node_32 [label="Tax payments"];
+node_33 [label="Leaf: O_Sent (mail and online)
+(n=2)", style=filled, fillcolor=lightgreen];
+node_20 -> node_33 [label="Caravan / Camper"];
+node_34 [label="Leaf: O_Sent (mail and online)
+(n=3)", style=filled, fillcolor=lightgreen];
+node_20 -> node_34 [label="Motorcycle"];
+node_35 [label="Leaf: O_Sent (mail and online)
+(n=1)", style=filled, fillcolor=lightgreen];
+node_20 -> node_35 [label="Boat"];
+node_36 [label="Leaf: O_Sent (mail and online)
+(n=2)", style=filled, fillcolor=lightgreen];
+node_19 -> node_36 [label="> 19.50"];
+node_37 [label="Leaf: O_Sent (online only)
+(n=5)", style=filled, fillcolor=lightgreen];
+node_16 -> node_37 [label="> 93.21"];
+node_38 [label="Split: case:RequestedAmount
+(n=4363)", style=filled, fillcolor=lightblue];
+node_15 -> node_38 [label="> 300.00"];
+node_39 [label="Leaf: O_Sent (mail and online)
+(n=2)", style=filled, fillcolor=lightgreen];
+node_38 -> node_39 [label="<= 4000.00"];
+node_40 [label="Split: case_duration_hours
+(n=4361)", style=filled, fillcolor=lightblue];
+node_38 -> node_40 [label="> 4000.00"];
+node_41 [label="Split: case_duration_hours
+(n=4318)", style=filled, fillcolor=lightblue];
+node_40 -> node_41 [label="<= 133.22"];
+node_42 [label="Split: hour_of_day
+(n=3662)", style=filled, fillcolor=lightblue];
+node_41 -> node_42 [label="<= 26.18"];
+node_43 [label="Split: hour_of_day
+(n=3645)", style=filled, fillcolor=lightblue];
+node_42 -> node_43 [label="<= 22.50"];
+node_44 [label="Leaf: O_Sent (mail and online)
+(n=3604)", style=filled, fillcolor=lightgreen];
+node_43 -> node_44 [label="<= 21.50"];
+node_45 [label="Leaf: O_Sent (mail and online)
+(n=41)", style=filled, fillcolor=lightgreen];
+node_43 -> node_45 [label="> 21.50"];
+node_46 [label="Leaf: O_Sent (mail and online)
+(n=17)", style=filled, fillcolor=lightgreen];
+node_42 -> node_46 [label="> 22.50"];
+node_47 [label="Split: hour_of_day
+(n=656)", style=filled, fillcolor=lightblue];
+node_41 -> node_47 [label="> 26.18"];
+node_48 [label="Split: case_duration_hours
+(n=655)", style=filled, fillcolor=lightblue];
+node_47 -> node_48 [label="<= 19.50"];
+node_49 [label="Leaf: O_Sent (online only)
+(n=1)", style=filled, fillcolor=lightgreen];
+node_48 -> node_49 [label="<= 26.25"];
+node_50 [label="Leaf: O_Sent (mail and online)
+(n=654)", style=filled, fillcolor=lightgreen];
+node_48 -> node_50 [label="> 26.25"];
+node_51 [label="Leaf: O_Sent (online only)
+(n=1)", style=filled, fillcolor=lightgreen];
+node_47 -> node_51 [label="> 19.50"];
+node_52 [label="Leaf: O_Sent (mail and online)
+(n=43)", style=filled, fillcolor=lightgreen];
+node_40 -> node_52 [label="> 133.22"];
+node_53 [label="Leaf: O_Sent (mail and online)
+(n=7)", style=filled, fillcolor=lightgreen];
+node_14 -> node_53 [label="> 159.50"];
+node_54 [label="Split: case_duration_hours
+(n=299)", style=filled, fillcolor=lightblue];
+node_11 -> node_54 [label="> 163.61"];
+node_55 [label="Leaf: O_Sent (online only)
+(n=2)", style=filled, fillcolor=lightgreen];
+node_54 -> node_55 [label="<= 164.38"];
+node_56 [label="Split: hour_of_day
+(n=297)", style=filled, fillcolor=lightblue];
+node_54 -> node_56 [label="> 164.38"];
+node_57 [label="Split: hour_of_day
+(n=296)", style=filled, fillcolor=lightblue];
+node_56 -> node_57 [label="<= 21.50"];
+node_58 [label="Leaf: O_Cancelled
+(n=3)", style=filled, fillcolor=lightgreen];
+node_57 -> node_58 [label="<= 5.50"];
+node_59 [label="Split: case_duration_hours
+(n=293)", style=filled, fillcolor=lightblue];
+node_57 -> node_59 [label="> 5.50"];
+node_60 [label="Split: case_duration_hours
+(n=291)", style=filled, fillcolor=lightblue];
+node_59 -> node_60 [label="<= 1613.27"];
+node_61 [label="Split: case_duration_hours
+(n=290)", style=filled, fillcolor=lightblue];
+node_60 -> node_61 [label="<= 1487.57"];
+node_62 [label="Split: case_duration_hours
+(n=285)", style=filled, fillcolor=lightblue];
+node_61 -> node_62 [label="<= 1149.13"];
+node_63 [label="Split: case_duration_hours
+(n=283)", style=filled, fillcolor=lightblue];
+node_62 -> node_63 [label="<= 1123.63"];
+node_64 [label="Leaf: O_Sent (mail and online)
+(n=282)", style=filled, fillcolor=lightgreen];
+node_63 -> node_64 [label="<= 1107.36"];
+node_65 [label="Leaf: O_Sent (online only)
+(n=1)", style=filled, fillcolor=lightgreen];
+node_63 -> node_65 [label="> 1107.36"];
+node_66 [label="Leaf: O_Sent (online only)
+(n=2)", style=filled, fillcolor=lightgreen];
+node_62 -> node_66 [label="> 1123.63"];
+node_67 [label="Leaf: O_Sent (mail and online)
+(n=5)", style=filled, fillcolor=lightgreen];
+node_61 -> node_67 [label="> 1149.13"];
+node_68 [label="Leaf: O_Sent (online only)
+(n=1)", style=filled, fillcolor=lightgreen];
+node_60 -> node_68 [label="> 1487.57"];
+node_69 [label="Leaf: O_Sent (mail and online)
+(n=2)", style=filled, fillcolor=lightgreen];
+node_59 -> node_69 [label="> 1613.27"];
+node_70 [label="Leaf: O_Sent (online only)
+(n=1)", style=filled, fillcolor=lightgreen];
+node_56 -> node_70 [label="> 21.50"];
+node_71 [label="Split: case_duration_hours
+(n=665)", style=filled, fillcolor=lightblue];
+node_0 -> node_71 [label="O_Cancelled"];
+node_72 [label="Split: hour_of_day
+(n=62)", style=filled, fillcolor=lightblue];
+node_71 -> node_72 [label="<= 0.00"];
+node_73 [label="Leaf: O_Cancelled
+(n=18)", style=filled, fillcolor=lightgreen];
+node_72 -> node_73 [label="<= 7.50"];
+node_74 [label="Leaf: O_Sent (mail and online)
+(n=44)", style=filled, fillcolor=lightgreen];
+node_72 -> node_74 [label="> 7.50"];
+node_75 [label="Split: case_duration_hours
+(n=603)", style=filled, fillcolor=lightblue];
+node_71 -> node_75 [label="> 0.00"];
+node_76 [label="Leaf: O_Cancelled
+(n=5)", style=filled, fillcolor=lightgreen];
+node_75 -> node_76 [label="<= 0.01"];
+node_77 [label="Split: case:ApplicationType
+(n=598)", style=filled, fillcolor=lightblue];
+node_75 -> node_77 [label="> 0.01"];
+node_78 [label="Split: case_duration_hours
+(n=587)", style=filled, fillcolor=lightblue];
+node_77 -> node_78 [label="New credit"];
+node_79 [label="Split: case:RequestedAmount
+(n=508)", style=filled, fillcolor=lightblue];
+node_78 -> node_79 [label="<= 531.16"];
+node_80 [label="Split: case_duration_hours
+(n=480)", style=filled, fillcolor=lightblue];
+node_79 -> node_80 [label="<= 49125.00"];
+node_81 [label="Split: hour_of_day
+(n=471)", style=filled, fillcolor=lightblue];
+node_80 -> node_81 [label="<= 476.09"];
+node_82 [label="Leaf: O_Cancelled
+(n=77)", style=filled, fillcolor=lightgreen];
+node_81 -> node_82 [label="<= 8.50"];
+node_83 [label="Split: case_duration_hours
+(n=394)", style=filled, fillcolor=lightblue];
+node_81 -> node_83 [label="> 8.50"];
+node_84 [label="Leaf: O_Cancelled
+(n=58)", style=filled, fillcolor=lightgreen];
+node_83 -> node_84 [label="<= 0.48"];
+node_85 [label="Split: case_duration_hours
+(n=336)", style=filled, fillcolor=lightblue];
+node_83 -> node_85 [label="> 0.48"];
+node_86 [label="Leaf: O_Sent (mail and online)
+(n=1)", style=filled, fillcolor=lightgreen];
+node_85 -> node_86 [label="<= 0.53"];
+node_87 [label="Leaf: O_Cancelled
+(n=335)", style=filled, fillcolor=lightgreen];
+node_85 -> node_87 [label="> 0.53"];
+node_88 [label="Leaf: O_Cancelled
+(n=9)", style=filled, fillcolor=lightgreen];
+node_80 -> node_88 [label="> 476.09"];
+node_89 [label="Leaf: O_Cancelled
+(n=28)", style=filled, fillcolor=lightgreen];
+node_79 -> node_89 [label="> 49125.00"];
+node_90 [label="Split: case_duration_hours
+(n=79)", style=filled, fillcolor=lightblue];
+node_78 -> node_90 [label="> 531.16"];
+node_91 [label="Leaf: O_Sent (online only)
+(n=1)", style=filled, fillcolor=lightgreen];
+node_90 -> node_91 [label="<= 538.19"];
+node_92 [label="Leaf: O_Cancelled
+(n=78)", style=filled, fillcolor=lightgreen];
+node_90 -> node_92 [label="> 538.19"];
+node_93 [label="Leaf: O_Cancelled
+(n=11)", style=filled, fillcolor=lightgreen];
+node_77 -> node_93 [label="Limit raise"];
+node_94 [label="Split: case_duration_hours
+(n=458)", style=filled, fillcolor=lightblue];
+node_0 -> node_94 [label="O_Sent (mail and online)"];
+node_95 [label="Split: case_duration_hours
+(n=457)", style=filled, fillcolor=lightblue];
+node_94 -> node_95 [label="<= 477.96"];
+node_96 [label="Leaf: O_Sent (mail and online)
+(n=6)", style=filled, fillcolor=lightgreen];
+node_95 -> node_96 [label="<= 0.00"];
+node_97 [label="Split: hour_of_day
+(n=451)", style=filled, fillcolor=lightblue];
+node_95 -> node_97 [label="> 0.00"];
+node_98 [label="Leaf: O_Sent (mail and online)
+(n=5)", style=filled, fillcolor=lightgreen];
+node_97 -> node_98 [label="<= 5.50"];
+node_99 [label="Split: case:RequestedAmount
+(n=446)", style=filled, fillcolor=lightblue];
+node_97 -> node_99 [label="> 5.50"];
+node_100 [label="Split: hour_of_day
+(n=442)", style=filled, fillcolor=lightblue];
+node_99 -> node_100 [label="<= 74742.00"];
+node_101 [label="Split: case:RequestedAmount
+(n=438)", style=filled, fillcolor=lightblue];
+node_100 -> node_101 [label="<= 21.50"];
+node_102 [label="Leaf: O_Sent (mail and online)
+(n=35)", style=filled, fillcolor=lightgreen];
+node_101 -> node_102 [label="<= 2800.00"];
+node_103 [label="Split: case_duration_hours
+(n=403)", style=filled, fillcolor=lightblue];
+node_101 -> node_103 [label="> 2800.00"];
+node_104 [label="Split: case_duration_hours
+(n=369)", style=filled, fillcolor=lightblue];
+node_103 -> node_104 [label="<= 72.23"];
+node_105 [label="Split: hour_of_day
+(n=368)", style=filled, fillcolor=lightblue];
+node_104 -> node_105 [label="<= 71.78"];
+node_106 [label="Leaf: O_Sent (mail and online)
+(n=353)", style=filled, fillcolor=lightgreen];
+node_105 -> node_106 [label="<= 19.50"];
+node_107 [label="Leaf: O_Sent (mail and online)
+(n=15)", style=filled, fillcolor=lightgreen];
+node_105 -> node_107 [label="> 19.50"];
+node_108 [label="Leaf: O_Cancelled
+(n=1)", style=filled, fillcolor=lightgreen];
+node_104 -> node_108 [label="> 71.78"];
+node_109 [label="Leaf: O_Sent (mail and online)
+(n=34)", style=filled, fillcolor=lightgreen];
+node_103 -> node_109 [label="> 72.23"];
+node_110 [label="Leaf: O_Sent (mail and online)
+(n=4)", style=filled, fillcolor=lightgreen];
+node_100 -> node_110 [label="> 21.50"];
+node_111 [label="Leaf: O_Sent (mail and online)
+(n=4)", style=filled, fillcolor=lightgreen];
+node_99 -> node_111 [label="> 74742.00"];
+node_112 [label="Leaf: O_Cancelled
+(n=1)", style=filled, fillcolor=lightgreen];
+node_94 -> node_112 [label="> 477.96"];
+node_113 [label="Leaf: O_Cancelled
+(n=403)", style=filled, fillcolor=lightgreen];
+node_0 -> node_113 [label="W_Validate application"];
+node_114 [label="Leaf: O_Sent (online only)
+(n=16)", style=filled, fillcolor=lightgreen];
+node_0 -> node_114 [label="O_Sent (online only)"];
+node_115 [label="Leaf: O_Cancelled
+(n=26)", style=filled, fillcolor=lightgreen];
+node_0 -> node_115 [label="W_Call after offers"];
+node_116 [label="Split: case:RequestedAmount
+(n=203)", style=filled, fillcolor=lightblue];
+node_0 -> node_116 [label="W_Call incomplete files"];
+node_117 [label="Leaf: O_Cancelled
+(n=123)", style=filled, fillcolor=lightgreen];
+node_116 -> node_117 [label="<= 19500.00"];
+node_118 [label="Split: case:RequestedAmount
+(n=80)", style=filled, fillcolor=lightblue];
+node_116 -> node_118 [label="> 19500.00"];
+node_119 [label="Leaf: O_Cancelled
+(n=21)", style=filled, fillcolor=lightgreen];
+node_118 -> node_119 [label="<= 23700.00"];
+node_120 [label="Split: case_duration_hours
+(n=59)", style=filled, fillcolor=lightblue];
+node_118 -> node_120 [label="> 23700.00"];
+node_121 [label="Leaf: O_Cancelled
+(n=13)", style=filled, fillcolor=lightgreen];
+node_120 -> node_121 [label="<= 56.24"];
+node_122 [label="Leaf: O_Cancelled
+(n=46)", style=filled, fillcolor=lightgreen];
+node_120 -> node_122 [label="> 56.24"];
+node_123 [label="Leaf: O_Cancelled
+(n=47)", style=filled, fillcolor=lightgreen];
+node_0 -> node_123 [label="A_Complete"];
+node_124 [label="Leaf: O_Cancelled
+(n=2)", style=filled, fillcolor=lightgreen];
+node_0 -> node_124 [label="O_Returned"];
+node_125 [label="Leaf: O_Sent (mail and online)
+(n=1)", style=filled, fillcolor=lightgreen];
+node_0 -> node_125 [label="W_Shortened completion "];
+}
