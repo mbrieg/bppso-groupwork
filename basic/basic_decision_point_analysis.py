@@ -1,6 +1,8 @@
 from collections import defaultdict, deque
 import random
-
+import pickle
+import os
+import sys
 from pm4py.objects.bpmn.importer import importer as bpmn_importer
 from pm4py.objects.conversion.bpmn import converter as bpmn_converter
 from pm4py.objects.log.importer.xes import importer as xes_importer
@@ -267,3 +269,60 @@ def route_at_decision_point(place,
         upto += val
         
     return list(candidates.keys())[-1]
+
+if __name__ == "__main__":
+    print("\n=== BASIC DECISION POINT ANALYSIS ===")
+
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+
+    if os.path.exists(os.path.join(current_dir, "data")):
+        project_root = current_dir
+        print("  Script is working in the current dir")
+    else:
+        project_root = os.path.dirname(current_dir)
+        print(" Script is working in subdir")
+    
+    bpmn_path = os.path.join(project_root, "data", "BPI Challenge 2017 Loan Application Process-6-4.bpmn")
+    xes_path = os.path.join(project_root, "data", "BPI Challenge 2017.xes.gz")
+    
+    output_model_path = os.path.join(project_root, "basic_routing_model.pkl")
+    print(f" Root: {project_root}")
+    
+    error_found = False
+    if not os.path.exists(bpmn_path):
+        print(f" Error: BPMN not found")
+        print(f"   Path: {bpmn_path}")
+        error_found = True
+    else:
+        print(f" BPMN found: {os.path.basename(bpmn_path)}")
+    
+    if not os.path.exists(xes_path):
+        print(f" Error: XES not found")
+        print(f"   Path: {xes_path}")
+        error_found = True
+    else:
+        print(f" XES found: {os.path.basename(xes_path)}")
+
+    if error_found:
+        print("\n Check the data folder and names")
+        sys.exit(1)
+
+    # 3. Çalıştır
+    try:
+        print("\n Building the model..")
+        model_data = build_basic_branching_model(bpmn_path, xes_path, horizon=60, verbose=True)
+
+        print(f"\n Downloading the model: {output_model_path}")
+        with open(output_model_path, "wb") as f:
+            pickle.dump(model_data, f)
+            
+        print(" Done: 'basic_routing_model.pkl' is created")
+
+    except ImportError as e:
+        print(f"\n {e}")
+        print(" Check 'pm4py' library is loaded: pip install pm4py")
+    except Exception as e:
+        print(f"\n❌ Error: {e}")
+        import traceback
+        traceback.print_exc()
+

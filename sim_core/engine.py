@@ -4,6 +4,19 @@ import random
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 
+try:
+    from .router import Router
+except ImportError:
+    try:
+        from router import Router
+    except ImportError:
+        # basic dummy router for safety
+        class Router:
+            def __init__(self, *args, **kwargs):
+                self.mode = "random"
+            def decide(self, enabled, pn, meta, marking, current_time):
+                return random.choice(enabled)
+            
 @dataclass(order=True)
 class Event:
     time: datetime
@@ -13,14 +26,28 @@ class Event:
     resource: str = field(compare=False, default=None)
 
 class Engine:
-    def __init__(self, pn, start_time=None):
+    def __init__(self, pn, start_time=None, mode="random",
+                  basic_model=None, advanced_model=None,max_cases=50):
         self.pn = pn
         self.now = start_time or datetime(2016, 1, 1, 9, 15, 0)
         self.queue = []
         self.cases = {}
+        self.cases_meta = {}
         self.log = []
         self.next_case_id = 0
+        self.max_cases = max_cases
         self.available_resources = ["User_1", "User_2", "User_3"]
+        self.router = Router(
+            mode=mode,
+            basic_model=basic_model,
+            advanced_model=advanced_model
+        )
+
+        print(f" Simulation Engine initialized")
+        print(f"  - Decision mode: {mode}")
+        print(f"  - Max cases: {max_cases}")
+        print(f"  - Resources: {len(self.available_resources)}")
+
 
 
     def spawn(self, at_time=None):
@@ -47,7 +74,16 @@ class Engine:
         enabled = [t for t in self.pn.trans_ids if all(m.get(p, 0) > 0 for p in self.pn.inputs.get(t, []))]
 
         while enabled:
-            tid = random.choice(enabled) # 1.4 XOR logic random now
+
+            case_meta = self.cases_meta.get(case_id, {})
+            tid = self.router.decide(
+                enabled_ids=enabled,
+                pn=self.pn,
+                case_meta=case_meta,
+                marking=m,
+                current_time=self.now                     
+            ) # 1.4 XOR logic added
+
             label = self.pn.labels.get(tid, "")
 
             if label == "": # Silent Gateway, instant consume and produce
@@ -65,8 +101,18 @@ class Engine:
         self.next_case_id += 1
         self.cases[e.case_id] = dict(self.pn.im)
 
+        # 1.4 Decision Point Analysis case history metadata
+        #initial marking
+        self.cases[e.case_id] = dict(self.pn.im)
+        # case metadata
+        self.cases_meta[e.case_id] = {
+            "history" : [],
+            "attributes" : self._generate_case_attributes(),
+            "start_time" : self.now
+        }
+ 
         # 1.2 Basic: Static parametric distribution (e.g.: Exponential), only 10 for testing
-        if self.next_case_id < 10:
+        if self.next_case_id < self.max_cases:
             inter_arrival_time = random.expovariate(1/30) # Average every 30 mins
             next_arrival = self.now + timedelta(minutes=inter_arrival_time)
             heapq.heappush(self.queue, Event(next_arrival, "SPAWN", self.next_case_id + 1))
@@ -84,6 +130,13 @@ class Engine:
     def _handle_complete(self, e):
         self._produce(self.cases[e.case_id], e.transition_id)
         self._record(e, "complete")
+
+        # 1.4 Decision Analysis Router 
+        # Add to history
+        label = self.pn.labels.get(e.transition_id, "").strip()
+        if label:
+            self.cases_meta[e.case_id]["history"].append(label)
+
         self.available_resources.append(e.resource)
         self._process_flow(e.case_id)
 
@@ -98,6 +151,26 @@ class Engine:
             m[p] = m.get(p, 0) + 1
 
 
+    def _is_case_complete(self, case_id):
+        """
+        Check whether the case comes to the final marking
+        """
+        m = self.cases[case_id]
+        fm = self.pn.fm
+        
+        # Comparing the num of tokens for each place
+        for place_id, expected_tokens in fm.items():
+            if m.get(place_id, 0) != expected_tokens:
+                return False
+        
+        # Check if there is remaining tokens
+        for place_id, tokens in m.items():
+            if tokens > 0 and place_id not in fm:
+                return False
+        
+        return True
+
+
     def _record(self, e, phase):
         self.log.append({
             "case:concept:name": e.case_id,
@@ -108,5 +181,83 @@ class Engine:
         })
 
 
+    def _generate_case_attributes(self):
+        """
+        Generates case attributes based on BPI 2017 --> according to output of data_validation.py
+        CreditScore is excluded as it is missing in the source dataset.
+        """
+        app_type = random.choices(
+            ["New credit", "Limit raise"], 
+            weights=[28120, 3389], 
+            k=1
+        )[0]
+
+        goal_options = [
+            "Car", "Home improvement", "Existing loan takeover", 
+            "Other, see explanation", "Unknown", "Not speficied", 
+            "Remaining debt home", "Extra spending limit", "Caravan / Camper",
+            "Motorcycle", "Boat", "Tax payments", "Business goal", "Debt restructuring"
+        ]
+        
+        goal_weights = [
+            9328, 7669, 5601, 
+            2985, 2365, 1065, 
+            842, 625, 369, 
+            275, 201, 152, 30, 2
+        ]
+
+        loan_goal = random.choices(goal_options, weights=goal_weights, k=1)[0]
+
+        # Requested amount
+        amount = round(random.triangular(100, 60000, 12500), 2)
+
+        return {
+            "case:ApplicationType": app_type,
+            "case:LoanGoal": loan_goal,
+            "case:RequestedAmount": amount
+            # "case:CreditScore": removed due to missing data in source log
+        }
+        
+        
+
     def export_log(self, path="simulation_log.csv"):
-        pd.DataFrame(self.log).to_csv(path, index=False)
+        if not self.log:
+            return
+        df = pd.DataFrame(self.log)
+        df.to_csv(path, index=False)
+        print(f"\n Event log exported to: {path}")
+        print(f"  - {len(df)} events")
+        print(f"  - {df['case:concept:name'].nunique()} unique cases")
+        print(f"  - {df['concept:name'].nunique()} unique activities")
+
+    def print_statistics(self):
+        """
+        Simulation statistics 
+        """
+        if not self.log:
+            print("No events recorded")
+            return
+        
+        df = pd.DataFrame(self.log)
+        
+        print(f"\n{'='*60}")
+        print("SIMULATION STATISTICS")
+        print('='*60)
+        
+        # Case statistics
+        print(f"\nCases:")
+        print(f"  Total: {df['case:concept:name'].nunique()}")
+        
+        # Activity statistics
+        print(f"\nActivities:")
+        activity_counts = df['concept:name'].value_counts()
+        for act, count in activity_counts.head(10).items():
+            print(f"  {act}: {count}")
+        
+        # Resource statistics
+        print(f"\nResources:")
+        resource_counts = df['org:resource'].value_counts()
+        for res, count in resource_counts.items():
+            print(f"  {res}: {count} tasks")
+        
+        print('='*60)

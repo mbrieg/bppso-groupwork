@@ -4,7 +4,7 @@ from collections import defaultdict
 from typing import Dict, List, Any
 import os
 import pickle
-
+import sys
 import pandas as pd
 import numpy as np
 from pm4py.algo.conformance.alignments.petri_net import algorithm as align_algo
@@ -12,13 +12,26 @@ from sklearn.model_selection import train_test_split, StratifiedKFold
 from sklearn.metrics import classification_report, accuracy_score
 from sklearn.dummy import DummyClassifier
 
-# Existing modules
-from basic_decision_point_analysis import (
-    load_petri_from_bpmn,
-    load_event_log,
-    build_place_structures,
-    build_transition_activity_mappings,
-)
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(current_dir)
+basic_dir = os.path.join(project_root, "basic")
+
+if basic_dir not in sys.path:
+    sys.path.append(basic_dir)
+
+try:
+    from basic_decision_point_analysis import (
+        load_petri_from_bpmn,
+        load_event_log,
+        build_place_structures,
+        build_transition_activity_mappings,
+    )
+except ImportError as e:
+    print(f"CRITICAL ERROR: Could not import 'basic_decision_point_analysis'.")
+    print(f"Make sure the 'basic' folder is at: {basic_dir}")
+    print(f"Detail: {e}")
+    sys.exit(1)
+
 from c45_tree import C45DecisionTree
 
 def extract_decision_training_data(
@@ -281,7 +294,7 @@ def train_trees_per_place(
             print(f"  Original Dataset Size : {original_size:,} episodes")
             print(f"  Training Set Size     : {len(X_train_full):,} samples")
             print(f"  Test Set Size         : {len(X_test):,} samples")
-            print(f"  ---")
+            print(f"  --------------------------")
             print(f"  Tree Accuracy         : {acc:.4f}")
             print(f"  Baseline Acc          : {baseline_acc:.4f} (Most Frequent)")
             print(f"  Improvement           : {improvement:+.4f} ({improvement/baseline_acc*100:+.1f}%)")
@@ -318,10 +331,19 @@ def main():
     """
     End-to-end function with optimization, caching, export for simulator.
     """
-
-    bpmn_path = "/Users/zeynepcetin/Decision Point Analysis/data folder/BPI Challenge 2017 Loan Application Process-6-4.bpmn"
-    xes_path = "/Users/zeynepcetin/Decision Point Analysis/data folder/BPI Challenge 2017.xes.gz"
-    output_dir = "/decision point analysis/advanced/decision_trees_output"
+    # current_dir is 'advanced/'
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.dirname(current_dir)
+    
+    # Check if 'data' is in project root or current dir
+    if os.path.exists(os.path.join(current_dir, "data")):
+        project_root = current_dir 
+    
+    bpmn_path = os.path.join(project_root, "data", "BPI Challenge 2017 Loan Application Process-6-4.bpmn")
+    xes_path = os.path.join(project_root, "data", "BPI Challenge 2017.xes.gz")
+    
+    output_dir = os.path.join(current_dir, "decision_trees_output")
+    sim_model_path = os.path.join(project_root, "decision_models.pkl")
     
     # Configuration flags
     SAVE_EXTRACTED_DATA = True    # True at first
@@ -350,7 +372,7 @@ def main():
         "case:LoanGoal",
         "case:ApplicationType",
         "case:RequestedAmount",
-        "case:CreditScore", 
+        #"case:CreditScore", --> data_validation
     ]
 
     print("--- EXTRACTING TRAINING DATA ---")
@@ -397,8 +419,9 @@ def main():
         "case:LoanGoal": "nominal",
         "case:ApplicationType": "nominal",
         "case:RequestedAmount": "numeric",
-        "case:CreditScore": "numeric",
-        "hour_of_day": "numeric",      
+        #"case:CreditScore": "numeric", --> acc to data_validaiton
+        "hour_of_day": "numeric",
+        "day_of_week": "nominal",   
         "case_duration_hours": "numeric"
     }
 
