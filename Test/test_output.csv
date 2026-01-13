@@ -1,0 +1,1355 @@
+case:concept:name,concept:name,time:timestamp,lifecycle:transition,org:resource
+1,A_Create Application,2016-01-01 09:15:00.000000,start,User_3
+1,A_Create Application,2016-01-01 09:24:00.000000,complete,User_3
+1,W_Complete application,2016-01-01 09:24:00.000000,start,User_112
+1,W_Complete application,2016-01-01 09:35:00.000000,complete,User_112
+1,W_Complete application,2016-01-01 09:35:00.000000,start,User_40
+1,W_Complete application,2016-01-01 09:47:00.000000,complete,User_40
+1,A_Concept,2016-01-01 09:47:00.000000,start,User_30
+2,A_Create Application,2016-01-01 09:51:24.971568,start,User_59
+2,A_Create Application,2016-01-01 09:58:24.971568,complete,User_59
+2,A_Concept,2016-01-01 09:58:24.971568,start,User_95
+1,A_Concept,2016-01-01 09:59:00.000000,complete,User_30
+1,W_Complete application,2016-01-01 09:59:00.000000,start,User_88
+1,W_Complete application,2016-01-01 10:07:00.000000,complete,User_88
+1,W_Complete application,2016-01-01 10:07:00.000000,start,User_66
+3,A_Create Application,2016-01-01 10:08:29.196722,start,User_31
+2,A_Concept,2016-01-01 10:13:24.971568,complete,User_95
+2,W_Complete application,2016-01-01 10:13:24.971568,start,User_32
+1,W_Complete application,2016-01-01 10:15:00.000000,complete,User_66
+1,A_Accepted,2016-01-01 10:15:00.000000,start,User_67
+2,W_Complete application,2016-01-01 10:18:24.971568,complete,User_32
+2,W_Complete application,2016-01-01 10:18:24.971568,start,User_54
+3,A_Create Application,2016-01-01 10:18:29.196722,complete,User_31
+3,A_Concept,2016-01-01 10:18:29.196722,start,User_15
+1,A_Accepted,2016-01-01 10:25:00.000000,complete,User_67
+1,O_Create Offer,2016-01-01 10:25:00.000000,start,User_102
+2,W_Complete application,2016-01-01 10:25:24.971568,complete,User_54
+2,A_Accepted,2016-01-01 10:25:24.971568,start,User_53
+3,A_Concept,2016-01-01 10:28:29.196722,complete,User_15
+3,W_Complete application,2016-01-01 10:28:29.196722,start,User_78
+1,O_Create Offer,2016-01-01 10:33:00.000000,complete,User_102
+1,O_Created,2016-01-01 10:33:00.000000,start,User_13
+3,W_Complete application,2016-01-01 10:34:29.196722,complete,User_78
+3,W_Complete application,2016-01-01 10:34:29.196722,start,User_40
+2,A_Accepted,2016-01-01 10:39:24.971568,complete,User_53
+2,O_Create Offer,2016-01-01 10:39:24.971568,start,User_117
+1,O_Created,2016-01-01 10:40:00.000000,complete,User_13
+1,A_Complete,2016-01-01 10:40:00.000000,start,User_90
+2,O_Create Offer,2016-01-01 10:47:24.971568,complete,User_117
+2,O_Created,2016-01-01 10:47:24.971568,start,User_63
+3,W_Complete application,2016-01-01 10:48:29.196722,complete,User_40
+3,W_Complete application,2016-01-01 10:48:29.196722,start,User_146
+1,A_Complete,2016-01-01 10:51:00.000000,complete,User_90
+1,O_Sent (mail and online),2016-01-01 10:51:00.000000,start,User_26
+2,O_Created,2016-01-01 10:52:24.971568,complete,User_63
+2,A_Complete,2016-01-01 10:52:24.971568,start,User_106
+3,W_Complete application,2016-01-01 10:57:29.196722,complete,User_146
+3,A_Accepted,2016-01-01 10:57:29.196722,start,User_60
+4,A_Create Application,2016-01-01 11:00:23.131836,start,User_19
+2,A_Complete,2016-01-01 11:00:24.971568,complete,User_106
+2,O_Sent (mail and online),2016-01-01 11:00:24.971568,start,User_78
+1,O_Sent (mail and online),2016-01-01 11:05:00.000000,complete,User_26
+1,W_Call after offers,2016-01-01 11:05:00.000000,start,User_29
+5,A_Create Application,2016-01-01 11:05:37.847537,start,User_75
+2,O_Sent (mail and online),2016-01-01 11:09:24.971568,complete,User_78
+2,W_Call after offers,2016-01-01 11:09:24.971568,start,User_95
+3,A_Accepted,2016-01-01 11:09:29.196722,complete,User_60
+3,O_Create Offer,2016-01-01 11:09:29.196722,start,User_38
+4,A_Create Application,2016-01-01 11:10:23.131836,complete,User_19
+4,A_Concept,2016-01-01 11:10:23.131836,start,User_77
+1,W_Call after offers,2016-01-01 11:15:00.000000,complete,User_29
+1,W_Call after offers,2016-01-01 11:15:00.000000,start,User_66
+5,A_Create Application,2016-01-01 11:17:37.847537,complete,User_75
+5,A_Submitted,2016-01-01 11:17:37.847537,start,User_1
+2,W_Call after offers,2016-01-01 11:18:24.971568,complete,User_95
+2,W_Call after offers,2016-01-01 11:18:24.971568,start,User_51
+4,A_Concept,2016-01-01 11:19:23.131836,complete,User_77
+4,W_Complete application,2016-01-01 11:19:23.131836,start,User_71
+1,W_Call after offers,2016-01-01 11:22:00.000000,complete,User_66
+1,W_Call after offers,2016-01-01 11:22:00.000000,start,User_15
+6,A_Create Application,2016-01-01 11:23:08.355281,start,User_93
+3,O_Create Offer,2016-01-01 11:23:29.196722,complete,User_38
+3,O_Created,2016-01-01 11:23:29.196722,start,User_33
+2,W_Call after offers,2016-01-01 11:27:24.971568,complete,User_51
+2,W_Call after offers,2016-01-01 11:27:24.971568,start,User_49
+4,W_Complete application,2016-01-01 11:29:23.131836,complete,User_71
+4,A_Accepted,2016-01-01 11:29:23.131836,start,User_104
+1,W_Call after offers,2016-01-01 11:30:00.000000,complete,User_15
+1,W_Call after offers,2016-01-01 11:30:00.000000,start,User_138
+5,A_Submitted,2016-01-01 11:31:37.847537,complete,User_1
+5,W_Handle leads,2016-01-01 11:31:37.847537,start,User_58
+2,W_Call after offers,2016-01-01 11:32:24.971568,complete,User_49
+2,O_Cancelled,2016-01-01 11:32:24.971568,start,User_77
+3,O_Created,2016-01-01 11:34:29.196722,complete,User_33
+3,O_Cancelled,2016-01-01 11:34:29.196722,start,User_120
+6,A_Create Application,2016-01-01 11:35:08.355281,complete,User_93
+6,W_Complete application,2016-01-01 11:35:08.355281,start,User_18
+4,A_Accepted,2016-01-01 11:36:23.131836,complete,User_104
+4,O_Create Offer,2016-01-01 11:36:23.131836,start,User_83
+2,O_Cancelled,2016-01-01 11:37:24.971568,complete,User_77
+2,A_Cancelled,2016-01-01 11:37:24.971568,start,User_47
+5,W_Handle leads,2016-01-01 11:37:37.847537,complete,User_58
+5,W_Handle leads,2016-01-01 11:37:37.847537,start,User_27
+1,W_Call after offers,2016-01-01 11:38:00.000000,complete,User_138
+1,W_Call after offers,2016-01-01 11:38:00.000000,start,User_54
+6,W_Complete application,2016-01-01 11:43:08.355281,complete,User_18
+6,A_Concept,2016-01-01 11:43:08.355281,start,User_46
+2,A_Cancelled,2016-01-01 11:43:24.971568,complete,User_47
+2,O_Create Offer,2016-01-01 11:43:24.971568,start,User_78
+4,O_Create Offer,2016-01-01 11:45:23.131836,complete,User_83
+4,O_Created,2016-01-01 11:45:23.131836,start,User_109
+5,W_Handle leads,2016-01-01 11:45:37.847537,complete,User_27
+5,W_Handle leads,2016-01-01 11:45:37.847537,start,User_41
+3,O_Cancelled,2016-01-01 11:47:29.196722,complete,User_120
+3,O_Create Offer,2016-01-01 11:47:29.196722,start,User_10
+1,W_Call after offers,2016-01-01 11:49:00.000000,complete,User_54
+1,A_Validating,2016-01-01 11:49:00.000000,start,User_57
+4,O_Created,2016-01-01 11:50:23.131836,complete,User_109
+4,O_Sent (mail and online),2016-01-01 11:50:23.131836,start,User_2
+6,A_Concept,2016-01-01 11:54:08.355281,complete,User_46
+6,W_Complete application,2016-01-01 11:54:08.355281,start,User_4
+1,A_Validating,2016-01-01 11:55:00.000000,complete,User_57
+1,W_Validate application,2016-01-01 11:55:00.000000,start,User_31
+5,W_Handle leads,2016-01-01 11:55:37.847537,complete,User_41
+5,W_Handle leads,2016-01-01 11:55:37.847537,start,User_66
+2,O_Create Offer,2016-01-01 11:56:24.971568,complete,User_78
+2,O_Created,2016-01-01 11:56:24.971568,start,User_77
+3,O_Create Offer,2016-01-01 11:57:29.196722,complete,User_10
+3,O_Created,2016-01-01 11:57:29.196722,start,User_72
+1,W_Validate application,2016-01-01 12:00:00.000000,complete,User_31
+1,O_Returned,2016-01-01 12:00:00.000000,start,User_106
+5,W_Handle leads,2016-01-01 12:00:37.847537,complete,User_66
+5,W_Complete application,2016-01-01 12:00:37.847537,start,User_1
+4,O_Sent (mail and online),2016-01-01 12:01:23.131836,complete,User_2
+4,W_Call after offers,2016-01-01 12:01:23.131836,start,User_119
+1,O_Returned,2016-01-01 12:05:00.000000,complete,User_106
+1,W_Call incomplete files,2016-01-01 12:05:00.000000,start,User_107
+6,W_Complete application,2016-01-01 12:05:08.355281,complete,User_4
+6,A_Accepted,2016-01-01 12:05:08.355281,start,User_86
+3,O_Created,2016-01-01 12:05:29.196722,complete,User_72
+3,W_Call after offers,2016-01-01 12:05:29.196722,start,User_138
+2,O_Created,2016-01-01 12:07:24.971568,complete,User_77
+2,O_Cancelled,2016-01-01 12:07:24.971568,start,User_3
+5,W_Complete application,2016-01-01 12:10:37.847537,complete,User_1
+5,A_Concept,2016-01-01 12:10:37.847537,start,User_11
+2,O_Cancelled,2016-01-01 12:13:24.971568,complete,User_3
+3,W_Call after offers,2016-01-01 12:14:29.196722,complete,User_138
+3,A_Complete,2016-01-01 12:14:29.196722,start,User_32
+4,W_Call after offers,2016-01-01 12:15:23.131836,complete,User_119
+4,A_Complete,2016-01-01 12:15:23.131836,start,User_104
+6,A_Accepted,2016-01-01 12:17:08.355281,complete,User_86
+6,O_Create Offer,2016-01-01 12:17:08.355281,start,User_79
+1,W_Call incomplete files,2016-01-01 12:20:00.000000,complete,User_107
+1,W_Call incomplete files,2016-01-01 12:20:00.000000,start,User_25
+4,A_Complete,2016-01-01 12:20:23.131836,complete,User_104
+4,A_Validating,2016-01-01 12:20:23.131836,start,User_36
+5,A_Concept,2016-01-01 12:20:37.847537,complete,User_11
+5,W_Complete application,2016-01-01 12:20:37.847537,start,User_48
+3,A_Complete,2016-01-01 12:23:29.196722,complete,User_32
+3,O_Sent (mail and online),2016-01-01 12:23:29.196722,start,User_26
+6,O_Create Offer,2016-01-01 12:26:08.355281,complete,User_79
+6,O_Created,2016-01-01 12:26:08.355281,start,User_35
+7,A_Create Application,2016-01-01 12:28:15.993087,start,User_34
+1,W_Call incomplete files,2016-01-01 12:30:00.000000,complete,User_25
+1,W_Call incomplete files,2016-01-01 12:30:00.000000,start,User_16
+5,W_Complete application,2016-01-01 12:30:37.847537,complete,User_48
+5,W_Complete application,2016-01-01 12:30:37.847537,start,User_39
+4,A_Validating,2016-01-01 12:32:23.131836,complete,User_36
+4,W_Validate application,2016-01-01 12:32:23.131836,start,User_75
+3,O_Sent (mail and online),2016-01-01 12:36:29.196722,complete,User_26
+3,W_Call after offers,2016-01-01 12:36:29.196722,start,User_118
+5,W_Complete application,2016-01-01 12:36:37.847537,complete,User_39
+5,W_Complete application,2016-01-01 12:36:37.847537,start,User_47
+1,W_Call incomplete files,2016-01-01 12:38:00.000000,complete,User_16
+1,A_Incomplete,2016-01-01 12:38:00.000000,start,User_109
+6,O_Created,2016-01-01 12:38:08.355281,complete,User_35
+6,O_Sent (mail and online),2016-01-01 12:38:08.355281,start,User_95
+8,A_Create Application,2016-01-01 12:38:34.935735,start,User_93
+4,W_Validate application,2016-01-01 12:40:23.131836,complete,User_75
+4,O_Accepted,2016-01-01 12:40:23.131836,start,User_100
+7,A_Create Application,2016-01-01 12:42:15.993087,complete,User_34
+7,A_Submitted,2016-01-01 12:42:15.993087,start,User_1
+4,O_Accepted,2016-01-01 12:45:23.131836,complete,User_100
+4,A_Pending,2016-01-01 12:45:23.131836,start,User_31
+3,W_Call after offers,2016-01-01 12:45:29.196722,complete,User_118
+3,O_Create Offer,2016-01-01 12:45:29.196722,start,User_83
+5,W_Complete application,2016-01-01 12:45:37.847537,complete,User_47
+5,W_Complete application,2016-01-01 12:45:37.847537,start,User_17
+6,O_Sent (mail and online),2016-01-01 12:48:08.355281,complete,User_95
+6,A_Complete,2016-01-01 12:48:08.355281,start,User_12
+1,A_Incomplete,2016-01-01 12:49:00.000000,complete,User_109
+1,W_Call incomplete files,2016-01-01 12:49:00.000000,start,User_57
+8,A_Create Application,2016-01-01 12:50:34.935735,complete,User_93
+4,A_Pending,2016-01-01 12:52:23.131836,complete,User_31
+4,O_Cancelled,2016-01-01 12:52:23.131836,start,User_107
+3,O_Create Offer,2016-01-01 12:53:29.196722,complete,User_83
+3,O_Created,2016-01-01 12:53:29.196722,start,User_67
+5,W_Complete application,2016-01-01 12:53:37.847537,complete,User_17
+5,W_Complete application,2016-01-01 12:53:37.847537,start,User_15
+6,A_Complete,2016-01-01 12:57:08.355281,complete,User_12
+6,W_Call after offers,2016-01-01 12:57:08.355281,start,User_46
+7,A_Submitted,2016-01-01 12:57:15.993087,complete,User_1
+7,W_Handle leads,2016-01-01 12:57:15.993087,start,User_37
+4,O_Cancelled,2016-01-01 12:57:23.131836,complete,User_107
+4,O_Cancelled,2016-01-01 12:57:23.131836,start,User_11
+1,W_Call incomplete files,2016-01-01 13:01:00.000000,complete,User_57
+1,W_Call incomplete files,2016-01-01 13:01:00.000000,start,User_120
+5,W_Complete application,2016-01-01 13:01:37.847537,complete,User_15
+5,W_Complete application,2016-01-01 13:01:37.847537,start,User_81
+4,O_Cancelled,2016-01-01 13:03:23.131836,complete,User_11
+4,O_Create Offer,2016-01-01 13:03:23.131836,start,User_24
+3,O_Created,2016-01-01 13:03:29.196722,complete,User_67
+3,O_Cancelled,2016-01-01 13:03:29.196722,start,User_2
+6,W_Call after offers,2016-01-01 13:04:08.355281,complete,User_46
+6,A_Cancelled,2016-01-01 13:04:08.355281,start,User_86
+7,W_Handle leads,2016-01-01 13:04:15.993087,complete,User_37
+7,W_Handle leads,2016-01-01 13:04:15.993087,start,User_17
+8,A_Submitted,2016-01-01 13:05:34.935735,start,User_1
+4,O_Create Offer,2016-01-01 13:08:23.131836,complete,User_24
+4,O_Created,2016-01-01 13:08:23.131836,start,User_41
+6,A_Cancelled,2016-01-01 13:10:08.355281,complete,User_86
+6,O_Cancelled,2016-01-01 13:10:08.355281,start,User_21
+9,A_Create Application,2016-01-01 13:11:43.419905,start,User_54
+1,W_Call incomplete files,2016-01-01 13:12:00.000000,complete,User_120
+1,W_Call incomplete files,2016-01-01 13:12:00.000000,start,User_85
+3,O_Cancelled,2016-01-01 13:13:29.196722,complete,User_2
+3,O_Cancelled,2016-01-01 13:13:29.196722,start,User_45
+5,W_Complete application,2016-01-01 13:14:37.847537,complete,User_81
+5,A_Accepted,2016-01-01 13:14:37.847537,start,User_69
+7,W_Handle leads,2016-01-01 13:15:15.993087,complete,User_17
+7,W_Complete application,2016-01-01 13:15:15.993087,start,User_59
+8,A_Submitted,2016-01-01 13:16:34.935735,complete,User_1
+8,W_Handle leads,2016-01-01 13:16:34.935735,start,User_3
+6,O_Cancelled,2016-01-01 13:18:08.355281,complete,User_21
+6,O_Create Offer,2016-01-01 13:18:08.355281,start,User_101
+3,O_Cancelled,2016-01-01 13:18:29.196722,complete,User_45
+3,O_Cancelled,2016-01-01 13:18:29.196722,start,User_68
+4,O_Created,2016-01-01 13:22:23.131836,complete,User_41
+4,A_Complete,2016-01-01 13:22:23.131836,start,User_61
+5,A_Accepted,2016-01-01 13:22:37.847537,complete,User_69
+5,O_Create Offer,2016-01-01 13:22:37.847537,start,User_100
+9,A_Create Application,2016-01-01 13:23:43.419905,complete,User_54
+9,W_Complete application,2016-01-01 13:23:43.419905,start,User_28
+8,W_Handle leads,2016-01-01 13:25:34.935735,complete,User_3
+8,W_Handle leads,2016-01-01 13:25:34.935735,start,User_52
+1,W_Call incomplete files,2016-01-01 13:26:00.000000,complete,User_85
+1,O_Create Offer,2016-01-01 13:26:00.000000,start,User_66
+6,O_Create Offer,2016-01-01 13:26:08.355281,complete,User_101
+6,O_Created,2016-01-01 13:26:08.355281,start,User_8
+10,A_Create Application,2016-01-01 13:27:20.308600,start,User_26
+7,W_Complete application,2016-01-01 13:29:15.993087,complete,User_59
+7,A_Concept,2016-01-01 13:29:15.993087,start,User_49
+4,A_Complete,2016-01-01 13:33:23.131836,complete,User_61
+4,O_Sent (mail and online),2016-01-01 13:33:23.131836,start,User_93
+3,O_Cancelled,2016-01-01 13:33:29.196722,complete,User_68
+3,O_Cancelled,2016-01-01 13:33:29.196722,start,User_117
+7,A_Concept,2016-01-01 13:34:15.993087,complete,User_49
+7,W_Complete application,2016-01-01 13:34:15.993087,start,User_143
+1,O_Create Offer,2016-01-01 13:35:00.000000,complete,User_66
+1,O_Created,2016-01-01 13:35:00.000000,start,User_21
+6,O_Created,2016-01-01 13:35:08.355281,complete,User_8
+6,A_Complete,2016-01-01 13:35:08.355281,start,User_23
+10,A_Create Application,2016-01-01 13:36:20.308600,complete,User_26
+10,A_Submitted,2016-01-01 13:36:20.308600,start,User_1
+5,O_Create Offer,2016-01-01 13:37:37.847537,complete,User_100
+5,O_Created,2016-01-01 13:37:37.847537,start,User_106
+9,W_Complete application,2016-01-01 13:37:43.419905,complete,User_28
+9,A_Concept,2016-01-01 13:37:43.419905,start,User_46
+7,W_Complete application,2016-01-01 13:40:15.993087,complete,User_143
+7,A_Accepted,2016-01-01 13:40:15.993087,start,User_53
+3,O_Cancelled,2016-01-01 13:40:29.196722,complete,User_117
+3,O_Create Offer,2016-01-01 13:40:29.196722,start,User_13
+8,W_Handle leads,2016-01-01 13:40:34.935735,complete,User_52
+8,W_Handle leads,2016-01-01 13:40:34.935735,start,User_66
+1,O_Created,2016-01-01 13:42:00.000000,complete,User_21
+1,A_Complete,2016-01-01 13:42:00.000000,start,User_48
+6,A_Complete,2016-01-01 13:45:08.355281,complete,User_23
+6,W_Call after offers,2016-01-01 13:45:08.355281,start,User_32
+9,A_Concept,2016-01-01 13:46:43.419905,complete,User_46
+9,W_Complete application,2016-01-01 13:46:43.419905,start,User_24
+4,O_Sent (mail and online),2016-01-01 13:48:23.131836,complete,User_93
+4,W_Call after offers,2016-01-01 13:48:23.131836,start,User_109
+1,A_Complete,2016-01-01 13:49:00.000000,complete,User_48
+1,W_Call after offers,2016-01-01 13:49:00.000000,start,User_126
+8,W_Handle leads,2016-01-01 13:49:34.935735,complete,User_66
+8,W_Handle leads,2016-01-01 13:49:34.935735,start,User_2
+10,A_Submitted,2016-01-01 13:51:20.308600,complete,User_1
+10,W_Handle leads,2016-01-01 13:51:20.308600,start,User_11
+5,O_Created,2016-01-01 13:52:37.847537,complete,User_106
+5,O_Sent (mail and online),2016-01-01 13:52:37.847537,start,User_71
+7,A_Accepted,2016-01-01 13:53:15.993087,complete,User_53
+7,O_Create Offer,2016-01-01 13:53:15.993087,start,User_77
+3,O_Create Offer,2016-01-01 13:54:29.196722,complete,User_13
+3,O_Created,2016-01-01 13:54:29.196722,start,User_83
+9,W_Complete application,2016-01-01 13:54:43.419905,complete,User_24
+9,A_Accepted,2016-01-01 13:54:43.419905,start,User_17
+4,W_Call after offers,2016-01-01 13:55:23.131836,complete,User_109
+4,O_Create Offer,2016-01-01 13:55:23.131836,start,User_104
+8,W_Handle leads,2016-01-01 13:55:34.935735,complete,User_2
+8,W_Handle leads,2016-01-01 13:55:34.935735,start,User_16
+6,W_Call after offers,2016-01-01 13:58:08.355281,complete,User_32
+6,O_Sent (mail and online),2016-01-01 13:58:08.355281,start,User_67
+5,O_Sent (mail and online),2016-01-01 13:59:37.847537,complete,User_71
+5,A_Complete,2016-01-01 13:59:37.847537,start,User_54
+9,A_Accepted,2016-01-01 13:59:43.419905,complete,User_17
+9,O_Create Offer,2016-01-01 13:59:43.419905,start,User_78
+10,W_Handle leads,2016-01-01 14:01:20.308600,complete,User_11
+10,W_Handle leads,2016-01-01 14:01:20.308600,start,User_41
+7,O_Create Offer,2016-01-01 14:02:15.993087,complete,User_77
+7,O_Created,2016-01-01 14:02:15.993087,start,User_20
+1,W_Call after offers,2016-01-01 14:03:00.000000,complete,User_126
+1,O_Sent (mail and online),2016-01-01 14:03:00.000000,start,User_56
+4,O_Create Offer,2016-01-01 14:06:23.131836,complete,User_104
+4,O_Created,2016-01-01 14:06:23.131836,start,User_72
+8,W_Handle leads,2016-01-01 14:07:34.935735,complete,User_16
+8,W_Handle leads,2016-01-01 14:07:34.935735,start,User_3
+9,O_Create Offer,2016-01-01 14:07:43.419905,complete,User_78
+9,O_Created,2016-01-01 14:07:43.419905,start,User_5
+3,O_Created,2016-01-01 14:09:29.196722,complete,User_83
+3,O_Cancelled,2016-01-01 14:09:29.196722,start,User_25
+6,O_Sent (mail and online),2016-01-01 14:11:08.355281,complete,User_67
+6,O_Create Offer,2016-01-01 14:11:08.355281,start,User_2
+7,O_Created,2016-01-01 14:11:15.993087,complete,User_20
+7,W_Call after offers,2016-01-01 14:11:15.993087,start,User_37
+5,A_Complete,2016-01-01 14:12:37.847537,complete,User_54
+5,W_Call after offers,2016-01-01 14:12:37.847537,start,User_86
+10,W_Handle leads,2016-01-01 14:13:20.308600,complete,User_41
+10,W_Handle leads,2016-01-01 14:13:20.308600,start,User_35
+1,O_Sent (mail and online),2016-01-01 14:14:00.000000,complete,User_56
+1,W_Call after offers,2016-01-01 14:14:00.000000,start,User_50
+4,O_Created,2016-01-01 14:14:23.131836,complete,User_72
+4,O_Cancelled,2016-01-01 14:14:23.131836,start,User_40
+9,O_Created,2016-01-01 14:15:43.419905,complete,User_5
+9,W_Call after offers,2016-01-01 14:15:43.419905,start,User_45
+3,O_Cancelled,2016-01-01 14:16:29.196722,complete,User_25
+3,O_Cancelled,2016-01-01 14:16:29.196722,start,User_36
+8,W_Handle leads,2016-01-01 14:16:34.935735,complete,User_3
+8,W_Complete application,2016-01-01 14:16:34.935735,start,User_1
+1,W_Call after offers,2016-01-01 14:19:00.000000,complete,User_50
+1,O_Cancelled,2016-01-01 14:19:00.000000,start,User_100
+9,W_Call after offers,2016-01-01 14:20:43.419905,complete,User_45
+9,A_Complete,2016-01-01 14:20:43.419905,start,User_38
+8,W_Complete application,2016-01-01 14:21:34.935735,complete,User_1
+8,A_Concept,2016-01-01 14:21:34.935735,start,User_42
+10,W_Handle leads,2016-01-01 14:23:20.308600,complete,User_35
+10,W_Handle leads,2016-01-01 14:23:20.308600,start,User_48
+4,O_Cancelled,2016-01-01 14:23:23.131836,complete,User_40
+4,O_Create Offer,2016-01-01 14:23:23.131836,start,User_102
+7,W_Call after offers,2016-01-01 14:24:15.993087,complete,User_37
+7,A_Complete,2016-01-01 14:24:15.993087,start,User_51
+6,O_Create Offer,2016-01-01 14:25:08.355281,complete,User_2
+6,O_Created,2016-01-01 14:25:08.355281,start,User_69
+5,W_Call after offers,2016-01-01 14:25:37.847537,complete,User_86
+5,O_Cancelled,2016-01-01 14:25:37.847537,start,User_106
+8,A_Concept,2016-01-01 14:28:34.935735,complete,User_42
+8,A_Accepted,2016-01-01 14:28:34.935735,start,User_77
+3,O_Cancelled,2016-01-01 14:29:29.196722,complete,User_36
+3,O_Create Offer,2016-01-01 14:29:29.196722,start,User_88
+4,O_Create Offer,2016-01-01 14:30:23.131836,complete,User_102
+4,O_Created,2016-01-01 14:30:23.131836,start,User_116
+9,A_Complete,2016-01-01 14:30:43.419905,complete,User_38
+9,O_Sent (mail and online),2016-01-01 14:30:43.419905,start,User_58
+1,O_Cancelled,2016-01-01 14:31:00.000000,complete,User_100
+1,A_Cancelled,2016-01-01 14:31:00.000000,start,User_21
+7,A_Complete,2016-01-01 14:35:15.993087,complete,User_51
+7,O_Sent (mail and online),2016-01-01 14:35:15.993087,start,User_23
+1,A_Cancelled,2016-01-01 14:36:00.000000,complete,User_21
+1,O_Cancelled,2016-01-01 14:36:00.000000,start,User_39
+6,O_Created,2016-01-01 14:36:08.355281,complete,User_69
+6,O_Cancelled,2016-01-01 14:36:08.355281,start,User_71
+4,O_Created,2016-01-01 14:36:23.131836,complete,User_116
+4,O_Sent (mail and online),2016-01-01 14:36:23.131836,start,User_18
+9,O_Sent (mail and online),2016-01-01 14:36:43.419905,complete,User_58
+9,W_Call after offers,2016-01-01 14:36:43.419905,start,User_84
+10,W_Handle leads,2016-01-01 14:37:20.308600,complete,User_48
+10,A_Concept,2016-01-01 14:37:20.308600,start,User_17
+5,O_Cancelled,2016-01-01 14:38:37.847537,complete,User_106
+5,A_Cancelled,2016-01-01 14:38:37.847537,start,User_8
+3,O_Create Offer,2016-01-01 14:39:29.196722,complete,User_88
+3,O_Created,2016-01-01 14:39:29.196722,start,User_37
+7,O_Sent (mail and online),2016-01-01 14:40:15.993087,complete,User_23
+7,W_Call after offers,2016-01-01 14:40:15.993087,start,User_51
+1,O_Cancelled,2016-01-01 14:41:00.000000,complete,User_39
+1,O_Cancelled,2016-01-01 14:41:00.000000,start,User_5
+9,W_Call after offers,2016-01-01 14:41:43.419905,complete,User_84
+9,W_Call after offers,2016-01-01 14:41:43.419905,start,User_11
+10,A_Concept,2016-01-01 14:42:20.308600,complete,User_17
+10,W_Complete application,2016-01-01 14:42:20.308600,start,User_15
+8,A_Accepted,2016-01-01 14:43:34.935735,complete,User_77
+8,O_Create Offer,2016-01-01 14:43:34.935735,start,User_32
+6,O_Cancelled,2016-01-01 14:44:08.355281,complete,User_71
+6,O_Create Offer,2016-01-01 14:44:08.355281,start,User_60
+3,O_Created,2016-01-01 14:47:29.196722,complete,User_37
+3,A_Complete,2016-01-01 14:47:29.196722,start,User_19
+5,A_Cancelled,2016-01-01 14:47:37.847537,complete,User_8
+5,O_Create Offer,2016-01-01 14:47:37.847537,start,User_3
+1,O_Cancelled,2016-01-01 14:48:00.000000,complete,User_5
+4,O_Sent (mail and online),2016-01-01 14:48:23.131836,complete,User_18
+4,W_Call after offers,2016-01-01 14:48:23.131836,start,User_104
+6,O_Create Offer,2016-01-01 14:49:08.355281,complete,User_60
+6,O_Created,2016-01-01 14:49:08.355281,start,User_54
+7,W_Call after offers,2016-01-01 14:50:15.993087,complete,User_51
+7,O_Create Offer,2016-01-01 14:50:15.993087,start,User_20
+8,O_Create Offer,2016-01-01 14:50:34.935735,complete,User_32
+8,O_Created,2016-01-01 14:50:34.935735,start,User_27
+9,W_Call after offers,2016-01-01 14:51:43.419905,complete,User_11
+9,W_Call after offers,2016-01-01 14:51:43.419905,start,User_12
+10,W_Complete application,2016-01-01 14:53:20.308600,complete,User_15
+10,W_Complete application,2016-01-01 14:53:20.308600,start,User_4
+6,O_Created,2016-01-01 14:57:08.355281,complete,User_54
+6,W_Call after offers,2016-01-01 14:57:08.355281,start,User_46
+8,O_Created,2016-01-01 14:57:34.935735,complete,User_27
+8,O_Cancelled,2016-01-01 14:57:34.935735,start,User_69
+5,O_Create Offer,2016-01-01 14:59:37.847537,complete,User_3
+5,O_Created,2016-01-01 14:59:37.847537,start,User_133
+7,O_Create Offer,2016-01-01 15:01:15.993087,complete,User_20
+7,O_Created,2016-01-01 15:01:15.993087,start,User_21
+3,A_Complete,2016-01-01 15:01:29.196722,complete,User_19
+3,O_Sent (mail and online),2016-01-01 15:01:29.196722,start,User_24
+4,W_Call after offers,2016-01-01 15:02:23.131836,complete,User_104
+4,A_Complete,2016-01-01 15:02:23.131836,start,User_85
+8,O_Cancelled,2016-01-01 15:02:34.935735,complete,User_69
+8,O_Create Offer,2016-01-01 15:02:34.935735,start,User_37
+6,W_Call after offers,2016-01-01 15:05:08.355281,complete,User_46
+6,A_Complete,2016-01-01 15:05:08.355281,start,User_10
+9,W_Call after offers,2016-01-01 15:05:43.419905,complete,User_12
+9,O_Create Offer,2016-01-01 15:05:43.419905,start,User_7
+3,O_Sent (mail and online),2016-01-01 15:06:29.196722,complete,User_24
+3,W_Call after offers,2016-01-01 15:06:29.196722,start,User_88
+10,W_Complete application,2016-01-01 15:08:20.308600,complete,User_4
+10,A_Accepted,2016-01-01 15:08:20.308600,start,User_45
+7,O_Created,2016-01-01 15:13:15.993087,complete,User_21
+7,O_Cancelled,2016-01-01 15:13:15.993087,start,User_52
+8,O_Create Offer,2016-01-01 15:13:34.935735,complete,User_37
+8,O_Created,2016-01-01 15:13:34.935735,start,User_34
+5,O_Created,2016-01-01 15:13:37.847537,complete,User_133
+5,O_Sent (mail and online),2016-01-01 15:13:37.847537,start,User_35
+6,A_Complete,2016-01-01 15:14:08.355281,complete,User_10
+6,O_Sent (mail and online),2016-01-01 15:14:08.355281,start,User_36
+10,A_Accepted,2016-01-01 15:15:20.308600,complete,User_45
+10,O_Create Offer,2016-01-01 15:15:20.308600,start,User_17
+4,A_Complete,2016-01-01 15:16:23.131836,complete,User_85
+4,O_Create Offer,2016-01-01 15:16:23.131836,start,User_66
+3,W_Call after offers,2016-01-01 15:18:29.196722,complete,User_88
+3,O_Create Offer,2016-01-01 15:18:29.196722,start,User_78
+9,O_Create Offer,2016-01-01 15:18:43.419905,complete,User_7
+9,O_Created,2016-01-01 15:18:43.419905,start,User_72
+6,O_Sent (mail and online),2016-01-01 15:19:08.355281,complete,User_36
+6,W_Call after offers,2016-01-01 15:19:08.355281,start,User_124
+8,O_Created,2016-01-01 15:20:34.935735,complete,User_34
+8,W_Call after offers,2016-01-01 15:20:34.935735,start,User_70
+7,O_Cancelled,2016-01-01 15:21:15.993087,complete,User_52
+7,O_Cancelled,2016-01-01 15:21:15.993087,start,User_25
+10,O_Create Offer,2016-01-01 15:24:20.308600,complete,User_17
+10,O_Created,2016-01-01 15:24:20.308600,start,User_21
+4,O_Create Offer,2016-01-01 15:24:23.131836,complete,User_66
+4,O_Created,2016-01-01 15:24:23.131836,start,User_69
+7,O_Cancelled,2016-01-01 15:27:15.993087,complete,User_25
+7,O_Create Offer,2016-01-01 15:27:15.993087,start,User_96
+3,O_Create Offer,2016-01-01 15:27:29.196722,complete,User_78
+3,O_Created,2016-01-01 15:27:29.196722,start,User_8
+8,W_Call after offers,2016-01-01 15:28:34.935735,complete,User_70
+8,A_Complete,2016-01-01 15:28:34.935735,start,User_42
+5,O_Sent (mail and online),2016-01-01 15:28:37.847537,complete,User_35
+5,W_Call after offers,2016-01-01 15:28:37.847537,start,User_3
+6,W_Call after offers,2016-01-01 15:29:08.355281,complete,User_124
+6,A_Cancelled,2016-01-01 15:29:08.355281,start,User_44
+9,O_Created,2016-01-01 15:31:43.419905,complete,User_72
+9,O_Cancelled,2016-01-01 15:31:43.419905,start,User_84
+10,O_Created,2016-01-01 15:34:20.308600,complete,User_21
+10,A_Complete,2016-01-01 15:34:20.308600,start,User_41
+4,O_Created,2016-01-01 15:36:23.131836,complete,User_69
+4,O_Sent (mail and online),2016-01-01 15:36:23.131836,start,User_36
+8,A_Complete,2016-01-01 15:37:34.935735,complete,User_42
+8,O_Sent (mail and online),2016-01-01 15:37:34.935735,start,User_15
+7,O_Create Offer,2016-01-01 15:38:15.993087,complete,User_96
+7,O_Created,2016-01-01 15:38:15.993087,start,User_56
+6,A_Cancelled,2016-01-01 15:39:08.355281,complete,User_44
+6,O_Cancelled,2016-01-01 15:39:08.355281,start,User_5
+3,O_Created,2016-01-01 15:40:29.196722,complete,User_8
+3,O_Cancelled,2016-01-01 15:40:29.196722,start,User_10
+10,A_Complete,2016-01-01 15:41:20.308600,complete,User_41
+10,W_Call after offers,2016-01-01 15:41:20.308600,start,User_65
+5,W_Call after offers,2016-01-01 15:41:37.847537,complete,User_3
+5,W_Call after offers,2016-01-01 15:41:37.847537,start,User_70
+8,O_Sent (mail and online),2016-01-01 15:42:34.935735,complete,User_15
+8,W_Validate application,2016-01-01 15:42:34.935735,start,User_48
+4,O_Sent (mail and online),2016-01-01 15:45:23.131836,complete,User_36
+4,A_Complete,2016-01-01 15:45:23.131836,start,User_61
+3,O_Cancelled,2016-01-01 15:46:29.196722,complete,User_10
+3,O_Create Offer,2016-01-01 15:46:29.196722,start,User_81
+9,O_Cancelled,2016-01-01 15:46:43.419905,complete,User_84
+9,O_Cancelled,2016-01-01 15:46:43.419905,start,User_11
+7,O_Created,2016-01-01 15:49:15.993087,complete,User_56
+7,O_Cancelled,2016-01-01 15:49:15.993087,start,User_1
+10,W_Call after offers,2016-01-01 15:50:20.308600,complete,User_65
+10,O_Sent (mail and online),2016-01-01 15:50:20.308600,start,User_23
+6,O_Cancelled,2016-01-01 15:51:08.355281,complete,User_5
+5,W_Call after offers,2016-01-01 15:52:37.847537,complete,User_70
+5,A_Complete,2016-01-01 15:52:37.847537,start,User_44
+4,A_Complete,2016-01-01 15:53:23.131836,complete,User_61
+4,W_Call after offers,2016-01-01 15:53:23.131836,start,User_20
+8,W_Validate application,2016-01-01 15:55:34.935735,complete,User_48
+8,A_Validating,2016-01-01 15:55:34.935735,start,User_4
+9,O_Cancelled,2016-01-01 15:56:43.419905,complete,User_11
+9,O_Cancelled,2016-01-01 15:56:43.419905,start,User_46
+3,O_Create Offer,2016-01-01 15:59:29.196722,complete,User_81
+3,O_Created,2016-01-01 15:59:29.196722,start,User_71
+10,O_Sent (mail and online),2016-01-01 16:00:20.308600,complete,User_23
+10,W_Call after offers,2016-01-01 16:00:20.308600,start,User_37
+4,W_Call after offers,2016-01-01 16:01:23.131836,complete,User_20
+4,W_Call after offers,2016-01-01 16:01:23.131836,start,User_7
+9,O_Cancelled,2016-01-01 16:02:43.419905,complete,User_46
+9,O_Cancelled,2016-01-01 16:02:43.419905,start,User_19
+7,O_Cancelled,2016-01-01 16:03:15.993087,complete,User_1
+7,O_Cancelled,2016-01-01 16:03:15.993087,start,User_42
+5,A_Complete,2016-01-01 16:04:37.847537,complete,User_44
+5,W_Call after offers,2016-01-01 16:04:37.847537,start,User_12
+10,W_Call after offers,2016-01-01 16:05:20.308600,complete,User_37
+10,W_Call after offers,2016-01-01 16:05:20.308600,start,User_17
+3,O_Created,2016-01-01 16:08:29.196722,complete,User_71
+3,O_Cancelled,2016-01-01 16:08:29.196722,start,User_65
+8,A_Validating,2016-01-01 16:10:34.935735,complete,User_4
+8,W_Call incomplete files,2016-01-01 16:10:34.935735,start,User_133
+10,W_Call after offers,2016-01-01 16:11:20.308600,complete,User_17
+10,W_Call after offers,2016-01-01 16:11:20.308600,start,User_85
+5,W_Call after offers,2016-01-01 16:12:37.847537,complete,User_12
+5,W_Call after offers,2016-01-01 16:12:37.847537,start,User_36
+9,O_Cancelled,2016-01-01 16:12:43.419905,complete,User_19
+9,O_Cancelled,2016-01-01 16:12:43.419905,start,User_41
+7,O_Cancelled,2016-01-01 16:13:15.993087,complete,User_42
+7,O_Create Offer,2016-01-01 16:13:15.993087,start,User_11
+4,W_Call after offers,2016-01-01 16:13:23.131836,complete,User_7
+4,O_Create Offer,2016-01-01 16:13:23.131836,start,User_35
+10,W_Call after offers,2016-01-01 16:17:20.308600,complete,User_85
+10,O_Create Offer,2016-01-01 16:17:20.308600,start,User_25
+7,O_Create Offer,2016-01-01 16:22:15.993087,complete,User_11
+7,O_Created,2016-01-01 16:22:15.993087,start,User_52
+3,O_Cancelled,2016-01-01 16:22:29.196722,complete,User_65
+3,O_Create Offer,2016-01-01 16:22:29.196722,start,User_84
+8,W_Call incomplete files,2016-01-01 16:22:34.935735,complete,User_133
+8,A_Incomplete,2016-01-01 16:22:34.935735,start,User_39
+4,O_Create Offer,2016-01-01 16:24:23.131836,complete,User_35
+4,O_Created,2016-01-01 16:24:23.131836,start,User_48
+5,W_Call after offers,2016-01-01 16:24:37.847537,complete,User_36
+5,O_Create Offer,2016-01-01 16:24:37.847537,start,User_23
+9,O_Cancelled,2016-01-01 16:25:43.419905,complete,User_41
+9,O_Cancelled,2016-01-01 16:25:43.419905,start,User_104
+10,O_Create Offer,2016-01-01 16:29:20.308600,complete,User_25
+10,O_Created,2016-01-01 16:29:20.308600,start,User_10
+5,O_Create Offer,2016-01-01 16:29:37.847537,complete,User_23
+5,O_Created,2016-01-01 16:29:37.847537,start,User_70
+3,O_Create Offer,2016-01-01 16:30:29.196722,complete,User_84
+3,O_Created,2016-01-01 16:30:29.196722,start,User_44
+5,O_Created,2016-01-01 16:34:37.847537,complete,User_70
+5,O_Cancelled,2016-01-01 16:34:37.847537,start,User_4
+7,O_Created,2016-01-01 16:35:15.993087,complete,User_52
+7,O_Sent (mail and online),2016-01-01 16:35:15.993087,start,User_5
+4,O_Created,2016-01-01 16:37:23.131836,complete,User_48
+4,O_Cancelled,2016-01-01 16:37:23.131836,start,User_20
+8,A_Incomplete,2016-01-01 16:37:34.935735,complete,User_39
+8,W_Call incomplete files,2016-01-01 16:37:34.935735,start,User_1
+9,O_Cancelled,2016-01-01 16:37:43.419905,complete,User_104
+9,O_Cancelled,2016-01-01 16:37:43.419905,start,User_43
+10,O_Created,2016-01-01 16:40:20.308600,complete,User_10
+10,O_Cancelled,2016-01-01 16:40:20.308600,start,User_18
+3,O_Created,2016-01-01 16:43:29.196722,complete,User_44
+3,W_Call after offers,2016-01-01 16:43:29.196722,start,User_42
+4,O_Cancelled,2016-01-01 16:44:23.131836,complete,User_20
+4,O_Create Offer,2016-01-01 16:44:23.131836,start,User_56
+5,O_Cancelled,2016-01-01 16:44:37.847537,complete,User_4
+5,O_Create Offer,2016-01-01 16:44:37.847537,start,User_11
+10,O_Cancelled,2016-01-01 16:45:20.308600,complete,User_18
+10,O_Create Offer,2016-01-01 16:45:20.308600,start,User_8
+8,W_Call incomplete files,2016-01-01 16:47:34.935735,complete,User_1
+8,W_Validate application,2016-01-01 16:47:34.935735,start,User_39
+9,O_Cancelled,2016-01-01 16:47:43.419905,complete,User_43
+9,O_Create Offer,2016-01-01 16:47:43.419905,start,User_34
+3,W_Call after offers,2016-01-01 16:48:29.196722,complete,User_42
+3,A_Complete,2016-01-01 16:48:29.196722,start,User_48
+5,O_Create Offer,2016-01-01 16:49:37.847537,complete,User_11
+5,O_Created,2016-01-01 16:49:37.847537,start,User_35
+7,O_Sent (mail and online),2016-01-01 16:50:15.993087,complete,User_5
+7,A_Complete,2016-01-01 16:50:15.993087,start,User_65
+10,O_Create Offer,2016-01-01 16:54:20.308600,complete,User_8
+10,O_Created,2016-01-01 16:54:20.308600,start,User_10
+7,A_Complete,2016-01-01 16:56:15.993087,complete,User_65
+7,W_Call after offers,2016-01-01 16:56:15.993087,start,User_23
+5,O_Created,2016-01-01 16:56:37.847537,complete,User_35
+5,O_Sent (mail and online),2016-01-01 16:56:37.847537,start,User_7
+9,O_Create Offer,2016-01-01 16:56:43.419905,complete,User_34
+9,O_Created,2016-01-01 16:56:43.419905,start,User_36
+4,O_Create Offer,2016-01-01 16:57:23.131836,complete,User_56
+4,O_Created,2016-01-01 16:57:23.131836,start,User_71
+8,W_Validate application,2016-01-01 16:58:34.935735,complete,User_39
+8,A_Validating,2016-01-01 16:58:34.935735,start,User_37
+3,A_Complete,2016-01-01 16:59:29.196722,complete,User_48
+3,O_Sent (mail and online),2016-01-01 16:59:29.196722,start,User_20
+4,O_Created,2016-01-01 17:02:23.131836,complete,User_71
+4,W_Call after offers,2016-01-01 17:02:23.131836,start,User_11
+3,O_Sent (mail and online),2016-01-01 17:05:29.196722,complete,User_20
+3,W_Call after offers,2016-01-01 17:05:29.196722,start,User_41
+9,O_Created,2016-01-01 17:05:43.419905,complete,User_36
+9,O_Sent (mail and online),2016-01-01 17:05:43.419905,start,User_18
+7,W_Call after offers,2016-01-01 17:06:15.993087,complete,User_23
+7,W_Call after offers,2016-01-01 17:06:15.993087,start,User_19
+10,O_Created,2016-01-01 17:06:20.308600,complete,User_10
+10,O_Cancelled,2016-01-01 17:06:20.308600,start,User_4
+5,O_Sent (mail and online),2016-01-01 17:06:37.847537,complete,User_7
+5,W_Call after offers,2016-01-01 17:06:37.847537,start,User_48
+4,W_Call after offers,2016-01-01 17:07:23.131836,complete,User_11
+4,O_Sent (mail and online),2016-01-01 17:07:23.131836,start,User_12
+8,A_Validating,2016-01-01 17:10:34.935735,complete,User_37
+8,W_Validate application,2016-01-01 17:10:34.935735,start,User_39
+3,W_Call after offers,2016-01-01 17:12:29.196722,complete,User_41
+3,O_Create Offer,2016-01-01 17:12:29.196722,start,User_84
+7,W_Call after offers,2016-01-01 17:13:15.993087,complete,User_19
+7,O_Create Offer,2016-01-01 17:13:15.993087,start,User_133
+9,O_Sent (mail and online),2016-01-01 17:13:43.419905,complete,User_18
+9,W_Call after offers,2016-01-01 17:13:43.419905,start,User_96
+5,W_Call after offers,2016-01-01 17:14:37.847537,complete,User_48
+5,A_Complete,2016-01-01 17:14:37.847537,start,User_5
+4,O_Sent (mail and online),2016-01-01 17:15:23.131836,complete,User_12
+4,A_Complete,2016-01-01 17:15:23.131836,start,User_43
+8,W_Validate application,2016-01-01 17:17:34.935735,complete,User_39
+8,W_Validate application,2016-01-01 17:17:34.935735,start,User_8
+10,O_Cancelled,2016-01-01 17:18:20.308600,complete,User_4
+10,O_Cancelled,2016-01-01 17:18:20.308600,start,User_46
+7,O_Create Offer,2016-01-01 17:19:15.993087,complete,User_133
+7,O_Created,2016-01-01 17:19:15.993087,start,User_23
+5,A_Complete,2016-01-01 17:23:37.847537,complete,User_5
+5,W_Call after offers,2016-01-01 17:23:37.847537,start,User_104
+4,A_Complete,2016-01-01 17:24:23.131836,complete,User_43
+4,A_Cancelled,2016-01-01 17:24:23.131836,start,User_44
+9,W_Call after offers,2016-01-01 17:24:43.419905,complete,User_96
+9,A_Complete,2016-01-01 17:24:43.419905,start,User_42
+3,O_Create Offer,2016-01-01 17:26:29.196722,complete,User_84
+3,O_Created,2016-01-01 17:26:29.196722,start,User_37
+8,W_Validate application,2016-01-01 17:27:34.935735,complete,User_8
+8,A_Incomplete,2016-01-01 17:27:34.935735,start,User_52
+4,A_Cancelled,2016-01-01 17:30:23.131836,complete,User_44
+4,O_Cancelled,2016-01-01 17:30:23.131836,start,User_23
+7,O_Created,2016-01-01 17:31:15.993087,complete,User_23
+7,W_Call after offers,2016-01-01 17:31:15.993087,start,User_56
+10,O_Cancelled,2016-01-01 17:33:20.308600,complete,User_46
+10,O_Create Offer,2016-01-01 17:33:20.308600,start,User_17
+9,A_Complete,2016-01-01 17:35:43.419905,complete,User_42
+9,O_Create Offer,2016-01-01 17:35:43.419905,start,User_46
+8,A_Incomplete,2016-01-01 17:36:34.935735,complete,User_52
+8,W_Call incomplete files,2016-01-01 17:36:34.935735,start,User_1
+7,W_Call after offers,2016-01-01 17:37:15.993087,complete,User_56
+7,O_Sent (mail and online),2016-01-01 17:37:15.993087,start,User_11
+3,O_Created,2016-01-01 17:37:29.196722,complete,User_37
+3,W_Call after offers,2016-01-01 17:37:29.196722,start,User_43
+5,W_Call after offers,2016-01-01 17:38:37.847537,complete,User_104
+5,O_Create Offer,2016-01-01 17:38:37.847537,start,User_36
+7,O_Sent (mail and online),2016-01-01 17:42:15.993087,complete,User_11
+7,A_Complete,2016-01-01 17:42:15.993087,start,User_7
+3,W_Call after offers,2016-01-01 17:43:29.196722,complete,User_43
+3,A_Complete,2016-01-01 17:43:29.196722,start,User_8
+4,O_Cancelled,2016-01-01 17:45:23.131836,complete,User_23
+10,O_Create Offer,2016-01-01 17:46:20.308600,complete,User_17
+10,O_Created,2016-01-01 17:46:20.308600,start,User_65
+9,O_Create Offer,2016-01-01 17:46:43.419905,complete,User_46
+9,O_Created,2016-01-01 17:46:43.419905,start,User_48
+8,W_Call incomplete files,2016-01-01 17:50:34.935735,complete,User_1
+8,W_Call incomplete files,2016-01-01 17:50:34.935735,start,User_19
+10,O_Created,2016-01-01 17:51:20.308600,complete,User_65
+10,A_Complete,2016-01-01 17:51:20.308600,start,User_35
+7,A_Complete,2016-01-01 17:52:15.993087,complete,User_7
+7,W_Call after offers,2016-01-01 17:52:15.993087,start,User_5
+3,A_Complete,2016-01-01 17:52:29.196722,complete,User_8
+3,W_Call after offers,2016-01-01 17:52:29.196722,start,User_41
+5,O_Create Offer,2016-01-01 17:52:37.847537,complete,User_36
+5,O_Created,2016-01-01 17:52:37.847537,start,User_20
+9,O_Created,2016-01-01 17:52:43.419905,complete,User_48
+9,O_Cancelled,2016-01-01 17:52:43.419905,start,User_34
+10,A_Complete,2016-01-01 18:00:20.308600,complete,User_35
+10,O_Sent (mail and online),2016-01-01 18:00:20.308600,start,User_23
+8,W_Call incomplete files,2016-01-01 18:00:34.935735,complete,User_19
+8,O_Create Offer,2016-01-01 18:00:34.935735,start,User_56
+9,O_Cancelled,2016-01-01 18:00:43.419905,complete,User_34
+9,O_Create Offer,2016-01-01 18:00:43.419905,start,User_18
+5,O_Created,2016-01-01 18:01:37.847537,complete,User_20
+5,A_Complete,2016-01-01 18:01:37.847537,start,User_43
+7,W_Call after offers,2016-01-01 18:02:15.993087,complete,User_5
+7,A_Cancelled,2016-01-01 18:02:15.993087,start,User_39
+10,O_Sent (mail and online),2016-01-01 18:06:20.308600,complete,User_23
+10,W_Call after offers,2016-01-01 18:06:20.308600,start,User_46
+3,W_Call after offers,2016-01-01 18:06:29.196722,complete,User_41
+3,W_Call after offers,2016-01-01 18:06:29.196722,start,User_42
+7,A_Cancelled,2016-01-01 18:08:15.993087,complete,User_39
+7,O_Cancelled,2016-01-01 18:08:15.993087,start,User_84
+9,O_Create Offer,2016-01-01 18:10:43.419905,complete,User_18
+9,O_Created,2016-01-01 18:10:43.419905,start,User_44
+8,O_Create Offer,2016-01-01 18:11:34.935735,complete,User_56
+8,O_Created,2016-01-01 18:11:34.935735,start,User_10
+10,W_Call after offers,2016-01-01 18:13:20.308600,complete,User_46
+10,O_Create Offer,2016-01-01 18:13:20.308600,start,User_4
+5,A_Complete,2016-01-01 18:15:37.847537,complete,User_43
+5,O_Sent (mail and online),2016-01-01 18:15:37.847537,start,User_52
+3,W_Call after offers,2016-01-01 18:16:29.196722,complete,User_42
+3,W_Call after offers,2016-01-01 18:16:29.196722,start,User_65
+8,O_Created,2016-01-01 18:17:34.935735,complete,User_10
+8,A_Complete,2016-01-01 18:17:34.935735,start,User_96
+10,O_Create Offer,2016-01-01 18:19:20.308600,complete,User_4
+10,O_Created,2016-01-01 18:19:20.308600,start,User_133
+7,O_Cancelled,2016-01-01 18:20:15.993087,complete,User_84
+7,O_Cancelled,2016-01-01 18:20:15.993087,start,User_37
+8,A_Complete,2016-01-01 18:25:34.935735,complete,User_96
+8,O_Sent (mail and online),2016-01-01 18:25:34.935735,start,User_5
+9,O_Created,2016-01-01 18:25:43.419905,complete,User_44
+9,O_Cancelled,2016-01-01 18:25:43.419905,start,User_36
+5,O_Sent (mail and online),2016-01-01 18:26:37.847537,complete,User_52
+5,W_Call after offers,2016-01-01 18:26:37.847537,start,User_104
+3,W_Call after offers,2016-01-01 18:29:29.196722,complete,User_65
+3,O_Sent (mail and online),2016-01-01 18:29:29.196722,start,User_4
+10,O_Created,2016-01-01 18:30:20.308600,complete,User_133
+10,O_Cancelled,2016-01-01 18:30:20.308600,start,User_11
+8,O_Sent (mail and online),2016-01-01 18:32:34.935735,complete,User_5
+8,W_Call after offers,2016-01-01 18:32:34.935735,start,User_17
+7,O_Cancelled,2016-01-01 18:33:15.993087,complete,User_37
+7,O_Create Offer,2016-01-01 18:33:15.993087,start,User_18
+9,O_Cancelled,2016-01-01 18:35:43.419905,complete,User_36
+9,O_Create Offer,2016-01-01 18:35:43.419905,start,User_39
+3,O_Sent (mail and online),2016-01-01 18:40:29.196722,complete,User_4
+3,W_Call after offers,2016-01-01 18:40:29.196722,start,User_19
+5,W_Call after offers,2016-01-01 18:40:37.847537,complete,User_104
+5,W_Call after offers,2016-01-01 18:40:37.847537,start,User_37
+7,O_Create Offer,2016-01-01 18:41:15.993087,complete,User_18
+7,O_Created,2016-01-01 18:41:15.993087,start,User_5
+10,O_Cancelled,2016-01-01 18:43:20.308600,complete,User_11
+10,O_Cancelled,2016-01-01 18:43:20.308600,start,User_1
+9,O_Create Offer,2016-01-01 18:44:43.419905,complete,User_39
+9,O_Created,2016-01-01 18:44:43.419905,start,User_7
+8,W_Call after offers,2016-01-01 18:47:34.935735,complete,User_17
+8,O_Create Offer,2016-01-01 18:47:34.935735,start,User_17
+5,W_Call after offers,2016-01-01 18:49:37.847537,complete,User_37
+5,W_Call after offers,2016-01-01 18:49:37.847537,start,User_65
+10,O_Cancelled,2016-01-01 18:52:20.308600,complete,User_1
+10,O_Cancelled,2016-01-01 18:52:20.308600,start,User_10
+3,W_Call after offers,2016-01-01 18:53:29.196722,complete,User_19
+3,W_Call after offers,2016-01-01 18:53:29.196722,start,User_11
+5,W_Call after offers,2016-01-01 18:54:37.847537,complete,User_65
+5,O_Cancelled,2016-01-01 18:54:37.847537,start,User_34
+9,O_Created,2016-01-01 18:55:43.419905,complete,User_7
+9,W_Call after offers,2016-01-01 18:55:43.419905,start,User_133
+7,O_Created,2016-01-01 18:56:15.993087,complete,User_5
+7,O_Cancelled,2016-01-01 18:56:15.993087,start,User_44
+7,O_Cancelled,2016-01-01 19:01:15.993087,complete,User_44
+8,O_Create Offer,2016-01-01 19:02:34.935735,complete,User_17
+8,O_Created,2016-01-01 19:02:34.935735,start,User_84
+10,O_Cancelled,2016-01-01 19:04:20.308600,complete,User_10
+3,W_Call after offers,2016-01-01 19:04:29.196722,complete,User_11
+5,O_Cancelled,2016-01-01 19:04:37.847537,complete,User_34
+9,W_Call after offers,2016-01-01 19:06:43.419905,complete,User_133
+8,O_Created,2016-01-01 19:08:34.935735,complete,User_84
+5,A_Cancelled,2016-01-01 19:34:37.847537,start,User_1
+5,A_Cancelled,2016-01-01 19:45:37.847537,complete,User_1
+10,O_Create Offer,2016-01-01 19:49:20.308600,start,User_65
+10,O_Create Offer,2016-01-01 19:59:20.308600,complete,User_65
+3,W_Validate application,2016-01-01 20:04:29.196722,start,User_1
+3,W_Validate application,2016-01-01 20:13:29.196722,complete,User_1
+8,O_Cancelled,2016-01-01 20:23:34.935735,start,User_1
+8,O_Cancelled,2016-01-01 20:30:34.935735,complete,User_1
+9,A_Complete,2016-01-02 05:34:00.000000,start,User_68
+9,A_Complete,2016-01-02 05:41:00.000000,complete,User_68
+3,W_Validate application,2016-01-02 05:49:00.000000,start,User_1
+3,W_Validate application,2016-01-02 05:59:00.000000,complete,User_1
+9,W_Call after offers,2016-01-02 06:11:00.000000,start,User_1
+9,W_Call after offers,2016-01-02 06:17:00.000000,complete,User_1
+3,W_Validate application,2016-01-02 06:29:00.000000,start,User_68
+9,W_Call after offers,2016-01-02 06:32:00.000000,start,User_5
+3,W_Validate application,2016-01-02 06:36:00.000000,complete,User_68
+9,W_Call after offers,2016-01-02 06:45:00.000000,complete,User_5
+9,W_Call after offers,2016-01-02 06:45:00.000000,start,User_1
+8,O_Create Offer,2016-01-02 06:49:00.000000,start,User_90
+10,O_Created,2016-01-02 06:49:00.000000,start,User_87
+3,W_Validate application,2016-01-02 06:51:00.000000,start,User_5
+9,W_Call after offers,2016-01-02 06:53:00.000000,complete,User_1
+8,O_Create Offer,2016-01-02 06:59:00.000000,complete,User_90
+8,O_Created,2016-01-02 06:59:00.000000,start,User_87
+3,W_Validate application,2016-01-02 07:01:00.000000,complete,User_5
+10,O_Created,2016-01-02 07:02:00.000000,complete,User_87
+9,O_Sent (mail and online),2016-01-02 07:08:00.000000,start,User_33
+8,O_Created,2016-01-02 07:14:00.000000,complete,User_87
+8,A_Complete,2016-01-02 07:14:00.000000,start,User_30
+3,A_Validating,2016-01-02 07:16:00.000000,start,User_68
+10,O_Cancelled,2016-01-02 07:17:00.000000,start,User_125
+8,A_Complete,2016-01-02 07:22:00.000000,complete,User_30
+9,O_Sent (mail and online),2016-01-02 07:22:00.000000,complete,User_33
+8,O_Sent (mail and online),2016-01-02 07:22:00.000000,start,User_95
+9,W_Call after offers,2016-01-02 07:22:00.000000,start,User_93
+3,A_Validating,2016-01-02 07:27:00.000000,complete,User_68
+10,O_Cancelled,2016-01-02 07:27:00.000000,complete,User_125
+3,W_Validate application,2016-01-02 07:27:00.000000,start,User_60
+10,O_Cancelled,2016-01-02 07:27:00.000000,start,User_5
+9,W_Call after offers,2016-01-02 07:31:00.000000,complete,User_93
+9,O_Create Offer,2016-01-02 07:31:00.000000,start,User_99
+8,O_Sent (mail and online),2016-01-02 07:33:00.000000,complete,User_95
+10,O_Cancelled,2016-01-02 07:33:00.000000,complete,User_5
+8,W_Call after offers,2016-01-02 07:33:00.000000,start,User_55
+10,O_Cancelled,2016-01-02 07:33:00.000000,start,User_53
+9,O_Create Offer,2016-01-02 07:38:00.000000,complete,User_99
+9,O_Created,2016-01-02 07:38:00.000000,start,User_100
+8,W_Call after offers,2016-01-02 07:40:00.000000,complete,User_55
+8,A_Validating,2016-01-02 07:40:00.000000,start,User_123
+3,W_Validate application,2016-01-02 07:42:00.000000,complete,User_60
+3,W_Call incomplete files,2016-01-02 07:42:00.000000,start,User_87
+9,O_Created,2016-01-02 07:46:00.000000,complete,User_100
+10,O_Cancelled,2016-01-02 07:46:00.000000,complete,User_53
+9,O_Cancelled,2016-01-02 07:46:00.000000,start,User_125
+10,O_Create Offer,2016-01-02 07:46:00.000000,start,User_48
+3,W_Call incomplete files,2016-01-02 07:53:00.000000,complete,User_87
+3,A_Incomplete,2016-01-02 07:53:00.000000,start,User_117
+8,A_Validating,2016-01-02 07:55:00.000000,complete,User_123
+10,O_Create Offer,2016-01-02 07:55:00.000000,complete,User_48
+8,W_Validate application,2016-01-02 07:55:00.000000,start,User_99
+10,O_Created,2016-01-02 07:55:00.000000,start,User_116
+9,O_Cancelled,2016-01-02 07:56:00.000000,complete,User_125
+9,O_Cancelled,2016-01-02 07:56:00.000000,start,User_131
+8,W_Validate application,2016-01-02 08:00:00.000000,complete,User_99
+8,W_Validate application,2016-01-02 08:00:00.000000,start,User_134
+3,A_Incomplete,2016-01-02 08:02:00.000000,complete,User_117
+3,W_Call incomplete files,2016-01-02 08:02:00.000000,start,User_93
+9,O_Cancelled,2016-01-02 08:08:00.000000,complete,User_131
+9,O_Create Offer,2016-01-02 08:08:00.000000,start,User_107
+10,O_Created,2016-01-02 08:10:00.000000,complete,User_116
+10,O_Cancelled,2016-01-02 08:10:00.000000,start,User_120
+3,W_Call incomplete files,2016-01-02 08:13:00.000000,complete,User_93
+3,O_Cancelled,2016-01-02 08:13:00.000000,start,User_14
+8,W_Validate application,2016-01-02 08:14:00.000000,complete,User_134
+8,W_Validate application,2016-01-02 08:14:00.000000,start,User_67
+10,O_Cancelled,2016-01-02 08:16:00.000000,complete,User_120
+10,O_Cancelled,2016-01-02 08:16:00.000000,start,User_4
+9,O_Create Offer,2016-01-02 08:17:00.000000,complete,User_107
+9,O_Created,2016-01-02 08:17:00.000000,start,User_3
+3,O_Cancelled,2016-01-02 08:19:00.000000,complete,User_14
+3,A_Cancelled,2016-01-02 08:19:00.000000,start,User_95
+9,O_Created,2016-01-02 08:23:00.000000,complete,User_3
+9,O_Cancelled,2016-01-02 08:23:00.000000,start,User_35
+8,W_Validate application,2016-01-02 08:26:00.000000,complete,User_67
+10,O_Cancelled,2016-01-02 08:26:00.000000,complete,User_4
+8,W_Validate application,2016-01-02 08:26:00.000000,start,User_121
+10,O_Create Offer,2016-01-02 08:26:00.000000,start,User_71
+8,W_Validate application,2016-01-02 08:31:00.000000,complete,User_121
+8,O_Accepted,2016-01-02 08:31:00.000000,start,User_119
+3,A_Cancelled,2016-01-02 08:33:00.000000,complete,User_95
+3,O_Create Offer,2016-01-02 08:33:00.000000,start,User_41
+10,O_Create Offer,2016-01-02 08:34:00.000000,complete,User_71
+10,O_Created,2016-01-02 08:34:00.000000,start,User_29
+9,O_Cancelled,2016-01-02 08:35:00.000000,complete,User_35
+9,O_Cancelled,2016-01-02 08:35:00.000000,start,User_21
+9,O_Cancelled,2016-01-02 08:42:00.000000,complete,User_21
+9,O_Create Offer,2016-01-02 08:42:00.000000,start,User_63
+8,O_Accepted,2016-01-02 08:43:00.000000,complete,User_119
+10,O_Created,2016-01-02 08:43:00.000000,complete,User_29
+8,A_Pending,2016-01-02 08:43:00.000000,start,User_126
+10,O_Cancelled,2016-01-02 08:43:00.000000,start,User_1
+3,O_Create Offer,2016-01-02 08:45:00.000000,complete,User_41
+3,O_Created,2016-01-02 08:45:00.000000,start,User_117
+10,O_Cancelled,2016-01-02 08:50:00.000000,complete,User_1
+10,O_Cancelled,2016-01-02 08:50:00.000000,start,User_118
+3,O_Created,2016-01-02 08:53:00.000000,complete,User_117
+3,O_Sent (mail and online),2016-01-02 08:53:00.000000,start,User_33
+8,A_Pending,2016-01-02 08:55:00.000000,complete,User_126
+9,O_Create Offer,2016-01-02 08:55:00.000000,complete,User_63
+8,O_Cancelled,2016-01-02 08:55:00.000000,start,User_116
+9,O_Created,2016-01-02 08:55:00.000000,start,User_100
+8,O_Cancelled,2016-01-02 09:04:00.000000,complete,User_116
+9,O_Created,2016-01-02 09:04:00.000000,complete,User_100
+8,O_Create Offer,2016-01-02 09:04:00.000000,start,User_56
+9,O_Cancelled,2016-01-02 09:04:00.000000,start,User_17
+10,O_Cancelled,2016-01-02 09:05:00.000000,complete,User_118
+3,O_Sent (mail and online),2016-01-02 09:05:00.000000,complete,User_33
+10,O_Create Offer,2016-01-02 09:05:00.000000,start,User_109
+3,A_Complete,2016-01-02 09:05:00.000000,start,User_7
+8,O_Create Offer,2016-01-02 09:12:00.000000,complete,User_56
+8,O_Created,2016-01-02 09:12:00.000000,start,User_102
+10,O_Create Offer,2016-01-02 09:15:00.000000,complete,User_109
+3,A_Complete,2016-01-02 09:15:00.000000,complete,User_7
+10,O_Created,2016-01-02 09:15:00.000000,start,User_58
+3,W_Call after offers,2016-01-02 09:15:00.000000,start,User_101
+9,O_Cancelled,2016-01-02 09:17:00.000000,complete,User_17
+9,O_Cancelled,2016-01-02 09:17:00.000000,start,User_48
+10,O_Created,2016-01-02 09:22:00.000000,complete,User_58
+9,O_Cancelled,2016-01-02 09:22:00.000000,complete,User_48
+10,O_Cancelled,2016-01-02 09:22:00.000000,start,User_107
+9,O_Cancelled,2016-01-02 09:22:00.000000,start,User_3
+8,O_Created,2016-01-02 09:26:00.000000,complete,User_102
+8,O_Cancelled,2016-01-02 09:26:00.000000,start,User_31
+3,W_Call after offers,2016-01-02 09:29:00.000000,complete,User_101
+9,O_Cancelled,2016-01-02 09:29:00.000000,complete,User_3
+3,W_Call after offers,2016-01-02 09:29:00.000000,start,User_4
+9,O_Create Offer,2016-01-02 09:29:00.000000,start,User_69
+10,O_Cancelled,2016-01-02 09:32:00.000000,complete,User_107
+10,O_Cancelled,2016-01-02 09:32:00.000000,start,User_131
+8,O_Cancelled,2016-01-02 09:36:00.000000,complete,User_31
+8,O_Cancelled,2016-01-02 09:36:00.000000,start,User_96
+10,O_Cancelled,2016-01-02 09:40:00.000000,complete,User_131
+10,O_Cancelled,2016-01-02 09:40:00.000000,start,User_126
+3,W_Call after offers,2016-01-02 09:41:00.000000,complete,User_4
+3,O_Create Offer,2016-01-02 09:41:00.000000,start,User_87
+9,O_Create Offer,2016-01-02 09:42:00.000000,complete,User_69
+9,O_Created,2016-01-02 09:42:00.000000,start,User_53
+8,O_Cancelled,2016-01-02 09:43:00.000000,complete,User_96
+8,O_Cancelled,2016-01-02 09:43:00.000000,start,User_95
+3,O_Create Offer,2016-01-02 09:48:00.000000,complete,User_87
+9,O_Created,2016-01-02 09:48:00.000000,complete,User_53
+3,O_Created,2016-01-02 09:48:00.000000,start,User_109
+9,W_Call after offers,2016-01-02 09:48:00.000000,start,User_118
+10,O_Cancelled,2016-01-02 09:53:00.000000,complete,User_126
+9,W_Call after offers,2016-01-02 09:53:00.000000,complete,User_118
+10,O_Cancelled,2016-01-02 09:53:00.000000,start,User_112
+9,A_Complete,2016-01-02 09:53:00.000000,start,User_106
+8,O_Cancelled,2016-01-02 09:54:00.000000,complete,User_95
+8,O_Create Offer,2016-01-02 09:54:00.000000,start,User_27
+3,O_Created,2016-01-02 10:01:00.000000,complete,User_109
+8,O_Create Offer,2016-01-02 10:01:00.000000,complete,User_27
+3,O_Cancelled,2016-01-02 10:01:00.000000,start,User_5
+8,O_Created,2016-01-02 10:01:00.000000,start,User_57
+9,A_Complete,2016-01-02 10:03:00.000000,complete,User_106
+9,O_Sent (mail and online),2016-01-02 10:03:00.000000,start,User_21
+10,O_Cancelled,2016-01-02 10:06:00.000000,complete,User_112
+10,O_Cancelled,2016-01-02 10:06:00.000000,start,User_38
+3,O_Cancelled,2016-01-02 10:10:00.000000,complete,User_5
+3,O_Cancelled,2016-01-02 10:10:00.000000,start,User_100
+8,O_Created,2016-01-02 10:11:00.000000,complete,User_57
+8,A_Complete,2016-01-02 10:11:00.000000,start,User_56
+9,O_Sent (mail and online),2016-01-02 10:12:00.000000,complete,User_21
+9,O_Create Offer,2016-01-02 10:12:00.000000,start,User_121
+3,O_Cancelled,2016-01-02 10:18:00.000000,complete,User_100
+3,O_Create Offer,2016-01-02 10:18:00.000000,start,User_31
+10,O_Cancelled,2016-01-02 10:19:00.000000,complete,User_38
+8,A_Complete,2016-01-02 10:19:00.000000,complete,User_56
+10,O_Create Offer,2016-01-02 10:19:00.000000,start,User_95
+8,W_Call after offers,2016-01-02 10:19:00.000000,start,User_134
+9,O_Create Offer,2016-01-02 10:26:00.000000,complete,User_121
+3,O_Create Offer,2016-01-02 10:26:00.000000,complete,User_31
+9,O_Created,2016-01-02 10:26:00.000000,start,User_45
+3,O_Created,2016-01-02 10:26:00.000000,start,User_55
+10,O_Create Offer,2016-01-02 10:27:00.000000,complete,User_95
+10,O_Created,2016-01-02 10:27:00.000000,start,User_104
+8,W_Call after offers,2016-01-02 10:28:00.000000,complete,User_134
+8,O_Sent (mail and online),2016-01-02 10:28:00.000000,start,User_4
+9,O_Created,2016-01-02 10:31:00.000000,complete,User_45
+9,W_Call after offers,2016-01-02 10:31:00.000000,start,User_75
+3,O_Created,2016-01-02 10:36:00.000000,complete,User_55
+8,O_Sent (mail and online),2016-01-02 10:36:00.000000,complete,User_4
+3,O_Cancelled,2016-01-02 10:36:00.000000,start,User_87
+8,O_Create Offer,2016-01-02 10:36:00.000000,start,User_68
+10,O_Created,2016-01-02 10:41:00.000000,complete,User_104
+10,W_Call after offers,2016-01-02 10:41:00.000000,start,User_109
+3,O_Cancelled,2016-01-02 10:43:00.000000,complete,User_87
+3,O_Cancelled,2016-01-02 10:43:00.000000,start,User_53
+9,W_Call after offers,2016-01-02 10:45:00.000000,complete,User_75
+9,A_Complete,2016-01-02 10:45:00.000000,start,User_32
+8,O_Create Offer,2016-01-02 10:48:00.000000,complete,User_68
+8,O_Created,2016-01-02 10:48:00.000000,start,User_41
+10,W_Call after offers,2016-01-02 10:49:00.000000,complete,User_109
+10,O_Sent (mail and online),2016-01-02 10:49:00.000000,start,User_49
+3,O_Cancelled,2016-01-02 10:52:00.000000,complete,User_53
+3,O_Cancelled,2016-01-02 10:52:00.000000,start,User_123
+9,A_Complete,2016-01-02 10:54:00.000000,complete,User_32
+9,W_Call after offers,2016-01-02 10:54:00.000000,start,User_80
+10,O_Sent (mail and online),2016-01-02 11:02:00.000000,complete,User_49
+3,O_Cancelled,2016-01-02 11:02:00.000000,complete,User_123
+10,A_Complete,2016-01-02 11:02:00.000000,start,User_102
+3,O_Cancelled,2016-01-02 11:02:00.000000,start,User_115
+8,O_Created,2016-01-02 11:03:00.000000,complete,User_41
+8,O_Cancelled,2016-01-02 11:03:00.000000,start,User_119
+9,W_Call after offers,2016-01-02 11:07:00.000000,complete,User_80
+9,W_Call after offers,2016-01-02 11:07:00.000000,start,User_51
+3,O_Cancelled,2016-01-02 11:08:00.000000,complete,User_115
+10,A_Complete,2016-01-02 11:15:00.000000,complete,User_102
+10,O_Create Offer,2016-01-02 11:15:00.000000,start,User_38
+9,W_Call after offers,2016-01-02 11:17:00.000000,complete,User_51
+8,O_Cancelled,2016-01-02 11:17:00.000000,complete,User_119
+9,O_Sent (mail and online),2016-01-02 11:17:00.000000,start,User_35
+8,O_Cancelled,2016-01-02 11:17:00.000000,start,User_2
+10,O_Create Offer,2016-01-02 11:21:00.000000,complete,User_38
+10,O_Created,2016-01-02 11:21:00.000000,start,User_68
+9,O_Sent (mail and online),2016-01-02 11:27:00.000000,complete,User_35
+10,O_Created,2016-01-02 11:27:00.000000,complete,User_68
+9,W_Call after offers,2016-01-02 11:27:00.000000,start,User_104
+10,A_Complete,2016-01-02 11:27:00.000000,start,User_14
+8,O_Cancelled,2016-01-02 11:28:00.000000,complete,User_2
+8,O_Cancelled,2016-01-02 11:28:00.000000,start,User_126
+10,A_Complete,2016-01-02 11:33:00.000000,complete,User_14
+10,W_Call after offers,2016-01-02 11:33:00.000000,start,User_71
+8,O_Cancelled,2016-01-02 11:37:00.000000,complete,User_126
+8,O_Cancelled,2016-01-02 11:37:00.000000,start,User_63
+9,W_Call after offers,2016-01-02 11:40:00.000000,complete,User_104
+9,O_Cancelled,2016-01-02 11:40:00.000000,start,User_67
+8,O_Cancelled,2016-01-02 11:42:00.000000,complete,User_63
+8,O_Cancelled,2016-01-02 11:42:00.000000,start,User_30
+10,W_Call after offers,2016-01-02 11:44:00.000000,complete,User_71
+10,O_Sent (mail and online),2016-01-02 11:44:00.000000,start,User_54
+9,O_Cancelled,2016-01-02 11:48:00.000000,complete,User_67
+9,O_Cancelled,2016-01-02 11:48:00.000000,start,User_26
+10,O_Sent (mail and online),2016-01-02 11:51:00.000000,complete,User_54
+10,W_Call after offers,2016-01-02 11:51:00.000000,start,User_131
+8,O_Cancelled,2016-01-02 11:52:00.000000,complete,User_30
+8,O_Create Offer,2016-01-02 11:52:00.000000,start,User_102
+9,O_Cancelled,2016-01-02 11:54:00.000000,complete,User_26
+9,A_Cancelled,2016-01-02 11:54:00.000000,start,User_1
+8,O_Create Offer,2016-01-02 12:00:00.000000,complete,User_102
+10,W_Call after offers,2016-01-02 12:00:00.000000,complete,User_131
+8,O_Created,2016-01-02 12:00:00.000000,start,User_28
+10,O_Create Offer,2016-01-02 12:00:00.000000,start,User_107
+10,O_Create Offer,2016-01-02 12:07:00.000000,complete,User_107
+10,O_Created,2016-01-02 12:07:00.000000,start,User_51
+9,A_Cancelled,2016-01-02 12:09:00.000000,complete,User_1
+9,O_Cancelled,2016-01-02 12:09:00.000000,start,User_13
+8,O_Created,2016-01-02 12:11:00.000000,complete,User_28
+8,O_Cancelled,2016-01-02 12:11:00.000000,start,User_122
+9,O_Cancelled,2016-01-02 12:15:00.000000,complete,User_13
+9,O_Create Offer,2016-01-02 12:15:00.000000,start,User_47
+8,O_Cancelled,2016-01-02 12:19:00.000000,complete,User_122
+8,O_Cancelled,2016-01-02 12:19:00.000000,start,User_61
+10,O_Created,2016-01-02 12:21:00.000000,complete,User_51
+10,O_Cancelled,2016-01-02 12:21:00.000000,start,User_46
+8,O_Cancelled,2016-01-02 12:28:00.000000,complete,User_61
+8,O_Cancelled,2016-01-02 12:28:00.000000,start,User_51
+9,O_Create Offer,2016-01-02 12:29:00.000000,complete,User_47
+9,O_Created,2016-01-02 12:29:00.000000,start,User_19
+10,O_Cancelled,2016-01-02 12:33:00.000000,complete,User_46
+10,O_Create Offer,2016-01-02 12:33:00.000000,start,User_25
+8,O_Cancelled,2016-01-02 12:36:00.000000,complete,User_51
+8,O_Cancelled,2016-01-02 12:36:00.000000,start,User_91
+10,O_Create Offer,2016-01-02 12:39:00.000000,complete,User_25
+10,O_Created,2016-01-02 12:39:00.000000,start,User_99
+9,O_Created,2016-01-02 12:41:00.000000,complete,User_19
+9,A_Complete,2016-01-02 12:41:00.000000,start,User_69
+8,O_Cancelled,2016-01-02 12:50:00.000000,complete,User_91
+8,O_Create Offer,2016-01-02 12:50:00.000000,start,User_78
+10,O_Created,2016-01-02 12:52:00.000000,complete,User_99
+10,O_Cancelled,2016-01-02 12:52:00.000000,start,User_117
+9,A_Complete,2016-01-02 12:55:00.000000,complete,User_69
+9,W_Call after offers,2016-01-02 12:55:00.000000,start,User_96
+8,O_Create Offer,2016-01-02 12:57:00.000000,complete,User_78
+8,O_Created,2016-01-02 12:57:00.000000,start,User_35
+9,W_Call after offers,2016-01-02 13:05:00.000000,complete,User_96
+9,O_Sent (mail and online),2016-01-02 13:05:00.000000,start,User_3
+10,O_Cancelled,2016-01-02 13:06:00.000000,complete,User_117
+10,O_Cancelled,2016-01-02 13:06:00.000000,start,User_104
+8,O_Created,2016-01-02 13:11:00.000000,complete,User_35
+10,O_Cancelled,2016-01-02 13:11:00.000000,complete,User_104
+8,W_Call after offers,2016-01-02 13:11:00.000000,start,User_15
+10,O_Create Offer,2016-01-02 13:11:00.000000,start,User_13
+9,O_Sent (mail and online),2016-01-02 13:13:00.000000,complete,User_3
+9,W_Call after offers,2016-01-02 13:13:00.000000,start,User_61
+10,O_Create Offer,2016-01-02 13:17:00.000000,complete,User_13
+10,O_Created,2016-01-02 13:17:00.000000,start,User_24
+8,W_Call after offers,2016-01-02 13:19:00.000000,complete,User_15
+8,A_Complete,2016-01-02 13:19:00.000000,start,User_43
+9,W_Call after offers,2016-01-02 13:21:00.000000,complete,User_61
+9,A_Validating,2016-01-02 13:21:00.000000,start,User_25
+8,A_Complete,2016-01-02 13:29:00.000000,complete,User_43
+10,O_Created,2016-01-02 13:29:00.000000,complete,User_24
+8,O_Sent (mail and online),2016-01-02 13:29:00.000000,start,User_57
+10,A_Complete,2016-01-02 13:29:00.000000,start,User_51
+9,A_Validating,2016-01-02 13:32:00.000000,complete,User_25
+9,W_Validate application,2016-01-02 13:32:00.000000,start,User_131
+10,A_Complete,2016-01-02 13:40:00.000000,complete,User_51
+10,W_Call after offers,2016-01-02 13:40:00.000000,start,User_91
+9,W_Validate application,2016-01-02 13:44:00.000000,complete,User_131
+8,O_Sent (mail and online),2016-01-02 13:44:00.000000,complete,User_57
+9,W_Validate application,2016-01-02 13:44:00.000000,start,User_71
+8,W_Call after offers,2016-01-02 13:44:00.000000,start,User_4
+10,W_Call after offers,2016-01-02 13:47:00.000000,complete,User_91
+10,W_Call after offers,2016-01-02 13:47:00.000000,start,User_20
+8,W_Call after offers,2016-01-02 13:49:00.000000,complete,User_4
+8,W_Validate application,2016-01-02 13:49:00.000000,start,User_10
+9,W_Validate application,2016-01-02 13:51:00.000000,complete,User_71
+9,O_Accepted,2016-01-02 13:51:00.000000,start,User_29
+10,W_Call after offers,2016-01-02 13:54:00.000000,complete,User_20
+10,O_Sent (mail and online),2016-01-02 13:54:00.000000,start,User_56
+10,O_Sent (mail and online),2016-01-02 14:00:00.000000,complete,User_56
+10,O_Create Offer,2016-01-02 14:00:00.000000,start,User_100
+8,W_Validate application,2016-01-02 14:01:00.000000,complete,User_10
+8,A_Validating,2016-01-02 14:01:00.000000,start,User_36
+9,O_Accepted,2016-01-02 14:02:00.000000,complete,User_29
+9,A_Pending,2016-01-02 14:02:00.000000,start,User_115
+8,A_Validating,2016-01-02 14:06:00.000000,complete,User_36
+8,W_Validate application,2016-01-02 14:06:00.000000,start,User_17
+10,O_Create Offer,2016-01-02 14:11:00.000000,complete,User_100
+10,O_Created,2016-01-02 14:11:00.000000,start,User_77
+8,W_Validate application,2016-01-02 14:15:00.000000,complete,User_17
+9,A_Pending,2016-01-02 14:15:00.000000,complete,User_115
+8,W_Call incomplete files,2016-01-02 14:15:00.000000,start,User_69
+9,O_Cancelled,2016-01-02 14:15:00.000000,start,User_18
+9,O_Cancelled,2016-01-02 14:21:00.000000,complete,User_18
+9,O_Create Offer,2016-01-02 14:21:00.000000,start,User_101
+10,O_Created,2016-01-02 14:24:00.000000,complete,User_77
+10,O_Cancelled,2016-01-02 14:24:00.000000,start,User_41
+8,W_Call incomplete files,2016-01-02 14:28:00.000000,complete,User_69
+8,A_Incomplete,2016-01-02 14:28:00.000000,start,User_66
+10,O_Cancelled,2016-01-02 14:29:00.000000,complete,User_41
+10,O_Cancelled,2016-01-02 14:29:00.000000,start,User_3
+9,O_Create Offer,2016-01-02 14:33:00.000000,complete,User_101
+9,O_Created,2016-01-02 14:33:00.000000,start,User_48
+10,O_Cancelled,2016-01-02 14:37:00.000000,complete,User_3
+10,O_Cancelled,2016-01-02 14:37:00.000000,start,User_52
+9,O_Created,2016-01-02 14:42:00.000000,complete,User_48
+9,A_Complete,2016-01-02 14:42:00.000000,start,User_60
+8,A_Incomplete,2016-01-02 14:43:00.000000,complete,User_66
+8,W_Validate application,2016-01-02 14:43:00.000000,start,User_28
+10,O_Cancelled,2016-01-02 14:48:00.000000,complete,User_52
+10,O_Create Offer,2016-01-02 14:48:00.000000,start,User_20
+8,W_Validate application,2016-01-02 14:54:00.000000,complete,User_28
+10,O_Create Offer,2016-01-02 14:54:00.000000,complete,User_20
+8,A_Validating,2016-01-02 14:54:00.000000,start,User_15
+10,O_Created,2016-01-02 14:54:00.000000,start,User_16
+9,A_Complete,2016-01-02 14:57:00.000000,complete,User_60
+9,W_Call after offers,2016-01-02 14:57:00.000000,start,User_25
+8,A_Validating,2016-01-02 15:00:00.000000,complete,User_15
+8,W_Validate application,2016-01-02 15:00:00.000000,start,User_37
+10,O_Created,2016-01-02 15:05:00.000000,complete,User_16
+10,O_Cancelled,2016-01-02 15:05:00.000000,start,User_7
+8,W_Validate application,2016-01-02 15:09:00.000000,complete,User_37
+9,W_Call after offers,2016-01-02 15:09:00.000000,complete,User_25
+8,W_Validate application,2016-01-02 15:09:00.000000,start,User_12
+9,O_Sent (mail and online),2016-01-02 15:09:00.000000,start,User_100
+10,O_Cancelled,2016-01-02 15:14:00.000000,complete,User_7
+9,O_Sent (mail and online),2016-01-02 15:14:00.000000,complete,User_100
+10,O_Cancelled,2016-01-02 15:14:00.000000,start,User_70
+9,W_Call after offers,2016-01-02 15:14:00.000000,start,User_18
+9,W_Call after offers,2016-01-02 15:19:00.000000,complete,User_18
+9,W_Call after offers,2016-01-02 15:19:00.000000,start,User_24
+8,W_Validate application,2016-01-02 15:23:00.000000,complete,User_12
+10,O_Cancelled,2016-01-02 15:23:00.000000,complete,User_70
+8,O_Returned,2016-01-02 15:23:00.000000,start,User_101
+10,O_Create Offer,2016-01-02 15:23:00.000000,start,User_133
+8,O_Returned,2016-01-02 15:29:00.000000,complete,User_101
+8,O_Accepted,2016-01-02 15:29:00.000000,start,User_115
+9,W_Call after offers,2016-01-02 15:31:00.000000,complete,User_24
+9,W_Validate application,2016-01-02 15:31:00.000000,start,User_45
+8,O_Accepted,2016-01-02 15:36:00.000000,complete,User_115
+9,W_Validate application,2016-01-02 15:36:00.000000,complete,User_45
+8,A_Pending,2016-01-02 15:36:00.000000,start,User_75
+9,A_Validating,2016-01-02 15:36:00.000000,start,User_26
+10,O_Create Offer,2016-01-02 15:38:00.000000,complete,User_133
+10,O_Created,2016-01-02 15:38:00.000000,start,User_66
+8,A_Pending,2016-01-02 15:50:00.000000,complete,User_75
+8,O_Cancelled,2016-01-02 15:50:00.000000,start,User_14
+10,O_Created,2016-01-02 15:51:00.000000,complete,User_66
+9,A_Validating,2016-01-02 15:51:00.000000,complete,User_26
+10,O_Cancelled,2016-01-02 15:51:00.000000,start,User_43
+9,W_Validate application,2016-01-02 15:51:00.000000,start,User_32
+9,W_Validate application,2016-01-02 15:58:00.000000,complete,User_32
+9,W_Validate application,2016-01-02 15:58:00.000000,start,User_1
+10,O_Cancelled,2016-01-02 15:59:00.000000,complete,User_43
+10,O_Create Offer,2016-01-02 15:59:00.000000,start,User_91
+8,O_Cancelled,2016-01-02 16:05:00.000000,complete,User_14
+8,O_Create Offer,2016-01-02 16:05:00.000000,start,User_20
+10,O_Create Offer,2016-01-02 16:13:00.000000,complete,User_91
+9,W_Validate application,2016-01-02 16:13:00.000000,complete,User_1
+10,O_Created,2016-01-02 16:13:00.000000,start,User_26
+9,W_Call incomplete files,2016-01-02 16:13:00.000000,start,User_79
+8,O_Create Offer,2016-01-02 16:18:00.000000,complete,User_20
+8,O_Created,2016-01-02 16:18:00.000000,start,User_18
+9,W_Call incomplete files,2016-01-02 16:24:00.000000,complete,User_79
+9,A_Incomplete,2016-01-02 16:24:00.000000,start,User_133
+8,O_Created,2016-01-02 16:26:00.000000,complete,User_18
+8,O_Cancelled,2016-01-02 16:26:00.000000,start,User_37
+10,O_Created,2016-01-02 16:28:00.000000,complete,User_26
+10,O_Sent (mail and online),2016-01-02 16:28:00.000000,start,User_91
+9,A_Incomplete,2016-01-02 16:31:00.000000,complete,User_133
+9,W_Call incomplete files,2016-01-02 16:31:00.000000,start,User_52
+10,O_Sent (mail and online),2016-01-02 16:34:00.000000,complete,User_91
+10,A_Complete,2016-01-02 16:34:00.000000,start,User_44
+8,O_Cancelled,2016-01-02 16:40:00.000000,complete,User_37
+8,O_Cancelled,2016-01-02 16:40:00.000000,start,User_54
+9,W_Call incomplete files,2016-01-02 16:46:00.000000,complete,User_52
+9,O_Create Offer,2016-01-02 16:46:00.000000,start,User_3
+10,A_Complete,2016-01-02 16:48:00.000000,complete,User_44
+10,W_Call after offers,2016-01-02 16:48:00.000000,start,User_79
+8,O_Cancelled,2016-01-02 16:50:00.000000,complete,User_54
+8,O_Cancelled,2016-01-02 16:50:00.000000,start,User_46
+10,W_Call after offers,2016-01-02 16:55:00.000000,complete,User_79
+9,O_Create Offer,2016-01-02 16:55:00.000000,complete,User_3
+10,W_Call after offers,2016-01-02 16:55:00.000000,start,User_133
+9,O_Created,2016-01-02 16:55:00.000000,start,User_40
+8,O_Cancelled,2016-01-02 16:58:00.000000,complete,User_46
+8,O_Cancelled,2016-01-02 16:58:00.000000,start,User_74
+10,W_Call after offers,2016-01-02 17:03:00.000000,complete,User_133
+10,O_Create Offer,2016-01-02 17:03:00.000000,start,User_19
+9,O_Created,2016-01-02 17:04:00.000000,complete,User_40
+9,O_Cancelled,2016-01-02 17:04:00.000000,start,User_1
+8,O_Cancelled,2016-01-02 17:09:00.000000,complete,User_74
+8,O_Cancelled,2016-01-02 17:09:00.000000,start,User_20
+10,O_Create Offer,2016-01-02 17:11:00.000000,complete,User_19
+10,O_Created,2016-01-02 17:11:00.000000,start,User_96
+9,O_Cancelled,2016-01-02 17:17:00.000000,complete,User_1
+9,O_Cancelled,2016-01-02 17:17:00.000000,start,User_32
+10,O_Created,2016-01-02 17:18:00.000000,complete,User_96
+10,A_Complete,2016-01-02 17:18:00.000000,start,User_37
+8,O_Cancelled,2016-01-02 17:21:00.000000,complete,User_20
+8,O_Create Offer,2016-01-02 17:21:00.000000,start,User_14
+10,A_Complete,2016-01-02 17:23:00.000000,complete,User_37
+9,O_Cancelled,2016-01-02 17:23:00.000000,complete,User_32
+10,O_Sent (mail and online),2016-01-02 17:23:00.000000,start,User_46
+8,O_Create Offer,2016-01-02 17:29:00.000000,complete,User_14
+8,O_Created,2016-01-02 17:29:00.000000,start,User_43
+10,O_Sent (mail and online),2016-01-02 17:36:00.000000,complete,User_46
+10,W_Call after offers,2016-01-02 17:36:00.000000,start,User_10
+8,O_Created,2016-01-02 17:41:00.000000,complete,User_43
+8,W_Call after offers,2016-01-02 17:41:00.000000,start,User_1
+10,W_Call after offers,2016-01-02 17:49:00.000000,complete,User_10
+10,O_Create Offer,2016-01-02 17:49:00.000000,start,User_18
+8,W_Call after offers,2016-01-02 17:55:00.000000,complete,User_1
+8,A_Complete,2016-01-02 17:55:00.000000,start,User_20
+10,O_Create Offer,2016-01-02 17:56:00.000000,complete,User_18
+10,O_Created,2016-01-02 17:56:00.000000,start,User_46
+8,A_Complete,2016-01-02 18:00:00.000000,complete,User_20
+8,O_Sent (mail and online),2016-01-02 18:00:00.000000,start,User_44
+10,O_Created,2016-01-02 18:08:00.000000,complete,User_46
+10,O_Sent (mail and online),2016-01-02 18:08:00.000000,start,User_26
+8,O_Sent (mail and online),2016-01-02 18:13:00.000000,complete,User_44
+10,O_Sent (mail and online),2016-01-02 18:13:00.000000,complete,User_26
+8,W_Call after offers,2016-01-02 18:13:00.000000,start,User_19
+10,W_Call after offers,2016-01-02 18:13:00.000000,start,User_14
+8,W_Call after offers,2016-01-02 18:26:00.000000,complete,User_19
+8,O_Cancelled,2016-01-02 18:26:00.000000,start,User_66
+10,W_Call after offers,2016-01-02 18:28:00.000000,complete,User_14
+10,W_Call after offers,2016-01-02 18:28:00.000000,start,User_3
+8,O_Cancelled,2016-01-02 18:36:00.000000,complete,User_66
+8,A_Cancelled,2016-01-02 18:36:00.000000,start,User_52
+10,W_Call after offers,2016-01-02 18:40:00.000000,complete,User_3
+10,W_Call after offers,2016-01-02 18:40:00.000000,start,User_91
+8,A_Cancelled,2016-01-02 18:46:00.000000,complete,User_52
+8,O_Cancelled,2016-01-02 18:46:00.000000,start,User_44
+10,W_Call after offers,2016-01-02 18:52:00.000000,complete,User_91
+8,O_Cancelled,2016-01-02 18:52:00.000000,complete,User_44
+10,A_Complete,2016-01-02 18:52:00.000000,start,User_96
+8,O_Cancelled,2016-01-02 18:52:00.000000,start,User_133
+10,A_Complete,2016-01-02 18:57:00.000000,complete,User_96
+10,W_Call after offers,2016-01-02 18:57:00.000000,start,User_1
+8,O_Cancelled,2016-01-02 18:59:00.000000,complete,User_133
+8,O_Cancelled,2016-01-02 18:59:00.000000,start,User_20
+10,W_Call after offers,2016-01-02 19:04:00.000000,complete,User_1
+8,O_Cancelled,2016-01-02 19:08:00.000000,complete,User_20
+10,W_Call after offers,2016-01-02 19:19:00.000000,start,User_96
+8,O_Create Offer,2016-01-02 19:23:00.000000,start,User_133
+10,W_Call after offers,2016-01-02 19:29:00.000000,complete,User_96
+10,W_Call after offers,2016-01-02 19:29:00.000000,start,User_1
+8,O_Create Offer,2016-01-02 19:32:00.000000,complete,User_133
+10,W_Call after offers,2016-01-02 19:38:00.000000,complete,User_1
+10,W_Validate application,2016-01-02 20:23:00.000000,start,User_1
+10,W_Validate application,2016-01-02 20:32:00.000000,complete,User_1
+10,W_Validate application,2016-01-02 20:47:00.000000,start,User_1
+10,W_Validate application,2016-01-02 20:53:00.000000,complete,User_1
+8,O_Created,2016-01-03 05:57:00.000000,start,User_83
+8,O_Created,2016-01-03 06:10:00.000000,complete,User_83
+10,A_Validating,2016-01-03 06:12:00.000000,start,User_90
+8,O_Sent (mail and online),2016-01-03 06:25:00.000000,start,User_68
+10,A_Validating,2016-01-03 06:27:00.000000,complete,User_90
+10,W_Validate application,2016-01-03 06:27:00.000000,start,User_83
+10,W_Validate application,2016-01-03 06:32:00.000000,complete,User_83
+10,W_Call incomplete files,2016-01-03 06:32:00.000000,start,User_1
+8,O_Sent (mail and online),2016-01-03 06:35:00.000000,complete,User_68
+8,W_Call after offers,2016-01-03 06:35:00.000000,start,User_75
+10,W_Call incomplete files,2016-01-03 06:41:00.000000,complete,User_1
+10,A_Incomplete,2016-01-03 06:41:00.000000,start,User_95
+8,W_Call after offers,2016-01-03 06:42:00.000000,complete,User_75
+8,A_Complete,2016-01-03 06:42:00.000000,start,User_68
+8,A_Complete,2016-01-03 06:47:00.000000,complete,User_68
+8,A_Cancelled,2016-01-03 06:47:00.000000,start,User_30
+8,A_Cancelled,2016-01-03 06:52:00.000000,complete,User_30
+8,O_Cancelled,2016-01-03 06:52:00.000000,start,User_121
+10,A_Incomplete,2016-01-03 06:55:00.000000,complete,User_95
+10,W_Call incomplete files,2016-01-03 06:55:00.000000,start,User_118
+8,O_Cancelled,2016-01-03 06:58:00.000000,complete,User_121
+10,W_Call incomplete files,2016-01-03 07:09:00.000000,complete,User_118
+10,W_Call incomplete files,2016-01-03 07:09:00.000000,start,User_104
+10,W_Call incomplete files,2016-01-03 07:19:00.000000,complete,User_104
+10,O_Create Offer,2016-01-03 07:19:00.000000,start,User_87
+10,O_Create Offer,2016-01-03 07:30:00.000000,complete,User_87
+10,O_Created,2016-01-03 07:30:00.000000,start,User_60
+10,O_Created,2016-01-03 07:43:00.000000,complete,User_60
+10,O_Sent (mail and online),2016-01-03 07:43:00.000000,start,User_100
+10,O_Sent (mail and online),2016-01-03 07:50:00.000000,complete,User_100
+10,A_Complete,2016-01-03 07:50:00.000000,start,User_16
+10,A_Complete,2016-01-03 07:59:00.000000,complete,User_16
+10,W_Call after offers,2016-01-03 07:59:00.000000,start,User_62
+10,W_Call after offers,2016-01-03 08:13:00.000000,complete,User_62
+10,A_Validating,2016-01-03 08:13:00.000000,start,User_107
+10,A_Validating,2016-01-03 08:28:00.000000,complete,User_107
+10,W_Validate application,2016-01-03 08:28:00.000000,start,User_67
+10,W_Validate application,2016-01-03 08:39:00.000000,complete,User_67
+10,W_Validate application,2016-01-03 08:39:00.000000,start,User_62
+10,W_Validate application,2016-01-03 08:46:00.000000,complete,User_62
+10,W_Validate application,2016-01-03 08:46:00.000000,start,User_4
+10,W_Validate application,2016-01-03 08:56:00.000000,complete,User_4
+10,A_Incomplete,2016-01-03 08:56:00.000000,start,User_100
+10,A_Incomplete,2016-01-03 09:09:00.000000,complete,User_100
+10,W_Call incomplete files,2016-01-03 09:09:00.000000,start,User_118
+10,W_Call incomplete files,2016-01-03 09:22:00.000000,complete,User_118
+10,W_Call incomplete files,2016-01-03 09:22:00.000000,start,User_30
+10,W_Call incomplete files,2016-01-03 09:34:00.000000,complete,User_30
+10,O_Create Offer,2016-01-03 09:34:00.000000,start,User_87
+10,O_Create Offer,2016-01-03 09:39:00.000000,complete,User_87
+10,O_Created,2016-01-03 09:39:00.000000,start,User_39
+10,O_Created,2016-01-03 09:45:00.000000,complete,User_39
+10,O_Cancelled,2016-01-03 09:45:00.000000,start,User_56
+10,O_Cancelled,2016-01-03 09:53:00.000000,complete,User_56
+10,O_Create Offer,2016-01-03 09:53:00.000000,start,User_66
+10,O_Create Offer,2016-01-03 10:04:00.000000,complete,User_66
+10,O_Created,2016-01-03 10:04:00.000000,start,User_42
+10,O_Created,2016-01-03 10:09:00.000000,complete,User_42
+10,W_Call after offers,2016-01-03 10:09:00.000000,start,User_114
+10,W_Call after offers,2016-01-03 10:15:00.000000,complete,User_114
+10,A_Complete,2016-01-03 10:15:00.000000,start,User_16
+10,A_Complete,2016-01-03 10:28:00.000000,complete,User_16
+10,O_Sent (mail and online),2016-01-03 10:28:00.000000,start,User_26
+10,O_Sent (mail and online),2016-01-03 10:40:00.000000,complete,User_26
+10,O_Create Offer,2016-01-03 10:40:00.000000,start,User_67
+10,O_Create Offer,2016-01-03 10:55:00.000000,complete,User_67
+10,O_Created,2016-01-03 10:55:00.000000,start,User_30
+10,O_Created,2016-01-03 11:05:00.000000,complete,User_30
+10,W_Call after offers,2016-01-03 11:05:00.000000,start,User_5
+10,W_Call after offers,2016-01-03 11:18:00.000000,complete,User_5
+10,A_Complete,2016-01-03 11:18:00.000000,start,User_18
+10,A_Complete,2016-01-03 11:29:00.000000,complete,User_18
+10,W_Call after offers,2016-01-03 11:29:00.000000,start,User_33
+10,W_Call after offers,2016-01-03 11:44:00.000000,complete,User_33
+10,O_Sent (mail and online),2016-01-03 11:44:00.000000,start,User_56
+10,O_Sent (mail and online),2016-01-03 11:49:00.000000,complete,User_56
+10,W_Call after offers,2016-01-03 11:49:00.000000,start,User_54
+10,W_Call after offers,2016-01-03 11:57:00.000000,complete,User_54
+10,W_Call after offers,2016-01-03 11:57:00.000000,start,User_66
+10,W_Call after offers,2016-01-03 12:05:00.000000,complete,User_66
+10,A_Cancelled,2016-01-03 12:05:00.000000,start,User_78
+10,A_Cancelled,2016-01-03 12:20:00.000000,complete,User_78
+10,O_Cancelled,2016-01-03 12:20:00.000000,start,User_60
+10,O_Cancelled,2016-01-03 12:30:00.000000,complete,User_60
+10,O_Create Offer,2016-01-03 12:30:00.000000,start,User_29
+10,O_Create Offer,2016-01-03 12:44:00.000000,complete,User_29
+10,O_Created,2016-01-03 12:44:00.000000,start,User_95
+10,O_Created,2016-01-03 12:55:00.000000,complete,User_95
+10,A_Complete,2016-01-03 12:55:00.000000,start,User_61
+10,A_Complete,2016-01-03 13:01:00.000000,complete,User_61
+10,O_Sent (mail and online),2016-01-03 13:01:00.000000,start,User_19
+10,O_Sent (mail and online),2016-01-03 13:07:00.000000,complete,User_19
+10,W_Call after offers,2016-01-03 13:07:00.000000,start,User_107
+10,W_Call after offers,2016-01-03 13:20:00.000000,complete,User_107
+10,W_Validate application,2016-01-03 13:20:00.000000,start,User_41
+10,W_Validate application,2016-01-03 13:30:00.000000,complete,User_41
+10,A_Validating,2016-01-03 13:30:00.000000,start,User_14
+10,A_Validating,2016-01-03 13:44:00.000000,complete,User_14
+10,W_Validate application,2016-01-03 13:44:00.000000,start,User_33
+10,W_Validate application,2016-01-03 13:55:00.000000,complete,User_33
+10,A_Incomplete,2016-01-03 13:55:00.000000,start,User_37
+10,A_Incomplete,2016-01-03 14:10:00.000000,complete,User_37
+10,W_Call incomplete files,2016-01-03 14:10:00.000000,start,User_75
+10,W_Call incomplete files,2016-01-03 14:16:00.000000,complete,User_75
+10,A_Validating,2016-01-03 14:16:00.000000,start,User_5
+10,A_Validating,2016-01-03 14:25:00.000000,complete,User_5
+10,W_Validate application,2016-01-03 14:25:00.000000,start,User_2
+10,W_Validate application,2016-01-03 14:36:00.000000,complete,User_2
+10,O_Accepted,2016-01-03 14:36:00.000000,start,User_116
+10,O_Accepted,2016-01-03 14:42:00.000000,complete,User_116
+10,A_Pending,2016-01-03 14:42:00.000000,start,User_120
+10,A_Pending,2016-01-03 14:57:00.000000,complete,User_120

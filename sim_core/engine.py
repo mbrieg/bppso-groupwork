@@ -25,10 +25,12 @@ class Event:
     transition_id: str = field(compare=False, default=None)
     resource: str = field(compare=False, default=None)
 
+
 class Engine:
-    def __init__(self, pn, start_time=None, mode="random",
+    def __init__(self, pn, resource_manager, start_time=None, mode="random",
                   basic_model=None, advanced_model=None,max_cases=50):
         self.pn = pn
+        self.resource_manager = resource_manager
         self.now = start_time or datetime(2016, 1, 1, 9, 15, 0)
         self.queue = []
         self.cases = {}
@@ -53,7 +55,6 @@ class Engine:
     def spawn(self, at_time=None):
         heapq.heappush(self.queue, Event(at_time or self.now, "SPAWN", self.next_case_id + 1))
 
-
     def run(self, max_events=1000):
         count = 0
         while self.queue and count < max_events:
@@ -64,14 +65,17 @@ class Engine:
                 self._handle_spawn(e)
             elif e.type == "START":
                 self._handle_start(e)
+            elif e.type == "RETRY":     # Used when no resource was available yet
+                self._process_flow(e.case_id)
             elif e.type == "COMPLETE":
                 self._handle_complete(e)
             count += 1
 
-
     def _process_flow(self, case_id):
         m = self.cases[case_id]
         enabled = [t for t in self.pn.trans_ids if all(m.get(p, 0) > 0 for p in self.pn.inputs.get(t, []))]
+        if not enabled:
+            return
 
         while enabled:
 
@@ -86,16 +90,25 @@ class Engine:
 
             label = self.pn.labels.get(tid, "")
 
-            if label == "": # Silent Gateway, instant consume and produce
+            if label == "":     # Silent Gateway, instant consume and produce
                 self._consume(m, tid)
                 self._produce(m, tid)
                 enabled = [t for t in self.pn.trans_ids if all(m.get(p, 0) > 0 for p in self.pn.inputs.get(t, []))]
-            else: # Real Transition
-                if self.available_resources:
-                    res = self.available_resources.pop(0)
+            else:       # Real Transition
+                task_duration = timedelta(minutes=random.randint(10, 60))   # TODO: Insert duration of event
+                res = self.resource_manager.assign_resource(label, self.now, task_duration)
+                if res:     # Resource is assigned NOW
                     heapq.heappush(self.queue, Event(self.now, "START", case_id, tid, res))
+                else:
+                    # Find next possible starting time
+                    # print("DEBUG: No available resource right now!")
+                    next_avail_time = self.resource_manager.get_earliest_availability(label, self.now)
+                    # print("DEBUG: Earliest availability: ", self.resource_manager.get_earliest_availability(label, self.now))
+                    retry_time = self.now + timedelta(minutes=15)   # See if any resource has been released until then
+                    if next_avail_time and next_avail_time > self.now:
+                        retry_time = max(retry_time, next_avail_time)
+                    heapq.heappush(self.queue, Event(retry_time, "RETRY", case_id))
                 break
-
 
     def _handle_spawn(self, e):
         self.next_case_id += 1
@@ -119,13 +132,11 @@ class Engine:
 
         self._process_flow(e.case_id)
 
-
     def _handle_start(self, e):
         self._consume(self.cases[e.case_id], e.transition_id)
         self._record(e, "start")
-        duration = timedelta(minutes=random.randint(5, 15))# 1.3 Processing times
+        duration = timedelta(minutes=random.randint(5, 15))     # 1.3 Processing times
         heapq.heappush(self.queue, Event(self.now + duration, "COMPLETE", e.case_id, e.transition_id, e.resource))
-
 
     def _handle_complete(self, e):
         self._produce(self.cases[e.case_id], e.transition_id)
@@ -140,11 +151,9 @@ class Engine:
         self.available_resources.append(e.resource)
         self._process_flow(e.case_id)
 
-
     def _consume(self, m, tid):
         for p in self.pn.inputs.get(tid, []):
             m[p] -= 1
-
 
     def _produce(self, m, tid):
         for p in self.pn.outputs.get(tid, []):
@@ -261,3 +270,4 @@ class Engine:
             print(f"  {res}: {count} tasks")
         
         print('='*60)
+        pd.DataFrame(self.log).to_csv(path, index=False)
