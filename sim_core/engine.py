@@ -94,7 +94,7 @@ class Engine:
                 self._produce(m, tid)
                 enabled = [t for t in self.pn.trans_ids if all(m.get(p, 0) > 0 for p in self.pn.inputs.get(t, []))]
             else:  # Real Transition
-                task_duration = fk.sample_duration(label)  # TODO: Insert duration of event
+                task_duration = fk.sample_duration(label, path="../processing_times/processing_models.json")  # TODO: Insert duration of event
                 res = self.resource_manager.assign_resource(label, self.now, task_duration)
                 if res:  # Resource is assigned NOW
                     heapq.heappush(self.queue, Event(self.now, "START", case_id, tid, res, task_duration))
