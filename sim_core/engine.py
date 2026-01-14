@@ -3,6 +3,7 @@ import pandas as pd
 import random
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
+from processing_times import Functions as fk
 
 try:
     from .router import Router
@@ -26,6 +27,7 @@ class Event:
     case_id: int = field(compare=False)
     transition_id: str = field(compare=False, default=None)
     resource: str = field(compare=False, default=None)
+    duration: timedelta = field(compare=False, default=None)
 
 
 class Engine:
@@ -92,10 +94,10 @@ class Engine:
                 self._produce(m, tid)
                 enabled = [t for t in self.pn.trans_ids if all(m.get(p, 0) > 0 for p in self.pn.inputs.get(t, []))]
             else:  # Real Transition
-                task_duration = timedelta(minutes=random.randint(10, 60))  # TODO: Insert duration of event
+                task_duration = fk.sample_duration(label)  # TODO: Insert duration of event
                 res = self.resource_manager.assign_resource(label, self.now, task_duration)
                 if res:  # Resource is assigned NOW
-                    heapq.heappush(self.queue, Event(self.now, "START", case_id, tid, res))
+                    heapq.heappush(self.queue, Event(self.now, "START", case_id, tid, res, task_duration))
                 else:
                     # Find next possible starting time
                     # print("DEBUG: No available resource right now!")
@@ -132,7 +134,7 @@ class Engine:
     def _handle_start(self, e):
         self._consume(self.cases[e.case_id], e.transition_id)
         self._record(e, "start")
-        duration = timedelta(minutes=random.randint(5, 15))  # TODO 1.3 Processing times
+        duration = e.duration  # TODO 1.3 Processing times
         heapq.heappush(self.queue, Event(self.now + duration, "COMPLETE", e.case_id, e.transition_id, e.resource))
 
     def _handle_complete(self, e):

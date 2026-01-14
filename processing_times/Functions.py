@@ -3,6 +3,50 @@ import matplotlib.pyplot as plt
 import scipy.stats as stats
 import pandas as pd
 
+import json
+import math
+import random
+from pathlib import Path
+from datetime import timedelta
+
+_processing_models = None
+
+
+def load_processing_models(path="processing_models.json"):
+    global _processing_models
+    if _processing_models is None:
+        with Path(path).open("r") as f:
+            _processing_models = json.load(f)
+    return _processing_models
+
+
+def sample_duration(activity_name: str, path="processing_models.json") -> timedelta:
+    models = load_processing_models(path)
+    spec = models.get(activity_name)
+
+    if spec is None:
+        return timedelta(minutes=random.randint(5, 15))  # fallback
+
+    dist = spec.get("dist")
+
+    if dist == "const":
+        return timedelta(seconds=float(spec.get("value", 0.0)))
+
+    if dist == "gamma":
+        a = float(spec["params"]["a"])
+        scale = float(spec["params"]["scale"])
+        sec = random.gammavariate(a, scale)
+        return timedelta(seconds=max(0.0, sec))
+
+    if dist == "lognorm":
+        s = float(spec["params"]["s"])
+        scale = float(spec["params"]["scale"])
+        mu = math.log(scale) if scale > 0 else 0.0
+        sec = random.lognormvariate(mu, s)
+        return timedelta(seconds=max(0.0, sec))
+
+    return timedelta(minutes=random.randint(5, 15))
+
 
 def density_plot_from_counts(
         durations_full, act,

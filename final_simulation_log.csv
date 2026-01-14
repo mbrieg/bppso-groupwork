@@ -1,727 +1,659 @@
 case:concept:name,concept:name,time:timestamp,lifecycle:transition,org:resource
-1,A_Create Application,2016-01-01 09:15:00.000000,start,User_109
-1,A_Create Application,2016-01-01 09:20:00.000000,complete,User_109
-1,A_Submitted,2016-01-01 09:20:00.000000,start,User_1
-1,A_Submitted,2016-01-01 09:35:00.000000,complete,User_1
-1,A_Validating,2016-01-01 09:35:00.000000,start,User_113
-2,A_Create Application,2016-01-01 09:36:29.212499,start,User_72
-3,A_Create Application,2016-01-01 09:36:51.643150,start,User_28
-4,A_Create Application,2016-01-01 09:40:48.275856,start,User_12
-2,A_Create Application,2016-01-01 09:43:29.212499,complete,User_72
-4,A_Create Application,2016-01-01 09:49:48.275856,complete,User_12
-3,A_Create Application,2016-01-01 09:49:51.643150,complete,User_28
-1,A_Validating,2016-01-01 09:50:00.000000,complete,User_113
-1,W_Validate application,2016-01-01 09:50:00.000000,start,User_14
-5,A_Create Application,2016-01-01 09:53:08.874995,start,User_54
-1,W_Validate application,2016-01-01 09:59:00.000000,complete,User_14
-1,A_Incomplete,2016-01-01 09:59:00.000000,start,User_134
-6,A_Create Application,2016-01-01 10:01:53.555455,start,User_60
-4,A_Submitted,2016-01-01 10:04:48.275856,start,User_1
-5,A_Create Application,2016-01-01 10:07:08.874995,complete,User_54
-1,A_Incomplete,2016-01-01 10:11:00.000000,complete,User_134
-1,A_Validating,2016-01-01 10:11:00.000000,start,User_53
-6,A_Create Application,2016-01-01 10:11:53.555455,complete,User_60
-7,A_Create Application,2016-01-01 10:11:56.572685,start,User_95
-4,A_Submitted,2016-01-01 10:19:48.275856,complete,User_1
-4,A_Validating,2016-01-01 10:19:48.275856,start,User_75
-1,A_Validating,2016-01-01 10:22:00.000000,complete,User_53
-1,W_Validate application,2016-01-01 10:22:00.000000,start,User_30
-8,A_Create Application,2016-01-01 10:22:56.000107,start,User_101
-7,A_Create Application,2016-01-01 10:24:56.572685,complete,User_95
-8,A_Create Application,2016-01-01 10:27:56.000107,complete,User_101
-1,W_Validate application,2016-01-01 10:30:00.000000,complete,User_30
-1,W_Validate application,2016-01-01 10:30:00.000000,start,User_143
-4,A_Validating,2016-01-01 10:31:48.275856,complete,User_75
-4,W_Validate application,2016-01-01 10:31:48.275856,start,User_78
-3,A_Submitted,2016-01-01 10:34:51.643150,start,User_1
-1,W_Validate application,2016-01-01 10:35:00.000000,complete,User_143
-1,W_Validate application,2016-01-01 10:35:00.000000,start,User_59
-4,W_Validate application,2016-01-01 10:42:48.275856,complete,User_78
-4,A_Incomplete,2016-01-01 10:42:48.275856,start,User_32
-3,A_Submitted,2016-01-01 10:45:51.643150,complete,User_1
-3,A_Validating,2016-01-01 10:45:51.643150,start,User_100
-1,W_Validate application,2016-01-01 10:49:00.000000,complete,User_59
-1,A_Incomplete,2016-01-01 10:49:00.000000,start,User_49
-4,A_Incomplete,2016-01-01 10:54:48.275856,complete,User_32
-4,A_Validating,2016-01-01 10:54:48.275856,start,User_134
-3,A_Validating,2016-01-01 10:56:51.643150,complete,User_100
-3,W_Validate application,2016-01-01 10:56:51.643150,start,User_119
-1,A_Incomplete,2016-01-01 11:01:00.000000,complete,User_49
-1,A_Validating,2016-01-01 11:01:00.000000,start,User_99
-4,A_Validating,2016-01-01 11:03:48.275856,complete,User_134
-4,W_Validate application,2016-01-01 11:03:48.275856,start,User_2
-1,A_Validating,2016-01-01 11:06:00.000000,complete,User_99
-1,W_Validate application,2016-01-01 11:06:00.000000,start,User_68
-3,W_Validate application,2016-01-01 11:07:51.643150,complete,User_119
-4,W_Validate application,2016-01-01 11:08:48.275856,complete,User_2
-4,A_Incomplete,2016-01-01 11:08:48.275856,start,User_32
-1,W_Validate application,2016-01-01 11:16:00.000000,complete,User_68
-1,W_Validate application,2016-01-01 11:16:00.000000,start,User_11
-9,A_Create Application,2016-01-01 11:18:08.505276,start,User_59
-4,A_Incomplete,2016-01-01 11:19:48.275856,complete,User_32
-4,W_Call incomplete files,2016-01-01 11:19:48.275856,start,User_29
-5,A_Submitted,2016-01-01 11:22:08.874995,start,User_1
-1,W_Validate application,2016-01-01 11:28:00.000000,complete,User_11
-1,A_Incomplete,2016-01-01 11:28:00.000000,start,User_137
-9,A_Create Application,2016-01-01 11:29:08.505276,complete,User_59
-10,A_Create Application,2016-01-01 11:30:57.624165,start,User_39
-5,A_Submitted,2016-01-01 11:31:08.874995,complete,User_1
-5,A_Validating,2016-01-01 11:31:08.874995,start,User_64
-4,W_Call incomplete files,2016-01-01 11:31:48.275856,complete,User_29
-10,A_Create Application,2016-01-01 11:35:57.624165,complete,User_39
-5,A_Validating,2016-01-01 11:40:08.874995,complete,User_64
-5,W_Validate application,2016-01-01 11:40:08.874995,start,User_66
-11,A_Create Application,2016-01-01 11:41:55.015305,start,User_101
-1,A_Incomplete,2016-01-01 11:43:00.000000,complete,User_137
-1,W_Call incomplete files,2016-01-01 11:43:00.000000,start,User_42
-5,W_Validate application,2016-01-01 11:52:08.874995,complete,User_66
-5,A_Incomplete,2016-01-01 11:52:08.874995,start,User_30
-1,W_Call incomplete files,2016-01-01 11:54:00.000000,complete,User_42
-1,W_Call incomplete files,2016-01-01 11:54:00.000000,start,User_72
-12,A_Create Application,2016-01-01 11:55:03.960240,start,User_75
-11,A_Create Application,2016-01-01 11:56:55.015305,complete,User_101
-5,A_Incomplete,2016-01-01 12:00:08.874995,complete,User_30
-5,A_Validating,2016-01-01 12:00:08.874995,start,User_57
-1,W_Call incomplete files,2016-01-01 12:01:00.000000,complete,User_72
-12,A_Create Application,2016-01-01 12:08:03.960240,complete,User_75
-6,A_Submitted,2016-01-01 12:11:53.555455,start,User_1
-5,A_Validating,2016-01-01 12:14:08.874995,complete,User_57
-5,W_Validate application,2016-01-01 12:14:08.874995,start,User_99
-6,A_Submitted,2016-01-01 12:18:53.555455,complete,User_1
-6,A_Validating,2016-01-01 12:18:53.555455,start,User_83
-13,A_Create Application,2016-01-01 12:18:57.069817,start,User_20
-5,W_Validate application,2016-01-01 12:23:08.874995,complete,User_99
-13,A_Create Application,2016-01-01 12:23:57.069817,complete,User_20
-6,A_Validating,2016-01-01 12:24:53.555455,complete,User_83
-6,W_Validate application,2016-01-01 12:24:53.555455,start,User_17
-14,A_Create Application,2016-01-01 12:30:51.036152,start,User_4
-14,A_Create Application,2016-01-01 12:39:51.036152,complete,User_4
-6,W_Validate application,2016-01-01 12:39:53.555455,complete,User_17
-6,W_Validate application,2016-01-01 12:39:53.555455,start,User_64
-6,W_Validate application,2016-01-01 12:53:53.555455,complete,User_64
-6,A_Incomplete,2016-01-01 12:53:53.555455,start,User_13
-15,A_Create Application,2016-01-01 13:01:20.272589,start,User_88
-6,A_Incomplete,2016-01-01 13:04:53.555455,complete,User_13
-6,W_Call incomplete files,2016-01-01 13:04:53.555455,start,User_101
-12,A_Submitted,2016-01-01 13:08:03.960240,start,User_1
-15,A_Create Application,2016-01-01 13:12:20.272589,complete,User_88
-6,W_Call incomplete files,2016-01-01 13:17:53.555455,complete,User_101
-6,A_Validating,2016-01-01 13:17:53.555455,start,User_117
-12,A_Submitted,2016-01-01 13:22:03.960240,complete,User_1
-12,A_Validating,2016-01-01 13:22:03.960240,start,User_13
-6,A_Validating,2016-01-01 13:26:53.555455,complete,User_117
-6,W_Validate application,2016-01-01 13:26:53.555455,start,User_5
-12,A_Validating,2016-01-01 13:33:03.960240,complete,User_13
-12,W_Validate application,2016-01-01 13:33:03.960240,start,User_68
-12,W_Validate application,2016-01-01 13:39:03.960240,complete,User_68
-12,W_Validate application,2016-01-01 13:39:03.960240,start,User_2
-6,W_Validate application,2016-01-01 13:41:53.555455,complete,User_5
-12,W_Validate application,2016-01-01 13:44:03.960240,complete,User_2
-12,W_Validate application,2016-01-01 13:44:03.960240,start,User_93
-12,W_Validate application,2016-01-01 13:51:03.960240,complete,User_93
-12,A_Incomplete,2016-01-01 13:51:03.960240,start,User_67
-12,A_Incomplete,2016-01-01 14:01:03.960240,complete,User_67
-12,W_Call incomplete files,2016-01-01 14:01:03.960240,start,User_69
-10,A_Submitted,2016-01-01 14:05:57.624165,start,User_1
-10,A_Submitted,2016-01-01 14:10:57.624165,complete,User_1
-10,A_Validating,2016-01-01 14:10:57.624165,start,User_48
-12,W_Call incomplete files,2016-01-01 14:16:03.960240,complete,User_69
-12,A_Validating,2016-01-01 14:16:03.960240,start,User_99
-10,A_Validating,2016-01-01 14:19:57.624165,complete,User_48
-10,W_Validate application,2016-01-01 14:19:57.624165,start,User_36
-10,W_Validate application,2016-01-01 14:27:57.624165,complete,User_36
-10,W_Validate application,2016-01-01 14:27:57.624165,start,User_42
-12,A_Validating,2016-01-01 14:31:03.960240,complete,User_99
-12,W_Validate application,2016-01-01 14:31:03.960240,start,User_51
-16,A_Create Application,2016-01-01 14:34:15.517879,start,User_15
-10,W_Validate application,2016-01-01 14:35:57.624165,complete,User_42
-12,W_Validate application,2016-01-01 14:38:03.960240,complete,User_51
-12,W_Validate application,2016-01-01 14:38:03.960240,start,User_10
-13,A_Submitted,2016-01-01 14:38:57.069817,start,User_1
-16,A_Create Application,2016-01-01 14:48:15.517879,complete,User_15
-12,W_Validate application,2016-01-01 14:49:03.960240,complete,User_10
-12,W_Validate application,2016-01-01 14:49:03.960240,start,User_3
-13,A_Submitted,2016-01-01 14:51:57.069817,complete,User_1
-13,A_Validating,2016-01-01 14:51:57.069817,start,User_84
-14,A_Submitted,2016-01-01 14:54:51.036152,start,User_1
-13,A_Validating,2016-01-01 14:57:57.069817,complete,User_84
-13,W_Validate application,2016-01-01 14:57:57.069817,start,User_45
-12,W_Validate application,2016-01-01 15:00:03.960240,complete,User_3
-12,W_Validate application,2016-01-01 15:00:03.960240,start,User_24
-14,A_Submitted,2016-01-01 15:06:51.036152,complete,User_1
-14,A_Validating,2016-01-01 15:06:51.036152,start,User_101
-12,W_Validate application,2016-01-01 15:07:03.960240,complete,User_24
-12,W_Validate application,2016-01-01 15:07:03.960240,start,User_85
-11,A_Submitted,2016-01-01 15:11:55.015305,start,User_1
-13,W_Validate application,2016-01-01 15:12:57.069817,complete,User_45
-11,A_Submitted,2016-01-01 15:17:55.015305,complete,User_1
-11,A_Validating,2016-01-01 15:17:55.015305,start,User_133
-12,W_Validate application,2016-01-01 15:19:03.960240,complete,User_85
-14,A_Validating,2016-01-01 15:20:51.036152,complete,User_101
-14,W_Validate application,2016-01-01 15:20:51.036152,start,User_16
-11,A_Validating,2016-01-01 15:23:55.015305,complete,User_133
-11,W_Validate application,2016-01-01 15:23:55.015305,start,User_37
-14,W_Validate application,2016-01-01 15:27:51.036152,complete,User_16
-14,A_Incomplete,2016-01-01 15:27:51.036152,start,User_52
-14,A_Incomplete,2016-01-01 15:32:51.036152,complete,User_52
-14,A_Validating,2016-01-01 15:32:51.036152,start,User_61
-11,W_Validate application,2016-01-01 15:37:55.015305,complete,User_37
-11,W_Validate application,2016-01-01 15:37:55.015305,start,User_71
-14,A_Validating,2016-01-01 15:44:51.036152,complete,User_61
-14,W_Validate application,2016-01-01 15:44:51.036152,start,User_17
-16,A_Submitted,2016-01-01 15:48:15.517879,start,User_1
-11,W_Validate application,2016-01-01 15:48:55.015305,complete,User_71
-14,W_Validate application,2016-01-01 15:49:51.036152,complete,User_17
-14,A_Incomplete,2016-01-01 15:49:51.036152,start,User_85
-17,A_Create Application,2016-01-01 15:53:04.595403,start,User_34
-16,A_Submitted,2016-01-01 15:58:15.517879,complete,User_1
-16,A_Validating,2016-01-01 15:58:15.517879,start,User_84
-14,A_Incomplete,2016-01-01 16:03:51.036152,complete,User_85
-14,A_Validating,2016-01-01 16:03:51.036152,start,User_17
-17,A_Create Application,2016-01-01 16:06:04.595403,complete,User_34
-14,A_Validating,2016-01-01 16:09:51.036152,complete,User_17
-14,W_Validate application,2016-01-01 16:09:51.036152,start,User_44
-16,A_Validating,2016-01-01 16:13:15.517879,complete,User_84
-16,W_Validate application,2016-01-01 16:13:15.517879,start,User_34
-18,A_Create Application,2016-01-01 16:16:06.056173,start,User_42
-14,W_Validate application,2016-01-01 16:20:51.036152,complete,User_44
-17,A_Submitted,2016-01-01 16:21:04.595403,start,User_1
-16,W_Validate application,2016-01-01 16:21:15.517879,complete,User_34
-16,A_Incomplete,2016-01-01 16:21:15.517879,start,User_133
-18,A_Create Application,2016-01-01 16:30:06.056173,complete,User_42
-16,A_Incomplete,2016-01-01 16:30:15.517879,complete,User_133
-16,W_Call incomplete files,2016-01-01 16:30:15.517879,start,User_44
-19,A_Create Application,2016-01-01 16:31:14.577050,start,User_56
-17,A_Submitted,2016-01-01 16:35:04.595403,complete,User_1
-17,A_Validating,2016-01-01 16:35:04.595403,start,User_10
-17,A_Validating,2016-01-01 16:41:04.595403,complete,User_10
-17,W_Validate application,2016-01-01 16:41:04.595403,start,User_71
-19,A_Create Application,2016-01-01 16:42:14.577050,complete,User_56
-16,W_Call incomplete files,2016-01-01 16:44:15.517879,complete,User_44
-17,W_Validate application,2016-01-01 16:49:04.595403,complete,User_71
-20,A_Create Application,2016-01-01 17:07:11.047338,start,User_1
-20,A_Create Application,2016-01-01 17:18:11.047338,complete,User_1
-7,A_Submitted,2016-01-01 17:24:56.572685,start,User_1
-7,A_Submitted,2016-01-01 17:32:56.572685,complete,User_1
-7,A_Validating,2016-01-01 17:32:56.572685,start,User_23
-7,A_Validating,2016-01-01 17:41:56.572685,complete,User_23
-7,W_Validate application,2016-01-01 17:41:56.572685,start,User_34
-21,A_Create Application,2016-01-01 17:48:06.344903,start,User_46
-21,A_Create Application,2016-01-01 17:54:06.344903,complete,User_46
-7,W_Validate application,2016-01-01 17:55:56.572685,complete,User_34
-7,W_Validate application,2016-01-01 17:55:56.572685,start,User_133
-7,W_Validate application,2016-01-01 18:08:56.572685,complete,User_133
-7,W_Validate application,2016-01-01 18:08:56.572685,start,User_19
-19,A_Submitted,2016-01-01 18:12:14.577050,start,User_1
-22,A_Create Application,2016-01-01 18:12:54.017187,start,User_96
-19,A_Submitted,2016-01-01 18:18:14.577050,complete,User_1
-19,A_Validating,2016-01-01 18:18:14.577050,start,User_65
-7,W_Validate application,2016-01-01 18:20:56.572685,complete,User_19
-7,A_Incomplete,2016-01-01 18:20:56.572685,start,User_34
-22,A_Create Application,2016-01-01 18:23:54.017187,complete,User_96
-19,A_Validating,2016-01-01 18:28:14.577050,complete,User_65
-19,W_Validate application,2016-01-01 18:28:14.577050,start,User_7
-7,A_Incomplete,2016-01-01 18:32:56.572685,complete,User_34
-7,W_Call incomplete files,2016-01-01 18:32:56.572685,start,User_39
-19,W_Validate application,2016-01-01 18:36:14.577050,complete,User_7
-19,A_Incomplete,2016-01-01 18:36:14.577050,start,User_23
-23,A_Create Application,2016-01-01 18:38:56.369603,start,User_52
-23,A_Create Application,2016-01-01 18:46:56.369603,complete,User_52
-7,W_Call incomplete files,2016-01-01 18:46:56.572685,complete,User_39
-19,A_Incomplete,2016-01-01 18:50:14.577050,complete,User_23
-19,W_Call incomplete files,2016-01-01 18:50:14.577050,start,User_44
-24,A_Create Application,2016-01-01 18:56:03.512934,start,User_34
-25,A_Create Application,2016-01-01 18:57:02.848452,start,User_104
-19,W_Call incomplete files,2016-01-01 18:57:14.577050,complete,User_44
-25,A_Create Application,2016-01-01 19:03:02.848452,complete,User_104
-26,A_Create Application,2016-01-01 19:04:45.690319,start,User_84
-24,A_Create Application,2016-01-01 19:06:03.512934,complete,User_34
-15,A_Submitted,2016-01-01 19:12:20.272589,start,User_1
-26,A_Create Application,2016-01-01 19:13:45.690319,complete,User_84
-15,A_Submitted,2016-01-01 19:24:20.272589,complete,User_1
-15,A_Validating,2016-01-01 19:24:20.272589,start,User_133
-15,A_Validating,2016-01-01 19:29:20.272589,complete,User_133
-15,W_Validate application,2016-01-01 19:29:20.272589,start,User_65
-15,W_Validate application,2016-01-01 19:42:20.272589,complete,User_65
-15,W_Validate application,2016-01-01 19:57:20.272589,start,User_1
-15,W_Validate application,2016-01-01 20:05:20.272589,complete,User_1
-2,A_Submitted,2016-01-01 20:13:29.212499,start,User_1
-2,A_Submitted,2016-01-01 20:24:29.212499,complete,User_1
-23,A_Submitted,2016-01-01 21:01:56.369603,start,User_1
-23,A_Submitted,2016-01-01 21:09:56.369603,complete,User_1
-9,A_Submitted,2016-01-01 21:59:08.505276,start,User_1
-9,A_Submitted,2016-01-01 22:04:08.505276,complete,User_1
-8,A_Submitted,2016-01-01 22:12:56.000107,start,User_1
-8,A_Submitted,2016-01-01 22:18:56.000107,complete,User_1
-22,A_Submitted,2016-01-01 22:53:54.017187,start,User_1
-22,A_Submitted,2016-01-01 23:03:54.017187,complete,User_1
-40,A_Create Application,2016-01-02 02:54:00.000000,start,User_1
-40,A_Create Application,2016-01-02 03:07:00.000000,complete,User_1
-40,A_Submitted,2016-01-02 03:22:00.000000,start,User_1
-40,A_Submitted,2016-01-02 03:37:00.000000,complete,User_1
-46,A_Create Application,2016-01-02 03:52:52.787287,start,User_1
-46,A_Create Application,2016-01-02 04:05:52.787287,complete,User_1
-46,A_Submitted,2016-01-02 04:35:52.787287,start,User_1
-46,A_Submitted,2016-01-02 04:43:52.787287,complete,User_1
-47,A_Create Application,2016-01-02 04:59:31.265705,start,User_1
-47,A_Create Application,2016-01-02 05:12:31.265705,complete,User_1
-47,A_Submitted,2016-01-02 05:27:31.265705,start,User_1
-47,A_Submitted,2016-01-02 05:33:31.265705,complete,User_1
-46,A_Validating,2016-01-02 05:34:00.000000,start,User_68
-46,A_Validating,2016-01-02 05:42:00.000000,complete,User_68
-50,A_Create Application,2016-01-02 06:18:23.228687,start,User_68
-46,W_Validate application,2016-01-02 06:27:00.000000,start,User_1
-50,A_Create Application,2016-01-02 06:31:23.228687,complete,User_68
-46,W_Validate application,2016-01-02 06:32:00.000000,complete,User_1
-47,A_Validating,2016-01-02 06:33:31.265705,start,User_5
-47,A_Validating,2016-01-02 06:41:31.265705,complete,User_5
-47,W_Validate application,2016-01-02 06:41:31.265705,start,User_87
-9,A_Validating,2016-01-02 06:49:00.000000,start,User_90
-47,W_Validate application,2016-01-02 06:54:31.265705,complete,User_87
-9,A_Validating,2016-01-02 06:55:00.000000,complete,User_90
-8,A_Validating,2016-01-02 07:04:00.000000,start,User_33
-30,A_Create Application,2016-01-02 07:09:00.000000,start,User_30
-43,A_Create Application,2016-01-02 07:09:00.000000,start,User_99
-33,A_Create Application,2016-01-02 07:09:00.000000,start,User_68
-15,W_Validate application,2016-01-02 07:09:00.000000,start,User_125
-43,A_Create Application,2016-01-02 07:14:00.000000,complete,User_99
-15,W_Validate application,2016-01-02 07:14:00.000000,complete,User_125
-49,A_Create Application,2016-01-02 07:14:54.825276,start,User_95
-8,A_Validating,2016-01-02 07:15:00.000000,complete,User_33
-8,W_Validate application,2016-01-02 07:15:00.000000,start,User_87
-50,A_Submitted,2016-01-02 07:16:23.228687,start,User_1
-30,A_Create Application,2016-01-02 07:18:00.000000,complete,User_30
-33,A_Create Application,2016-01-02 07:18:00.000000,complete,User_68
-23,A_Validating,2016-01-02 07:19:00.000000,start,User_122
-40,A_Validating,2016-01-02 07:19:00.000000,start,User_32
-22,A_Validating,2016-01-02 07:19:00.000000,start,User_120
-2,A_Validating,2016-01-02 07:19:00.000000,start,User_55
-48,A_Create Application,2016-01-02 07:19:50.868537,start,User_27
-50,A_Submitted,2016-01-02 07:22:23.228687,complete,User_1
-50,A_Validating,2016-01-02 07:22:23.228687,start,User_93
-49,A_Create Application,2016-01-02 07:23:54.825276,complete,User_95
-34,A_Create Application,2016-01-02 07:24:00.000000,start,User_33
-32,A_Create Application,2016-01-02 07:24:00.000000,start,User_48
-37,A_Create Application,2016-01-02 07:24:00.000000,start,User_5
-2,A_Validating,2016-01-02 07:26:00.000000,complete,User_55
-2,W_Validate application,2016-01-02 07:26:00.000000,start,User_117
-23,A_Validating,2016-01-02 07:28:00.000000,complete,User_122
-23,W_Validate application,2016-01-02 07:28:00.000000,start,User_60
-37,A_Create Application,2016-01-02 07:29:00.000000,complete,User_5
-8,W_Validate application,2016-01-02 07:30:00.000000,complete,User_87
-8,A_Incomplete,2016-01-02 07:30:00.000000,start,User_120
-48,A_Create Application,2016-01-02 07:30:50.868537,complete,User_27
-22,A_Validating,2016-01-02 07:32:00.000000,complete,User_120
-22,W_Validate application,2016-01-02 07:32:00.000000,start,User_100
-32,A_Create Application,2016-01-02 07:33:00.000000,complete,User_48
-2,W_Validate application,2016-01-02 07:33:00.000000,complete,User_117
-40,A_Validating,2016-01-02 07:33:00.000000,complete,User_32
-2,A_Incomplete,2016-01-02 07:33:00.000000,start,User_53
-40,W_Validate application,2016-01-02 07:33:00.000000,start,User_68
-50,A_Validating,2016-01-02 07:33:23.228687,complete,User_93
-50,W_Validate application,2016-01-02 07:33:23.228687,start,User_123
-23,W_Validate application,2016-01-02 07:35:00.000000,complete,User_60
-8,A_Incomplete,2016-01-02 07:37:00.000000,complete,User_120
-8,W_Call incomplete files,2016-01-02 07:37:00.000000,start,User_125
-34,A_Create Application,2016-01-02 07:38:00.000000,complete,User_33
-31,A_Create Application,2016-01-02 07:39:00.000000,start,User_30
-39,A_Create Application,2016-01-02 07:39:00.000000,start,User_2
-44,A_Create Application,2016-01-02 07:39:00.000000,start,User_107
-27,A_Create Application,2016-01-02 07:39:00.000000,start,User_104
-22,W_Validate application,2016-01-02 07:40:00.000000,complete,User_100
-9,W_Validate application,2016-01-02 07:40:00.000000,start,User_121
-22,W_Validate application,2016-01-02 07:40:00.000000,start,User_134
-40,W_Validate application,2016-01-02 07:41:00.000000,complete,User_68
-40,W_Validate application,2016-01-02 07:41:00.000000,start,User_122
-50,W_Validate application,2016-01-02 07:41:23.228687,complete,User_123
-2,A_Incomplete,2016-01-02 07:42:00.000000,complete,User_53
-2,A_Validating,2016-01-02 07:42:00.000000,start,User_114
-44,A_Create Application,2016-01-02 07:44:00.000000,complete,User_107
-39,A_Create Application,2016-01-02 07:45:00.000000,complete,User_2
-9,W_Validate application,2016-01-02 07:46:00.000000,complete,User_121
-27,A_Create Application,2016-01-02 07:46:00.000000,complete,User_104
-31,A_Create Application,2016-01-02 07:50:00.000000,complete,User_30
-22,W_Validate application,2016-01-02 07:51:00.000000,complete,User_134
-8,W_Call incomplete files,2016-01-02 07:51:00.000000,complete,User_125
-22,A_Incomplete,2016-01-02 07:51:00.000000,start,User_99
-8,W_Call incomplete files,2016-01-02 07:51:00.000000,start,User_11
-40,W_Validate application,2016-01-02 07:52:00.000000,complete,User_122
-40,W_Validate application,2016-01-02 07:52:00.000000,start,User_117
-2,A_Validating,2016-01-02 07:53:00.000000,complete,User_114
-2,W_Validate application,2016-01-02 07:53:00.000000,start,User_90
-36,A_Create Application,2016-01-02 07:54:00.000000,start,User_31
-28,A_Create Application,2016-01-02 07:54:00.000000,start,User_93
-41,A_Create Application,2016-01-02 07:54:00.000000,start,User_102
-42,A_Create Application,2016-01-02 07:54:00.000000,start,User_32
-44,A_Submitted,2016-01-02 07:59:00.000000,start,User_1
-51,A_Create Application,2016-01-02 07:59:47.006714,start,User_45
-8,W_Call incomplete files,2016-01-02 08:00:00.000000,complete,User_11
-8,A_Validating,2016-01-02 08:00:00.000000,start,User_124
-2,W_Validate application,2016-01-02 08:02:00.000000,complete,User_90
-41,A_Create Application,2016-01-02 08:02:00.000000,complete,User_102
-2,A_Incomplete,2016-01-02 08:02:00.000000,start,User_33
-40,W_Validate application,2016-01-02 08:03:00.000000,complete,User_117
-40,A_Incomplete,2016-01-02 08:03:00.000000,start,User_67
-36,A_Create Application,2016-01-02 08:05:00.000000,complete,User_31
-42,A_Create Application,2016-01-02 08:05:00.000000,complete,User_32
-22,A_Incomplete,2016-01-02 08:06:00.000000,complete,User_99
-22,W_Call incomplete files,2016-01-02 08:06:00.000000,start,User_99
-28,A_Create Application,2016-01-02 08:07:00.000000,complete,User_93
-2,A_Incomplete,2016-01-02 08:08:00.000000,complete,User_33
-2,A_Validating,2016-01-02 08:08:00.000000,start,User_118
-38,A_Create Application,2016-01-02 08:09:00.000000,start,User_4
-29,A_Create Application,2016-01-02 08:09:00.000000,start,User_71
-35,A_Create Application,2016-01-02 08:09:00.000000,start,User_17
-45,A_Create Application,2016-01-02 08:09:11.471288,start,User_101
-51,A_Create Application,2016-01-02 08:10:47.006714,complete,User_45
-44,A_Submitted,2016-01-02 08:12:00.000000,complete,User_1
-40,A_Incomplete,2016-01-02 08:12:00.000000,complete,User_67
-44,A_Validating,2016-01-02 08:12:00.000000,start,User_56
-40,A_Validating,2016-01-02 08:12:00.000000,start,User_122
-52,A_Create Application,2016-01-02 08:12:26.075191,start,User_104
-8,A_Validating,2016-01-02 08:13:00.000000,complete,User_124
-8,W_Validate application,2016-01-02 08:13:00.000000,start,User_117
-45,A_Create Application,2016-01-02 08:14:11.471288,complete,User_101
-29,A_Create Application,2016-01-02 08:15:00.000000,complete,User_71
-22,W_Call incomplete files,2016-01-02 08:18:00.000000,complete,User_99
-40,A_Validating,2016-01-02 08:18:00.000000,complete,User_122
-40,W_Validate application,2016-01-02 08:18:00.000000,start,User_87
-53,A_Create Application,2016-01-02 08:18:09.438539,start,User_45
-2,A_Validating,2016-01-02 08:19:00.000000,complete,User_118
-2,W_Validate application,2016-01-02 08:19:00.000000,start,User_58
-35,A_Create Application,2016-01-02 08:21:00.000000,complete,User_17
-44,A_Validating,2016-01-02 08:22:00.000000,complete,User_56
-38,A_Create Application,2016-01-02 08:22:00.000000,complete,User_4
-44,W_Validate application,2016-01-02 08:22:00.000000,start,User_112
-40,W_Validate application,2016-01-02 08:24:00.000000,complete,User_87
-2,W_Validate application,2016-01-02 08:24:00.000000,complete,User_58
-40,A_Incomplete,2016-01-02 08:24:00.000000,start,User_21
-53,A_Create Application,2016-01-02 08:24:09.438539,complete,User_45
-8,W_Validate application,2016-01-02 08:26:00.000000,complete,User_117
-8,A_Incomplete,2016-01-02 08:26:00.000000,start,User_119
-52,A_Create Application,2016-01-02 08:26:26.075191,complete,User_104
-44,W_Validate application,2016-01-02 08:29:00.000000,complete,User_112
-44,A_Incomplete,2016-01-02 08:29:00.000000,start,User_27
-44,A_Incomplete,2016-01-02 08:35:00.000000,complete,User_27
-44,W_Call incomplete files,2016-01-02 08:35:00.000000,start,User_126
-8,A_Incomplete,2016-01-02 08:36:00.000000,complete,User_119
-8,W_Call incomplete files,2016-01-02 08:36:00.000000,start,User_49
-40,A_Incomplete,2016-01-02 08:38:00.000000,complete,User_21
-40,A_Validating,2016-01-02 08:38:00.000000,start,User_87
-44,W_Call incomplete files,2016-01-02 08:43:00.000000,complete,User_126
-8,W_Call incomplete files,2016-01-02 08:43:00.000000,complete,User_49
-8,W_Call incomplete files,2016-01-02 08:43:00.000000,start,User_116
-54,A_Create Application,2016-01-02 08:45:05.751542,start,User_55
-40,A_Validating,2016-01-02 08:52:00.000000,complete,User_87
-40,W_Validate application,2016-01-02 08:52:00.000000,start,User_106
-8,W_Call incomplete files,2016-01-02 08:54:00.000000,complete,User_116
-26,A_Submitted,2016-01-02 08:54:00.000000,start,User_1
-8,W_Call incomplete files,2016-01-02 08:54:00.000000,start,User_33
-54,A_Create Application,2016-01-02 08:57:05.751542,complete,User_55
-55,A_Create Application,2016-01-02 09:01:08.113482,start,User_7
-8,W_Call incomplete files,2016-01-02 09:05:00.000000,complete,User_33
-40,W_Validate application,2016-01-02 09:07:00.000000,complete,User_106
-26,A_Submitted,2016-01-02 09:07:00.000000,complete,User_1
-40,A_Incomplete,2016-01-02 09:07:00.000000,start,User_100
-26,A_Validating,2016-01-02 09:07:00.000000,start,User_69
-40,A_Incomplete,2016-01-02 09:12:00.000000,complete,User_100
-40,W_Call incomplete files,2016-01-02 09:12:00.000000,start,User_78
-26,A_Validating,2016-01-02 09:15:00.000000,complete,User_69
-26,W_Validate application,2016-01-02 09:15:00.000000,start,User_123
-55,A_Create Application,2016-01-02 09:16:08.113482,complete,User_7
-56,A_Create Application,2016-01-02 09:19:38.113903,start,User_11
-26,W_Validate application,2016-01-02 09:21:00.000000,complete,User_123
-40,W_Call incomplete files,2016-01-02 09:21:00.000000,complete,User_78
-26,A_Incomplete,2016-01-02 09:21:00.000000,start,User_109
-26,A_Incomplete,2016-01-02 09:31:00.000000,complete,User_109
-26,W_Call incomplete files,2016-01-02 09:31:00.000000,start,User_30
-56,A_Create Application,2016-01-02 09:32:38.113903,complete,User_11
-34,A_Submitted,2016-01-02 09:38:00.000000,start,User_1
-26,W_Call incomplete files,2016-01-02 09:46:00.000000,complete,User_30
-34,A_Submitted,2016-01-02 09:50:00.000000,complete,User_1
-36,A_Submitted,2016-01-02 09:50:00.000000,start,User_1
-34,A_Validating,2016-01-02 09:50:00.000000,start,User_122
-57,A_Create Application,2016-01-02 09:58:18.191377,start,User_69
-36,A_Submitted,2016-01-02 10:00:00.000000,complete,User_1
-36,A_Validating,2016-01-02 10:00:00.000000,start,User_124
-34,A_Validating,2016-01-02 10:02:00.000000,complete,User_122
-34,W_Validate application,2016-01-02 10:02:00.000000,start,User_106
-57,A_Create Application,2016-01-02 10:05:18.191377,complete,User_69
-36,A_Validating,2016-01-02 10:07:00.000000,complete,User_124
-36,W_Validate application,2016-01-02 10:07:00.000000,start,User_49
-34,W_Validate application,2016-01-02 10:10:00.000000,complete,User_106
-34,A_Incomplete,2016-01-02 10:10:00.000000,start,User_131
-36,W_Validate application,2016-01-02 10:14:00.000000,complete,User_49
-58,A_Create Application,2016-01-02 10:15:29.932293,start,User_90
-42,A_Submitted,2016-01-02 10:20:00.000000,start,User_1
-34,A_Incomplete,2016-01-02 10:24:00.000000,complete,User_131
-34,A_Validating,2016-01-02 10:24:00.000000,start,User_4
-58,A_Create Application,2016-01-02 10:27:29.932293,complete,User_90
-42,A_Submitted,2016-01-02 10:28:00.000000,complete,User_1
-42,A_Validating,2016-01-02 10:28:00.000000,start,User_56
-34,A_Validating,2016-01-02 10:36:00.000000,complete,User_4
-34,W_Validate application,2016-01-02 10:36:00.000000,start,User_125
-59,A_Create Application,2016-01-02 10:37:36.118347,start,User_58
-42,A_Validating,2016-01-02 10:41:00.000000,complete,User_56
-42,W_Validate application,2016-01-02 10:41:00.000000,start,User_32
-42,W_Validate application,2016-01-02 10:47:00.000000,complete,User_32
-60,A_Create Application,2016-01-02 10:48:47.969959,start,User_33
-34,W_Validate application,2016-01-02 10:49:00.000000,complete,User_125
-34,W_Validate application,2016-01-02 10:49:00.000000,start,User_45
-59,A_Create Application,2016-01-02 10:50:36.118347,complete,User_58
-34,W_Validate application,2016-01-02 10:57:00.000000,complete,User_45
-60,A_Create Application,2016-01-02 10:58:47.969959,complete,User_33
-41,A_Submitted,2016-01-02 11:17:00.000000,start,User_1
-41,A_Submitted,2016-01-02 11:32:00.000000,complete,User_1
-41,A_Validating,2016-01-02 11:32:00.000000,start,User_4
-41,A_Validating,2016-01-02 11:42:00.000000,complete,User_4
-41,W_Validate application,2016-01-02 11:42:00.000000,start,User_31
-41,W_Validate application,2016-01-02 11:49:00.000000,complete,User_31
-41,A_Incomplete,2016-01-02 11:49:00.000000,start,User_11
-61,A_Create Application,2016-01-02 11:58:20.028404,start,User_16
-41,A_Incomplete,2016-01-02 11:59:00.000000,complete,User_11
-37,A_Submitted,2016-01-02 11:59:00.000000,start,User_1
-41,W_Call incomplete files,2016-01-02 11:59:00.000000,start,User_134
-62,A_Create Application,2016-01-02 12:10:41.188983,start,User_107
-61,A_Create Application,2016-01-02 12:11:20.028404,complete,User_16
-37,A_Submitted,2016-01-02 12:12:00.000000,complete,User_1
-41,W_Call incomplete files,2016-01-02 12:12:00.000000,complete,User_134
-37,A_Validating,2016-01-02 12:12:00.000000,start,User_10
-62,A_Create Application,2016-01-02 12:17:41.188983,complete,User_107
-37,A_Validating,2016-01-02 12:22:00.000000,complete,User_10
-37,W_Validate application,2016-01-02 12:22:00.000000,start,User_79
-63,A_Create Application,2016-01-02 12:26:37.745735,start,User_78
-64,A_Create Application,2016-01-02 12:30:29.390084,start,User_20
-63,A_Create Application,2016-01-02 12:33:37.745735,complete,User_78
-37,W_Validate application,2016-01-02 12:37:00.000000,complete,User_79
-38,A_Submitted,2016-01-02 12:37:00.000000,start,User_1
-37,W_Validate application,2016-01-02 12:37:00.000000,start,User_66
-64,A_Create Application,2016-01-02 12:38:29.390084,complete,User_20
-65,A_Create Application,2016-01-02 12:45:15.484077,start,User_36
-38,A_Submitted,2016-01-02 12:47:00.000000,complete,User_1
-38,A_Validating,2016-01-02 12:47:00.000000,start,User_128
-37,W_Validate application,2016-01-02 12:51:00.000000,complete,User_66
-37,A_Incomplete,2016-01-02 12:51:00.000000,start,User_23
-65,A_Create Application,2016-01-02 12:56:15.484077,complete,User_36
-38,A_Validating,2016-01-02 13:01:00.000000,complete,User_128
-38,W_Validate application,2016-01-02 13:01:00.000000,start,User_99
-37,A_Incomplete,2016-01-02 13:02:00.000000,complete,User_23
-37,W_Call incomplete files,2016-01-02 13:02:00.000000,start,User_39
-56,A_Submitted,2016-01-02 13:02:38.113903,start,User_1
-66,A_Create Application,2016-01-02 13:08:44.144043,start,User_48
-38,W_Validate application,2016-01-02 13:11:00.000000,complete,User_99
-38,W_Validate application,2016-01-02 13:11:00.000000,start,User_3
-37,W_Call incomplete files,2016-01-02 13:13:00.000000,complete,User_39
-37,A_Validating,2016-01-02 13:13:00.000000,start,User_57
-56,A_Submitted,2016-01-02 13:15:38.113903,complete,User_1
-56,A_Validating,2016-01-02 13:15:38.113903,start,User_125
-38,W_Validate application,2016-01-02 13:18:00.000000,complete,User_3
-38,W_Validate application,2016-01-02 13:18:00.000000,start,User_109
-66,A_Create Application,2016-01-02 13:18:44.144043,complete,User_48
-37,A_Validating,2016-01-02 13:20:00.000000,complete,User_57
-37,W_Validate application,2016-01-02 13:20:00.000000,start,User_63
-38,W_Validate application,2016-01-02 13:28:00.000000,complete,User_109
-38,A_Incomplete,2016-01-02 13:28:00.000000,start,User_115
-56,A_Validating,2016-01-02 13:30:38.113903,complete,User_125
-56,W_Validate application,2016-01-02 13:30:38.113903,start,User_100
-62,A_Submitted,2016-01-02 13:32:41.188983,start,User_1
-37,W_Validate application,2016-01-02 13:33:00.000000,complete,User_63
-37,W_Validate application,2016-01-02 13:33:00.000000,start,User_107
-56,W_Validate application,2016-01-02 13:35:38.113903,complete,User_100
-56,W_Validate application,2016-01-02 13:35:38.113903,start,User_79
-56,W_Validate application,2016-01-02 13:40:38.113903,complete,User_79
-56,A_Incomplete,2016-01-02 13:40:38.113903,start,User_51
-62,A_Submitted,2016-01-02 13:40:41.188983,complete,User_1
-62,A_Validating,2016-01-02 13:40:41.188983,start,User_50
-38,A_Incomplete,2016-01-02 13:41:00.000000,complete,User_115
-38,W_Call incomplete files,2016-01-02 13:41:00.000000,start,User_10
-67,A_Create Application,2016-01-02 13:41:03.578196,start,User_11
-37,W_Validate application,2016-01-02 13:42:00.000000,complete,User_107
-37,W_Validate application,2016-01-02 13:42:00.000000,start,User_19
-38,W_Call incomplete files,2016-01-02 13:48:00.000000,complete,User_10
-38,A_Validating,2016-01-02 13:48:00.000000,start,User_32
-62,A_Validating,2016-01-02 13:48:41.188983,complete,User_50
-62,W_Validate application,2016-01-02 13:48:41.188983,start,User_131
-67,A_Create Application,2016-01-02 13:51:03.578196,complete,User_11
-56,A_Incomplete,2016-01-02 13:53:38.113903,complete,User_51
-56,A_Validating,2016-01-02 13:53:38.113903,start,User_14
-62,W_Validate application,2016-01-02 13:53:41.188983,complete,User_131
-62,W_Validate application,2016-01-02 13:53:41.188983,start,User_31
-37,W_Validate application,2016-01-02 13:57:00.000000,complete,User_19
-37,A_Incomplete,2016-01-02 13:57:00.000000,start,User_37
-38,A_Validating,2016-01-02 13:58:00.000000,complete,User_32
-38,W_Validate application,2016-01-02 13:58:00.000000,start,User_133
-66,A_Submitted,2016-01-02 14:03:44.144043,start,User_1
-37,A_Incomplete,2016-01-02 14:05:00.000000,complete,User_37
-37,A_Validating,2016-01-02 14:05:00.000000,start,User_66
-56,A_Validating,2016-01-02 14:07:38.113903,complete,User_14
-56,W_Validate application,2016-01-02 14:07:38.113903,start,User_67
-38,W_Validate application,2016-01-02 14:08:00.000000,complete,User_133
-38,W_Validate application,2016-01-02 14:08:00.000000,start,User_4
-62,W_Validate application,2016-01-02 14:08:41.188983,complete,User_31
-66,A_Submitted,2016-01-02 14:11:44.144043,complete,User_1
-66,A_Validating,2016-01-02 14:11:44.144043,start,User_49
-68,A_Create Application,2016-01-02 14:14:56.685680,start,User_13
-38,W_Validate application,2016-01-02 14:15:00.000000,complete,User_4
-38,A_Incomplete,2016-01-02 14:15:00.000000,start,User_61
-37,A_Validating,2016-01-02 14:17:00.000000,complete,User_66
-37,W_Validate application,2016-01-02 14:17:00.000000,start,User_120
-56,W_Validate application,2016-01-02 14:17:38.113903,complete,User_67
-66,A_Validating,2016-01-02 14:21:44.144043,complete,User_49
-66,W_Validate application,2016-01-02 14:21:44.144043,start,User_71
-68,A_Create Application,2016-01-02 14:23:56.685680,complete,User_13
-37,W_Validate application,2016-01-02 14:25:00.000000,complete,User_120
-37,A_Incomplete,2016-01-02 14:25:00.000000,start,User_17
-38,A_Incomplete,2016-01-02 14:28:00.000000,complete,User_61
-38,A_Validating,2016-01-02 14:28:00.000000,start,User_12
-66,W_Validate application,2016-01-02 14:28:44.144043,complete,User_71
-37,A_Incomplete,2016-01-02 14:31:00.000000,complete,User_17
-37,A_Validating,2016-01-02 14:31:00.000000,start,User_43
-37,A_Validating,2016-01-02 14:36:00.000000,complete,User_43
-37,W_Validate application,2016-01-02 14:36:00.000000,start,User_99
-38,A_Validating,2016-01-02 14:41:00.000000,complete,User_12
-38,W_Validate application,2016-01-02 14:41:00.000000,start,User_74
-30,A_Submitted,2016-01-02 14:48:00.000000,start,User_1
-37,W_Validate application,2016-01-02 14:50:00.000000,complete,User_99
-38,W_Validate application,2016-01-02 14:56:00.000000,complete,User_74
-38,W_Validate application,2016-01-02 14:56:00.000000,start,User_29
-30,A_Submitted,2016-01-02 15:00:00.000000,complete,User_1
-30,A_Validating,2016-01-02 15:00:00.000000,start,User_61
-38,W_Validate application,2016-01-02 15:02:00.000000,complete,User_29
-30,A_Validating,2016-01-02 15:09:00.000000,complete,User_61
-30,W_Validate application,2016-01-02 15:09:00.000000,start,User_14
-69,A_Create Application,2016-01-02 15:23:28.532846,start,User_26
-30,W_Validate application,2016-01-02 15:24:00.000000,complete,User_14
-30,W_Validate application,2016-01-02 15:24:00.000000,start,User_36
-70,A_Create Application,2016-01-02 15:26:54.545038,start,User_19
-30,W_Validate application,2016-01-02 15:31:00.000000,complete,User_36
-30,W_Validate application,2016-01-02 15:31:00.000000,start,User_12
-70,A_Create Application,2016-01-02 15:32:54.545038,complete,User_19
-69,A_Create Application,2016-01-02 15:35:28.532846,complete,User_26
-54,A_Submitted,2016-01-02 15:42:05.751542,start,User_1
-30,W_Validate application,2016-01-02 15:43:00.000000,complete,User_12
-30,W_Validate application,2016-01-02 15:43:00.000000,start,User_51
-71,A_Create Application,2016-01-02 15:52:47.213696,start,User_61
-54,A_Submitted,2016-01-02 15:53:05.751542,complete,User_1
-54,A_Validating,2016-01-02 15:53:05.751542,start,User_7
-64,A_Submitted,2016-01-02 15:53:29.390084,start,User_1
-30,W_Validate application,2016-01-02 15:56:00.000000,complete,User_51
-30,A_Incomplete,2016-01-02 15:56:00.000000,start,User_18
-72,A_Create Application,2016-01-02 16:01:20.402616,start,User_10
-30,A_Incomplete,2016-01-02 16:02:00.000000,complete,User_18
-30,A_Validating,2016-01-02 16:02:00.000000,start,User_69
-71,A_Create Application,2016-01-02 16:03:47.213696,complete,User_61
-54,A_Validating,2016-01-02 16:04:05.751542,complete,User_7
-54,W_Validate application,2016-01-02 16:04:05.751542,start,User_37
-64,A_Submitted,2016-01-02 16:05:29.390084,complete,User_1
-64,A_Validating,2016-01-02 16:05:29.390084,start,User_79
-30,A_Validating,2016-01-02 16:09:00.000000,complete,User_69
-30,W_Validate application,2016-01-02 16:09:00.000000,start,User_25
-64,A_Validating,2016-01-02 16:13:29.390084,complete,User_79
-64,W_Validate application,2016-01-02 16:13:29.390084,start,User_19
-29,A_Submitted,2016-01-02 16:15:00.000000,start,User_1
-54,W_Validate application,2016-01-02 16:16:05.751542,complete,User_37
-54,W_Validate application,2016-01-02 16:16:05.751542,start,User_52
-72,A_Create Application,2016-01-02 16:16:20.402616,complete,User_10
-64,W_Validate application,2016-01-02 16:19:29.390084,complete,User_19
-64,W_Validate application,2016-01-02 16:19:29.390084,start,User_32
-30,W_Validate application,2016-01-02 16:24:00.000000,complete,User_25
-30,W_Validate application,2016-01-02 16:24:00.000000,start,User_26
-64,W_Validate application,2016-01-02 16:26:29.390084,complete,User_32
-64,A_Incomplete,2016-01-02 16:26:29.390084,start,User_66
-29,A_Submitted,2016-01-02 16:27:00.000000,complete,User_1
-29,A_Validating,2016-01-02 16:27:00.000000,start,User_43
-54,W_Validate application,2016-01-02 16:31:05.751542,complete,User_52
-54,W_Validate application,2016-01-02 16:31:05.751542,start,User_74
-30,W_Validate application,2016-01-02 16:35:00.000000,complete,User_26
-29,A_Validating,2016-01-02 16:35:00.000000,complete,User_43
-30,W_Validate application,2016-01-02 16:35:00.000000,start,User_40
-29,W_Validate application,2016-01-02 16:35:00.000000,start,User_20
-31,A_Submitted,2016-01-02 16:35:00.000000,start,User_1
-64,A_Incomplete,2016-01-02 16:36:29.390084,complete,User_66
-64,W_Call incomplete files,2016-01-02 16:36:29.390084,start,User_12
-54,W_Validate application,2016-01-02 16:46:05.751542,complete,User_74
-54,A_Incomplete,2016-01-02 16:46:05.751542,start,User_46
-30,W_Validate application,2016-01-02 16:47:00.000000,complete,User_40
-29,W_Validate application,2016-01-02 16:48:00.000000,complete,User_20
-29,A_Incomplete,2016-01-02 16:48:00.000000,start,User_44
-31,A_Submitted,2016-01-02 16:49:00.000000,complete,User_1
-31,A_Validating,2016-01-02 16:49:00.000000,start,User_26
-64,W_Call incomplete files,2016-01-02 16:51:29.390084,complete,User_12
-29,A_Incomplete,2016-01-02 17:01:00.000000,complete,User_44
-29,A_Validating,2016-01-02 17:01:00.000000,start,User_18
-31,A_Validating,2016-01-02 17:01:00.000000,complete,User_26
-31,W_Validate application,2016-01-02 17:01:00.000000,start,User_14
-54,A_Incomplete,2016-01-02 17:01:05.751542,complete,User_46
-54,W_Call incomplete files,2016-01-02 17:01:05.751542,start,User_133
-29,A_Validating,2016-01-02 17:07:00.000000,complete,User_18
-29,W_Validate application,2016-01-02 17:07:00.000000,start,User_25
-54,W_Call incomplete files,2016-01-02 17:11:05.751542,complete,User_133
-54,A_Validating,2016-01-02 17:11:05.751542,start,User_32
-31,W_Validate application,2016-01-02 17:13:00.000000,complete,User_14
-31,A_Incomplete,2016-01-02 17:13:00.000000,start,User_3
-29,W_Validate application,2016-01-02 17:14:00.000000,complete,User_25
-29,W_Validate application,2016-01-02 17:14:00.000000,start,User_70
-73,A_Create Application,2016-01-02 17:14:10.687999,start,User_61
-54,A_Validating,2016-01-02 17:22:05.751542,complete,User_32
-54,W_Validate application,2016-01-02 17:22:05.751542,start,User_46
-73,A_Create Application,2016-01-02 17:22:10.687999,complete,User_61
-31,A_Incomplete,2016-01-02 17:25:00.000000,complete,User_3
-31,A_Validating,2016-01-02 17:25:00.000000,start,User_13
-29,W_Validate application,2016-01-02 17:27:00.000000,complete,User_70
-31,A_Validating,2016-01-02 17:31:00.000000,complete,User_13
-31,W_Validate application,2016-01-02 17:31:00.000000,start,User_3
-54,W_Validate application,2016-01-02 17:31:05.751542,complete,User_46
-57,A_Submitted,2016-01-02 17:35:18.191377,start,User_1
-74,A_Create Application,2016-01-02 17:39:58.965383,start,User_26
-31,W_Validate application,2016-01-02 17:42:00.000000,complete,User_3
-57,A_Submitted,2016-01-02 17:44:18.191377,complete,User_1
-57,A_Validating,2016-01-02 17:44:18.191377,start,User_40
-74,A_Create Application,2016-01-02 17:46:58.965383,complete,User_26
-75,A_Create Application,2016-01-02 17:51:59.378278,start,User_43
-57,A_Validating,2016-01-02 17:52:18.191377,complete,User_40
-57,W_Validate application,2016-01-02 17:52:18.191377,start,User_19
-75,A_Create Application,2016-01-02 18:06:59.378278,complete,User_43
-57,W_Validate application,2016-01-02 18:07:18.191377,complete,User_19
-57,A_Incomplete,2016-01-02 18:07:18.191377,start,User_52
-57,A_Incomplete,2016-01-02 18:20:18.191377,complete,User_52
-57,W_Call incomplete files,2016-01-02 18:20:18.191377,start,User_40
-75,A_Submitted,2016-01-02 18:21:59.378278,start,User_1
-76,A_Create Application,2016-01-02 18:22:59.670475,start,User_37
-57,W_Call incomplete files,2016-01-02 18:29:18.191377,complete,User_40
-75,A_Submitted,2016-01-02 18:30:59.378278,complete,User_1
-75,A_Validating,2016-01-02 18:30:59.378278,start,User_18
-77,A_Create Application,2016-01-02 18:31:06.403484,start,User_44
-76,A_Create Application,2016-01-02 18:32:59.670475,complete,User_37
-77,A_Create Application,2016-01-02 18:37:06.403484,complete,User_44
-78,A_Create Application,2016-01-02 18:42:42.582411,start,User_3
-75,A_Validating,2016-01-02 18:43:59.378278,complete,User_18
-75,W_Validate application,2016-01-02 18:43:59.378278,start,User_13
-78,A_Create Application,2016-01-02 18:47:42.582411,complete,User_3
-75,W_Validate application,2016-01-02 18:50:59.378278,complete,User_13
-75,A_Incomplete,2016-01-02 18:50:59.378278,start,User_66
-75,A_Incomplete,2016-01-02 18:58:59.378278,complete,User_66
-75,A_Validating,2016-01-02 18:58:59.378278,start,User_133
-75,A_Validating,2016-01-02 19:08:59.378278,complete,User_133
-35,A_Submitted,2016-01-02 19:21:00.000000,start,User_1
-75,W_Validate application,2016-01-02 19:23:59.378278,start,User_133
-35,A_Submitted,2016-01-02 19:29:00.000000,complete,User_1
-75,W_Validate application,2016-01-02 19:31:59.378278,complete,User_133
-58,A_Submitted,2016-01-02 20:12:29.932293,start,User_1
-51,A_Submitted,2016-01-02 20:25:47.006714,start,User_1
-58,A_Submitted,2016-01-02 20:26:29.932293,complete,User_1
-51,A_Submitted,2016-01-02 20:36:47.006714,complete,User_1
-39,A_Submitted,2016-01-02 20:45:00.000000,start,User_1
-39,A_Submitted,2016-01-02 20:53:00.000000,complete,User_1
-81,A_Create Application,2016-01-02 21:40:20.832971,start,User_1
-81,A_Create Application,2016-01-02 21:47:20.832971,complete,User_1
-65,A_Submitted,2016-01-02 22:41:15.484077,start,User_1
-65,A_Submitted,2016-01-02 22:50:15.484077,complete,User_1
-95,A_Create Application,2016-01-03 03:25:00.000000,start,User_1
-95,A_Create Application,2016-01-03 03:38:00.000000,complete,User_1
-95,A_Submitted,2016-01-03 03:53:00.000000,start,User_1
-95,A_Submitted,2016-01-03 04:07:00.000000,complete,User_1
-98,A_Create Application,2016-01-03 04:17:15.737747,start,User_1
-98,A_Create Application,2016-01-03 04:29:15.737747,complete,User_1
-97,A_Create Application,2016-01-03 04:54:37.030687,start,User_1
-97,A_Create Application,2016-01-03 05:09:37.030687,complete,User_1
+1,A_Create Application,2016-01-01 09:15:00.000000,start,User_95
+1,A_Create Application,2016-01-01 09:24:00.000000,complete,User_95
+1,A_Submitted,2016-01-01 09:24:00.000000,start,User_1
+1,A_Submitted,2016-01-01 09:36:00.000000,complete,User_1
+1,A_Validating,2016-01-01 09:36:00.000000,start,User_123
+2,A_Create Application,2016-01-01 09:37:12.512906,start,User_54
+1,A_Validating,2016-01-01 09:43:00.000000,complete,User_123
+1,W_Validate application,2016-01-01 09:43:00.000000,start,User_141
+2,A_Create Application,2016-01-01 09:47:12.512906,complete,User_54
+3,A_Create Application,2016-01-01 09:48:21.680146,start,User_51
+1,W_Validate application,2016-01-01 09:51:00.000000,complete,User_141
+1,A_Incomplete,2016-01-01 09:51:00.000000,start,User_30
+1,A_Incomplete,2016-01-01 09:58:00.000000,complete,User_30
+1,W_Call incomplete files,2016-01-01 09:58:00.000000,start,User_95
+2,A_Submitted,2016-01-01 10:02:12.512906,start,User_1
+3,A_Create Application,2016-01-01 10:03:21.680146,complete,User_51
+4,A_Create Application,2016-01-01 10:06:50.530572,start,User_63
+2,A_Submitted,2016-01-01 10:10:12.512906,complete,User_1
+2,A_Validating,2016-01-01 10:10:12.512906,start,User_11
+1,W_Call incomplete files,2016-01-01 10:12:00.000000,complete,User_95
+1,A_Validating,2016-01-01 10:12:00.000000,start,User_3
+4,A_Create Application,2016-01-01 10:12:50.530572,complete,User_63
+2,A_Validating,2016-01-01 10:17:12.512906,complete,User_11
+2,W_Validate application,2016-01-01 10:17:12.512906,start,User_116
+2,W_Validate application,2016-01-01 10:26:12.512906,complete,User_116
+1,A_Validating,2016-01-01 10:27:00.000000,complete,User_3
+1,W_Validate application,2016-01-01 10:27:00.000000,start,User_22
+1,W_Validate application,2016-01-01 10:42:00.000000,complete,User_22
+1,A_Incomplete,2016-01-01 10:42:00.000000,start,User_13
+1,A_Incomplete,2016-01-01 10:54:00.000000,complete,User_13
+1,A_Validating,2016-01-01 10:54:00.000000,start,User_121
+4,A_Submitted,2016-01-01 10:57:50.530572,start,User_1
+1,A_Validating,2016-01-01 11:05:00.000000,complete,User_121
+1,W_Validate application,2016-01-01 11:05:00.000000,start,User_21
+4,A_Submitted,2016-01-01 11:12:50.530572,complete,User_1
+4,A_Validating,2016-01-01 11:12:50.530572,start,User_72
+1,W_Validate application,2016-01-01 11:14:00.000000,complete,User_21
+1,A_Incomplete,2016-01-01 11:14:00.000000,start,User_53
+4,A_Validating,2016-01-01 11:21:50.530572,complete,User_72
+4,W_Validate application,2016-01-01 11:21:50.530572,start,User_109
+1,A_Incomplete,2016-01-01 11:22:00.000000,complete,User_53
+1,A_Validating,2016-01-01 11:22:00.000000,start,User_68
+4,W_Validate application,2016-01-01 11:33:50.530572,complete,User_109
+4,A_Incomplete,2016-01-01 11:33:50.530572,start,User_33
+1,A_Validating,2016-01-01 11:37:00.000000,complete,User_68
+1,W_Validate application,2016-01-01 11:37:00.000000,start,User_18
+4,A_Incomplete,2016-01-01 11:38:50.530572,complete,User_33
+4,A_Validating,2016-01-01 11:38:50.530572,start,User_29
+1,W_Validate application,2016-01-01 11:45:00.000000,complete,User_18
+4,A_Validating,2016-01-01 11:46:50.530572,complete,User_29
+4,W_Validate application,2016-01-01 11:46:50.530572,start,User_122
+3,A_Submitted,2016-01-01 11:48:21.680146,start,User_1
+3,A_Submitted,2016-01-01 11:55:21.680146,complete,User_1
+3,A_Validating,2016-01-01 11:55:21.680146,start,User_88
+5,A_Create Application,2016-01-01 11:56:50.365724,start,User_4
+4,W_Validate application,2016-01-01 11:56:50.530572,complete,User_122
+3,A_Validating,2016-01-01 12:03:21.680146,complete,User_88
+3,W_Validate application,2016-01-01 12:03:21.680146,start,User_30
+5,A_Create Application,2016-01-01 12:07:50.365724,complete,User_4
+3,W_Validate application,2016-01-01 12:16:21.680146,complete,User_30
+3,A_Incomplete,2016-01-01 12:16:21.680146,start,User_33
+6,A_Create Application,2016-01-01 12:16:39.011682,start,User_57
+5,A_Submitted,2016-01-01 12:22:50.365724,start,User_1
+3,A_Incomplete,2016-01-01 12:27:21.680146,complete,User_33
+3,A_Validating,2016-01-01 12:27:21.680146,start,User_38
+6,A_Create Application,2016-01-01 12:31:39.011682,complete,User_57
+3,A_Validating,2016-01-01 12:34:21.680146,complete,User_38
+3,W_Validate application,2016-01-01 12:34:21.680146,start,User_59
+5,A_Submitted,2016-01-01 12:36:50.365724,complete,User_1
+5,A_Validating,2016-01-01 12:36:50.365724,start,User_102
+3,W_Validate application,2016-01-01 12:42:21.680146,complete,User_59
+3,A_Incomplete,2016-01-01 12:42:21.680146,start,User_10
+5,A_Validating,2016-01-01 12:44:50.365724,complete,User_102
+5,W_Validate application,2016-01-01 12:44:50.365724,start,User_48
+5,W_Validate application,2016-01-01 12:50:50.365724,complete,User_48
+5,A_Incomplete,2016-01-01 12:50:50.365724,start,User_29
+3,A_Incomplete,2016-01-01 12:52:21.680146,complete,User_10
+3,A_Validating,2016-01-01 12:52:21.680146,start,User_99
+7,A_Create Application,2016-01-01 13:01:40.359691,start,User_3
+5,A_Incomplete,2016-01-01 13:03:50.365724,complete,User_29
+5,A_Validating,2016-01-01 13:03:50.365724,start,User_53
+3,A_Validating,2016-01-01 13:07:21.680146,complete,User_99
+3,W_Validate application,2016-01-01 13:07:21.680146,start,User_11
+7,A_Create Application,2016-01-01 13:07:40.359691,complete,User_3
+8,A_Create Application,2016-01-01 13:12:17.647436,start,User_45
+5,A_Validating,2016-01-01 13:14:50.365724,complete,User_53
+5,W_Validate application,2016-01-01 13:14:50.365724,start,User_51
+6,A_Submitted,2016-01-01 13:16:39.011682,start,User_1
+3,W_Validate application,2016-01-01 13:18:21.680146,complete,User_11
+3,A_Incomplete,2016-01-01 13:18:21.680146,start,User_60
+8,A_Create Application,2016-01-01 13:21:17.647436,complete,User_45
+5,W_Validate application,2016-01-01 13:25:50.365724,complete,User_51
+9,A_Create Application,2016-01-01 13:26:14.530340,start,User_85
+3,A_Incomplete,2016-01-01 13:27:21.680146,complete,User_60
+3,A_Validating,2016-01-01 13:27:21.680146,start,User_10
+6,A_Submitted,2016-01-01 13:28:39.011682,complete,User_1
+6,A_Validating,2016-01-01 13:28:39.011682,start,User_86
+6,A_Validating,2016-01-01 13:33:39.011682,complete,User_86
+6,W_Validate application,2016-01-01 13:33:39.011682,start,User_102
+9,A_Create Application,2016-01-01 13:37:14.530340,complete,User_85
+3,A_Validating,2016-01-01 13:40:21.680146,complete,User_10
+3,W_Validate application,2016-01-01 13:40:21.680146,start,User_33
+6,W_Validate application,2016-01-01 13:44:39.011682,complete,User_102
+6,W_Validate application,2016-01-01 13:44:39.011682,start,User_52
+3,W_Validate application,2016-01-01 13:47:21.680146,complete,User_33
+3,A_Incomplete,2016-01-01 13:47:21.680146,start,User_125
+8,A_Submitted,2016-01-01 13:51:17.647436,start,User_1
+6,W_Validate application,2016-01-01 13:51:39.011682,complete,User_52
+6,A_Incomplete,2016-01-01 13:51:39.011682,start,User_25
+6,A_Incomplete,2016-01-01 13:57:39.011682,complete,User_25
+6,A_Validating,2016-01-01 13:57:39.011682,start,User_28
+3,A_Incomplete,2016-01-01 13:58:21.680146,complete,User_125
+3,W_Call incomplete files,2016-01-01 13:58:21.680146,start,User_36
+8,A_Submitted,2016-01-01 14:00:17.647436,complete,User_1
+8,A_Validating,2016-01-01 14:00:17.647436,start,User_106
+8,A_Validating,2016-01-01 14:07:17.647436,complete,User_106
+8,W_Validate application,2016-01-01 14:07:17.647436,start,User_59
+6,A_Validating,2016-01-01 14:07:39.011682,complete,User_28
+6,W_Validate application,2016-01-01 14:07:39.011682,start,User_88
+3,W_Call incomplete files,2016-01-01 14:09:21.680146,complete,User_36
+8,W_Validate application,2016-01-01 14:15:17.647436,complete,User_59
+8,W_Validate application,2016-01-01 14:15:17.647436,start,User_102
+6,W_Validate application,2016-01-01 14:21:39.011682,complete,User_88
+8,W_Validate application,2016-01-01 14:23:17.647436,complete,User_102
+8,W_Validate application,2016-01-01 14:23:17.647436,start,User_15
+8,W_Validate application,2016-01-01 14:31:17.647436,complete,User_15
+8,W_Validate application,2016-01-01 14:31:17.647436,start,User_56
+10,A_Create Application,2016-01-01 14:42:47.201901,start,User_35
+8,W_Validate application,2016-01-01 14:43:17.647436,complete,User_56
+8,W_Validate application,2016-01-01 14:43:17.647436,start,User_106
+8,W_Validate application,2016-01-01 14:49:17.647436,complete,User_106
+8,W_Validate application,2016-01-01 14:49:17.647436,start,User_48
+10,A_Create Application,2016-01-01 14:51:47.201901,complete,User_35
+10,A_Submitted,2016-01-01 14:51:47.201901,start,User_1
+8,W_Validate application,2016-01-01 14:54:17.647436,complete,User_48
+8,A_Incomplete,2016-01-01 14:54:17.647436,start,User_60
+8,A_Incomplete,2016-01-01 15:04:17.647436,complete,User_60
+8,A_Validating,2016-01-01 15:04:17.647436,start,User_46
+10,A_Submitted,2016-01-01 15:04:47.201901,complete,User_1
+10,A_Validating,2016-01-01 15:04:47.201901,start,User_23
+9,A_Submitted,2016-01-01 15:07:14.530340,start,User_1
+8,A_Validating,2016-01-01 15:11:17.647436,complete,User_46
+8,W_Validate application,2016-01-01 15:11:17.647436,start,User_3
+9,A_Submitted,2016-01-01 15:19:14.530340,complete,User_1
+9,A_Validating,2016-01-01 15:19:14.530340,start,User_18
+10,A_Validating,2016-01-01 15:19:47.201901,complete,User_23
+10,W_Validate application,2016-01-01 15:19:47.201901,start,User_70
+8,W_Validate application,2016-01-01 15:22:17.647436,complete,User_3
+8,A_Incomplete,2016-01-01 15:22:17.647436,start,User_20
+7,A_Submitted,2016-01-01 15:22:40.359691,start,User_1
+7,A_Submitted,2016-01-01 15:27:40.359691,complete,User_1
+7,A_Validating,2016-01-01 15:27:40.359691,start,User_133
+8,A_Incomplete,2016-01-01 15:28:17.647436,complete,User_20
+8,A_Validating,2016-01-01 15:28:17.647436,start,User_42
+10,W_Validate application,2016-01-01 15:30:47.201901,complete,User_70
+9,A_Validating,2016-01-01 15:33:14.530340,complete,User_18
+9,W_Validate application,2016-01-01 15:33:14.530340,start,User_37
+7,A_Validating,2016-01-01 15:35:40.359691,complete,User_133
+7,W_Validate application,2016-01-01 15:35:40.359691,start,User_44
+8,A_Validating,2016-01-01 15:37:17.647436,complete,User_42
+8,W_Validate application,2016-01-01 15:37:17.647436,start,User_19
+7,W_Validate application,2016-01-01 15:41:40.359691,complete,User_44
+7,W_Validate application,2016-01-01 15:41:40.359691,start,User_7
+9,W_Validate application,2016-01-01 15:46:14.530340,complete,User_37
+8,W_Validate application,2016-01-01 15:47:17.647436,complete,User_19
+8,A_Incomplete,2016-01-01 15:47:17.647436,start,User_10
+11,A_Create Application,2016-01-01 15:49:39.647105,start,User_81
+7,W_Validate application,2016-01-01 15:55:40.359691,complete,User_7
+8,A_Incomplete,2016-01-01 15:57:17.647436,complete,User_10
+8,A_Validating,2016-01-01 15:57:17.647436,start,User_19
+11,A_Create Application,2016-01-01 16:04:39.647105,complete,User_81
+8,A_Validating,2016-01-01 16:05:17.647436,complete,User_19
+8,W_Validate application,2016-01-01 16:05:17.647436,start,User_11
+8,W_Validate application,2016-01-01 16:14:17.647436,complete,User_11
+8,A_Incomplete,2016-01-01 16:14:17.647436,start,User_41
+11,A_Submitted,2016-01-01 16:19:39.647105,start,User_1
+8,A_Incomplete,2016-01-01 16:23:17.647436,complete,User_41
+8,W_Call incomplete files,2016-01-01 16:23:17.647436,start,User_46
+11,A_Submitted,2016-01-01 16:28:39.647105,complete,User_1
+11,A_Validating,2016-01-01 16:28:39.647105,start,User_18
+8,W_Call incomplete files,2016-01-01 16:32:17.647436,complete,User_46
+11,A_Validating,2016-01-01 16:43:39.647105,complete,User_18
+11,W_Validate application,2016-01-01 16:43:39.647105,start,User_42
+11,W_Validate application,2016-01-01 16:52:39.647105,complete,User_42
+12,A_Create Application,2016-01-01 17:02:40.372533,start,User_48
+13,A_Create Application,2016-01-01 17:07:40.137189,start,User_7
+12,A_Create Application,2016-01-01 17:12:40.372533,complete,User_48
+12,A_Submitted,2016-01-01 17:12:40.372533,start,User_1
+13,A_Create Application,2016-01-01 17:15:40.137189,complete,User_7
+12,A_Submitted,2016-01-01 17:21:40.372533,complete,User_1
+12,A_Validating,2016-01-01 17:21:40.372533,start,User_17
+14,A_Create Application,2016-01-01 17:23:50.927518,start,User_11
+12,A_Validating,2016-01-01 17:27:40.372533,complete,User_17
+12,W_Validate application,2016-01-01 17:27:40.372533,start,User_5
+14,A_Create Application,2016-01-01 17:30:50.927518,complete,User_11
+12,W_Validate application,2016-01-01 17:34:40.372533,complete,User_5
+15,A_Create Application,2016-01-01 17:40:36.208715,start,User_48
+15,A_Create Application,2016-01-01 17:47:36.208715,complete,User_48
+13,A_Submitted,2016-01-01 18:00:40.137189,start,User_1
+16,A_Create Application,2016-01-01 18:04:36.234356,start,User_39
+13,A_Submitted,2016-01-01 18:14:40.137189,complete,User_1
+13,A_Validating,2016-01-01 18:14:40.137189,start,User_18
+16,A_Create Application,2016-01-01 18:15:36.234356,complete,User_39
+13,A_Validating,2016-01-01 18:19:40.137189,complete,User_18
+13,W_Validate application,2016-01-01 18:19:40.137189,start,User_41
+17,A_Create Application,2016-01-01 18:22:10.975274,start,User_8
+13,W_Validate application,2016-01-01 18:24:40.137189,complete,User_41
+13,W_Validate application,2016-01-01 18:24:40.137189,start,User_56
+18,A_Create Application,2016-01-01 18:35:23.569742,start,User_104
+17,A_Create Application,2016-01-01 18:36:10.975274,complete,User_8
+13,W_Validate application,2016-01-01 18:39:40.137189,complete,User_56
+13,W_Validate application,2016-01-01 18:39:40.137189,start,User_7
+18,A_Create Application,2016-01-01 18:47:23.569742,complete,User_104
+19,A_Create Application,2016-01-01 18:49:07.577930,start,User_44
+13,W_Validate application,2016-01-01 18:51:40.137189,complete,User_7
+13,W_Validate application,2016-01-01 18:51:40.137189,start,User_52
+20,A_Create Application,2016-01-01 18:57:44.601881,start,User_84
+13,W_Validate application,2016-01-01 18:58:40.137189,complete,User_52
+13,W_Validate application,2016-01-01 18:58:40.137189,start,User_10
+19,A_Create Application,2016-01-01 19:00:07.577930,complete,User_44
+19,A_Submitted,2016-01-01 19:00:07.577930,start,User_1
+13,W_Validate application,2016-01-01 19:05:40.137189,complete,User_10
+13,W_Validate application,2016-01-01 19:05:40.137189,start,User_133
+20,A_Create Application,2016-01-01 19:12:44.601881,complete,User_84
+19,A_Submitted,2016-01-01 19:15:07.577930,complete,User_1
+19,A_Validating,2016-01-01 19:15:07.577930,start,User_65
+16,A_Submitted,2016-01-01 19:15:36.234356,start,User_1
+13,W_Validate application,2016-01-01 19:17:40.137189,complete,User_133
+19,A_Validating,2016-01-01 19:20:07.577930,complete,User_65
+16,A_Submitted,2016-01-01 19:26:36.234356,complete,User_1
+20,A_Submitted,2016-01-01 19:42:44.601881,start,User_1
+20,A_Submitted,2016-01-01 19:48:44.601881,complete,User_1
+21,A_Create Application,2016-01-01 20:28:15.632137,start,User_1
+21,A_Create Application,2016-01-01 20:33:15.632137,complete,User_1
+14,A_Submitted,2016-01-01 20:45:50.927518,start,User_1
+14,A_Submitted,2016-01-01 20:55:50.927518,complete,User_1
+26,A_Create Application,2016-01-01 21:01:43.810162,start,User_1
+26,A_Create Application,2016-01-01 21:10:43.810162,complete,User_1
+21,A_Submitted,2016-01-01 21:18:15.632137,start,User_1
+21,A_Submitted,2016-01-01 21:27:15.632137,complete,User_1
+24,A_Create Application,2016-01-01 21:39:28.763912,start,User_1
+24,A_Create Application,2016-01-01 21:49:28.763912,complete,User_1
+29,A_Create Application,2016-01-01 22:19:07.024531,start,User_1
+29,A_Create Application,2016-01-01 22:28:07.024531,complete,User_1
+31,A_Create Application,2016-01-02 02:54:00.000000,start,User_1
+31,A_Create Application,2016-01-02 03:04:00.000000,complete,User_1
+40,A_Create Application,2016-01-02 03:48:12.396375,start,User_1
+40,A_Create Application,2016-01-02 04:02:12.396375,complete,User_1
+31,A_Submitted,2016-01-02 04:34:00.000000,start,User_1
+31,A_Submitted,2016-01-02 04:41:00.000000,complete,User_1
+41,A_Create Application,2016-01-02 05:05:08.638997,start,User_1
+41,A_Create Application,2016-01-02 05:14:08.638997,complete,User_1
+16,A_Validating,2016-01-02 05:34:00.000000,start,User_68
+16,A_Validating,2016-01-02 05:49:00.000000,complete,User_68
+40,A_Submitted,2016-01-02 06:02:12.396375,start,User_1
+40,A_Submitted,2016-01-02 06:10:12.396375,complete,User_1
+46,A_Create Application,2016-01-02 06:20:10.004252,start,User_68
+46,A_Create Application,2016-01-02 06:25:10.004252,complete,User_68
+14,A_Validating,2016-01-02 06:34:00.000000,start,User_5
+14,A_Validating,2016-01-02 06:44:00.000000,complete,User_5
+14,W_Validate application,2016-01-02 06:44:00.000000,start,User_87
+39,A_Create Application,2016-01-02 06:44:04.364960,start,User_5
+21,A_Validating,2016-01-02 06:49:00.000000,start,User_90
+37,A_Create Application,2016-01-02 06:49:51.815198,start,User_1
+39,A_Create Application,2016-01-02 06:50:04.364960,complete,User_5
+40,A_Validating,2016-01-02 06:55:12.396375,start,User_5
+14,W_Validate application,2016-01-02 06:59:00.000000,complete,User_87
+21,A_Validating,2016-01-02 07:00:00.000000,complete,User_90
+21,W_Validate application,2016-01-02 07:00:00.000000,start,User_103
+37,A_Create Application,2016-01-02 07:00:51.815198,complete,User_1
+31,A_Validating,2016-01-02 07:04:00.000000,start,User_33
+40,A_Validating,2016-01-02 07:05:12.396375,complete,User_5
+34,A_Create Application,2016-01-02 07:09:00.000000,start,User_99
+35,A_Create Application,2016-01-02 07:09:00.000000,start,User_30
+19,W_Validate application,2016-01-02 07:09:00.000000,start,User_125
+21,W_Validate application,2016-01-02 07:10:00.000000,complete,User_103
+31,A_Validating,2016-01-02 07:11:00.000000,complete,User_33
+14,A_Incomplete,2016-01-02 07:14:00.000000,start,User_122
+48,A_Create Application,2016-01-02 07:14:01.467339,start,User_95
+20,A_Validating,2016-01-02 07:19:00.000000,start,User_68
+16,W_Validate application,2016-01-02 07:19:00.000000,start,User_27
+40,W_Validate application,2016-01-02 07:20:12.396375,start,User_120
+45,A_Create Application,2016-01-02 07:20:53.441308,start,User_93
+19,W_Validate application,2016-01-02 07:21:00.000000,complete,User_125
+49,A_Create Application,2016-01-02 07:22:35.109995,start,User_1
+42,A_Create Application,2016-01-02 07:22:41.479291,start,User_32
+43,A_Create Application,2016-01-02 07:22:57.100382,start,User_48
+35,A_Create Application,2016-01-02 07:23:00.000000,complete,User_30
+27,A_Create Application,2016-01-02 07:24:00.000000,start,User_30
+23,A_Create Application,2016-01-02 07:24:00.000000,start,User_55
+34,A_Create Application,2016-01-02 07:24:00.000000,complete,User_99
+21,A_Incomplete,2016-01-02 07:25:00.000000,start,User_125
+38,A_Create Application,2016-01-02 07:25:49.696857,start,User_90
+31,W_Validate application,2016-01-02 07:26:00.000000,start,User_5
+48,A_Create Application,2016-01-02 07:26:01.467339,complete,User_95
+14,A_Incomplete,2016-01-02 07:27:00.000000,complete,User_122
+14,A_Validating,2016-01-02 07:27:00.000000,start,User_60
+42,A_Create Application,2016-01-02 07:27:41.479291,complete,User_32
+16,W_Validate application,2016-01-02 07:28:00.000000,complete,User_27
+20,A_Validating,2016-01-02 07:28:00.000000,complete,User_68
+20,W_Validate application,2016-01-02 07:28:00.000000,start,User_121
+40,W_Validate application,2016-01-02 07:28:12.396375,complete,User_120
+40,A_Incomplete,2016-01-02 07:28:12.396375,start,User_117
+45,A_Create Application,2016-01-02 07:28:53.441308,complete,User_93
+27,A_Create Application,2016-01-02 07:29:00.000000,complete,User_30
+47,A_Create Application,2016-01-02 07:30:37.723563,start,User_104
+43,A_Create Application,2016-01-02 07:30:57.100382,complete,User_48
+49,A_Create Application,2016-01-02 07:31:35.109995,complete,User_1
+38,A_Create Application,2016-01-02 07:31:49.696857,complete,User_90
+23,A_Create Application,2016-01-02 07:35:00.000000,complete,User_55
+14,A_Validating,2016-01-02 07:38:00.000000,complete,User_60
+31,W_Validate application,2016-01-02 07:38:00.000000,complete,User_5
+14,W_Validate application,2016-01-02 07:38:00.000000,start,User_114
+31,W_Validate application,2016-01-02 07:38:00.000000,start,User_99
+33,A_Create Application,2016-01-02 07:39:00.000000,start,User_2
+28,A_Create Application,2016-01-02 07:39:00.000000,start,User_100
+25,A_Create Application,2016-01-02 07:39:00.000000,start,User_93
+30,A_Create Application,2016-01-02 07:39:00.000000,start,User_27
+22,A_Create Application,2016-01-02 07:39:00.000000,start,User_107
+36,A_Create Application,2016-01-02 07:39:00.000000,start,User_30
+32,A_Create Application,2016-01-02 07:39:00.000000,start,User_53
+21,A_Incomplete,2016-01-02 07:40:00.000000,complete,User_125
+21,A_Validating,2016-01-02 07:40:00.000000,start,User_123
+40,A_Incomplete,2016-01-02 07:41:12.396375,complete,User_117
+40,W_Call incomplete files,2016-01-02 07:41:12.396375,start,User_134
+20,W_Validate application,2016-01-02 07:42:00.000000,complete,User_121
+42,A_Submitted,2016-01-02 07:42:41.479291,start,User_1
+51,A_Create Application,2016-01-02 07:44:16.083053,start,User_48
+44,A_Create Application,2016-01-02 07:44:59.902237,start,User_87
+30,A_Create Application,2016-01-02 07:45:00.000000,complete,User_27
+47,A_Create Application,2016-01-02 07:45:37.723563,complete,User_104
+14,W_Validate application,2016-01-02 07:46:00.000000,complete,User_114
+28,A_Create Application,2016-01-02 07:47:00.000000,complete,User_100
+36,A_Create Application,2016-01-02 07:48:00.000000,complete,User_30
+22,A_Create Application,2016-01-02 07:50:00.000000,complete,User_107
+21,A_Validating,2016-01-02 07:50:00.000000,complete,User_123
+25,A_Create Application,2016-01-02 07:50:00.000000,complete,User_93
+21,W_Validate application,2016-01-02 07:50:00.000000,start,User_99
+31,W_Validate application,2016-01-02 07:51:00.000000,complete,User_99
+42,A_Submitted,2016-01-02 07:52:41.479291,complete,User_1
+42,A_Validating,2016-01-02 07:52:41.479291,start,User_31
+32,A_Create Application,2016-01-02 07:53:00.000000,complete,User_53
+33,A_Create Application,2016-01-02 07:54:00.000000,complete,User_2
+40,W_Call incomplete files,2016-01-02 07:56:12.396375,complete,User_134
+40,W_Call incomplete files,2016-01-02 07:56:12.396375,start,User_93
+50,A_Create Application,2016-01-02 07:57:08.748211,start,User_32
+51,A_Create Application,2016-01-02 07:57:16.083053,complete,User_48
+21,W_Validate application,2016-01-02 07:58:00.000000,complete,User_99
+44,A_Create Application,2016-01-02 07:58:59.902237,complete,User_87
+52,A_Create Application,2016-01-02 08:03:17.964368,start,User_69
+42,A_Validating,2016-01-02 08:04:41.479291,complete,User_31
+42,W_Validate application,2016-01-02 08:04:41.479291,start,User_116
+40,W_Call incomplete files,2016-01-02 08:07:12.396375,complete,User_93
+40,A_Validating,2016-01-02 08:07:12.396375,start,User_38
+50,A_Create Application,2016-01-02 08:10:08.748211,complete,User_32
+52,A_Create Application,2016-01-02 08:10:17.964368,complete,User_69
+42,W_Validate application,2016-01-02 08:11:41.479291,complete,User_116
+42,W_Validate application,2016-01-02 08:11:41.479291,start,User_119
+40,A_Validating,2016-01-02 08:17:12.396375,complete,User_38
+40,W_Validate application,2016-01-02 08:17:12.396375,start,User_67
+42,W_Validate application,2016-01-02 08:19:41.479291,complete,User_119
+42,A_Incomplete,2016-01-02 08:19:41.479291,start,User_36
+32,A_Submitted,2016-01-02 08:23:00.000000,start,User_1
+53,A_Create Application,2016-01-02 08:24:24.002300,start,User_21
+42,A_Incomplete,2016-01-02 08:30:41.479291,complete,User_36
+42,A_Validating,2016-01-02 08:30:41.479291,start,User_100
+53,A_Create Application,2016-01-02 08:31:24.002300,complete,User_21
+40,W_Validate application,2016-01-02 08:32:12.396375,complete,User_67
+32,A_Submitted,2016-01-02 08:34:00.000000,complete,User_1
+32,A_Validating,2016-01-02 08:34:00.000000,start,User_14
+42,A_Validating,2016-01-02 08:38:41.479291,complete,User_100
+42,W_Validate application,2016-01-02 08:38:41.479291,start,User_2
+32,A_Validating,2016-01-02 08:48:00.000000,complete,User_14
+36,A_Submitted,2016-01-02 08:48:00.000000,start,User_1
+32,W_Validate application,2016-01-02 08:48:00.000000,start,User_55
+42,W_Validate application,2016-01-02 08:48:41.479291,complete,User_2
+42,A_Incomplete,2016-01-02 08:48:41.479291,start,User_42
+36,A_Submitted,2016-01-02 08:53:00.000000,complete,User_1
+36,A_Validating,2016-01-02 08:53:00.000000,start,User_125
+42,A_Incomplete,2016-01-02 09:00:41.479291,complete,User_42
+42,A_Validating,2016-01-02 09:00:41.479291,start,User_126
+32,W_Validate application,2016-01-02 09:01:00.000000,complete,User_55
+36,A_Validating,2016-01-02 09:02:00.000000,complete,User_125
+36,W_Validate application,2016-01-02 09:02:00.000000,start,User_5
+36,W_Validate application,2016-01-02 09:08:00.000000,complete,User_5
+36,W_Validate application,2016-01-02 09:08:00.000000,start,User_120
+42,A_Validating,2016-01-02 09:10:41.479291,complete,User_126
+42,W_Validate application,2016-01-02 09:10:41.479291,start,User_119
+54,A_Create Application,2016-01-02 09:14:03.930556,start,User_99
+36,W_Validate application,2016-01-02 09:17:00.000000,complete,User_120
+36,A_Incomplete,2016-01-02 09:17:00.000000,start,User_41
+42,W_Validate application,2016-01-02 09:19:41.479291,complete,User_119
+42,A_Incomplete,2016-01-02 09:19:41.479291,start,User_21
+42,A_Incomplete,2016-01-02 09:24:41.479291,complete,User_21
+42,W_Call incomplete files,2016-01-02 09:24:41.479291,start,User_4
+54,A_Create Application,2016-01-02 09:25:03.930556,complete,User_99
+36,A_Incomplete,2016-01-02 09:28:00.000000,complete,User_41
+36,W_Call incomplete files,2016-01-02 09:28:00.000000,start,User_27
+42,W_Call incomplete files,2016-01-02 09:30:41.479291,complete,User_4
+42,W_Call incomplete files,2016-01-02 09:30:41.479291,start,User_7
+42,W_Call incomplete files,2016-01-02 09:36:41.479291,complete,User_7
+42,W_Call incomplete files,2016-01-02 09:36:41.479291,start,User_3
+35,A_Submitted,2016-01-02 09:38:00.000000,start,User_1
+42,W_Call incomplete files,2016-01-02 09:42:41.479291,complete,User_3
+36,W_Call incomplete files,2016-01-02 09:43:00.000000,complete,User_27
+36,W_Call incomplete files,2016-01-02 09:43:00.000000,start,User_14
+35,A_Submitted,2016-01-02 09:45:00.000000,complete,User_1
+35,A_Validating,2016-01-02 09:45:00.000000,start,User_122
+36,W_Call incomplete files,2016-01-02 09:49:00.000000,complete,User_14
+55,A_Create Application,2016-01-02 09:51:44.186779,start,User_101
+35,A_Validating,2016-01-02 09:59:00.000000,complete,User_122
+35,W_Validate application,2016-01-02 09:59:00.000000,start,User_100
+27,A_Submitted,2016-01-02 09:59:00.000000,start,User_1
+55,A_Create Application,2016-01-02 09:59:44.186779,complete,User_101
+56,A_Create Application,2016-01-02 10:04:42.423607,start,User_49
+57,A_Create Application,2016-01-02 10:04:49.385018,start,User_60
+35,W_Validate application,2016-01-02 10:11:00.000000,complete,User_100
+57,A_Create Application,2016-01-02 10:12:49.385018,complete,User_60
+27,A_Submitted,2016-01-02 10:13:00.000000,complete,User_1
+27,A_Validating,2016-01-02 10:13:00.000000,start,User_3
+58,A_Create Application,2016-01-02 10:13:07.611792,start,User_56
+59,A_Create Application,2016-01-02 10:15:33.680602,start,User_27
+60,A_Create Application,2016-01-02 10:15:34.364570,start,User_30
+56,A_Create Application,2016-01-02 10:17:42.423607,complete,User_49
+58,A_Create Application,2016-01-02 10:23:07.611792,complete,User_56
+59,A_Create Application,2016-01-02 10:23:33.680602,complete,User_27
+27,A_Validating,2016-01-02 10:26:00.000000,complete,User_3
+27,W_Validate application,2016-01-02 10:26:00.000000,start,User_53
+60,A_Create Application,2016-01-02 10:29:34.364570,complete,User_30
+27,W_Validate application,2016-01-02 10:31:00.000000,complete,User_53
+22,A_Submitted,2016-01-02 10:35:00.000000,start,User_1
+22,A_Submitted,2016-01-02 10:46:00.000000,complete,User_1
+22,A_Validating,2016-01-02 10:46:00.000000,start,User_23
+22,A_Validating,2016-01-02 10:53:00.000000,complete,User_23
+22,W_Validate application,2016-01-02 10:53:00.000000,start,User_33
+22,W_Validate application,2016-01-02 11:06:00.000000,complete,User_33
+45,A_Submitted,2016-01-02 11:13:53.441308,start,User_1
+45,A_Submitted,2016-01-02 11:20:53.441308,complete,User_1
+45,A_Validating,2016-01-02 11:20:53.441308,start,User_58
+45,A_Validating,2016-01-02 11:28:53.441308,complete,User_58
+45,W_Validate application,2016-01-02 11:28:53.441308,start,User_27
+61,A_Create Application,2016-01-02 11:36:06.552522,start,User_53
+61,A_Create Application,2016-01-02 11:41:06.552522,complete,User_53
+45,W_Validate application,2016-01-02 11:41:53.441308,complete,User_27
+48,A_Submitted,2016-01-02 12:11:01.467339,start,User_1
+48,A_Submitted,2016-01-02 12:16:01.467339,complete,User_1
+48,A_Validating,2016-01-02 12:16:01.467339,start,User_33
+48,A_Validating,2016-01-02 12:24:01.467339,complete,User_33
+48,W_Validate application,2016-01-02 12:24:01.467339,start,User_25
+62,A_Create Application,2016-01-02 12:31:56.631202,start,User_43
+48,W_Validate application,2016-01-02 12:35:01.467339,complete,User_25
+63,A_Create Application,2016-01-02 12:39:13.886266,start,User_39
+62,A_Create Application,2016-01-02 12:46:56.631202,complete,User_43
+63,A_Create Application,2016-01-02 12:49:13.886266,complete,User_39
+54,A_Submitted,2016-01-02 13:10:03.930556,start,User_1
+64,A_Create Application,2016-01-02 13:13:22.500880,start,User_104
+65,A_Create Application,2016-01-02 13:18:58.475741,start,User_54
+54,A_Submitted,2016-01-02 13:21:03.930556,complete,User_1
+54,A_Validating,2016-01-02 13:21:03.930556,start,User_37
+64,A_Create Application,2016-01-02 13:21:22.500880,complete,User_104
+66,A_Create Application,2016-01-02 13:22:04.832338,start,User_19
+54,A_Validating,2016-01-02 13:26:03.930556,complete,User_37
+54,W_Validate application,2016-01-02 13:26:03.930556,start,User_63
+65,A_Create Application,2016-01-02 13:26:58.475741,complete,User_54
+66,A_Create Application,2016-01-02 13:35:04.832338,complete,User_19
+54,W_Validate application,2016-01-02 13:37:03.930556,complete,User_63
+54,A_Incomplete,2016-01-02 13:37:03.930556,start,User_75
+54,A_Incomplete,2016-01-02 13:44:03.930556,complete,User_75
+54,W_Call incomplete files,2016-01-02 13:44:03.930556,start,User_29
+54,W_Call incomplete files,2016-01-02 13:51:03.930556,complete,User_29
+54,W_Call incomplete files,2016-01-02 13:51:03.930556,start,User_66
+50,A_Submitted,2016-01-02 13:55:08.748211,start,User_1
+54,W_Call incomplete files,2016-01-02 14:00:03.930556,complete,User_66
+50,A_Submitted,2016-01-02 14:10:08.748211,complete,User_1
+50,A_Validating,2016-01-02 14:10:08.748211,start,User_115
+46,A_Submitted,2016-01-02 14:10:10.004252,start,User_1
+46,A_Submitted,2016-01-02 14:15:10.004252,complete,User_1
+46,A_Validating,2016-01-02 14:15:10.004252,start,User_55
+50,A_Validating,2016-01-02 14:20:08.748211,complete,User_115
+50,W_Validate application,2016-01-02 14:20:08.748211,start,User_4
+46,A_Validating,2016-01-02 14:24:10.004252,complete,User_55
+46,W_Validate application,2016-01-02 14:24:10.004252,start,User_25
+67,A_Create Application,2016-01-02 14:29:31.044813,start,User_10
+46,W_Validate application,2016-01-02 14:32:10.004252,complete,User_25
+46,A_Incomplete,2016-01-02 14:32:10.004252,start,User_24
+50,W_Validate application,2016-01-02 14:35:08.748211,complete,User_4
+50,W_Validate application,2016-01-02 14:35:08.748211,start,User_29
+46,A_Incomplete,2016-01-02 14:37:10.004252,complete,User_24
+46,A_Validating,2016-01-02 14:37:10.004252,start,User_71
+67,A_Create Application,2016-01-02 14:40:31.044813,complete,User_10
+50,W_Validate application,2016-01-02 14:43:08.748211,complete,User_29
+50,W_Validate application,2016-01-02 14:43:08.748211,start,User_93
+46,A_Validating,2016-01-02 14:47:10.004252,complete,User_71
+46,W_Validate application,2016-01-02 14:47:10.004252,start,User_54
+50,W_Validate application,2016-01-02 14:53:08.748211,complete,User_93
+50,A_Incomplete,2016-01-02 14:53:08.748211,start,User_66
+46,W_Validate application,2016-01-02 14:54:10.004252,complete,User_54
+46,A_Incomplete,2016-01-02 14:54:10.004252,start,User_61
+50,A_Incomplete,2016-01-02 15:05:08.748211,complete,User_66
+50,W_Call incomplete files,2016-01-02 15:05:08.748211,start,User_133
+46,A_Incomplete,2016-01-02 15:09:10.004252,complete,User_61
+46,A_Validating,2016-01-02 15:09:10.004252,start,User_37
+52,A_Submitted,2016-01-02 15:10:17.964368,start,User_1
+50,W_Call incomplete files,2016-01-02 15:12:08.748211,complete,User_133
+46,A_Validating,2016-01-02 15:17:10.004252,complete,User_37
+46,W_Validate application,2016-01-02 15:17:10.004252,start,User_14
+52,A_Submitted,2016-01-02 15:21:17.964368,complete,User_1
+52,A_Validating,2016-01-02 15:21:17.964368,start,User_15
+46,W_Validate application,2016-01-02 15:22:10.004252,complete,User_14
+52,A_Validating,2016-01-02 15:31:17.964368,complete,User_15
+52,W_Validate application,2016-01-02 15:31:17.964368,start,User_12
+52,W_Validate application,2016-01-02 15:43:17.964368,complete,User_12
+52,A_Incomplete,2016-01-02 15:43:17.964368,start,User_52
+52,A_Incomplete,2016-01-02 15:51:17.964368,complete,User_52
+52,W_Call incomplete files,2016-01-02 15:51:17.964368,start,User_13
+68,A_Create Application,2016-01-02 15:55:56.502302,start,User_37
+56,A_Submitted,2016-01-02 16:02:42.423607,start,User_1
+52,W_Call incomplete files,2016-01-02 16:03:17.964368,complete,User_13
+68,A_Create Application,2016-01-02 16:07:56.502302,complete,User_37
+56,A_Submitted,2016-01-02 16:08:42.423607,complete,User_1
+56,A_Validating,2016-01-02 16:08:42.423607,start,User_3
+56,A_Validating,2016-01-02 16:21:42.423607,complete,User_3
+56,W_Validate application,2016-01-02 16:21:42.423607,start,User_25
+61,A_Submitted,2016-01-02 16:26:06.552522,start,User_1
+61,A_Submitted,2016-01-02 16:31:06.552522,complete,User_1
+61,A_Validating,2016-01-02 16:31:06.552522,start,User_54
+56,W_Validate application,2016-01-02 16:35:42.423607,complete,User_25
+67,A_Submitted,2016-01-02 16:40:31.044813,start,User_1
+61,A_Validating,2016-01-02 16:43:06.552522,complete,User_54
+61,W_Validate application,2016-01-02 16:43:06.552522,start,User_18
+67,A_Submitted,2016-01-02 16:45:31.044813,complete,User_1
+67,A_Validating,2016-01-02 16:45:31.044813,start,User_79
+61,W_Validate application,2016-01-02 16:51:06.552522,complete,User_18
+67,A_Validating,2016-01-02 16:55:31.044813,complete,User_79
+67,W_Validate application,2016-01-02 16:55:31.044813,start,User_19
+69,A_Create Application,2016-01-02 16:58:52.694741,start,User_20
+67,W_Validate application,2016-01-02 17:05:31.044813,complete,User_19
+67,A_Incomplete,2016-01-02 17:05:31.044813,start,User_46
+59,A_Submitted,2016-01-02 17:08:33.680602,start,User_1
+69,A_Create Application,2016-01-02 17:11:52.694741,complete,User_20
+67,A_Incomplete,2016-01-02 17:16:31.044813,complete,User_46
+67,W_Call incomplete files,2016-01-02 17:16:31.044813,start,User_10
+59,A_Submitted,2016-01-02 17:22:33.680602,complete,User_1
+59,A_Validating,2016-01-02 17:22:33.680602,start,User_32
+70,A_Create Application,2016-01-02 17:26:33.504052,start,User_96
+59,A_Validating,2016-01-02 17:29:33.680602,complete,User_32
+59,W_Validate application,2016-01-02 17:29:33.680602,start,User_12
+67,W_Call incomplete files,2016-01-02 17:30:31.044813,complete,User_10
+59,W_Validate application,2016-01-02 17:34:33.680602,complete,User_12
+59,W_Validate application,2016-01-02 17:34:33.680602,start,User_25
+70,A_Create Application,2016-01-02 17:36:33.504052,complete,User_96
+71,A_Create Application,2016-01-02 17:40:01.400576,start,User_46
+59,W_Validate application,2016-01-02 17:46:33.680602,complete,User_25
+72,A_Create Application,2016-01-02 17:46:34.520849,start,User_25
+71,A_Create Application,2016-01-02 17:54:01.400576,complete,User_46
+72,A_Create Application,2016-01-02 17:56:34.520849,complete,User_25
+72,A_Submitted,2016-01-02 17:56:34.520849,start,User_1
+72,A_Submitted,2016-01-02 18:07:34.520849,complete,User_1
+72,A_Validating,2016-01-02 18:07:34.520849,start,User_52
+73,A_Create Application,2016-01-02 18:10:43.354164,start,User_40
+73,A_Create Application,2016-01-02 18:16:43.354164,complete,User_40
+72,A_Validating,2016-01-02 18:17:34.520849,complete,User_52
+72,W_Validate application,2016-01-02 18:17:34.520849,start,User_66
+72,W_Validate application,2016-01-02 18:22:34.520849,complete,User_66
+72,W_Validate application,2016-01-02 18:22:34.520849,start,User_3
+72,W_Validate application,2016-01-02 18:30:34.520849,complete,User_3
+15,A_Submitted,2016-01-02 18:39:00.000000,start,User_1
+15,A_Submitted,2016-01-02 18:47:00.000000,complete,User_1
+15,A_Validating,2016-01-02 18:47:00.000000,start,User_44
+74,A_Create Application,2016-01-02 18:59:42.596534,start,User_66
+53,A_Submitted,2016-01-02 19:01:24.002300,start,User_1
+15,A_Validating,2016-01-02 19:02:00.000000,complete,User_44
+15,W_Validate application,2016-01-02 19:02:00.000000,start,User_20
+15,W_Validate application,2016-01-02 19:08:00.000000,complete,User_20
+15,W_Validate application,2016-01-02 19:08:00.000000,start,User_133
+53,A_Submitted,2016-01-02 19:08:24.002300,complete,User_1
+74,A_Create Application,2016-01-02 19:11:42.596534,complete,User_66
+15,W_Validate application,2016-01-02 19:16:00.000000,complete,User_133
+74,A_Submitted,2016-01-02 19:56:42.596534,start,User_1
+74,A_Submitted,2016-01-02 20:11:42.596534,complete,User_1
+69,A_Submitted,2016-01-02 20:26:52.694741,start,User_1
+69,A_Submitted,2016-01-02 20:36:52.694741,complete,User_1
+65,A_Submitted,2016-01-02 21:26:58.475741,start,User_1
+65,A_Submitted,2016-01-02 21:40:58.475741,complete,User_1
+28,A_Submitted,2016-01-02 22:02:00.000000,start,User_1
+28,A_Submitted,2016-01-02 22:15:00.000000,complete,User_1
+23,A_Submitted,2016-01-02 22:20:00.000000,start,User_1
+23,A_Submitted,2016-01-02 22:29:00.000000,complete,User_1
+29,A_Submitted,2016-01-02 22:39:00.000000,start,User_1
+29,A_Submitted,2016-01-02 22:45:00.000000,complete,User_1
+78,A_Create Application,2016-01-02 22:57:14.152214,start,User_1
+78,A_Create Application,2016-01-02 23:06:14.152214,complete,User_1
+64,A_Submitted,2016-01-03 03:25:00.000000,start,User_1
+64,A_Submitted,2016-01-03 03:34:00.000000,complete,User_1
+84,A_Create Application,2016-01-03 03:55:00.000000,start,User_1
+84,A_Create Application,2016-01-03 04:03:00.000000,complete,User_1
+70,A_Submitted,2016-01-03 04:40:00.000000,start,User_1
+70,A_Submitted,2016-01-03 04:53:00.000000,complete,User_1
+41,A_Submitted,2016-01-03 05:25:00.000000,start,User_1
+41,A_Submitted,2016-01-03 05:32:00.000000,complete,User_1
+53,A_Validating,2016-01-03 05:57:00.000000,start,User_83
+91,A_Create Application,2016-01-03 06:07:14.367669,start,User_1
+53,A_Validating,2016-01-03 06:10:00.000000,complete,User_83
+92,A_Create Application,2016-01-03 06:11:58.695928,start,User_90
+92,A_Create Application,2016-01-03 06:16:58.695928,complete,User_90
+91,A_Create Application,2016-01-03 06:19:14.367669,complete,User_1
+90,A_Create Application,2016-01-03 06:19:17.951143,start,User_68
+90,A_Create Application,2016-01-03 06:33:17.951143,complete,User_68
+90,A_Submitted,2016-01-03 06:33:17.951143,start,User_1
+94,A_Create Application,2016-01-03 06:34:49.125499,start,User_75
+95,A_Create Application,2016-01-03 06:39:31.975044,start,User_30
+64,A_Validating,2016-01-03 06:42:00.000000,start,User_95
+23,A_Validating,2016-01-03 06:42:00.000000,start,User_118
+90,A_Submitted,2016-01-03 06:43:17.951143,complete,User_1
+94,A_Create Application,2016-01-03 06:47:49.125499,complete,User_75
+23,A_Validating,2016-01-03 06:48:00.000000,complete,User_118
+23,W_Validate application,2016-01-03 06:48:00.000000,start,User_75
+95,A_Create Application,2016-01-03 06:49:31.975044,complete,User_30
+64,A_Validating,2016-01-03 06:52:00.000000,complete,User_95
+64,W_Validate application,2016-01-03 06:52:00.000000,start,User_83
+86,A_Create Application,2016-01-03 06:55:00.000000,start,User_90
+75,A_Create Application,2016-01-03 06:55:00.000000,start,User_95
+53,W_Validate application,2016-01-03 06:55:00.000000,start,User_121
+23,W_Validate application,2016-01-03 06:58:00.000000,complete,User_75
+86,A_Create Application,2016-01-03 07:01:00.000000,complete,User_90
+93,A_Create Application,2016-01-03 07:01:44.730259,start,User_30
+53,W_Validate application,2016-01-03 07:02:00.000000,complete,User_121
+53,A_Incomplete,2016-01-03 07:02:00.000000,start,User_127
+64,W_Validate application,2016-01-03 07:04:00.000000,complete,User_83
+75,A_Create Application,2016-01-03 07:09:00.000000,complete,User_95
+96,A_Create Application,2016-01-03 07:09:59.621316,start,User_75
+82,A_Create Application,2016-01-03 07:10:00.000000,start,User_104
+15,W_Validate application,2016-01-03 07:10:00.000000,start,User_118
+53,A_Incomplete,2016-01-03 07:11:00.000000,complete,User_127
+53,W_Call incomplete files,2016-01-03 07:11:00.000000,start,User_121
+69,A_Validating,2016-01-03 07:12:00.000000,start,User_126
+41,A_Validating,2016-01-03 07:12:00.000000,start,User_123
+93,A_Create Application,2016-01-03 07:12:44.730259,complete,User_30
+23,W_Validate application,2016-01-03 07:13:00.000000,start,User_93
+94,A_Submitted,2016-01-03 07:17:49.125499,start,User_1
+64,W_Validate application,2016-01-03 07:19:00.000000,start,User_68
+96,A_Create Application,2016-01-03 07:20:59.621316,complete,User_75
+82,A_Create Application,2016-01-03 07:21:00.000000,complete,User_104
+23,W_Validate application,2016-01-03 07:21:00.000000,complete,User_93
+23,A_Incomplete,2016-01-03 07:21:00.000000,start,User_87
+94,A_Submitted,2016-01-03 07:22:49.125499,complete,User_1
+94,A_Validating,2016-01-03 07:22:49.125499,start,User_30
+41,A_Validating,2016-01-03 07:23:00.000000,complete,User_123
+41,W_Validate application,2016-01-03 07:23:00.000000,start,User_14
+53,W_Call incomplete files,2016-01-03 07:24:00.000000,complete,User_121
+15,W_Validate application,2016-01-03 07:25:00.000000,complete,User_118
+79,A_Create Application,2016-01-03 07:25:00.000000,start,User_4
+88,A_Create Application,2016-01-03 07:25:00.000000,start,User_90
+15,A_Incomplete,2016-01-03 07:25:00.000000,start,User_126
+83,A_Create Application,2016-01-03 07:25:00.000000,start,User_55
+77,A_Create Application,2016-01-03 07:25:00.000000,start,User_83
+69,A_Validating,2016-01-03 07:26:00.000000,complete,User_126
+69,W_Validate application,2016-01-03 07:26:00.000000,start,User_116
