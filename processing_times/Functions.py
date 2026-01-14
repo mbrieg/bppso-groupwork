@@ -249,3 +249,20 @@ def select_model_gamma_vs_lognorm(durations_full, act, max_samples=200000, min_s
                 "lognorm": (float(s), float(loc_ln), float(scale_ln)),
                 "gamma": (float(a), float(loc_g), float(scale_g)),
                 "n_pos_used": int(len(x))}
+
+
+def sample_processing_time(model, n=1):
+    if model["dist"] == "const":
+        return [float(model["value"])] * n
+
+    if model["dist"] == "gamma":
+        a = model["params"]["a"]
+        scale = model["params"]["scale"]
+        return list(stats.gamma.rvs(a, loc=0.0, scale=scale, size=n))
+
+    if model["dist"] == "lognorm":
+        s = model["params"]["s"]
+        scale = model["params"]["scale"]
+        return list(stats.lognorm.rvs(s, loc=0.0, scale=scale, size=n))
+
+    raise ValueError("Unknown dist: " + str(model["dist"]))

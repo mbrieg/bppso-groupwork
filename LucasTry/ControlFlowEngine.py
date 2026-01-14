@@ -1,6 +1,9 @@
 import random
 from datetime import datetime, timedelta
 import pandas as pd
+import json
+from processing_times import Functions as fk
+from pathlib import Path
 
 # -----------------------------
 # 1) HARDCODED CONTROL-FLOW
@@ -132,19 +135,28 @@ MEAN_DURATION_MINUTES = {
     "A_Cancelled": 2,
 }
 
+PROCESSING_MODELS_PATH = Path("../processing_times/processing_models.json")  # ggf. Pfad anpassen
+with PROCESSING_MODELS_PATH.open("r") as f:
+    processing_models = json.load(f)
+
 
 def sample_duration(activity_name: str) -> timedelta:
     """
     Simple duration model: exponential around a mean duration per activity.
     """
-    mean = MEAN_DURATION_MINUTES.get(activity_name, 10)
-    value = random.expovariate(1.0 / mean)
-    return timedelta(minutes=value)
+    model = processing_models.get(activity_name)
+    #if model is None:
+        # fallback
+        #mean = MEAN_DURATION_MINUTES.get(activity_name, 10)
+        #value = random.expovariate(1.0 / mean)
+        #return timedelta(minutes=value)
 
-
+    sec = fk.sample_processing_time(model, n=1)[0]
+    return timedelta(seconds=float(sec))
 # -----------------------------
 # 3) CONTROL FLOW ENGINE
 # -----------------------------
+
 
 def next_activities(activity_name: str):
     """
@@ -179,10 +191,10 @@ def simulate_case(case_id: str,
         events.append({
             "case:concept:name": case_id,
             "concept:name": current_activity,
-            "time:timestamp": end,   # oder start, je nach Konvention
+            # "time:timestamp": end,   # oder start, je nach Konvention
             # optional: start/end getrennt speichern
-            # "time:start_timestamp": start,
-            # "time:end_timestamp": end,
+            "time:start_timestamp": start,
+            "time:end_timestamp": end,
         })
 
         current_time = end
