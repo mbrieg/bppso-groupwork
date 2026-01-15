@@ -49,7 +49,7 @@ class DecisionPoint:
             # it back to the transition object to execute.
             self.outgoing_transitions[act_name] = trans
 
-    def get_possible_activites(self):
+    def get_possible_activities(self):
         """
         returns a simple list of names of all activities that can happen NEXT.
         """
