@@ -4,21 +4,7 @@ import random
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from processing_times import Functions as fk
-
-try:
-    from .router import Router
-except ImportError:
-    try:
-        from router import Router
-    except ImportError:
-        # basic dummy router for safety
-        class Router:
-            def __init__(self, *args, **kwargs):
-                self.mode = "random"
-
-            def decide(self, enabled, pn, meta, marking, current_time):
-                return random.choice(enabled)
-
+from generators import CaseGenerator
 
 @dataclass(order=True)
 class Event:
@@ -31,25 +17,22 @@ class Event:
 
 
 class Engine:
-    def __init__(self, pn, resource_manager, start_time=None, mode="random",
-                 basic_model=None, advanced_model=None, max_cases=50):
+    def __init__(self, pn, resource_manager, decision_manager, start_time=None, max_cases=50):
         self.pn = pn
         self.resource_manager = resource_manager
+        self.decision_manager= decision_manager
+        self.case_generator = CaseGenerator()
         self.now = start_time or datetime(2016, 1, 1, 9, 15, 0)
         self.queue = []
-        self.cases = {}
-        self.cases_meta = {}
+        self.cases = {} # Token state per case: {case_id: {place_id: count}}
+        self.cases_meta = {} # Context per case: {case_id: {history: [], attributes: {}}}
         self.log = []
         self.next_case_id = 0
         self.max_cases = max_cases
-        self.router = Router(
-            mode=mode,
-            basic_model=basic_model,
-            advanced_model=advanced_model
-        )
-
+        self.place_map = {p.name: p for p in self.decision_manager.net.places}
+        
         print(f" Simulation Engine initialized")
-        print(f"  - Decision mode: {mode}")
+        print(f"  - Decision mode: {self.decision_manager.mode}")
         print(f"  - Max cases: {max_cases}")
         print(f"  - Resources: {len(self.resource_manager.get_resources())}")
 
@@ -75,18 +58,35 @@ class Engine:
     def _process_flow(self, case_id):
         m = self.cases[case_id]
         enabled = [t for t in self.pn.trans_ids if all(m.get(p, 0) > 0 for p in self.pn.inputs.get(t, []))]
-        if not enabled:
-            return
+
+        if not enabled: return
 
         while enabled:
-            case_meta = self.cases_meta.get(case_id, {})
-            tid = self.router.decide(
-                enabled_ids=enabled,
-                pn=self.pn,
-                case_meta=case_meta,
-                marking=m,
-                current_time=self.now
-            )  # 1.4 XOR logic added
+            tid = None
+            # check for conflicts (XOR Splits)
+            decision_found = False
+            for p_id, tokens in m.items():
+                if tokens > 0:
+                    # Find transitions in 'enabled' that consume from this place
+                    consumers = [t for t in enabled if p_id in self.pn.inputs.get(t, [])]
+                    
+                    if len(consumers) > 1:
+                        # conflict detected -> use decision point manager
+                        p_obj = self.place_map.get(p_id)
+                        if p_obj:
+                            ctx = self.cases_meta.get(case_id, {})
+                            # call the DecisionPointManager
+                            t_obj = self.decision_manager.get_next_transition(p_obj, ctx)
+                            
+                            if t_obj and t_obj.name in consumers:
+                                tid = t_obj.name
+                                decision_found = True
+                                break # decision made
+            
+            # If no conflict found or manager failed, pick first enabled (FIFO/Random)
+            if not decision_found or tid is None:
+                tid = enabled[0]  # 1.4 XOR logic added
+            
             label = self.pn.labels.get(tid, "")
 
             if label == "":  # Silent Gateway, instant consume and produce
@@ -112,14 +112,12 @@ class Engine:
     def _handle_spawn(self, e):
         self.next_case_id += 1
         self.cases[e.case_id] = dict(self.pn.im)
+        attributes = self.case_generator.generate_new_case_attributes()
 
         # 1.4 Decision Point Analysis case history metadata
-        # initial marking
-        self.cases[e.case_id] = dict(self.pn.im)
-        # case metadata
         self.cases_meta[e.case_id] = {
             "history": [],
-            "attributes": self._generate_case_attributes(),
+            "attributes": attributes, # CaseGenerator()
             "start_time": self.now
         }
 
@@ -141,8 +139,8 @@ class Engine:
         self._produce(self.cases[e.case_id], e.transition_id)
         self._record(e, "complete")
 
-        # 1.4 Decision Analysis Router 
-        # Add to history
+        # 1.4
+        # Add to history for DPManager
         label = self.pn.labels.get(e.transition_id, "").strip()
         if label:
             self.cases_meta[e.case_id]["history"].append(label)
@@ -185,47 +183,19 @@ class Engine:
             "org:resource": e.resource
         })
 
-    def _generate_case_attributes(self):
-        """
-        Generates case attributes based on BPI 2017 --> according to output of data_validation.py
-        CreditScore is excluded as it is missing in the source dataset.
-        """
-        app_type = random.choices(
-            ["New credit", "Limit raise"],
-            weights=[28120, 3389],
-            k=1
-        )[0]
-
-        goal_options = [
-            "Car", "Home improvement", "Existing loan takeover",
-            "Other, see explanation", "Unknown", "Not speficied",
-            "Remaining debt home", "Extra spending limit", "Caravan / Camper",
-            "Motorcycle", "Boat", "Tax payments", "Business goal", "Debt restructuring"
-        ]
-
-        goal_weights = [
-            9328, 7669, 5601,
-            2985, 2365, 1065,
-            842, 625, 369,
-            275, 201, 152, 30, 2
-        ]
-
-        loan_goal = random.choices(goal_options, weights=goal_weights, k=1)[0]
-
-        # Requested amount
-        amount = round(random.triangular(100, 60000, 12500), 2)
-
-        return {
-            "case:ApplicationType": app_type,
-            "case:LoanGoal": loan_goal,
-            "case:RequestedAmount": amount
-            # "case:CreditScore": removed due to missing data in source log
-        }
 
     def export_log(self, path="simulation_log.csv"):
         if not self.log:
             return
         df = pd.DataFrame(self.log)
+
+        # adding case attributes
+        case_attrs = {cid: meta['attributes'] for cid, meta in self.cases_meta.items()}
+        attr_df = pd.DataFrame.from_dict(case_attrs, orient='index')
+        attr_df.index.name = 'case:concept:name'
+
+        df = df.join(attr_df, on='case:concept:name')
+
         df.to_csv(path, index=False)
         print(f"\n Event log exported to: {path}")
         print(f"  - {len(df)} events")
@@ -245,21 +215,14 @@ class Engine:
         print(f"\n{'=' * 60}")
         print("SIMULATION STATISTICS")
         print('=' * 60)
-
-        # Case statistics
         print(f"\nCases:")
         print(f"  Total: {df['case:concept:name'].nunique()}")
-
-        # Activity statistics
         print(f"\nActivities:")
         activity_counts = df['concept:name'].value_counts()
         for act, count in activity_counts.head(10).items():
             print(f"  {act}: {count}")
-
-        # Resource statistics
         print(f"\nResources:")
         resource_counts = df['org:resource'].value_counts()
         for res, count in resource_counts.items():
             print(f"  {res}: {count} tasks")
-
         print('=' * 60)
