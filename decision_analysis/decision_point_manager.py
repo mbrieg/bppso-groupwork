@@ -3,7 +3,7 @@ import os
 from .discovery import HeuristicProcessDiscovery
 from .structures import DecisionPoint
 from .basic_router import BasicRouter
-# add advanced _router 
+from .advanced_router import AdvancedRouter
 
 class DecisionPointManager:
     """
@@ -42,12 +42,18 @@ class DecisionPointManager:
         print("Manager: Analyzing Decision Points...")
         self.decision_points = self._analyse_structure()
         
-        # Train the router (BASIC / ADVANCED)
+        # Train the router (Basic / Advanced)
         print(f"Manager: Training Router (Mode: {mode})...")
         if mode == 'advanced':
             # fall back to basic safely
             # self.router = AdvancedRouter(self.log, self.decision_points)
-            self.router = BasicRouter(self.log, self.decision_points)
+            self.router = AdvancedRouter(
+                self.log, 
+                self.decision_points, 
+                self.net, 
+                self.im, 
+                self.fm
+            )
         else:
             # BasicRouter class from basic.py
             self.router = BasicRouter(self.log, self.decision_points)
@@ -111,19 +117,26 @@ class DecisionPointManager:
 
         # retrieve the Decision Point Object
         dp = self.decision_points[current_place.name]
-        
-        # extract Context (Previous Activity)
-        # We need the last activity from the history to use conditioned probability.
-        prev_act = None
-        if isinstance(trace_history, dict):
-            prev_act = trace_history.get('prev_activity')
-        elif isinstance(trace_history, list) and trace_history:
-            prev_act = trace_history[-1]
-        elif isinstance(trace_history, str):
-            prev_act = trace_history
+
+        prediction_input = None
+        if self.mode == 'advanced':
+            if isinstance(trace_history, dict):
+                prediction_input = trace_history
+            else:
+                # If only a list came, convert it to a dictionary
+                prediction_input = {'history': trace_history if isinstance(trace_history, list) else []}
+        else:
+            #BasicRouter
+            # extract Context (Previous Activity)
+            if isinstance(trace_history, dict):
+                prediction_input = trace_history.get('prev_activity') or trace_history.get('history', [])[-1]
+            elif isinstance(trace_history, list) and trace_history:
+                prediction_input = trace_history[-1]
+            elif isinstance(trace_history, str):
+                prediction_input = trace_history
 
         # ask the Router: "Where should I go?"
-        predicted_activity_name = self.router.predict(current_place.name, prev_act)
+        predicted_activity_name = self.router.predict(current_place.name, prediction_input)
 
         # convert Name back to Transition Object
         if predicted_activity_name and predicted_activity_name in dp.outgoing_transitions:
