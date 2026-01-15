@@ -58,3 +58,10 @@ def run_system_test():
         return
     
     print("-" * 30)
+    print("EXPORTING RESULTS...")
+    engine.export_log(output_csv)    # Generates csv
+    engine.print_statistics()        # shows summary in console
+    print("-" * 30)
+    print(f"Results saved to: {output_csv}")
+    
+    print("-" * 30)
