@@ -9,22 +9,25 @@ from pm4py.algo.evaluation.precision import algorithm as precision_evaluator
 from pm4py.algo.evaluation.generalization import algorithm as generalization_evaluator
 from pm4py.objects.log.obj import EventLog
 
-class HeuristicProcessDiscovery:
+class ProcessDiscovery:
     """
-    From the BPMN we discover using Heuristic miner a bpmn model.
+    From the event log we discover using Inductive miner a bpmn model.
     """
     def __init__(self, dependency_threshold=0.5, and_threshold=0.65, loop_two_threshold=0.5):
-        self.dep_thresh = dependency_threshold
-        self.and_thresh = and_threshold
-        self.loop_two_thresh = loop_two_threshold
+        #self.dep_thresh = dependency_threshold
+        #self.and_thresh = and_threshold
+        #self.loop_two_thresh = loop_two_threshold
+        self.noise_threshold =0.2
 
     def discover(self, log):
-        print(f"Mining process model (Dep: {self.dep_thresh}, and: {self.and_thresh})...")
-        net, im, fm = pm4py.discover_petri_net_heuristics(
+        #print(f"Mining process model (Dep: {self.dep_thresh}, and: {self.and_thresh})...")
+        print(f"Mining process model by inductive miner (Dep: {self.noise_threshold})...")
+        net, im, fm = pm4py.discover_petri_net_inductive(
             log,
-            dependency_threshold=self.dep_thresh,
-            and_threshold=self.and_thresh,
-            loop_two_threshold=self.loop_two_thresh
+            #dependency_threshold=self.dep_thresh,
+            #and_threshold=self.and_thresh,
+            #loop_two_threshold=self.loop_two_thresh
+            noise_threshold=self.noise_threshold
         )
         return net, im, fm
 
@@ -85,7 +88,7 @@ def main():
         print("Loading Log...")
         log = pm4py.read_xes(log_path)
     
-        miner = HeuristicProcessDiscovery(
+        miner = ProcessDiscovery(
             dependency_threshold=0.8,
             and_threshold=0.65
         )

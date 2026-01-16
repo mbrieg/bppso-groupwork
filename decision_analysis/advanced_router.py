@@ -1,10 +1,12 @@
 import os
 import sys
 import pickle
+import random
 import pandas as pd
 import numpy as np
 from collections import defaultdict
 from pm4py.algo.conformance.alignments.petri_net import algorithm as align_algo
+from pm4py.objects.log.obj import EventLog
 from sklearn.model_selection import train_test_split, StratifiedKFold
 from sklearn.metrics import classification_report, accuracy_score
 from sklearn.dummy import DummyClassifier
@@ -163,9 +165,19 @@ class AdvancedRouter:
             except Exception as e:
                 print(f"  Failed to load cache: {e}. Recalculating")
 
-        print(f"  Calculating alignments for {len(self.log)} traces (this may take a while)...")
+
+        SAMPLE_SIZE = 2000
+        
+        if len(self.log) > SAMPLE_SIZE:
+            print(f"  Log is huge ({len(self.log)} traces). Sampling {SAMPLE_SIZE} traces for alignment...")
+            # Sample from the list version of the log to ensure random selection
+            log_for_training = EventLog(random.sample(list(self.log), SAMPLE_SIZE))
+        else:
+            log_for_training = self.log
+
+        print(f"  Calculating alignments for {len(log_for_training)} traces (this may take a while)...")
         try:
-            alignments = align_algo.apply_log(self.log, self.net, self.im, self.fm)
+            alignments = align_algo.apply_log(log_for_training, self.net, self.im, self.fm)
         except Exception as e:
             print(f"  Error: alignment failed ({e}). Returning empty data.")
             return {}
@@ -186,7 +198,7 @@ class AdvancedRouter:
         # 3. replay alignments
         for case_idx, res in enumerate(alignments):
             aln = res['alignment']
-            trace = self.log[case_idx]
+            trace = log_for_training[case_idx]
             
             # case attributes
             # ensure keys match self.case_features (e.g. "case:Amount")

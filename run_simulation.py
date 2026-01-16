@@ -25,6 +25,9 @@ def run_system_test():
         return
 
     log = pm4py.read_xes(xes_path)
+
+    log = pm4py.convert_to_event_log(log) 
+    
     print(f"      -> Loaded {len(log)} traces.")
 
     dp_manager = DecisionPointManager(log, mode='advanced') 

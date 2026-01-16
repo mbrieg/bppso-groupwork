@@ -13,12 +13,17 @@ def test_system():
 
     print("--- 1. LOADING LOG ---")
     log = pm4py.read_xes(log_path)
+
+    if not isinstance(log, pm4py.objects.log.obj.EventLog):
+        print("  Converting DataFrame to EventLog...")
+        log = pm4py.convert_to_event_log(log)
+        
     print(f"Log loaded: {len(log)} traces.")
 
     # 2. initialize the manager
     # trigger Discovery -> Structure Analysis -> Basic Training
     print("\n--- 2. INITIALIZING MANAGER ---")
-    manager = DecisionPointManager(log, mode='basic', output_folder=output_folder)
+    manager = DecisionPointManager(log, mode='advanced', output_folder=output_folder)
 
     # 3. inspect decision points
     print("\n--- 3. INSPECTING DECISION POINTS ---")
