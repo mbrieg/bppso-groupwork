@@ -68,3 +68,5 @@ def run_system_test():
     print(f"Results saved to: {output_csv}")
     
     print("-" * 30)
+if __name__ == "__main__":
+    run_system_test()

@@ -1,6 +1,6 @@
 import pm4py
 import os
-from .discovery import HeuristicProcessDiscovery
+from .discovery import ProcessDiscovery
 from .structures import DecisionPoint
 from .basic_router import BasicRouter
 from .advanced_router import AdvancedRouter
@@ -28,7 +28,7 @@ class DecisionPointManager:
         
         # model discovery
         print("Manager: Starting Process Discovery...")
-        self.miner = HeuristicProcessDiscovery(
+        self.miner = ProcessDiscovery(
             dependency_threshold=0.8, 
             and_threshold=0.65
         )
@@ -76,7 +76,7 @@ class DecisionPointManager:
         """
         Scans the petri net and converts XOR places into DecisionPoint objects
         """
-
+        #Ignoring silent transitions dont work with inductive miner :(
         dps = {}
         for place in self.net.places:
             # If a place has 2 or more outgoing arcs, it is a DecisionPoint (XOR Split).
@@ -90,7 +90,12 @@ class DecisionPointManager:
                 for arc in place.out_arcs:
                     trans = arc.target
                     if trans.label: # Only visible activities can be selected as a 'choice'
-                        dp.add_outgoing(trans, trans.label.strip())
+                        activity_name = trans.label.strip()
+                        #dp.add_outgoing(trans, trans.label.strip())
+                    else:
+                        activity_name = trans.name
+                     #added for advanced test   
+                    dp.add_outgoing(trans,activity_name)
                 
                 # Only add if it has valid outgoing options
                 if dp.get_possible_activities():

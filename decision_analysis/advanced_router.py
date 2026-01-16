@@ -79,6 +79,18 @@ class AdvancedRouter:
             X = df.drop(columns=["y"])
             y = df["y"]
 
+            # If there is only 1 possible outcome (e.g. "skip_60"), don't train a tree.
+            # Just verify it and create a dummy predictor.
+            if len(y.unique()) < 2:
+                print(f"    > Deterministic point (only '{y.unique()[0]}'). Creating dummy model.")
+                # Create a simple tree that always predicts the one available class
+                dummy_tree = C45DecisionTree(attribute_types={})
+                dummy_tree.fit(X, y)
+                self.classifiers[dp_name] = dummy_tree
+                self.feature_names[dp_name] = list(X.columns)
+                trained_count += 1
+                continue
+
             # construct attr_types for this specific dataframe
             current_attr_types = {}
             for col in X.columns:
@@ -185,7 +197,11 @@ class AdvancedRouter:
         # 1. map Transitions to Activities
         trans_map = {}
         for t in self.net.transitions:
-            if t.label: trans_map[t] = t.label.strip()
+            if t.label: 
+                trans_map[t] = t.label.strip()
+            else: # added for advanced router invisible change test
+                #Give a name to invisible transitions so the router sees them
+                trans_map[t] = t.name
         
         # 2. map Transitions to their Preset Places
         trans_preset = {}
