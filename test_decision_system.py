@@ -9,7 +9,7 @@ def test_system():
     # 1. setup paths
     log_path = os.path.join("data", "BPI Challenge 2017.xes.gz")
     output_folder = "data_test_output"
-    bpmn_path = "/Users/zeynepcetin/bppso-groupwork-1/data/process_model.bpmn"
+    bpmn_path = os.path.join("data","process_model.bpmn")
     if not os.path.exists(bpmn_path):
         print(f" Error: BPMN file not found at {bpmn_path}")
         return
