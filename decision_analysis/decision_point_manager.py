@@ -8,7 +8,6 @@ from sim_core.bpmn_io import read_bpmn
 from sim_core.pn_model import wrap_net
 
 from collections import deque
-from .discovery import ProcessDiscovery
 from .structures import DecisionPoint
 from .basic_router import BasicRouter
 from .advanced_router import AdvancedRouter
