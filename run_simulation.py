@@ -8,7 +8,7 @@ sys.path.append(os.path.join(current_dir, "sim_core"))
 sys.path.append(os.path.join(current_dir, "resources"))
 
 from sim_core.engine import Engine
-from sim_core.pn_model import wrap_net
+#from sim_core.pn_model import wrap_net # now done by DecisionPointManager
 from resources.ResourceManager import ResourceManager
 from decision_analysis.decision_point_manager import DecisionPointManager
 
@@ -18,21 +18,23 @@ def run_system_test():
     print("="*60)
 
     xes_path = os.path.join("data", "BPI Challenge 2017.xes.gz")
+    bpmn_path = os.path.join("data", "process_model.bpmn")
     output_csv = "final_simulation_log.csv"
 
     if not os.path.exists(xes_path):
         print(f"CRITICAL ERROR: Log file not found at {xes_path}")
         return
 
-    log = pm4py.read_xes(xes_path)
-
-    log = pm4py.convert_to_event_log(log) 
-    
+    log = pm4py.read_xes(xes_path) 
+    if not isinstance(log, pm4py.objects.log.obj.EventLog):
+        log = pm4py.convert_to_event_log(log) 
     print(f"      -> Loaded {len(log)} traces.")
 
-    dp_manager = DecisionPointManager(log, mode='basic') 
+    dp_manager = DecisionPointManager(log, 
+                                      bpmn_path=bpmn_path,
+                                      mode='basic') 
 
-    pn_structure = wrap_net(dp_manager.net, dp_manager.im, dp_manager.fm)
+    pn_structure = dp_manager.get_pn_model()
     print(f"      -> Structure Ready: {len(pn_structure.place_ids)} places.")
 
     resource_manager = ResourceManager()

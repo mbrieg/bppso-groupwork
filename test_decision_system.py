@@ -1,12 +1,18 @@
 import os
 import pm4py
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))
 from decision_analysis.decision_point_manager import DecisionPointManager
 
 def test_system():
     # 1. setup paths
     log_path = os.path.join("data", "BPI Challenge 2017.xes.gz")
     output_folder = "data_test_output"
-
+    bpmn_path = os.path.join("data","process_model.bpmn")
+    if not os.path.exists(bpmn_path):
+        print(f" Error: BPMN file not found at {bpmn_path}")
+        return
     if not os.path.exists(log_path):
         print(f" Error: Log file not found at {log_path}")
         return
@@ -23,7 +29,10 @@ def test_system():
     # 2. initialize the manager
     # trigger Discovery -> Structure Analysis -> Basic Training
     print("\n--- 2. INITIALIZING MANAGER ---")
-    manager = DecisionPointManager(log, mode='basic', output_folder=output_folder)
+    manager = DecisionPointManager(log, 
+                                   bpmn_path=bpmn_path,
+                                   mode='basic', 
+                                   output_folder=output_folder)
 
     # 3. inspect decision points
     print("\n--- 3. INSPECTING DECISION POINTS ---")
