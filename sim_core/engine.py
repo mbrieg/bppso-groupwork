@@ -1,4 +1,5 @@
 import heapq
+import os
 import pandas as pd
 import random
 from dataclasses import dataclass, field
@@ -30,6 +31,9 @@ class Engine:
         self.next_case_id = 0
         self.max_cases = max_cases
         self.place_map = {p.name: p for p in self.decision_manager.net.places}
+
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        self.time_model_path = os.path.join(base_dir, "processing_times", "processing_models.json")
         
         print(f" Simulation Engine initialized")
         print(f"  - Decision mode: {self.decision_manager.mode}")
@@ -61,7 +65,13 @@ class Engine:
 
         if not enabled: return
 
+        loop_prevention_counter = 0
+        MAX_SILENT_STEPS = 100 
+
         while enabled:
+            if loop_prevention_counter > MAX_SILENT_STEPS:
+                break
+
             tid = None
             # check for conflicts (XOR Splits)
             decision_found = False
@@ -92,9 +102,12 @@ class Engine:
             if label == "":  # Silent Gateway, instant consume and produce
                 self._consume(m, tid)
                 self._produce(m, tid)
+
+                loop_prevention_counter += 1 
+                
                 enabled = [t for t in self.pn.trans_ids if all(m.get(p, 0) > 0 for p in self.pn.inputs.get(t, []))]
             else:  # Real Transition
-                task_duration = fk.sample_duration(label, path="../processing_times/processing_models.json")  # TODO: Insert duration of event
+                task_duration = fk.sample_duration(label, path=self.time_model_path)  # TODO: Insert duration of event
                 res = self.resource_manager.assign_resource(label, self.now, task_duration)
                 if res:  # Resource is assigned NOW
                     heapq.heappush(self.queue, Event(self.now, "START", case_id, tid, res, task_duration))

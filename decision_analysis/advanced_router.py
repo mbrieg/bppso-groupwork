@@ -1,10 +1,12 @@
 import os
 import sys
 import pickle
+import random
 import pandas as pd
 import numpy as np
 from collections import defaultdict
 from pm4py.algo.conformance.alignments.petri_net import algorithm as align_algo
+from pm4py.objects.log.obj import EventLog
 from sklearn.model_selection import train_test_split, StratifiedKFold
 from sklearn.metrics import classification_report, accuracy_score
 from sklearn.dummy import DummyClassifier
@@ -76,6 +78,18 @@ class AdvancedRouter:
 
             X = df.drop(columns=["y"])
             y = df["y"]
+
+            # If there is only 1 possible outcome (e.g. "skip_60"), don't train a tree.
+            # Just verify it and create a dummy predictor.
+            if len(y.unique()) < 2:
+                print(f"    > Deterministic point (only '{y.unique()[0]}'). Creating dummy model.")
+                # Create a simple tree that always predicts the one available class
+                dummy_tree = C45DecisionTree(attribute_types={})
+                dummy_tree.fit(X, y)
+                self.classifiers[dp_name] = dummy_tree
+                self.feature_names[dp_name] = list(X.columns)
+                trained_count += 1
+                continue
 
             # construct attr_types for this specific dataframe
             current_attr_types = {}
@@ -163,9 +177,19 @@ class AdvancedRouter:
             except Exception as e:
                 print(f"  Failed to load cache: {e}. Recalculating")
 
-        print(f"  Calculating alignments for {len(self.log)} traces (this may take a while)...")
+
+        SAMPLE_SIZE = 2000
+        
+        if len(self.log) > SAMPLE_SIZE:
+            print(f"  Log is huge ({len(self.log)} traces). Sampling {SAMPLE_SIZE} traces for alignment...")
+            # Sample from the list version of the log to ensure random selection
+            log_for_training = EventLog(random.sample(list(self.log), SAMPLE_SIZE))
+        else:
+            log_for_training = self.log
+
+        print(f"  Calculating alignments for {len(log_for_training)} traces (this may take a while)...")
         try:
-            alignments = align_algo.apply_log(self.log, self.net, self.im, self.fm)
+            alignments = align_algo.apply_log(log_for_training, self.net, self.im, self.fm)
         except Exception as e:
             print(f"  Error: alignment failed ({e}). Returning empty data.")
             return {}
@@ -173,7 +197,11 @@ class AdvancedRouter:
         # 1. map Transitions to Activities
         trans_map = {}
         for t in self.net.transitions:
-            if t.label: trans_map[t] = t.label.strip()
+            if t.label: 
+                trans_map[t] = t.label.strip()
+            else: # added for advanced router invisible change test
+                #Give a name to invisible transitions so the router sees them
+                trans_map[t] = t.name
         
         # 2. map Transitions to their Preset Places
         trans_preset = {}
@@ -186,7 +214,7 @@ class AdvancedRouter:
         # 3. replay alignments
         for case_idx, res in enumerate(alignments):
             aln = res['alignment']
-            trace = self.log[case_idx]
+            trace = log_for_training[case_idx]
             
             # case attributes
             # ensure keys match self.case_features (e.g. "case:Amount")
@@ -214,6 +242,12 @@ class AdvancedRouter:
                     if t.name == model_move[0] or t.label == model_move[1]:
                         curr_trans_obj = t
                         break
+                    
+                if not curr_trans_obj and model_move[1] is not None:
+                     for t in self.net.transitions:
+                        if t.label == model_move[1]:
+                            curr_trans_obj = t
+                            break
                 
                 if not curr_trans_obj: continue
 

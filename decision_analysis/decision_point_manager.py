@@ -1,6 +1,7 @@
 import pm4py
 import os
-from .discovery import HeuristicProcessDiscovery
+from collections import deque
+from .discovery import ProcessDiscovery
 from .structures import DecisionPoint
 from .basic_router import BasicRouter
 from .advanced_router import AdvancedRouter
@@ -8,45 +9,35 @@ from .advanced_router import AdvancedRouter
 class DecisionPointManager:
     """
     The bridge between Engine and the Decision analysis modules.
-    1. Discovers the process model from the log (Process Discovery)
-    2. Analyses the petri net structure to find decision points with backtraking
-    3. Trains the router (Basic: Probabilistic / Advanced: Deciison Tree)
-    4. Answers the question : "what happens next?" during simulation 
     """
 
     def __init__(self, log, mode='basic', output_folder="data", config=None):
-        """
-        log: The event log object.
-        mode: 'basic' (Probabilistic) or 'advanced' (Data-aware/ML).
-        output_folder: Where to save the discovered pnml file.
-        config: Optional dictionary for parameters (e.g., horizon).
-        
-        """
         self.log = log
         self.mode = mode
         self.config = config if config else {}
+
+        if mode == 'basic':
+            mining_mode = 'heuristic'
+            self.model_filename = "heuristic_model.pnml"
+        else:
+            mining_mode = 'inductive'
+            self.model_filename = "inductive_model.pnml"
         
-        # model discovery
-        print("Manager: Starting Process Discovery...")
-        self.miner = HeuristicProcessDiscovery(
+        print(f"Manager: Starting Process Discovery ({mining_mode.upper()})...")
+        
+        self.miner = ProcessDiscovery(
             dependency_threshold=0.8, 
             and_threshold=0.65
         )
-        self.net, self.im, self.fm = self.miner.discover(self.log)
         
-        # save the model --> engine needs to read this file
+        self.net, self.im, self.fm = self.miner.discover(self.log, mode=mining_mode)
         self._save_models(output_folder)
         
-        # Structural analysis
-        # DecisionPoint class from structures.py
         print("Manager: Analyzing Decision Points...")
         self.decision_points = self._analyse_structure()
         
-        # Train the router (Basic / Advanced)
         print(f"Manager: Training Router (Mode: {mode})...")
         if mode == 'advanced':
-            # fall back to basic safely
-            # self.router = AdvancedRouter(self.log, self.decision_points)
             self.router = AdvancedRouter(
                 self.log, 
                 self.decision_points, 
@@ -55,90 +46,151 @@ class DecisionPointManager:
                 self.fm
             )
         else:
-            # BasicRouter class from basic.py
-            self.router = BasicRouter(self.log, self.decision_points)
+            print("Manager: Pre-processing log for Basic Router...")
+            simple_log = []
+            for trace in self.log:
+                # Log verisini güvenli bir şekilde string listesine çevir
+                simple_trace = []
+                for event in trace:
+                    name = None
+                    if hasattr(event, 'get'): name = event.get('concept:name')
+                    elif hasattr(event, '_dict'): name = event._dict.get('concept:name')
+                    else: name = str(event)
+                    
+                    if name: simple_trace.append(name.strip())
+                simple_log.append(simple_trace)
+            
+            self.router = BasicRouter(simple_log, self.decision_points)
         
-        # get horizon from config, default is 60 steps
         horizon = self.config.get('horizon', 60)
-        self.router.train(horizon=horizon)
+        
+        # Basic router için train fonksiyonunu çağır
+        try:
+            self.router.train(horizon=horizon, debug=(mode=='basic'))
+        except TypeError:
+            self.router.train(horizon=horizon)
 
         print("DecisionPointManager is ready.")
 
     def _save_models(self, output_folder):
         if not os.path.exists(output_folder):
             os.makedirs(output_folder)
-
-        pnml_path = os.path.join(output_folder, "discovered_model.pnml")
+        pnml_path = os.path.join(output_folder, self.model_filename)
         pm4py.write_pnml(self.net, self.im, self.fm, pnml_path)
-        print(f" --> Model saved to: {pnml_path}")
+        print(f" --> Model saved to: {os.path.abspath(pnml_path)}")
 
     def _analyse_structure(self):
         """
         Scans the petri net and converts XOR places into DecisionPoint objects
         """
-
         dps = {}
         for place in self.net.places:
-            # If a place has 2 or more outgoing arcs, it is a DecisionPoint (XOR Split).
+            # Only add if it has valid outgoing options
             if len(place.out_arcs) >= 2:
                 dp = DecisionPoint(place.name, place)
                 
-                # 1- Use Backtracking to find the REAL incoming activities (structures.py)
+                # 1. Backtracking
                 dp.analyse_preset(max_depth=2)
-                
-                # 2- Register outgoing paths
+               
                 for arc in place.out_arcs:
                     trans = arc.target
-                    if trans.label: # Only visible activities can be selected as a 'choice'
-                        dp.add_outgoing(trans, trans.label.strip())
+                    label = trans.label
+                    name = trans.name
+
+                    is_hidden = (label is None) or \
+                                (isinstance(label, str) and (label.startswith("hid") or label.startswith("tau")))
+                    
+                    activity_name = None
+
+                    if self.mode == 'basic' and is_hidden:
+                        # Basic Router için görünmez yolları çöz
+                        activity_name = self._resolve_downstream_activity(trans)
+                    elif label:
+                        activity_name = label.strip()
+                    else:
+                        # Advanced mode veya görünür ama etiketsiz (nadiren olur)
+                        activity_name = name
+                    
+                    # --- DÜZELTME: Sadece geçerli bir isim bulunduysa ekle ---
+                    # Eğer _resolve fonksiyonu None döndürdüyse (çıkmaz sokak), ekleme.
+                    if activity_name:
+                        dp.add_outgoing(trans, activity_name)
                 
-                # Only add if it has valid outgoing options
                 if dp.get_possible_activities():
                     dps[place.name] = dp
         
         print(f"  -> Found {len(dps)} decision points in the model.")
         return dps
-    
-    def get_next_transition(self, current_place, trace_history):
-        """
-        The main function called by the simulation engine
-        current_place: the petri net object token is currently here
-        trace_histroy: a list of acts that happened so far, or a dict context like (prev_act : A)
 
-        returns: 
-        the selected transition object to fire
+    def _resolve_downstream_activity(self, start_trans):
         """
-        # is this a known Decision Point?
+        BASIC MODE ONLY:
+        Looks past silent transitions to find the next visible activity name.
+        Uses BFS to find the nearest real activity.
+        """
+        queue = deque([start_trans])
+        visited = {start_trans}
+        
+        # Maksimum 100 adım ileri git (Güvenlik)
+        steps = 0
+        while queue and steps < 100:
+            curr_trans = queue.popleft()
+            steps += 1
+            
+            # 1. Bu geçişin etiketi geçerli bir aktivite mi?
+            curr_lbl = curr_trans.label
+            is_real = curr_lbl and not (curr_lbl.startswith("hid") or curr_lbl.startswith("tau"))
+            
+            if is_real:
+                return curr_lbl.strip()
+            
+            # 2. Değilse, bir sonraki adımları kuyruğa ekle
+            has_outgoing = False
+            for out_arc in curr_trans.out_arcs:
+                next_place = out_arc.target
+                for next_arc in next_place.out_arcs:
+                    next_trans = next_arc.target
+                    if next_trans not in visited:
+                        visited.add(next_trans)
+                        queue.append(next_trans)
+                        has_outgoing = True
+            
+            # Eğer buradan ileriye giden bir yol yoksa (End Event), bu yolu yoksay.
+        
+        # --- DÜZELTME BURADA ---
+        # Hiçbir şey bulunamazsa 'hid_...' döndürme, None döndür.
+        # Böylece bu yol decision point seçeneklerine eklenmez.
+        return None
+
+    def get_next_transition(self, current_place, trace_history):
         if current_place.name not in self.decision_points:
-            # if not (only 1 path exists), return the default path.
             if current_place.out_arcs:
                 return list(current_place.out_arcs)[0].target
-            return None # dead end
-
+            return None 
+        
         # retrieve the Decision Point Object
         dp = self.decision_points[current_place.name]
 
         prediction_input = None
+        
         if self.mode == 'advanced':
             if isinstance(trace_history, dict):
                 prediction_input = trace_history
             else:
-                # If only a list came, convert it to a dictionary
                 prediction_input = {'history': trace_history if isinstance(trace_history, list) else []}
         else:
-            #BasicRouter
-            # extract Context (Previous Activity)
+            # BasicRouter
             if isinstance(trace_history, dict):
                 prediction_input = trace_history.get('prev_activity') or trace_history.get('history', [])[-1]
             elif isinstance(trace_history, list) and trace_history:
                 prediction_input = trace_history[-1]
             elif isinstance(trace_history, str):
                 prediction_input = trace_history
-
+        
         # ask the Router: "Where should I go?"
         predicted_activity_name = self.router.predict(current_place.name, prediction_input)
 
-        # convert Name back to Transition Object
+         # convert Name back to Transition Object
         if predicted_activity_name and predicted_activity_name in dp.outgoing_transitions:
             return dp.outgoing_transitions[predicted_activity_name]
         
@@ -151,5 +203,3 @@ class DecisionPointManager:
         
         # absolute fallback (should probably not reach here)
         return list(current_place.out_arcs)[0].target
-        
-

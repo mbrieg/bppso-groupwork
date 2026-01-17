@@ -25,9 +25,12 @@ def run_system_test():
         return
 
     log = pm4py.read_xes(xes_path)
+
+    log = pm4py.convert_to_event_log(log) 
+    
     print(f"      -> Loaded {len(log)} traces.")
 
-    dp_manager = DecisionPointManager(log, mode='advanced') 
+    dp_manager = DecisionPointManager(log, mode='basic') 
 
     pn_structure = wrap_net(dp_manager.net, dp_manager.im, dp_manager.fm)
     print(f"      -> Structure Ready: {len(pn_structure.place_ids)} places.")
@@ -65,3 +68,5 @@ def run_system_test():
     print(f"Results saved to: {output_csv}")
     
     print("-" * 30)
+if __name__ == "__main__":
+    run_system_test()

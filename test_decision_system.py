@@ -13,6 +13,11 @@ def test_system():
 
     print("--- 1. LOADING LOG ---")
     log = pm4py.read_xes(log_path)
+
+    if not isinstance(log, pm4py.objects.log.obj.EventLog):
+        print("  Converting DataFrame to EventLog...")
+        log = pm4py.convert_to_event_log(log)
+        
     print(f"Log loaded: {len(log)} traces.")
 
     # 2. initialize the manager
