@@ -1,0 +1,43 @@
+time:timestamp,concept:name,case:concept:name,lifecycle:transition
+2025-12-01 17:22:19.943101,A_Create Application,C1,start
+2025-12-01 17:27:19.943101,A_Create Application,C2,start
+2025-12-01 18:22:19.943101,A_Concept,C1,start
+2025-12-01 18:22:19.943101,A_Create Application,C1,complete
+2025-12-01 18:27:19.943101,A_Create Application,C2,complete
+2025-12-01 18:27:19.943101,A_Concept,C2,start
+2025-12-01 21:22:19.943101,A_Accepted,C1,start
+2025-12-01 21:22:19.943101,A_Concept,C1,complete
+2025-12-01 21:27:19.943101,A_Concept,C2,complete
+2025-12-01 21:27:19.943101,A_Accepted,C2,start
+2025-12-01 22:22:19.943101,O_Create Offer,C1,start
+2025-12-01 22:22:19.943101,A_Accepted,C1,complete
+2025-12-01 22:27:19.943101,A_Accepted,C2,complete
+2025-12-01 22:27:19.943101,O_Create Offer,C2,start
+2025-12-02 02:22:19.943101,O_Created,C1,start
+2025-12-02 02:22:19.943101,O_Create Offer,C1,complete
+2025-12-02 02:27:19.943101,O_Create Offer,C2,complete
+2025-12-02 02:27:19.943101,O_Created,C2,start
+2025-12-02 03:22:19.943101,O_Sent (mail and online),C1,start
+2025-12-02 03:22:19.943101,O_Created,C1,complete
+2025-12-02 03:27:19.943101,O_Created,C2,complete
+2025-12-02 03:27:19.943101,O_Sent (mail and online),C2,start
+2025-12-02 04:22:19.943101,A_Complete,C1,start
+2025-12-02 04:22:19.943101,O_Sent (mail and online),C1,complete
+2025-12-02 04:27:19.943101,A_Complete,C2,start
+2025-12-02 04:27:19.943101,O_Sent (mail and online),C2,complete
+2025-12-02 05:22:19.943101,A_Validating,C1,start
+2025-12-02 05:22:19.943101,A_Complete,C1,complete
+2025-12-02 05:27:19.943101,A_Complete,C2,complete
+2025-12-02 05:27:19.943101,A_Validating,C2,start
+2025-12-02 06:22:19.943101,A_Validating,C1,complete
+2025-12-02 06:22:19.943101,O_Returned,C1,start
+2025-12-02 06:27:19.943101,A_Validating,C2,complete
+2025-12-02 06:27:19.943101,O_Returned,C2,start
+2025-12-02 07:22:19.943101,O_Returned,C1,complete
+2025-12-02 07:22:19.943101,O_Accepted,C1,start
+2025-12-02 07:27:19.943101,O_Returned,C2,complete
+2025-12-02 07:27:19.943101,A_Denied,C2,start
+2025-12-02 08:22:19.943101,A_Pending,C1,start
+2025-12-02 08:22:19.943101,O_Accepted,C1,complete
+2025-12-02 08:27:19.943101,A_Denied,C2,complete
+2025-12-02 09:22:19.943101,A_Pending,C1,complete
