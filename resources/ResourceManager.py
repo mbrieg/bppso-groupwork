@@ -8,26 +8,49 @@ from resources.ResourceAllocator import ResourceAllocator
 
 
 class ResourceManager:
-    def __init__(self, availabilities_csv='weekly_schedule_median.csv',
-                 permissions_csv='permissions_basic.csv'):
+    def __init__(self, availabilities='weekly_schedule_median.csv',
+                 permissions='permissions_basic.csv',
+                 roles='resource_roles.csv',
+                 mode='basic'):
         """
-        :param availabilities_csv:   CSV file with ['Resource', 'DayId', 'StartTime', 'EndTime']
-        :param permissions_csv:      CSV file with ['Activity', 'Resource']
+        :param availabilities: CSV file with ['Resource', 'DayId', 'StartTime', 'EndTime']
+        :param permissions:    CSV file with ['Activity', 'Resource'] (Basic) or ['Activity', 'Role'] (Advanced)
+        :param roles:          CSV file with ['Resource', 'Role'] (Only used in Advanced mode)
+        :param mode:           'basic' or 'advanced'
         """
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        df_availabilities = pd.read_csv(os.path.join(current_dir, 'availabilities/' + availabilities_csv))
-        df_permissions = pd.read_csv(os.path.join(current_dir, 'permissions/' + permissions_csv))
 
-        self.availabilities = ResourceAvailabilities(df_availabilities)
-        self.permissions = ResourcePermissions(df_permissions)
+        self.availabilities = ResourceAvailabilities(availabilities)
+        self.permissions = ResourcePermissions(mode, permissions)
+
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        file_path = os.path.join(current_dir, 'availabilities', availabilities)
+        all_res_names = pd.read_csv(file_path, usecols=['Resource'])
         self.resources = {
-            str(res_name): Resource(res_name) for res_name in df_availabilities['Resource'].unique()
+            str(res_name): Resource(res_name) for res_name in all_res_names['Resource'].unique()
         }
+
+        if mode == 'advanced':
+            self._assign_roles_to_resources(roles)
+
         self.allocator = ResourceAllocator(
             self.resources,
             self.availabilities,
             self.permissions
         )
+
+    def _assign_roles_to_resources(self, file: str):
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        roles_path = os.path.join(current_dir, 'permissions', file)
+
+        if not os.path.exists(roles_path):
+            print(f"Warning: Roles file missing at {roles_path}. Defaulting to None.")
+            return
+
+        df = pd.read_csv(roles_path)
+        role_map = pd.Series(df.Role.values, index=df.Resource).to_dict()
+
+        for res_name, res_obj in self.resources.items():
+            res_obj.role = role_map.get(res_name)
 
     def get_resources(self):
         """
@@ -45,7 +68,7 @@ class ResourceManager:
         """
         Returns: Datetime object containing the next possible start time of ANY permitted resource or None.
         """
-        permitted = self.permissions.get_permitted_resources(act_name)
+        permitted = self.permissions.get_permitted_resources(act_name, self.resources)
         if not permitted:
             return None
 

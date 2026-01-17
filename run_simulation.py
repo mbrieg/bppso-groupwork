@@ -1,103 +1,67 @@
 import sys
 import os
-import pickle
-import pandas as pd
+import pm4py
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-sim_core_dir = os.path.join(current_dir, "sim_core")
-basic_dir = os.path.join(current_dir, "basic")
-advanced_dir = os.path.join(current_dir, "advanced")
-resources_dir = os.path.join(current_dir, "resources")
 
-sys.path.append(sim_core_dir)
-sys.path.append(basic_dir)
-sys.path.append(advanced_dir)
-
-try:
-    import c45_tree
-except ImportError:
-    try:
-        from advanced import c45_tree
-        sys.modules['c45_tree'] = c45_tree
-    except ImportError:
-        print("Error: c45_tree.py not found in advanced")
+sys.path.append(os.path.join(current_dir, "sim_core"))
+sys.path.append(os.path.join(current_dir, "resources"))
 
 from sim_core.engine import Engine
 from sim_core.pn_model import wrap_net
-from basic_decision_point_analysis import load_petri_from_bpmn
 from resources.ResourceManager import ResourceManager
-# Integration Test
+from decision_analysis.decision_point_manager import DecisionPointManager
 
 def run_system_test():
-    print("Start Full Simulation (Advanced Mode)")
+    print("\n" + "="*60)
+    print("STARTING FULL SIMULATION (NEW STRUCTURE)")
+    print("="*60)
 
-    bpmn_path = os.path.join("data", "BPI Challenge 2017 Loan Application Process-6-4.bpmn")
-    basic_model_path = "basic_routing_model.pkl"
-    adv_model_path = "decision_models.pkl"
+    xes_path = os.path.join("data", "BPI Challenge 2017.xes.gz")
     output_csv = "final_simulation_log.csv"
 
-    if not os.path.exists(bpmn_path):
-        print(f"Error: Bpmn file not found at {bpmn_path}")
+    if not os.path.exists(xes_path):
+        print(f"CRITICAL ERROR: Log file not found at {xes_path}")
         return
-    
-    print("Loading bpmn model..")
-    net, im, fm = load_petri_from_bpmn(bpmn_path)
 
+    log = pm4py.read_xes(xes_path)
+    print(f"      -> Loaded {len(log)} traces.")
 
-    pn_structure = wrap_net(net, im, fm)
-    print(f" Model loaded: {len(pn_structure.place_ids)} places, {len(pn_structure.trans_ids)} transitions.")
+    dp_manager = DecisionPointManager(log, mode='advanced') 
 
-    print("Loading Decision models..")
-
-    basic_model = None
-    if os.path.exists(basic_model_path):
-        with open(basic_model_path, "rb") as f:
-            basic_model = pickle.load(f)
-        print(" Basic routing model loaded.")
-    else:
-        print(" Basic Routing model not found.")
-
-    adv_model = None
-    if os.path.exists(adv_model_path):
-        with open(adv_model_path, "rb") as f:
-            adv_model = pickle.load(f)
-        print(f" Advanced Decision Trees loaded.")
-    else:
-        print(" Advanced Decision Trees not loaded. Engine will use Basic/Random)")
-
-    print("Initialize ResourceManager")
+    pn_structure = wrap_net(dp_manager.net, dp_manager.im, dp_manager.fm)
+    print(f"      -> Structure Ready: {len(pn_structure.place_ids)} places.")
 
     resource_manager = ResourceManager()
 
-    print("Simulation Engine..")
-
+    print(" Initializing Simulation Engine...")
     engine = Engine(
         pn=pn_structure,
         resource_manager=resource_manager,
-        mode="advanced",
-        basic_model=basic_model,
-        advanced_model=adv_model,
-        max_cases=100
+        decision_manager=dp_manager,  
+        max_cases=100              
     )
 
-    print("Run Simulation")
+    print("\n" + "-"*30)
+    print("RUNNING SIMULATION...")
+    print("-"*30)
 
     try:
-        engine.spawn()
+        engine.spawn() 
         engine.run(max_events=5000)
-        print("Simulation finished successfully.")
+        print("\nSuccess: Simulation finished.")
 
     except Exception as e:
-        print(f" Error during simulation: {e}")
+        print(f"\n Error: {e}")
         import traceback
         traceback.print_exc()
         return
     
-    print("Export Results..")
-    engine.export_log(output_csv)
-    engine.print_statistics()
-
-    print(f"Done '{output_csv}' for results.")
-
-if __name__ == "__main__":
-    run_system_test()
+    print("-" * 30)
+    print("EXPORTING RESULTS...")
+    engine.export_log(output_csv)    # Generates csv
+    engine.print_statistics()        # shows summary in console
+    print("-" * 30)
+    print(f"Results saved to: {output_csv}")
+    
+    print("-" * 30)
