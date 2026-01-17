@@ -1,7 +1,13 @@
 import pm4py
 import os
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent / 'sim_core'))
+
+from sim_core.bpmn_io import read_bpmn
+from sim_core.pn_model import wrap_net
+
 from collections import deque
-from .discovery import ProcessDiscovery
 from .structures import DecisionPoint
 from .basic_router import BasicRouter
 from .advanced_router import AdvancedRouter
@@ -11,26 +17,46 @@ class DecisionPointManager:
     The bridge between Engine and the Decision analysis modules.
     """
 
-    def __init__(self, log, mode='basic', output_folder="data", config=None):
+    def __init__(self, log, bpmn_path=None, net=None, im=None, fm=None, mode='basic', output_folder="data", config=None):
         self.log = log
         self.mode = mode
         self.config = config if config else {}
 
-        if mode == 'basic':
-            mining_mode = 'heuristic'
-            self.model_filename = "heuristic_model.pnml"
+        if net is None or im is None or fm is None:
+            if bpmn_path is None:
+                raise ValueError(
+                    "Must provide either:\n"
+                    "bpmn_path (to load from file using sim_core), OR\n"
+                    "(net, im, fm) if already loaded"
+                )
+            
+            print(f"Manager: Loading BPMN model using sim_core from: {bpmn_path}")
+            
+            # Use sim_core's BPMN loader
+            try:
+                self.net, self.im, self.fm = read_bpmn(bpmn_path)
+                print(f" Successfully loaded Petri net with sim_core")
+            except Exception as e:
+                print(f" Error loading BPMN with sim_core: {e}")
+                raise
+            
+            # wrap it in PNModel for consistency with sim_core
+            self.pn_model = wrap_net(self.net, self.im, self.fm)
+            print(f" Wrapped as PNModel: {len(self.pn_model.place_ids)} places, "
+                  f"{len(self.pn_model.trans_ids)} transitions")
+            
+            self.model_filename = os.path.basename(bpmn_path).replace('.bpmn', '.pnml')
         else:
-            mining_mode = 'inductive'
-            self.model_filename = "inductive_model.pnml"
+            print(f"Manager: Using provided Petri net model...")
+            self.net = net
+            self.im = im
+            self.fm = fm
+            
+            # Wrap provided net in PNModel
+            self.pn_model = wrap_net(self.net, self.im, self.fm)
+            self.model_filename = "provided_model.pnml"
         
-        print(f"Manager: Starting Process Discovery ({mining_mode.upper()})...")
-        
-        self.miner = ProcessDiscovery(
-            dependency_threshold=0.8, 
-            and_threshold=0.65
-        )
-        
-        self.net, self.im, self.fm = self.miner.discover(self.log, mode=mining_mode)
+        # Save the model
         self._save_models(output_folder)
         
         print("Manager: Analyzing Decision Points...")
@@ -47,30 +73,40 @@ class DecisionPointManager:
             )
         else:
             print("Manager: Pre-processing log for Basic Router...")
-            simple_log = []
-            for trace in self.log:
-                # Log verisini güvenli bir şekilde string listesine çevir
-                simple_trace = []
-                for event in trace:
-                    name = None
-                    if hasattr(event, 'get'): name = event.get('concept:name')
-                    elif hasattr(event, '_dict'): name = event._dict.get('concept:name')
-                    else: name = str(event)
-                    
-                    if name: simple_trace.append(name.strip())
-                simple_log.append(simple_trace)
-            
+            simple_log = self._preprocess_log_for_basic_router()
             self.router = BasicRouter(simple_log, self.decision_points)
         
         horizon = self.config.get('horizon', 60)
         
-        # Basic router için train fonksiyonunu çağır
+        # Basic router train()
         try:
             self.router.train(horizon=horizon, debug=(mode=='basic'))
         except TypeError:
             self.router.train(horizon=horizon)
 
         print("DecisionPointManager is ready.")
+        
+
+    def _preprocess_log_for_basic_router(self):
+        """
+        Convert event log to simple list of activity name lists for Basic router
+        """
+        simple_log = []
+        for trace in self.log:
+            simple_trace = []
+            for event in trace:
+                name = None
+                if hasattr(event, 'get'): 
+                    name = event.get('concept:name')
+                elif hasattr(event, '_dict'): 
+                    name = event._dict.get('concept:name')
+                else: 
+                    name = str(event)
+                
+                if name: 
+                    simple_trace.append(name.strip())
+            simple_log.append(simple_trace)
+        return simple_log
 
     def _save_models(self, output_folder):
         if not os.path.exists(output_folder):
@@ -111,8 +147,6 @@ class DecisionPointManager:
                         # Advanced mode veya görünür ama etiketsiz (nadiren olur)
                         activity_name = name
                     
-                    # --- DÜZELTME: Sadece geçerli bir isim bulunduysa ekle ---
-                    # Eğer _resolve fonksiyonu None döndürdüyse (çıkmaz sokak), ekleme.
                     if activity_name:
                         dp.add_outgoing(trans, activity_name)
                 
@@ -155,14 +189,10 @@ class DecisionPointManager:
                         queue.append(next_trans)
                         has_outgoing = True
             
-            # Eğer buradan ileriye giden bir yol yoksa (End Event), bu yolu yoksay.
-        
-        # --- DÜZELTME BURADA ---
-        # Hiçbir şey bulunamazsa 'hid_...' döndürme, None döndür.
-        # Böylece bu yol decision point seçeneklerine eklenmez.
         return None
 
     def get_next_transition(self, current_place, trace_history):
+
         if current_place.name not in self.decision_points:
             if current_place.out_arcs:
                 return list(current_place.out_arcs)[0].target
@@ -203,3 +233,7 @@ class DecisionPointManager:
         
         # absolute fallback (should probably not reach here)
         return list(current_place.out_arcs)[0].target
+    
+    def get_pn_model(self):
+        """Returns the PNModel representation for use with other sim_core components"""
+        return self.pn_model
