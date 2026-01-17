@@ -1,5 +1,0 @@
-Decision Place,Episodes,Training Samples,Test Accuracy,Baseline Acc,Improvement,F1-Score,Top Features
-exi_sid-7237C3C4-6AC5-4085-AD87-2991CA3957DA,45693,8500,0.9887,0.6893,+0.2993,0.9885,"prev_activity, hour_of_day, case_duration_hours"
-exi_sid-9D744E8C-9A7C-4736-9579-96FED24F6020,62631,8500,0.9513,0.6340,+0.3173,0.9369,"prev_activity, case_duration_hours, hour_of_day"
-exi_sid-833576E7-21B4-4BA2-BB78-5DC14D1F08B8,45228,8500,0.9520,0.5153,+0.4367,0.9522,"prev_activity, case_duration_hours, hour_of_day"
-exi_sid-90C0C313-091E-497A-B01D-31CA21A290A9,23293,8500,1.0000,0.9900,+0.0100,1.0000,prev_activity
