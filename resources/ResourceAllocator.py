@@ -2,6 +2,9 @@ import random
 
 
 class ResourceAllocator:
+    """
+    Assigns tasks to permitted and available resources.
+    """
     def __init__(self, resources, availabilities, permissions):
         self.resources = resources
         self.availabilities = availabilities

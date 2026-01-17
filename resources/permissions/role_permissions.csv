@@ -1,0 +1,28 @@
+Role,Activity
+Role_0,A_Cancelled
+Role_0,A_Concept
+Role_0,A_Create Application
+Role_0,A_Submitted
+Role_0,O_Cancelled
+Role_1,A_Accepted
+Role_1,A_Complete
+Role_1,A_Concept
+Role_1,O_Create Offer
+Role_1,O_Created
+Role_1,O_Sent (mail and online)
+Role_1,W_Complete application
+Role_2,A_Incomplete
+Role_2,A_Pending
+Role_2,O_Accepted
+Role_2,O_Cancelled
+Role_2,O_Refused
+Role_2,W_Validate application
+Role_3,A_Pending
+Role_3,A_Validating
+Role_3,O_Accepted
+Role_3,O_Returned
+Role_4,A_Pending
+Role_4,A_Validating
+Role_4,O_Accepted
+Role_4,O_Cancelled
+Role_4,O_Returned

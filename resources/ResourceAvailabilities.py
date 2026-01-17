@@ -1,17 +1,32 @@
 import datetime
 import pandas as pd
+import os.path
 
 
 class ResourceAvailabilities:
-    def __init__(self, df, interval=7):
+    """
+        Manages the working schedules for resources in the simulation.
+        Determines when a resource is on shift and when they will be available next.
+    """
+    def __init__(self, availabilities_file, interval=7):
+        """
+        Args:
+            availabilities_file (str): Filename in 'resources/availabilities' directory.
+            interval (int, optional): The cycle length in days. Defaults to 7 (Weekly).
+        """
         self.schedule = {}      # {(res_name, day_id) : (start, end)}
         self.start_date = datetime.date(2016, 1, 1)  # Day 0 of simulation
         self.interval = interval
 
-        if df is not None:
-            self.load_schedule(df)
+        if availabilities_file is not None:
+            self.load_schedule(availabilities_file)
 
-    def load_schedule(self, df):
+    def load_schedule(self, file: str):
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        path = os.path.join(current_dir, 'availabilities', file)
+        if not os.path.exists(path):
+            raise FileNotFoundError(f"Permission file not found at: {path}")
+        df = pd.read_csv(path)
         df['StartTime'] = pd.to_datetime(df['StartTime'], format='%H:%M:%S').dt.time
         df['EndTime'] = pd.to_datetime(df['EndTime'], format='%H:%M:%S').dt.time
         for _, row in df.iterrows():
