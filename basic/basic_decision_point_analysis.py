@@ -8,6 +8,7 @@ from pm4py.objects.conversion.bpmn import converter as bpmn_converter
 from pm4py.objects.log.importer.xes import importer as xes_importer
 from pm4py.objects.petri_net.utils import petri_utils
 
+
 # PART 1: BUILDING THE MODEL
 def load_petri_from_bpmn(bpmn_path):
     bpmn_graph = bpmn_importer.apply(bpmn_path)
@@ -187,6 +188,7 @@ def build_transition_activity_mappings(net):
 
     return transition_to_activity, activity_to_transitions
 
+
 def build_basic_branching_model(bpmn_path, xes_path, horizon=60, verbose=False):
     """
     Main function to build the complete routing model.
@@ -214,6 +216,7 @@ def build_basic_branching_model(bpmn_path, xes_path, horizon=60, verbose=False):
         "place_preset_labels": place_preset,
         "place_postset_labels": place_postset
     }
+
 
 # PART 2: EXECUTION PHASE (for Simulation Engine)
 def route_at_decision_point(place, 
@@ -270,6 +273,7 @@ def route_at_decision_point(place,
         
     return list(candidates.keys())[-1]
 
+
 if __name__ == "__main__":
     print("\n=== BASIC DECISION POINT ANALYSIS ===")
 
@@ -322,7 +326,7 @@ if __name__ == "__main__":
         print(f"\n {e}")
         print(" Check 'pm4py' library is loaded: pip install pm4py")
     except Exception as e:
-        print(f"\n❌ Error: {e}")
+        print(f"\n Error: {e}")
         import traceback
         traceback.print_exc()
 
