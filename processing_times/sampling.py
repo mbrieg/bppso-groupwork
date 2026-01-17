@@ -28,9 +28,7 @@ import numpy as np
 import pandas as pd
 
 
-# ----------------------------
-# JSON model I/O (cached)
-# ----------------------------
+
 
 _JSON_CACHE: Dict[str, Dict[str, Any]] = {}
 
