@@ -242,6 +242,12 @@ class AdvancedRouter:
                     if t.name == model_move[0] or t.label == model_move[1]:
                         curr_trans_obj = t
                         break
+                    
+                if not curr_trans_obj and model_move[1] is not None:
+                     for t in self.net.transitions:
+                        if t.label == model_move[1]:
+                            curr_trans_obj = t
+                            break
                 
                 if not curr_trans_obj: continue
 

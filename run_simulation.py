@@ -30,7 +30,7 @@ def run_system_test():
     
     print(f"      -> Loaded {len(log)} traces.")
 
-    dp_manager = DecisionPointManager(log, mode='advanced') 
+    dp_manager = DecisionPointManager(log, mode='basic') 
 
     pn_structure = wrap_net(dp_manager.net, dp_manager.im, dp_manager.fm)
     print(f"      -> Structure Ready: {len(pn_structure.place_ids)} places.")

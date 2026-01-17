@@ -23,7 +23,7 @@ def test_system():
     # 2. initialize the manager
     # trigger Discovery -> Structure Analysis -> Basic Training
     print("\n--- 2. INITIALIZING MANAGER ---")
-    manager = DecisionPointManager(log, mode='advanced', output_folder=output_folder)
+    manager = DecisionPointManager(log, mode='basic', output_folder=output_folder)
 
     # 3. inspect decision points
     print("\n--- 3. INSPECTING DECISION POINTS ---")
