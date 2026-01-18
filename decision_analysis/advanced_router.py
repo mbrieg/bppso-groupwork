@@ -5,6 +5,7 @@ import random
 import pandas as pd
 import numpy as np
 from collections import defaultdict
+from .utils import is_invisible_label
 from pm4py.algo.conformance.alignments.petri_net import algorithm as align_algo
 from pm4py.objects.log.obj import EventLog
 from sklearn.model_selection import train_test_split, StratifiedKFold
@@ -72,6 +73,10 @@ class AdvancedRouter:
             
             print(f"\n--- Training Decision Point: {dp_name} ---")
             
+            # Pre-processing and subsampling
+            df = df[~df['y'].apply(is_invisible_label)]
+            if df.empty: continue
+
             # Pre-processing and subsampling
             df = self._preprocess_data(df)
             if df.empty: continue
@@ -237,17 +242,21 @@ class AdvancedRouter:
                 # Find transition object in net
                 # Alignments return (name, label), we need to match 
                 # For simplicity, we assume model_move is the Transition Label or Name
+                if is_invisible_label(model_move[1]): 
+                    pass
+
+                # Find transition object in net
                 curr_trans_obj = None
+                
+                # PM4Py Alignment tuple: (name, label)
+                # Doğru transition objesini bulmak için eşleştirme yapıyoruz
+                target_name = model_move[0]
+                target_label = model_move[1]
+                
                 for t in self.net.transitions:
-                    if t.name == model_move[0] or t.label == model_move[1]:
+                    if t.name == target_name:
                         curr_trans_obj = t
                         break
-                    
-                if not curr_trans_obj and model_move[1] is not None:
-                     for t in self.net.transitions:
-                        if t.label == model_move[1]:
-                            curr_trans_obj = t
-                            break
                 
                 if not curr_trans_obj: continue
 
@@ -259,13 +268,19 @@ class AdvancedRouter:
                     
                     if len(active_dps) == 1:
                         dp_name = list(active_dps)[0]
-                        outcome = trans_map.get(curr_trans_obj)
+                        dp_obj = self.decision_points[dp_name]
+                        outcome_activity = None
+                        
+                        for act_name, trans in dp_obj.outgoing_transitions.items():
+                            if trans == curr_trans_obj:
+                                outcome_activity = act_name
+                                break
 
-                        if outcome:
+                        if outcome_activity:
                             # build row
                             row = {}
                             row['prev_activity'] = last_activity
-                            row['y'] = outcome
+                            row['y'] = outcome_activity
                             
                             # Add case attrs
                             for feat in self.case_features:
@@ -285,8 +300,8 @@ class AdvancedRouter:
 
                             place_to_rows[dp_name].append(row)
 
-                if curr_trans_obj.label:
-                    last_activity = curr_trans_obj.label
+                if curr_trans_obj.label and not is_invisible_label(curr_trans_obj.label):
+                    last_activity = curr_trans_obj.label.strip()
 
         final_data = {k: pd.DataFrame(v) for k,v in place_to_rows.items()}
         try:

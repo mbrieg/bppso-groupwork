@@ -82,9 +82,22 @@ def test_system():
         next_transition = manager.get_next_transition(test_place_obj, {'prev_activity': fake_prev_act})
         
         if next_transition:
-            print(f" Manager Decision: Fire transition '{next_transition.label}'")
+            # 1. Get the technical name (Label or ID)
+            trans_display_name = next_transition.label if next_transition.label else next_transition.name
+            
+            # 2. Find the Target Activity (Reverse Lookup)
+            # we look through the dict: { "Activity Name": TransitionObj }
+            target_activity = "Unknown Target"
+            
+            for act_name, trans_obj in test_dp.outgoing_transitions.items():
+                if trans_obj == next_transition:
+                    target_activity = act_name
+                    break
+          
+            print(f" Manager Decision: Target Activity is '{target_activity}' --> Fire transition '{trans_display_name}'")
+            
         else:
-            print(" Manager returned none (Dead end or error)")
+            print(" Manager returned None (Dead end or error)")
 
     print("\n System test completed.")
 
