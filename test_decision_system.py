@@ -31,7 +31,7 @@ def test_system():
     print("\n--- 2. INITIALIZING MANAGER ---")
     manager = DecisionPointManager(log, 
                                    bpmn_path=bpmn_path,
-                                   mode='advanced', 
+                                   mode='basic', 
                                    output_folder=output_folder)
 
     # 3. inspect decision points
