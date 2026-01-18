@@ -1,4 +1,5 @@
 from collections import deque
+from utils import is_invisible_label
 
 class DecisionPoint:
     """
@@ -69,7 +70,7 @@ class DecisionPoint:
         direct_preset = {arc.source for arc in place.in_arcs}
 
         #Filter for transitions that actually have a name(Label is not none)
-        labels = {t.label.strip() for t in direct_preset if t.label is not None}
+        labels = {t.label.strip() for t in direct_preset if not is_invisible_label(t.label)}
 
         # If we found real activities then return them directly
         if labels:
@@ -87,11 +88,11 @@ class DecisionPoint:
         #Look at the places before the immediate invisible transitions
         for t in direct_preset:
             visited_transitions.add(t)
-            if t.label is None: # confirming it is invisible
+            if is_invisible_label(t.label): 
                 for arc in t.in_arcs:
                     prev_place = arc.source
                     if prev_place not in visited_places:
-                        #If its not visited add to the queue
+                        # If its not visited add to the queue
                         visited_places.add(prev_place)
                         queue.append((prev_place, 1)) # depth = 1
 
@@ -110,7 +111,7 @@ class DecisionPoint:
                     continue
                 visited_transitions.add(t)
 
-                if t.label is not None:
+                if not is_invisible_label(t.label):
                     # found one, bc it has a label now real activity
                     visible_labels.add(t.label.strip())
                 else:
