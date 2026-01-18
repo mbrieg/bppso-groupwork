@@ -31,7 +31,7 @@ def test_system():
     print("\n--- 2. INITIALIZING MANAGER ---")
     manager = DecisionPointManager(log, 
                                    bpmn_path=bpmn_path,
-                                   mode='basic', 
+                                   mode='advanced', 
                                    output_folder=output_folder)
 
     # 3. inspect decision points
@@ -46,16 +46,26 @@ def test_system():
         print(f"   Real Inputs (Context): {dp.incoming_activities}")
         print(f"   Possible Outputs: {dp.get_possible_activities()}")
         
+        if manager.mode == 'advanced' and hasattr(manager.router, 'classifiers'):
+            # Check if a Tree exists for this specific decision point
+            if place_name in manager.router.classifiers:
+                print("    [Advanced] C4.5 Decision Tree successfully trained.")
+                # Show which features (columns) the tree is using
+                feats = manager.router.feature_names.get(place_name, [])
+                print(f"    [Advanced] Features used: {feats}")
+            else:
+                print("    [Advanced] No specific ML model (Likely deterministic or not visited).")
+
         # Check if probabilities were learned
         if dp.probs_conditioned:
-            print("    Conditioned Probabilities learned (First-Hit)")
+            print("    [B] Conditioned Probabilities learned (First-Hit)")
             # Show one example
             example_trigger = list(dp.probs_conditioned.keys())[0]
-            print(f"   Example: If input is '{example_trigger}' -> {dp.probs_conditioned[example_trigger]}")
+            print(f"   [B] Example: If input is '{example_trigger}' -> {dp.probs_conditioned[example_trigger]}")
         elif dp.probs_marginal:
-            print("    Only Marginal Probabilities learned.")
+            print("   [B] Only Marginal Probabilities learned.")
         else:
-            print("    No probabilities learned (Dead decision point?)")
+            print("   [B] No probabilities learned (Dead decision point?)")
         
         count += 1
         if count >= 3: break

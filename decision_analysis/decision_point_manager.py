@@ -138,11 +138,13 @@ class DecisionPointManager:
                     
                     activity_name = None
 
-                    if self.mode == 'basic' and is_hidden:
-                        # Basic Router için görünmez yolları çöz
+                    if is_hidden:
+                        # Basic Router + Advanced için görünmez yolları çöz
                         activity_name = self._resolve_downstream_activity(trans)
-                    elif not is_hidden:
-                        activity_name = trans.label.strip() if trans.label else trans.name
+                        if not activity_name:
+                            activity_name = trans.name
+                    elif trans.label:
+                        activity_name = trans.label.strip()
                     else:
                         # Advanced mode veya görünür ama etiketsiz (nadiren olur)
                         activity_name = trans.name
@@ -158,7 +160,7 @@ class DecisionPointManager:
 
     def _resolve_downstream_activity(self, start_trans):
         """
-        BASIC MODE ONLY:
+        BASIC MODE ONLY for now:
         Looks past silent transitions to find the next visible activity name.
         Uses BFS to find the nearest real activity.
         """
