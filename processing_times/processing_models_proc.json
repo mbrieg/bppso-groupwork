@@ -1,0 +1,44 @@
+{
+  "W_Assess potential fraud": {
+    "dist": "lognorm",
+    "params": {
+      "s": 2.5046392183730126,
+      "scale": 751.0363907467519
+    }
+  },
+  "W_Call after offers": {
+    "dist": "lognorm",
+    "params": {
+      "s": 1.015352214234354,
+      "scale": 195.1413487212624
+    }
+  },
+  "W_Call incomplete files": {
+    "dist": "lognorm",
+    "params": {
+      "s": 1.143981187006498,
+      "scale": 296.87727400960046
+    }
+  },
+  "W_Complete application": {
+    "dist": "gamma",
+    "params": {
+      "a": 1.2032586004343957,
+      "scale": 546.5539873138229
+    }
+  },
+  "W_Handle leads": {
+    "dist": "lognorm",
+    "params": {
+      "s": 1.095259783616382,
+      "scale": 82.15536142828658
+    }
+  },
+  "W_Validate application": {
+    "dist": "lognorm",
+    "params": {
+      "s": 1.7842284678095217,
+      "scale": 234.0366582310631
+    }
+  }
+}
