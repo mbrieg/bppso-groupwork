@@ -1,232 +1,399 @@
-"""processing_times.sampling
-
-One place to sample durations for the simulator.
-
-Modes (DurationSampler.mode)
----------------------------
-- total_parametric: sample total_seconds from parametric JSON
-- proc_qr_plus_wait_ref: sample proc_seconds via quantile bundle + wait_seconds empirically, then sum
-- proc_param_plus_wait_ref: sample proc_seconds from parametric + wait_seconds empirically, then sum
-
-This file also contains small helpers to:
-- load JSON artefacts
-- sample from compressed reference counts
-- build an X_row with the exact columns expected by a QuantileModelBundle
-"""
+# processing_times/samplers.py
 
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import timedelta
+from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, Mapping, Optional, Sequence, Tuple, Union
 
 import json
 import math
-
 import numpy as np
-import pandas as pd
+
+try:
+    import joblib  # optional (nur nötig wenn du QR-Bundles nutzt)
+except Exception:
+    joblib = None
+
+from scipy.stats import norm
 
 
+class ModelSpecError(ValueError):
+    """Wird geworfen wenn ein Artefakt / Spec kaputt oder unerwartet ist."""
 
 
-_JSON_CACHE: Dict[str, Dict[str, Any]] = {}
+def load_json(path: Union[str, Path]) -> Dict[str, Any]:
+    return json.loads(Path(path).read_text())
 
 
-def load_json(path: str | Path) -> Dict[str, Any]:
-    p = str(Path(path).resolve())
-    if p not in _JSON_CACHE:
-        _JSON_CACHE[p] = json.loads(Path(p).read_text())
-    return _JSON_CACHE[p]
+def _as_rng(rng: Optional[np.random.Generator], seed: Optional[int]) -> np.random.Generator:
+    return rng if rng is not None else np.random.default_rng(seed)
 
 
-# ----------------------------
-# Compressed empirical references
-# ----------------------------
+def _clip_nonneg(x: np.ndarray) -> np.ndarray:
+    x = np.asarray(x, dtype=float)
+    x[~np.isfinite(x)] = 0.0
+    return np.clip(x, 0.0, None)
 
 
-def sample_from_counts(counts: Sequence[Sequence[float]], rng: np.random.Generator) -> float:
-    """Sample one value from a compressed list [(count, value), ...]."""
-    if not counts:
-        return 0.0
-    weights = np.asarray([c for c, _ in counts], dtype=float)
-    values = np.asarray([v for _, v in counts], dtype=float)
-
-    weights = np.where(np.isfinite(weights) & (weights > 0), weights, 0.0)
-    total = float(weights.sum())
-    if total <= 0:
-        return float(values[0])
-
-    u = rng.random() * total
-    cum = 0.0
-    for w, v in zip(weights, values):
-        cum += float(w)
-        if u <= cum:
-            return float(v)
-    return float(values[-1])
-
-
-# ----------------------------
-# Parametric models (Gamma / Lognorm / Const)
-# ----------------------------
-
-
-def sample_parametric(spec: Dict[str, Any], rng: np.random.Generator) -> float:
-    dist = spec.get("dist")
-    if dist == "const":
-        return float(spec.get("value", 0.0))
-
-    if dist == "gamma":
-        a = float(spec["params"]["a"])
-        scale = float(spec["params"]["scale"])
-        return max(0.0, float(rng.gamma(shape=a, scale=scale)))
-
-    if dist == "lognorm":
-        s = float(spec["params"]["s"])
-        scale = float(spec["params"]["scale"])
-        mu = math.log(scale) if scale > 0 else 0.0
-        return max(0.0, float(rng.lognormal(mean=mu, sigma=s)))
-
-    return 0.0
-
-
-def sample_activity_parametric(models: Dict[str, Any], activity: str, rng: np.random.Generator,
-                              fallback_seconds: Tuple[float, float] = (300.0, 900.0)) -> float:
-    spec = models.get(activity)
-    if spec is None:
-        lo, hi = fallback_seconds
-        return float(rng.uniform(lo, hi))
-    return sample_parametric(spec, rng)
-
-
-# ----------------------------
-# Quantile Regression helpers
-# ----------------------------
-
-
-def ensure_feature_frame(bundle: Any, row: Union[Mapping[str, Any], pd.Series, pd.DataFrame]) -> pd.DataFrame:
-    """Create a 1-row DataFrame with exactly bundle.cat_cols + bundle.num_cols.
-
-    This prevents the "num cols lost" issue when you build X_row manually.
-    - missing categorical -> filled with ''
-    - missing numeric -> filled with 0.0
+def _apply_p0(spec: Mapping[str, Any], out: np.ndarray, rng: np.random.Generator) -> np.ndarray:
     """
-    if isinstance(row, pd.DataFrame):
-        X = row.copy()
-        if len(X) != 1:
-            raise ValueError("X_row must be a single row")
-    elif isinstance(row, pd.Series):
-        X = row.to_frame().T
-    else:
-        X = pd.DataFrame([dict(row)])
-
-    cat_cols = list(getattr(bundle, "cat_cols", []))
-    num_cols = list(getattr(bundle, "num_cols", []))
-    cols = cat_cols + num_cols
-
-    for c in cat_cols:
-        if c not in X.columns:
-            X[c] = ""
-
-    for c in num_cols:
-        if c not in X.columns:
-            X[c] = 0.0
-
-    # order + type safety
-    X = X[cols].copy()
-    for c in num_cols:
-        X[c] = pd.to_numeric(X[c], errors="coerce").fillna(0.0)
-
-    return X
-
-
-def predict_quantiles_seconds(bundle: Any, X_row: Union[Mapping[str, Any], pd.Series, pd.DataFrame]) -> Dict[float, float]:
-    """Predict quantiles for a single row, returning seconds.
-
-    If bundle.y_transform == 'log1p', the model predicts log1p(seconds) and we undo via expm1.
+    Optional: Zero-Inflation.
+    Wenn spec ein p0 in [0,1] enthält: setze Werte mit Wkt p0 auf 0.
+    (Kompatibilität, falls du z.B. Wait-Times als p0 + positive-part modellierst.)
     """
-    X = ensure_feature_frame(bundle, X_row)
-    preds: Dict[float, float] = {}
-    for q, model in bundle.models.items():
-        preds[float(q)] = float(model.predict(X)[0])
+    p0 = spec.get("p0", None)
+    if p0 is None:
+        return out
+    try:
+        p0f = float(p0)
+    except Exception:
+        return out
+    if p0f <= 0.0:
+        return out
+    p0f = min(1.0, max(0.0, p0f))
+    mask = rng.random(out.shape) < p0f
+    if not mask.any():
+        return out
+    out2 = out.copy()
+    out2[mask] = 0.0
+    return out2
 
-    if getattr(bundle, "y_transform", None) == "log1p":
-        preds = {q: float(np.expm1(v)) for q, v in preds.items()}
 
-    return preds
+def _time_features(now: Optional[datetime]) -> Tuple[float, float, float]:
+    """Return (tod_sin, tod_cos, weekday). Falls now=None -> (0,0,0)."""
+    if now is None:
+        return 0.0, 0.0, 0.0
+    minute_of_day = now.hour * 60 + now.minute
+    angle = 2 * math.pi * (minute_of_day / (24 * 60))
+    return float(math.sin(angle)), float(math.cos(angle)), float(now.weekday())
 
 
-def sample_from_quantiles(q_preds: Dict[float, float], rng: np.random.Generator) -> float:
-    """Piecewise-linear sampling from three quantiles.
+@dataclass(frozen=True)
+class _EmpCache:
+    values: np.ndarray
+    probs: np.ndarray
 
-    Works for any (qL,qM,qH), e.g. (0.1,0.5,0.9) or (0.2,0.5,0.8).
+
+class SpecSampler:
     """
-    qs = sorted(q_preds.keys())
-    if len(qs) < 3:
-        return float(q_preds[qs[len(qs)//2]])
+    Sampler für deine JSON-Specs:
+      - const
+      - gamma
+      - lognorm
+      - empirical (counts)
+    plus optional p0 (Zero-Inflation)
+    """
 
-    qL, qM, qH = qs[0], qs[1], qs[2]
-    vL, vM, vH = float(q_preds[qL]), float(q_preds[qM]), float(q_preds[qH])
+    def __init__(
+        self,
+        specs: Mapping[str, Mapping[str, Any]],
+        *,
+        default_value: float = 0.0,
+        seed: Optional[int] = None,
+    ) -> None:
+        self.specs: Dict[str, Dict[str, Any]] = {str(k): dict(v) for k, v in specs.items()}
+        self.default_value = float(default_value)
+        self.seed = seed
+        self._empirical: Dict[str, _EmpCache] = {}
+        self._validate_and_prepare()
 
-    vL = min(vL, vM)
-    vH = max(vH, vM)
+    @classmethod
+    def from_json(cls, path: Union[str, Path], **kwargs: Any) -> "SpecSampler":
+        return cls(load_json(path), **kwargs)
 
-    u = float(rng.random())
+    def _validate_and_prepare(self) -> None:
+        for act, spec in self.specs.items():
+            if not isinstance(spec, Mapping):
+                raise ModelSpecError(f"Spec for {act!r} must be a dict, got: {type(spec)}")
 
-    if u <= qL:
-        return max(0.0, vL)
-    if u >= qH:
-        return max(0.0, vH)
+            dist = spec.get("dist")
+            if dist not in {"const", "gamma", "lognorm", "empirical"}:
+                raise ModelSpecError(f"Unknown dist={dist!r} for activity {act!r}")
 
-    if u <= qM:
-        t = (u - qL) / (qM - qL)
-        return max(0.0, vL + t * (vM - vL))
+            # Optional p0
+            if spec.get("p0", None) is not None:
+                try:
+                    p0 = float(spec.get("p0"))
+                except Exception:
+                    raise ModelSpecError(f"p0 must be numeric for activity {act!r}")
+                if not (0.0 <= p0 <= 1.0):
+                    raise ModelSpecError(f"p0 must be in [0,1] for activity {act!r}, got {p0}")
+                spec["p0"] = float(p0)
+            else:
+                spec.pop("p0", None)
 
-    t = (u - qM) / (qH - qM)
-    return max(0.0, vM + t * (vH - vM))
+            if dist == "const":
+                if "value" not in spec:
+                    raise ModelSpecError(f"Missing 'value' for const model of {act!r}")
+                spec["value"] = float(spec["value"])
+
+            elif dist in {"gamma", "lognorm"}:
+                params = spec.get("params")
+                if not isinstance(params, Mapping):
+                    raise ModelSpecError(f"Missing/invalid 'params' for {dist} model of {act!r}")
+                if dist == "gamma":
+                    if "a" not in params or "scale" not in params:
+                        raise ModelSpecError(f"Gamma params must include 'a' and 'scale' for {act!r}")
+                    spec["params"] = {"a": float(params["a"]), "scale": float(params["scale"])}
+                else:
+                    if "s" not in params or "scale" not in params:
+                        raise ModelSpecError(f"Lognorm params must include 's' and 'scale' for {act!r}")
+                    spec["params"] = {"s": float(params["s"]), "scale": float(params["scale"])}
+
+            elif dist == "empirical":
+                counts = spec.get("counts")
+                if not isinstance(counts, Sequence) or len(counts) == 0:
+                    raise ModelSpecError(f"Empirical spec needs non-empty 'counts' for {act!r}")
+
+                cnts, vals = [], []
+                for pair in counts:
+                    if not isinstance(pair, Sequence) or len(pair) != 2:
+                        raise ModelSpecError(f"Empirical counts for {act!r} must be pairs, got {pair!r}")
+                    c = int(pair[0])
+                    v = float(pair[1])
+                    if c <= 0 or not np.isfinite(v):
+                        continue
+                    cnts.append(c)
+                    vals.append(v)
+
+                if len(cnts) == 0:
+                    raise ModelSpecError(f"Empirical counts for {act!r} are empty after cleaning")
+
+                values = np.asarray(vals, dtype=float)
+                probs = np.asarray(cnts, dtype=float)
+                probs = probs / probs.sum()
+                self._empirical[act] = _EmpCache(values=values, probs=probs)
+
+    def get_spec(self, activity: str) -> Dict[str, Any]:
+        return self.specs.get(str(activity), {"dist": "const", "value": self.default_value})
+
+    def sample(self, activity: str, *, n: int = 1, rng: Optional[np.random.Generator] = None) -> Union[float, np.ndarray]:
+        rng = _as_rng(rng, self.seed)
+        spec = self.get_spec(activity)
+        dist = spec.get("dist")
+
+        if dist == "const":
+            v = max(0.0, float(spec.get("value", self.default_value)))
+            out = np.full(n, v, dtype=float)
+            out = _apply_p0(spec, out, rng)
+            return float(out[0]) if n == 1 else out
+
+        if dist == "gamma":
+            p = spec["params"]
+            out = rng.gamma(shape=float(p["a"]), scale=float(p["scale"]), size=n)
+            out = _clip_nonneg(out)
+            out = _apply_p0(spec, out, rng)
+            return float(out[0]) if n == 1 else out
+
+        if dist == "lognorm":
+            p = spec["params"]
+            scale = float(p["scale"])
+            mu = math.log(scale) if scale > 0 else 0.0
+            sigma = float(p["s"])
+            out = rng.lognormal(mean=mu, sigma=sigma, size=n)
+            out = _clip_nonneg(out)
+            out = _apply_p0(spec, out, rng)
+            return float(out[0]) if n == 1 else out
+
+        if dist == "empirical":
+            cache = self._empirical.get(str(activity))
+            if cache is None:
+                v = max(0.0, self.default_value)
+                out = np.full(n, v, dtype=float)
+                out = _apply_p0(spec, out, rng)
+                return float(out[0]) if n == 1 else out
+
+            idx = rng.choice(len(cache.values), size=n, replace=True, p=cache.probs)
+            out = cache.values[idx]
+            out = _clip_nonneg(out)
+            out = _apply_p0(spec, out, rng)
+            return float(out[0]) if n == 1 else out
+
+        raise ModelSpecError(f"Unhandled dist={dist!r} for activity {activity!r}")
 
 
-# ----------------------------
-# High-level sampler (plug into simulator)
-# ----------------------------
+class QuantileBundleSampler:
+    """
+    Sampler für saved Quantile-Regression Bundles (joblib).
+    Wir nehmen die vorhergesagten Quantile und machen daraus eine einfache Verteilung.
+
+    Default: Fit einer Lognormal-Verteilung auf (q_low, q_high) und sampeln daraus.
+    Fallback: Triangular(low, median, high).
+    """
+
+    def __init__(self, bundle: Mapping[str, Any], *, seed: Optional[int] = None) -> None:
+        self.bundle = dict(bundle)
+        self.seed = seed
+
+        if "models" not in self.bundle or "meta" not in self.bundle or "qs" not in self.bundle:
+            raise ModelSpecError("Quantile bundle must contain keys: 'models', 'meta', 'qs'")
+
+        self.models: Dict[float, Any] = dict(self.bundle["models"])
+        self.qs: Tuple[float, float, float] = tuple(self.bundle["qs"])  # (low, mid, high)
+
+        meta = dict(self.bundle["meta"])
+        self.cat_cols: Sequence[str] = list(meta.get("cat_cols", []))
+        self.num_cols: Sequence[str] = list(meta.get("num_cols", []))
+
+        if self.cat_cols != ["concept:name"]:
+            raise ModelSpecError(f"Expected meta.cat_cols == ['concept:name'], got {self.cat_cols!r}")
+
+        needed = {"tod_sin", "tod_cos", "instance", "weekday"}
+        if not needed.issubset(set(self.num_cols)):
+            raise ModelSpecError(f"Expected num_cols to include {sorted(needed)}, got {self.num_cols!r}")
+
+    @classmethod
+    def from_joblib(cls, path: Union[str, Path], **kwargs: Any) -> "QuantileBundleSampler":
+        if joblib is None:
+            raise RuntimeError("joblib is required to load quantile bundles")
+        bundle = joblib.load(path)
+        return cls(bundle, **kwargs)
+
+    def predict_quantiles(
+        self,
+        activity: str,
+        *,
+        now: Optional[datetime] = None,
+        instance: int = 0,
+    ) -> Tuple[float, float, float]:
+        tod_sin, tod_cos, weekday = _time_features(now)
+
+        import pandas as pd  # local import
+
+        row = {
+            "concept:name": str(activity),
+            "tod_sin": float(tod_sin),
+            "tod_cos": float(tod_cos),
+            "instance": float(instance),
+            "weekday": float(weekday),
+        }
+        X = pd.DataFrame([row], columns=list(self.cat_cols) + list(self.num_cols))
+
+        qL, qM, qH = self.qs
+        pL = float(self.models[qL].predict(X)[0])
+        pM = float(self.models[qM].predict(X)[0])
+        pH = float(self.models[qH].predict(X)[0])
+
+        # Ordnung + Nonnegativity
+        pM = max(0.0, pM)
+        pL = max(0.0, min(pL, pM))
+        pH = max(pM, pH)
+        return pL, pM, pH
+
+    def sample(
+        self,
+        activity: str,
+        *,
+        now: Optional[datetime] = None,
+        instance: int = 0,
+        rng: Optional[np.random.Generator] = None,
+    ) -> float:
+        rng = _as_rng(rng, self.seed)
+        qL, qM, qH = self.predict_quantiles(activity, now=now, instance=instance)
+
+        if not (qH > qL):
+            return float(max(0.0, qM))
+
+        pL, _, pH = self.qs
+        zL = float(norm.ppf(pL))
+        zH = float(norm.ppf(pH))
+
+        if qL > 0 and qH > 0 and zH != zL:
+            logL, logH = math.log(qL), math.log(qH)
+            sigma = (logH - logL) / (zH - zL)
+            if sigma < 1e-9:
+                return float(max(0.0, qM))
+            mu = logL - sigma * zL
+            return float(max(0.0, rng.lognormal(mean=mu, sigma=sigma, size=1)[0]))
+
+        # Fallback: triangular
+        return float(max(0.0, rng.triangular(left=qL, mode=qM, right=qH, size=1)[0]))
 
 
-@dataclass
-class DurationSampler:
-    mode: str
-    rng: np.random.Generator
+class ProcessingTimeSampler:
+    """
+    High-Level Sampler: proc / wait / total.
+    Optional: für bestimmte kinds kannst du QR nutzen (use_qr=True).
+    """
 
-    total_models: Optional[Dict[str, Any]] = None
-    proc_models: Optional[Dict[str, Any]] = None
-    wait_reference: Optional[Dict[str, Any]] = None
-    proc_qr: Optional[Any] = None
+    def __init__(
+        self,
+        *,
+        proc: Optional[SpecSampler] = None,
+        wait: Optional[SpecSampler] = None,
+        total: Optional[SpecSampler] = None,
+        qr: Optional[Mapping[str, QuantileBundleSampler]] = None,
+        seed: Optional[int] = None,
+    ) -> None:
+        self.proc = proc
+        self.wait = wait
+        self.total = total
+        self.qr = dict(qr) if qr is not None else {}
+        self.seed = seed
 
-    def sample_total_seconds(self, activity: str, *, X_row=None) -> float:
-        if self.mode == "total_parametric":
-            if self.total_models is None:
-                raise ValueError("total_models not set")
-            return sample_activity_parametric(self.total_models, activity, self.rng)
+    @classmethod
+    def from_paths(
+        cls,
+        *,
+        proc_json: Optional[Union[str, Path]] = None,
+        wait_json: Optional[Union[str, Path]] = None,
+        total_json: Optional[Union[str, Path]] = None,
+        qr_joblib: Optional[Mapping[str, Union[str, Path]]] = None,
+        seed: Optional[int] = None,
+        default_value: float = 0.0,
+    ) -> "ProcessingTimeSampler":
+        proc = SpecSampler.from_json(proc_json, default_value=default_value, seed=seed) if proc_json else None
+        wait = SpecSampler.from_json(wait_json, default_value=default_value, seed=seed) if wait_json else None
+        total = SpecSampler.from_json(total_json, default_value=default_value, seed=seed) if total_json else None
 
-        if self.mode == "proc_qr_plus_wait_ref":
-            if self.proc_qr is None or self.wait_reference is None:
-                raise ValueError("proc_qr and wait_reference must be set")
-            if X_row is None:
-                raise ValueError("X_row is required for proc_qr_plus_wait_ref")
-            q_preds = predict_quantiles_seconds(self.proc_qr, X_row)
-            proc_sec = sample_from_quantiles(q_preds, self.rng)
-            wait_counts = self.wait_reference.get(activity, [])
-            wait_sec = sample_from_counts(wait_counts, self.rng) if wait_counts else 0.0
-            return max(0.0, proc_sec + wait_sec)
+        qr: Dict[str, QuantileBundleSampler] = {}
+        if qr_joblib:
+            for kind, path in qr_joblib.items():
+                qr[str(kind)] = QuantileBundleSampler.from_joblib(path, seed=seed)
 
-        if self.mode == "proc_param_plus_wait_ref":
-            if self.proc_models is None or self.wait_reference is None:
-                raise ValueError("proc_models and wait_reference must be set")
-            proc_sec = sample_activity_parametric(self.proc_models, activity, self.rng)
-            wait_counts = self.wait_reference.get(activity, [])
-            wait_sec = sample_from_counts(wait_counts, self.rng) if wait_counts else 0.0
-            return max(0.0, proc_sec + wait_sec)
+        return cls(proc=proc, wait=wait, total=total, qr=qr, seed=seed)
 
-        raise ValueError(f"Unknown mode: {self.mode}")
+    def sample(
+        self,
+        activity: str,
+        *,
+        kind: str = "proc",
+        now: Optional[datetime] = None,
+        instance: int = 0,
+        rng: Optional[np.random.Generator] = None,
+        use_qr: bool = False,
+    ) -> float:
+        kind = str(kind)
+        rng = _as_rng(rng, self.seed)
 
-    def sample_total_timedelta(self, activity: str, *, X_row=None) -> timedelta:
-        return timedelta(seconds=float(self.sample_total_seconds(activity, X_row=X_row)))
+        if use_qr and kind in self.qr:
+            return float(self.qr[kind].sample(activity, now=now, instance=instance, rng=rng))
+
+        if kind == "proc":
+            if self.proc is None:
+                raise ModelSpecError("No proc sampler configured")
+            return float(self.proc.sample(activity, n=1, rng=rng))
+
+        if kind == "wait":
+            if self.wait is None:
+                raise ModelSpecError("No wait sampler configured")
+            return float(self.wait.sample(activity, n=1, rng=rng))
+
+        if kind == "total":
+            if self.total is not None:
+                return float(self.total.sample(activity, n=1, rng=rng))
+            if self.proc is None or self.wait is None:
+                raise ModelSpecError("No total sampler and proc/wait not both configured")
+            return float(self.proc.sample(activity, n=1, rng=rng) + self.wait.sample(activity, n=1, rng=rng))
+
+        raise ModelSpecError(f"Unknown kind={kind!r}")
+
+
+__all__ = [
+    "ModelSpecError",
+    "SpecSampler",
+    "QuantileBundleSampler",
+    "ProcessingTimeSampler",
+]
