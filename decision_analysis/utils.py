@@ -1,5 +1,35 @@
 import pandas as pd
 import pm4py
+import re
+
+def is_invisible_label(label):
+    """
+    Checks if a transition label represents an invisible/routing step.
+    Covers: None, 'tau', 'hid', 'skip', 'init_loop', 'sfl_sid', and raw UUIDs.
+    """
+    if label is None:
+        return True
+    
+    label = str(label).strip()
+    
+    if not label:
+        return True
+    
+    lower_label = label.lower()
+    prefixes = ["tau", "hid", "skip", "init_loop", "sfl_sid"]
+    if any(lower_label.startswith(p) for p in prefixes):
+        return True
+    
+    # 2. UUID (32+ characters and containing "-")
+    # "5f054da4-5097-4d02-99e6-68f5a25b9f1c"
+    uuid_pattern = re.compile(r'[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}', re.IGNORECASE)
+    
+    if uuid_pattern.search(label):
+        if " " not in label:
+            return True
+
+    return False
+
 
 def get_traces_from_log(log):
     """
