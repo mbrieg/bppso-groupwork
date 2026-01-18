@@ -3,7 +3,7 @@ from collections import deque
 class DecisionPoint:
     """
     This class represents a decision point (XOR Split Place) in the petri net.
-    There can be tau transitions used for routing loic that do not represent the real work.
+    There can be tau transitions used for routing logic that do not represent the real work.
     If we try to decide where to go next based on solely on the immediate previous node, we might land on an invisible transition, which actually give us no context.
     So, we need backtracking to look through the tau transitions to find last 'actual' activity that occured.
     This provides us the necessary context for making decisions.
