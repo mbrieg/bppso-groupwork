@@ -5,3 +5,5 @@ __pycache__/
 *.pkl
 
 .vscode/
+.idea/
+
