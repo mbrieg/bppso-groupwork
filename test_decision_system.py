@@ -46,16 +46,26 @@ def test_system():
         print(f"   Real Inputs (Context): {dp.incoming_activities}")
         print(f"   Possible Outputs: {dp.get_possible_activities()}")
         
+        if manager.mode == 'advanced' and hasattr(manager.router, 'classifiers'):
+            # Check if a Tree exists for this specific decision point
+            if place_name in manager.router.classifiers:
+                print("    [Advanced] C4.5 Decision Tree successfully trained.")
+                # Show which features (columns) the tree is using
+                feats = manager.router.feature_names.get(place_name, [])
+                print(f"    [Advanced] Features used: {feats}")
+            else:
+                print("    [Advanced] No specific ML model (Likely deterministic or not visited).")
+
         # Check if probabilities were learned
         if dp.probs_conditioned:
-            print("    Conditioned Probabilities learned (First-Hit)")
+            print("    [B] Conditioned Probabilities learned (First-Hit)")
             # Show one example
             example_trigger = list(dp.probs_conditioned.keys())[0]
-            print(f"   Example: If input is '{example_trigger}' -> {dp.probs_conditioned[example_trigger]}")
+            print(f"   [B] Example: If input is '{example_trigger}' -> {dp.probs_conditioned[example_trigger]}")
         elif dp.probs_marginal:
-            print("    Only Marginal Probabilities learned.")
+            print("   [B] Only Marginal Probabilities learned.")
         else:
-            print("    No probabilities learned (Dead decision point?)")
+            print("   [B] No probabilities learned (Dead decision point?)")
         
         count += 1
         if count >= 3: break
@@ -82,9 +92,22 @@ def test_system():
         next_transition = manager.get_next_transition(test_place_obj, {'prev_activity': fake_prev_act})
         
         if next_transition:
-            print(f" Manager Decision: Fire transition '{next_transition.label}'")
+            # 1. Get the technical name (Label or ID)
+            trans_display_name = next_transition.label if next_transition.label else next_transition.name
+            
+            # 2. Find the Target Activity (Reverse Lookup)
+            # we look through the dict: { "Activity Name": TransitionObj }
+            target_activity = "Unknown Target"
+            
+            for act_name, trans_obj in test_dp.outgoing_transitions.items():
+                if trans_obj == next_transition:
+                    target_activity = act_name
+                    break
+          
+            print(f" Manager Decision: Target Activity is '{target_activity}' --> Fire transition '{trans_display_name}'")
+            
         else:
-            print(" Manager returned none (Dead end or error)")
+            print(" Manager returned None (Dead end or error)")
 
     print("\n System test completed.")
 

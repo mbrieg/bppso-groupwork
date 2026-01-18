@@ -1,0 +1,124 @@
+{
+  "A_Accepted": {
+    "dist": "const",
+    "value": 181.935
+  },
+  "A_Cancelled": {
+    "dist": "const",
+    "value": 0.028
+  },
+  "A_Complete": {
+    "dist": "const",
+    "value": 136.63
+  },
+  "A_Concept": {
+    "dist": "const",
+    "value": 4927.935
+  },
+  "A_Create Application": {
+    "dist": "const",
+    "value": 0.043
+  },
+  "A_Denied": {
+    "dist": "const",
+    "value": 0.033
+  },
+  "A_Incomplete": {
+    "dist": "const",
+    "value": 29.369
+  },
+  "A_Pending": {
+    "dist": "const",
+    "value": 0.003
+  },
+  "A_Submitted": {
+    "dist": "const",
+    "value": 0.298
+  },
+  "A_Validating": {
+    "dist": "const",
+    "value": 26.052500000000002
+  },
+  "O_Accepted": {
+    "dist": "const",
+    "value": 0.004
+  },
+  "O_Cancelled": {
+    "dist": "const",
+    "value": 0.01
+  },
+  "O_Create Offer": {
+    "dist": "const",
+    "value": 1.02
+  },
+  "O_Created": {
+    "dist": "const",
+    "value": 24.528
+  },
+  "O_Refused": {
+    "dist": "const",
+    "value": 0.011
+  },
+  "O_Returned": {
+    "dist": "const",
+    "value": 168.95
+  },
+  "O_Sent (mail and online)": {
+    "dist": "const",
+    "value": 0.017
+  },
+  "O_Sent (online only)": {
+    "dist": "const",
+    "value": 266.6035
+  },
+  "W_Assess potential fraud": {
+    "dist": "gamma",
+    "params": {
+      "a": 0.30751473895517784,
+      "scale": 1026688.895792394
+    }
+  },
+  "W_Call after offers": {
+    "dist": "gamma",
+    "params": {
+      "a": 0.455367088722411,
+      "scale": 699060.4723727424
+    }
+  },
+  "W_Call incomplete files": {
+    "dist": "lognorm",
+    "params": {
+      "s": 2.577497024888081,
+      "scale": 12028.505154148372
+    }
+  },
+  "W_Complete application": {
+    "dist": "lognorm",
+    "params": {
+      "s": 2.73234632167287,
+      "scale": 2216.182890015545
+    }
+  },
+  "W_Handle leads": {
+    "dist": "lognorm",
+    "params": {
+      "s": 1.6426755211229223,
+      "scale": 117.7260725787135
+    }
+  },
+  "W_Personal Loan collection": {
+    "dist": "const",
+    "value": 23.444499999999998
+  },
+  "W_Shortened completion ": {
+    "dist": "const",
+    "value": 2.747
+  },
+  "W_Validate application": {
+    "dist": "lognorm",
+    "params": {
+      "s": 3.669954700858627,
+      "scale": 1523.7087057661938
+    }
+  }
+}

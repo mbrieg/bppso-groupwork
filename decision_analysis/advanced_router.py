@@ -5,6 +5,7 @@ import random
 import pandas as pd
 import numpy as np
 from collections import defaultdict
+from .utils import is_invisible_label
 from pm4py.algo.conformance.alignments.petri_net import algorithm as align_algo
 from pm4py.objects.log.obj import EventLog
 from sklearn.model_selection import train_test_split, StratifiedKFold
@@ -45,7 +46,7 @@ class AdvancedRouter:
             "day_of_week"
         ]
 
-    def train(self, horizon=60):
+    def train(self, horizon=60, debug=False):
         print(f"Training Advanced Router (Alignments + Data-Aware C4.5)...")
         
         # 1. extract data (using alignments)
@@ -72,6 +73,10 @@ class AdvancedRouter:
             
             print(f"\n--- Training Decision Point: {dp_name} ---")
             
+            # Pre-processing and subsampling
+            df = df[~df['y'].apply(is_invisible_label)]
+            if df.empty: continue
+
             # Pre-processing and subsampling
             df = self._preprocess_data(df)
             if df.empty: continue
@@ -228,28 +233,33 @@ class AdvancedRouter:
             log_pos = -1
             last_activity = "__START__"
 
-            for model_move, log_move in aln:
-                if log_move != ">>":
+            for log_label, model_label in aln:
+                if log_label != ">>":
                     log_pos += 1
                 
-                if model_move == ">>": continue # Skip invisible model steps if any
-
+                if model_label == ">>": continue # Skip invisible model steps if any
+    
                 # Find transition object in net
-                # Alignments return (name, label), we need to match 
-                # For simplicity, we assume model_move is the Transition Label or Name
                 curr_trans_obj = None
+                
+                # PM4Py Alignment tuple: (name, label)
+                # Doğru transition objesini bulmak için eşleştirme yapıyoruz
+                target_search = model_label
+                if isinstance(model_label, tuple):
+                    target_search = model_label[0]
+                
                 for t in self.net.transitions:
-                    if t.name == model_move[0] or t.label == model_move[1]:
+                    if t.name == target_search or t.label == target_search:
                         curr_trans_obj = t
                         break
                     
-                if not curr_trans_obj and model_move[1] is not None:
-                     for t in self.net.transitions:
-                        if t.label == model_move[1]:
+                    if isinstance(model_label, tuple) and len(model_label) > 1:
+                        if t.label == model_label[1]:
                             curr_trans_obj = t
                             break
                 
-                if not curr_trans_obj: continue
+                if not curr_trans_obj: 
+                    continue
 
                 # is this transition triggered from a DP?
                 if curr_trans_obj in trans_preset:
@@ -259,7 +269,13 @@ class AdvancedRouter:
                     
                     if len(active_dps) == 1:
                         dp_name = list(active_dps)[0]
-                        outcome = trans_map.get(curr_trans_obj)
+                        #outcome = trans_map.get(curr_trans_obj)
+                        dp_obj = self.decision_points[dp_name]
+
+                        for act_name, trans in dp_obj.outgoing_transitions.items():
+                            if trans == curr_trans_obj:
+                                outcome = act_name
+                                break
 
                         if outcome:
                             # build row
@@ -286,7 +302,7 @@ class AdvancedRouter:
                             place_to_rows[dp_name].append(row)
 
                 if curr_trans_obj.label:
-                    last_activity = curr_trans_obj.label
+                    last_activity = curr_trans_obj.label.strip()
 
         final_data = {k: pd.DataFrame(v) for k,v in place_to_rows.items()}
         try:

@@ -3,12 +3,12 @@ import os
 import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent / 'sim_core'))
+from .utils import is_invisible_label
 
 from sim_core.bpmn_io import read_bpmn
 from sim_core.pn_model import wrap_net
 
 from collections import deque
-from .discovery import ProcessDiscovery
 from .structures import DecisionPoint
 from .basic_router import BasicRouter
 from .advanced_router import AdvancedRouter
@@ -134,19 +134,20 @@ class DecisionPointManager:
                     label = trans.label
                     name = trans.name
 
-                    is_hidden = (label is None) or \
-                                (isinstance(label, str) and (label.startswith("hid") or label.startswith("tau")))
+                    is_hidden = is_invisible_label(trans.label)
                     
                     activity_name = None
 
-                    if self.mode == 'basic' and is_hidden:
-                        # Basic Router için görünmez yolları çöz
+                    if is_hidden:
+                        # Basic Router + Advanced için görünmez yolları çöz
                         activity_name = self._resolve_downstream_activity(trans)
-                    elif label:
-                        activity_name = label.strip()
+                        if not activity_name:
+                            activity_name = trans.name
+                    elif trans.label:
+                        activity_name = trans.label.strip()
                     else:
                         # Advanced mode veya görünür ama etiketsiz (nadiren olur)
-                        activity_name = name
+                        activity_name = trans.name
                     
                     if activity_name:
                         dp.add_outgoing(trans, activity_name)
@@ -159,7 +160,7 @@ class DecisionPointManager:
 
     def _resolve_downstream_activity(self, start_trans):
         """
-        BASIC MODE ONLY:
+        BASIC MODE ONLY for now:
         Looks past silent transitions to find the next visible activity name.
         Uses BFS to find the nearest real activity.
         """
@@ -173,14 +174,10 @@ class DecisionPointManager:
             steps += 1
             
             # 1. Bu geçişin etiketi geçerli bir aktivite mi?
-            curr_lbl = curr_trans.label
-            is_real = curr_lbl and not (curr_lbl.startswith("hid") or curr_lbl.startswith("tau"))
-            
-            if is_real:
-                return curr_lbl.strip()
+            if not is_invisible_label(curr_trans.label):
+                return curr_trans.label.strip()
             
             # 2. Değilse, bir sonraki adımları kuyruğa ekle
-            has_outgoing = False
             for out_arc in curr_trans.out_arcs:
                 next_place = out_arc.target
                 for next_arc in next_place.out_arcs:
@@ -188,7 +185,6 @@ class DecisionPointManager:
                     if next_trans not in visited:
                         visited.add(next_trans)
                         queue.append(next_trans)
-                        has_outgoing = True
             
         return None
 

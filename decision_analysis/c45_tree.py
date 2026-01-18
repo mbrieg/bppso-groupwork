@@ -62,6 +62,18 @@ class C45DecisionTree:
 
         self._classes_ = list(y.value_counts().index)
 
+        if len(self._classes_) <= 1:
+            num_samples = len(y)
+            prediction = self._classes_[0] if self._classes_ else None
+            distribution = y.value_counts().to_dict()
+            self.root = TreeNode(
+                is_leaf=True, 
+                prediction=prediction, 
+                distribution=distribution, 
+                num_samples=num_samples
+            )
+            return
+
         declared_cols = [c for c in self.attribute_types.keys() if c in X.columns]
         if not declared_cols:
             raise ValueError("None of the attribute_types columns exist in X.")

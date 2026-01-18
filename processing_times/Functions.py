@@ -310,3 +310,4 @@ def sample_processing_time(model, n=1):
         return list(stats.lognorm.rvs(s, loc=0.0, scale=scale, size=n))
 
     raise ValueError("Unknown dist: " + str(model["dist"]))
+

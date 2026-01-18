@@ -1,9 +1,10 @@
 from collections import deque
+from .utils import is_invisible_label
 
 class DecisionPoint:
     """
     This class represents a decision point (XOR Split Place) in the petri net.
-    There can be tau transitions used for routing loic that do not represent the real work.
+    There can be tau transitions used for routing logic that do not represent the real work.
     If we try to decide where to go next based on solely on the immediate previous node, we might land on an invisible transition, which actually give us no context.
     So, we need backtracking to look through the tau transitions to find last 'actual' activity that occured.
     This provides us the necessary context for making decisions.
@@ -69,7 +70,7 @@ class DecisionPoint:
         direct_preset = {arc.source for arc in place.in_arcs}
 
         #Filter for transitions that actually have a name(Label is not none)
-        labels = {t.label.strip() for t in direct_preset if t.label is not None}
+        labels = {t.label.strip() for t in direct_preset if not is_invisible_label(t.label)}
 
         # If we found real activities then return them directly
         if labels:
@@ -87,11 +88,11 @@ class DecisionPoint:
         #Look at the places before the immediate invisible transitions
         for t in direct_preset:
             visited_transitions.add(t)
-            if t.label is None: # confirming it is invisible
+            if is_invisible_label(t.label): 
                 for arc in t.in_arcs:
                     prev_place = arc.source
                     if prev_place not in visited_places:
-                        #If its not visited add to the queue
+                        # If its not visited add to the queue
                         visited_places.add(prev_place)
                         queue.append((prev_place, 1)) # depth = 1
 
@@ -110,7 +111,7 @@ class DecisionPoint:
                     continue
                 visited_transitions.add(t)
 
-                if t.label is not None:
+                if not is_invisible_label(t.label):
                     # found one, bc it has a label now real activity
                     visible_labels.add(t.label.strip())
                 else:
