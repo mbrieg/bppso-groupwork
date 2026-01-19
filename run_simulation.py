@@ -11,6 +11,7 @@ from sim_core.engine import Engine
 from resources.ResourceManager import ResourceManager
 from decision_analysis.decision_point_manager import DecisionPointManager
 
+
 def run_system_test():
     print("\n" + "="*60)
     print("STARTING FULL SIMULATION (NEW STRUCTURE)")
@@ -69,5 +70,7 @@ def run_system_test():
     print(f"Results saved to: {output_csv}")
     
     print("-" * 30)
+
+
 if __name__ == "__main__":
     run_system_test()
