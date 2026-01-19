@@ -160,24 +160,22 @@ class DecisionPointManager:
 
     def _resolve_downstream_activity(self, start_trans):
         """
-        BASIC MODE ONLY for now:
+        Basic + Advanced:
         Looks past silent transitions to find the next visible activity name.
         Uses BFS to find the nearest real activity.
         """
         queue = deque([start_trans])
         visited = {start_trans}
         
-        # Maksimum 100 adım ileri git (Güvenlik)
+        # Max 100 steps
         steps = 0
         while queue and steps < 100:
             curr_trans = queue.popleft()
             steps += 1
             
-            # 1. Bu geçişin etiketi geçerli bir aktivite mi?
             if not is_invisible_label(curr_trans.label):
                 return curr_trans.label.strip()
             
-            # 2. Değilse, bir sonraki adımları kuyruğa ekle
             for out_arc in curr_trans.out_arcs:
                 next_place = out_arc.target
                 for next_arc in next_place.out_arcs:
