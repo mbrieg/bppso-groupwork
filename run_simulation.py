@@ -19,7 +19,7 @@ def run_system_test():
 
     xes_path = os.path.join("data", "BPI Challenge 2017.xes.gz")
     bpmn_path = os.path.join("data", "process_model.bpmn")
-    output_csv = "final_simulation_log.csv"
+    output_csv = "sim_output/final_simulation_log.csv"
 
     if not os.path.exists(xes_path):
         print(f"CRITICAL ERROR: Log file not found at {xes_path}")
