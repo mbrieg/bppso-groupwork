@@ -217,6 +217,26 @@ class DecisionPointManager:
         # ask the Router: "Where should I go?"
         predicted_activity_name = self.router.predict(current_place.name, prediction_input)
 
+        #Infinite loop in W_Complete application detected in the final_output csv --> Infinite loop breaker
+        #Test
+        if isinstance(trace_history, list):
+            loop_count = 0
+            for act in reversed(trace_history):
+                if act == predicted_act:
+                    loop_count += 1
+                else:
+                    break
+            
+            #Threshold BPI 2017 --> 20 for W_
+            SAFE_LIMIT = 20 
+            
+            if loop_count >= SAFE_LIMIT:
+                print(f"DEBUG: Loop limit ({SAFE_LIMIT}) hit for {predicted_act}. Breaking loop.")
+                # Alternative activity ( A_Accepted / O_Create Offer)
+                alternatives = [act for act in dp.outgoing_transitions.keys() if act != predicted_act]
+                if alternatives:
+                    predicted_act = alternatives[0]
+
          # convert Name back to Transition Object
         if predicted_activity_name and predicted_activity_name in dp.outgoing_transitions:
             return dp.outgoing_transitions[predicted_activity_name]

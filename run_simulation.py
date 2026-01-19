@@ -8,7 +8,6 @@ sys.path.append(os.path.join(current_dir, "sim_core"))
 sys.path.append(os.path.join(current_dir, "resources"))
 
 from sim_core.engine import Engine
-#from sim_core.pn_model import wrap_net # now done by DecisionPointManager
 from resources.ResourceManager import ResourceManager
 from decision_analysis.decision_point_manager import DecisionPointManager
 
