@@ -130,9 +130,14 @@ class Engine:
             else:  # Real Transition
 
                 label = self.pn.labels.get(tid, tid)
-                print(f"[DEBUG RESOURCE] Asking for resource for task: '{label}' (ID: {tid})")
+                # print(f"[DEBUG RESOURCE] Asking for resource for task: '{label}' (ID: {tid})")
                 task_duration = fk.sample_duration(label, path=self.time_model_path)  # TODO: Insert duration of event
                 res = self.resource_manager.assign_resource(label, self.now, task_duration)
+                if res is None:
+                    # Optional: Print warning only once per activity type to avoid spam
+                    print(f"  [WARN] No resource mapping for '{label}'. Assigning 'System_Auto'.")
+                    res = "System_Auto"
+
                 if res:  # Resource is assigned NOW
                     heapq.heappush(self.queue, Event(self.now, "START", case_id, tid, res, task_duration))
                 else:
