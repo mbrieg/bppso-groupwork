@@ -94,6 +94,8 @@ class Engine:
                 if all(m.get(p, 0) > 0 for p in inputs):
                     potential.append(t)
             print(f"  -> Enabled Transitions found: {potential}")
+            potential_labels = [self.pn.labels.get(t, t).strip() for t in potential]
+            print(f"  -> Enabled Labels: {potential_labels}")
             if not potential:
                 print("  -> CRITICAL: No transitions enabled. Check Initial Marking (im).")
 
@@ -130,6 +132,10 @@ class Engine:
                                 break
                             else:
                                 # The manager chose a path, but it's not enabled.
+                                required_inputs = self.pn.inputs.get(t_obj.name, [])
+                                input_status = {p: m.get(p, 0) for p in required_inputs}
+                                print(f"  -> [DEBUG ENGINE] Manager suggested {t_obj.name} (Label: {self.pn.labels.get(t_obj.name, '')}) but it is NOT in enabled list: {enabled}")
+                                print(f"  -> [DEBUG ENGINE] Required inputs for {t_obj.name}: {input_status}")
                                 # Fallback to standard behavior.
                                 pass
 
