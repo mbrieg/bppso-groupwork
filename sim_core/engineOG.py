@@ -17,14 +17,14 @@ class Event:
 
 
 class EngineOG:
-    def __init__(self, pn, spawner, resource_manager, start_time=None, max_cases=100, pt_sampler = None):
+    def __init__(self, pn, spawner, resource_manager, decision_manager, start_time=None, max_cases=100, pt_sampler = None):
         # Managers
         self.pn = pn
         self.spawner = spawner
         self.resource_manager = resource_manager
         self.pt = pt_sampler
         # TODO insert processing times and decision point managers/interfaces HERE
-
+        self.decision_manager = decision_manager
         # Other stuff
         self.now = start_time or datetime(2016, 1, 1, 9, 15, 0)
         self.queue = []
@@ -32,6 +32,9 @@ class EngineOG:
         self.log = []
         self.next_case_id = 0
         self.max_cases = max_cases
+
+        # ### Dict to track the current last activity for each case (DP)
+        self.case_last_activity = {}
 
 
     def spawn(self, at_time=None):
@@ -58,7 +61,11 @@ class EngineOG:
         enabled = [t for t in self.pn.trans_ids if all(m.get(p, 0) > 0 for p in self.pn.inputs.get(t, []))]
 
         while enabled:
-            tid = random.choice(enabled)    # TODO @Zeynep: Insert get_next_transition() from decision manager --> sid...
+            #Get the last activity for this specific case
+            last_act = self.case_last_activity.get(case_id, None)
+            #tid = random.choice(enabled)    # TODO @Zeynep: Insert get_next_transition() from decision manager --> sid...
+            # ### DP Integration
+            tid = self.decision_manager.get_next_transition(case_id = case_id, enabled_transitions=enabled, last_activity=last_act)
             label = self.pn.labels.get(tid, "")
 
             if label == "":     # Silent Gateway, instant consume and produce
@@ -115,7 +122,7 @@ class EngineOG:
     def _handle_spawn(self, e):
         self.next_case_id += 1
         self.cases[e.case_id] = dict(self.pn.im)
-
+        self.case_last_activity[e.case_id] = None # a new memory for each case
         if self.next_case_id < self.max_cases:
             next_time = self.spawner.calculate_next_spawn(self.now)
             heapq.heappush(self.queue, Event(next_time, "SPAWN", self.next_case_id + 1))
@@ -138,6 +145,9 @@ class EngineOG:
         self._produce(self.cases[e.case_id], e.transition_id)
         self._record(e, "complete")
 
+        if label !="":
+            self.case_last_activity[e.case_id] = label # write to the memory when is completed
+            
         self._process_flow(e.case_id)
 
     def _consume(self, m, tid):

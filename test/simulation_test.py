@@ -1,8 +1,11 @@
 import os
-
+import sys
 import pandas as pd
 from pathlib import Path
+project_root = Path(__file__).resolve().parents[1]
+sys.path.append(str(project_root))
 
+from decision_analysis.DPManager import DPManager
 from resources.ResourceManager import ResourceManager
 from sim_core.engineOG import EngineOG
 from sim_core.pn_model import wrap_net
@@ -17,11 +20,16 @@ def run_test():
     availabilities_path = ''
 
     print("Loading BPMN Model...")
-    bpmn_net, initial_marking, final_marking = read_bpmn('../data/process_model.bpmn')
+    bpmn_net, initial_marking, final_marking = read_bpmn('data/process_model.bpmn')
     pn_model = wrap_net(bpmn_net, initial_marking, final_marking)
-
+    
     print("Initializing Manager and Engine...")
     res_manager = ResourceManager()
+
+
+    print("Initializing Decision Manager")
+    rules_path = Path(__file__).resolve().parents[1] / "decision_prob_rules.json"
+    dp_manager = DPManager(pn_model, str(rules_path))
 
     print("SpawnRates...")
     holidays = get_holidays()                  # loads or generates NL holidays and caches them
@@ -42,7 +50,7 @@ def run_test():
         default_value=60.0
     )
 
-    engine = EngineOG(pn_model, spawner, res_manager, pt_sampler=pt)
+    engine = EngineOG(pn_model, spawner, res_manager,dp_manager, pt_sampler=pt)
 
     print("Running Simulation...")
     engine.spawn()
@@ -50,7 +58,7 @@ def run_test():
 
     sim_log = pd.DataFrame(engine.log)
     print("\n--- Simulation Output ---")
-    print(sim_log.head(10))
+    print(sim_log.head(50))
 
     sim_log.to_csv("test_output.csv", index=False)
     print("\nResults saved to 'test_output.csv'")
