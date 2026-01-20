@@ -29,7 +29,7 @@ def test_system():
     # 2. initialize the manager
     # trigger Discovery -> Structure Analysis -> Basic Training
     print("\n--- 2. INITIALIZING MANAGER ---")
-    manager = DecisionPointManager(log, 
+    manager = DecisionPointManager(xes_path=log_path,
                                    bpmn_path=bpmn_path,
                                    mode='basic', 
                                    output_folder=output_folder)
