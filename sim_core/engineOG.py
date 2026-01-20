@@ -66,6 +66,10 @@ class EngineOG:
                 self._produce(m, tid)
                 enabled = [t for t in self.pn.trans_ids if all(m.get(p, 0) > 0 for p in self.pn.inputs.get(t, []))]
             else:
+
+
+
+                '''Processing Times'''
                 if label.startswith(("A_", "O_")):
                     sec = self.pt.sample(label, kind="total", use_qr=False)
                     duration = timedelta(seconds=float(sec))
@@ -89,6 +93,8 @@ class EngineOG:
                         use_qr=False
                     )
                     duration = timedelta(seconds=float(sec))
+                ''' End Processing Times '''
+
 
                 res = self.resource_manager.assign_resource(label, self.now, duration)
                 if res:     # Resource is assigned NOW,
