@@ -16,11 +16,12 @@ class Event:
 
 
 class EngineOG:
-    def __init__(self, pn, spawner, resource_manager, start_time=None, max_cases=100):
+    def __init__(self, pn, spawner, resource_manager, start_time=None, max_cases=100, pt_sampler = None):
         # Managers
         self.pn = pn
         self.spawner = spawner
         self.resource_manager = resource_manager
+        self.pt = pt_sampler
         # TODO insert processing times and decision point managers/interfaces HERE
 
         # Other stuff
@@ -30,6 +31,7 @@ class EngineOG:
         self.log = []
         self.next_case_id = 0
         self.max_cases = max_cases
+
 
     def spawn(self, at_time=None):
         heapq.heappush(self.queue, Event(at_time or self.now, "SPAWN", self.next_case_id + 1))
@@ -62,14 +64,38 @@ class EngineOG:
                 self._consume(m, tid)
                 self._produce(m, tid)
                 enabled = [t for t in self.pn.trans_ids if all(m.get(p, 0) > 0 for p in self.pn.inputs.get(t, []))]
-            else:   # Real Transition
-                duration = timedelta(minutes=1)     # TODO @Simon: Insert duration for given event
+            else:
+                if label.startswith(("A_", "O_")):
+                    sec = self.pt.sample(label, kind="total", use_qr=False)
+                    duration = timedelta(seconds=float(sec))
+                else:
+                    # Processing times: Ich brauche den auskommentierten code
+                    # instance = self.cases_meta[case_id]["history"].count(label)
+
+                    # attrs = self.cases_meta[case_id]["attributes"]
+                    # ctx = {
+                    #    "case:ApplicationType": attrs.get("case:ApplicationType", "UNK"),
+                    #    "case:RequestedAmount": float(attrs.get("case:RequestedAmount", 0.0)),
+                    #}
+
+                    sec = self.pt.sample(
+                        label,
+                        kind="proc",
+                        now=self.now,
+                        # instance=instance,
+                        # ctx=ctx,
+                        # rng=self.rng,
+                        use_qr=False
+                    )
+                    duration = timedelta(seconds=float(sec))
+
                 res = self.resource_manager.assign_resource(label, self.now, duration)
-                if res:     # Resource is assigned NOW
+                if res:     # Resource is assigned NOW,
                     if label.startswith('W_'):
-                        heapq.heappush(self.queue, Event(self.now, "START", case_id, tid, res, duration))
+                        # do not change duration, because the sampler also takes into account duration between activities
+                        heapq.heappush(self.queue, Event(self.now+duration, "START", case_id, tid, res, duration))
                     else:
-                        heapq.heappush(self.queue, Event(self.now, "COMPLETE", case_id, tid, res, duration))
+                        heapq.heappush(self.queue, Event(self.now+duration, "COMPLETE", case_id, tid, res, duration))
                 else:   # Find next possible starting time
                     next_avail_time = self.resource_manager.get_earliest_availability(label, self.now)
                     retry_time = self.now + timedelta(minutes=15)       # Check if resource is free until then
@@ -91,8 +117,8 @@ class EngineOG:
     def _handle_start(self, e):
         self._consume(self.cases[e.case_id], e.transition_id)
         self._record(e, "start")
-        duration = timedelta(minutes=random.randint(5, 15))# 1.3 Processing times
-        heapq.heappush(self.queue, Event(self.now + duration, "COMPLETE", e.case_id, e.transition_id, e.resource))
+        duration = e.duration# 1.3 Processing times
+        heapq.heappush(self.queue, Event(self.now + duration, "COMPLETE", e.case_id, e.transition_id, e.resource, duration))
 
     def _handle_complete(self, e):
 
@@ -103,6 +129,7 @@ class EngineOG:
 
         self._produce(self.cases[e.case_id], e.transition_id)
         self._record(e, "complete")
+
         self._process_flow(e.case_id)
 
     def _consume(self, m, tid):

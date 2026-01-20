@@ -1,10 +1,14 @@
+import os
+
 import pandas as pd
+from pathlib import Path
 
 from resources.ResourceManager import ResourceManager
 from sim_core.engineOG import EngineOG
 from sim_core.pn_model import wrap_net
 from sim_core.bpmn_io import read_bpmn
 from spawn_rates import AdvancedSpawner, get_rate_table, get_holidays
+from processing_times.sampling import ProcessingTimeSampler
 
 
 def run_test():
@@ -27,8 +31,18 @@ def run_test():
         holidays=holidays,
         seed=42,
     )
+    root = Path(__file__).resolve().parents[1]  # ggf. anpassen (0/1/2)
+    pt_dir = root / "processing_times"
 
-    engine = EngineOG(pn_model, spawner, res_manager, max_cases=100)
+    pt = ProcessingTimeSampler.from_paths(
+        proc_json=pt_dir / "processing_models_proc.json",
+        total_json=pt_dir / "processing_models_full_dur.json",
+        wait_json=pt_dir / "wait_reference.json",
+        seed=42,
+        default_value=60.0
+    )
+
+    engine = EngineOG(pn_model, spawner, res_manager, pt_sampler=pt)
 
     print("Running Simulation...")
     engine.spawn()

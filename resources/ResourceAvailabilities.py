@@ -1,4 +1,6 @@
 import datetime
+
+import holidays.countries
 import pandas as pd
 import os.path
 
@@ -18,10 +20,19 @@ class ResourceAvailabilities:
         self.start_date = datetime.date(2016, 1, 1)  # Day 0 of simulation
         self.interval = interval
 
-        if availabilities_file is not None:
-            self.load_schedule(availabilities_file)
+        self.holidays = {
+            (1, 1): "New Year's Day",
+            (27, 4): "King's Day",
+            (5, 5): "Liberation Day",
+            (25, 12): "Christmas Day",
+            (26, 12): "Boxing Day"
+        }
+        self.nl_holidays = holidays.countries.Netherlands()
 
-    def load_schedule(self, file: str):
+        if availabilities_file is not None:
+            self._load_schedule(availabilities_file)
+
+    def _load_schedule(self, file: str):
         current_dir = os.path.dirname(os.path.abspath(__file__))
         path = os.path.join(current_dir, 'availabilities', file)
         if not os.path.exists(path):
@@ -33,12 +44,18 @@ class ResourceAvailabilities:
             key = (row['Resource'], row['DayId'])
             self.schedule[key] = (row['StartTime'], row['EndTime'])
 
-    def get_day_id(self, current_time):
+    def _get_day_id(self, current_time):
         delta = current_time.date() - self.start_date
         return delta.days % self.interval
 
     def is_resource_available(self, res_name, current_time):
-        day_id = self.get_day_id(current_time)
+        holiday = self.nl_holidays.get(current_time.date())
+        if ((current_time.date().day, current_time.date().month) in self.holidays
+                or holiday == "Hemelvaartsdag"):    # Ascension Day
+            if res_name != 'User_1':
+                return False
+
+        day_id = self._get_day_id(current_time)
         shift = self.schedule.get((res_name, day_id))
 
         if not shift:
@@ -51,7 +68,7 @@ class ResourceAvailabilities:
         if self.is_resource_available(res_name, current_time):
             return current_time
 
-        current_day_id = self.get_day_id(current_time)
+        current_day_id = self._get_day_id(current_time)
         shift = self.schedule.get((res_name, current_day_id))
         if shift:
             start_time, end_time = shift
