@@ -43,6 +43,7 @@ class Engine:
 
         self.proc_sampler = ProcessingTimeSampler.from_paths(
             proc_json=os.path.join(pt_dir, "processing_models_proc.json"),
+            qr_joblib={"proc": os.path.join(pt_dir, "proc_qr_bundle.joblib")},  # <—
             seed=None,
             default_value=60.0
         )
@@ -146,7 +147,7 @@ class Engine:
                 enabled = [t for t in self.pn.trans_ids if all(m.get(p, 0) > 0 for p in self.pn.inputs.get(t, []))]
             else:  # Real Transition
 
-                label = self.pn.labels.get(tid, tid)
+                label = self.pn.labels.get(tid, tid).strip()
                 # print(f"[DEBUG RESOURCE] Asking for resource for task: '{label}' (ID: {tid})")
                 # label = self.pn.labels.get(tid, tid)
                 # print(f"[DEBUG RESOURCE] Asking for resource for task: '{label}' (ID: {tid})")
@@ -163,9 +164,26 @@ class Engine:
                     # A/O ohne Ressourcenlogik starten (sonst baust du künstliche Bottlenecks)
                     # heapq.heappush(self.queue, Event(self.now, "START", case_id, tid, "System_Auto", task_duration))
                 else:
-                    # W_ bleibt wie gehabt: proc samplen
-                    sec = self.total_sampler.sample(label, kind="total", rng=self.rng, use_qr=False)
+                    # Instance-Index (wie oft kam diese Activity schon im Case vor)
+                    instance = self.cases_meta[case_id]["history"].count(label)
+
+                    attrs = self.cases_meta[case_id]["attributes"]
+                    ctx = {
+                        "case:ApplicationType": attrs.get("case:ApplicationType", "UNK"),
+                        "case:RequestedAmount": float(attrs.get("case:RequestedAmount", 0.0)),
+                    }
+
+                    sec = self.proc_sampler.sample(
+                        label,
+                        kind="proc",
+                        now=self.now,
+                        instance=instance,
+                        ctx=ctx,
+                        rng=self.rng,
+                        use_qr=True  # <— QR aktiv
+                    )
                     task_duration = timedelta(seconds=float(sec))
+
                 res = self.resource_manager.assign_resource(label, self.now, task_duration)
                 if res is None:
                     # Optional: Print warning only once per activity type to avoid spam

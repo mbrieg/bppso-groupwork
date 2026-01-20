@@ -1,496 +1,496 @@
 case:concept:name,concept:name,time:timestamp,lifecycle:transition,org:resource,case:ApplicationType,case:LoanGoal,case:RequestedAmount
-1,A_Create Application,2016-01-04 09:15:00.000000,start,System_Auto,New credit,Unknown,51442.23
-1,A_Create Application,2016-01-04 09:15:01.000000,complete,System_Auto,New credit,Unknown,51442.23
-1,A_Submitted,2016-01-04 09:15:01.000000,start,System_Auto,New credit,Unknown,51442.23
-1,A_Submitted,2016-01-04 09:15:02.000000,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Handle leads,2016-01-04 09:15:02.000000,start,System_Auto,New credit,Unknown,51442.23
-1,W_Handle leads,2016-01-04 09:18:16.204513,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Handle leads,2016-01-04 09:18:16.204513,start,System_Auto,New credit,Unknown,51442.23
-1,W_Handle leads,2016-01-04 09:18:37.532157,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Handle leads,2016-01-04 09:18:37.532157,start,System_Auto,New credit,Unknown,51442.23
-1,W_Handle leads,2016-01-04 09:25:21.408325,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Handle leads,2016-01-04 09:25:21.408325,start,System_Auto,New credit,Unknown,51442.23
-1,W_Handle leads,2016-01-04 09:34:33.328344,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Handle leads,2016-01-04 09:34:33.328344,start,System_Auto,New credit,Unknown,51442.23
-1,W_Handle leads,2016-01-04 09:34:38.103577,complete,System_Auto,New credit,Unknown,51442.23
-1,A_Concept,2016-01-04 09:34:38.103577,start,System_Auto,New credit,Unknown,51442.23
-2,A_Create Application,2016-01-04 09:38:50.926116,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,A_Create Application,2016-01-04 09:38:51.926116,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,A_Submitted,2016-01-04 09:38:51.926116,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,A_Submitted,2016-01-04 09:38:52.926116,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Handle leads,2016-01-04 09:38:52.926116,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Handle leads,2016-01-04 09:39:06.790207,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Handle leads,2016-01-04 09:39:06.790207,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Handle leads,2016-01-04 09:41:32.026324,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Handle leads,2016-01-04 09:41:32.026324,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Handle leads,2016-01-04 09:42:42.053020,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Handle leads,2016-01-04 09:42:42.053020,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Handle leads,2016-01-04 09:44:36.574414,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Handle leads,2016-01-04 09:44:36.574414,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Handle leads,2016-01-04 09:45:05.568333,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,A_Concept,2016-01-04 09:45:05.568333,start,System_Auto,New credit,Existing loan takeover,5304.08
-1,A_Concept,2016-01-04 10:56:46.038577,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Complete application,2016-01-04 10:56:46.038577,start,System_Auto,New credit,Unknown,51442.23
-3,A_Create Application,2016-01-04 10:57:29.412019,start,System_Auto,New credit,Home improvement,11390.18
-3,A_Create Application,2016-01-04 10:57:30.412019,complete,System_Auto,New credit,Home improvement,11390.18
-3,A_Submitted,2016-01-04 10:57:30.412019,start,System_Auto,New credit,Home improvement,11390.18
-3,A_Submitted,2016-01-04 10:57:31.412019,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Handle leads,2016-01-04 10:57:31.412019,start,System_Auto,New credit,Home improvement,11390.18
-3,W_Handle leads,2016-01-04 11:04:33.840552,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Handle leads,2016-01-04 11:04:33.840552,start,System_Auto,New credit,Home improvement,11390.18
-4,A_Create Application,2016-01-04 11:06:10.148195,start,System_Auto,New credit,Car,17440.54
-4,A_Create Application,2016-01-04 11:06:11.148195,complete,System_Auto,New credit,Car,17440.54
-4,A_Submitted,2016-01-04 11:06:11.148195,start,System_Auto,New credit,Car,17440.54
-4,A_Submitted,2016-01-04 11:06:12.148195,complete,System_Auto,New credit,Car,17440.54
-4,W_Handle leads,2016-01-04 11:06:12.148195,start,System_Auto,New credit,Car,17440.54
-3,W_Handle leads,2016-01-04 11:06:45.054282,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Handle leads,2016-01-04 11:06:45.054282,start,System_Auto,New credit,Home improvement,11390.18
-2,A_Concept,2016-01-04 11:07:13.503333,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Complete application,2016-01-04 11:07:13.503333,start,System_Auto,New credit,Existing loan takeover,5304.08
-5,A_Create Application,2016-01-04 11:10:41.890430,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,A_Create Application,2016-01-04 11:10:42.890430,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,A_Concept,2016-01-04 11:10:42.890430,start,System_Auto,New credit,"Other, see explanation",8736.06
-2,W_Complete application,2016-01-04 11:10:45.306413,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Complete application,2016-01-04 11:10:45.306413,start,System_Auto,New credit,Existing loan takeover,5304.08
-3,W_Handle leads,2016-01-04 11:10:58.798479,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Handle leads,2016-01-04 11:10:58.798479,start,System_Auto,New credit,Home improvement,11390.18
-3,W_Handle leads,2016-01-04 11:11:23.165425,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Handle leads,2016-01-04 11:11:23.165425,start,System_Auto,New credit,Home improvement,11390.18
-4,W_Handle leads,2016-01-04 11:18:42.132323,complete,System_Auto,New credit,Car,17440.54
-4,W_Handle leads,2016-01-04 11:18:42.132323,start,System_Auto,New credit,Car,17440.54
-3,W_Handle leads,2016-01-04 11:19:41.548652,complete,System_Auto,New credit,Home improvement,11390.18
-3,A_Concept,2016-01-04 11:19:41.548652,start,System_Auto,New credit,Home improvement,11390.18
-4,W_Handle leads,2016-01-04 11:20:30.588743,complete,System_Auto,New credit,Car,17440.54
-4,W_Handle leads,2016-01-04 11:20:30.588743,start,System_Auto,New credit,Car,17440.54
-4,W_Handle leads,2016-01-04 11:21:57.482973,complete,System_Auto,New credit,Car,17440.54
-4,W_Handle leads,2016-01-04 11:21:57.482973,start,System_Auto,New credit,Car,17440.54
-4,W_Handle leads,2016-01-04 11:22:35.950492,complete,System_Auto,New credit,Car,17440.54
-4,W_Handle leads,2016-01-04 11:22:35.950492,start,System_Auto,New credit,Car,17440.54
-4,W_Handle leads,2016-01-04 11:37:13.031395,complete,System_Auto,New credit,Car,17440.54
-4,A_Concept,2016-01-04 11:37:13.031395,start,System_Auto,New credit,Car,17440.54
-5,A_Concept,2016-01-04 12:32:50.825430,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,W_Complete application,2016-01-04 12:32:50.825430,start,System_Auto,New credit,"Other, see explanation",8736.06
-3,A_Concept,2016-01-04 12:41:49.483652,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Complete application,2016-01-04 12:41:49.483652,start,System_Auto,New credit,Home improvement,11390.18
-2,W_Complete application,2016-01-04 12:51:55.200435,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Complete application,2016-01-04 12:51:55.200435,start,System_Auto,New credit,Existing loan takeover,5304.08
-3,W_Complete application,2016-01-04 12:53:17.079769,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Complete application,2016-01-04 12:53:17.079769,start,System_Auto,New credit,Home improvement,11390.18
-5,W_Complete application,2016-01-04 12:57:03.720601,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,W_Complete application,2016-01-04 12:57:03.720601,start,System_Auto,New credit,"Other, see explanation",8736.06
-4,A_Concept,2016-01-04 12:59:20.966395,complete,System_Auto,New credit,Car,17440.54
-4,W_Complete application,2016-01-04 12:59:20.966395,start,System_Auto,New credit,Car,17440.54
-2,W_Complete application,2016-01-04 13:06:01.937965,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Complete application,2016-01-04 13:06:01.937965,start,System_Auto,New credit,Existing loan takeover,5304.08
-5,W_Complete application,2016-01-04 14:37:19.019510,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,W_Complete application,2016-01-04 14:37:19.019510,start,System_Auto,New credit,"Other, see explanation",8736.06
-4,W_Complete application,2016-01-04 14:53:25.940873,complete,System_Auto,New credit,Car,17440.54
-4,W_Complete application,2016-01-04 14:53:25.940873,start,System_Auto,New credit,Car,17440.54
-4,W_Complete application,2016-01-04 15:05:35.963114,complete,System_Auto,New credit,Car,17440.54
-4,W_Complete application,2016-01-04 15:05:35.963114,start,System_Auto,New credit,Car,17440.54
-2,W_Complete application,2016-01-04 15:05:53.716331,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,A_Accepted,2016-01-04 15:05:53.716331,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,A_Accepted,2016-01-04 15:08:55.651331,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Create Offer,2016-01-04 15:08:55.651331,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Create Offer,2016-01-04 15:08:56.671331,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Created,2016-01-04 15:08:56.671331,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Created,2016-01-04 15:09:21.199331,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,A_Complete,2016-01-04 15:09:21.199331,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,A_Complete,2016-01-04 15:11:37.829331,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Sent (mail and online),2016-01-04 15:11:37.829331,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Sent (mail and online),2016-01-04 15:11:38.829331,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Call after offers,2016-01-04 15:11:38.829331,start,System_Auto,New credit,Existing loan takeover,5304.08
-4,W_Complete application,2016-01-04 15:14:42.672317,complete,System_Auto,New credit,Car,17440.54
-4,W_Complete application,2016-01-04 15:14:42.672317,start,System_Auto,New credit,Car,17440.54
-3,W_Complete application,2016-01-04 15:31:27.086693,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Complete application,2016-01-04 15:31:27.086693,start,System_Auto,New credit,Home improvement,11390.18
-3,W_Complete application,2016-01-04 15:58:30.356282,complete,System_Auto,New credit,Home improvement,11390.18
-3,A_Accepted,2016-01-04 15:58:30.356282,start,System_Auto,New credit,Home improvement,11390.18
-3,A_Accepted,2016-01-04 16:01:32.291282,complete,System_Auto,New credit,Home improvement,11390.18
-3,O_Create Offer,2016-01-04 16:01:32.291282,start,System_Auto,New credit,Home improvement,11390.18
-3,O_Create Offer,2016-01-04 16:01:33.311282,complete,System_Auto,New credit,Home improvement,11390.18
-3,O_Created,2016-01-04 16:01:33.311282,start,System_Auto,New credit,Home improvement,11390.18
-3,O_Created,2016-01-04 16:01:57.839282,complete,System_Auto,New credit,Home improvement,11390.18
-3,A_Complete,2016-01-04 16:01:57.839282,start,System_Auto,New credit,Home improvement,11390.18
-3,A_Complete,2016-01-04 16:04:14.469282,complete,System_Auto,New credit,Home improvement,11390.18
-3,O_Sent (mail and online),2016-01-04 16:04:14.469282,start,System_Auto,New credit,Home improvement,11390.18
-3,O_Sent (mail and online),2016-01-04 16:04:15.469282,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Call after offers,2016-01-04 16:04:15.469282,start,System_Auto,New credit,Home improvement,11390.18
-1,W_Complete application,2016-01-04 17:45:04.397167,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Complete application,2016-01-04 17:45:04.397167,start,System_Auto,New credit,Unknown,51442.23
-1,W_Complete application,2016-01-04 21:23:35.128857,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Complete application,2016-01-04 21:23:35.128857,start,System_Auto,New credit,Unknown,51442.23
-1,W_Complete application,2016-01-05 02:05:03.311034,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Complete application,2016-01-05 02:05:03.311034,start,System_Auto,New credit,Unknown,51442.23
-4,W_Complete application,2016-01-05 04:42:12.539081,complete,System_Auto,New credit,Car,17440.54
-4,W_Complete application,2016-01-05 04:42:12.539081,start,System_Auto,New credit,Car,17440.54
-1,W_Complete application,2016-01-05 04:47:58.738781,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Complete application,2016-01-05 04:47:58.738781,start,System_Auto,New credit,Unknown,51442.23
-4,W_Complete application,2016-01-05 04:48:12.191685,complete,System_Auto,New credit,Car,17440.54
-4,A_Accepted,2016-01-05 04:48:12.191685,start,System_Auto,New credit,Car,17440.54
-4,A_Accepted,2016-01-05 04:51:14.126685,complete,System_Auto,New credit,Car,17440.54
-4,O_Create Offer,2016-01-05 04:51:14.126685,start,System_Auto,New credit,Car,17440.54
-4,O_Create Offer,2016-01-05 04:51:15.146685,complete,System_Auto,New credit,Car,17440.54
-4,O_Created,2016-01-05 04:51:15.146685,start,System_Auto,New credit,Car,17440.54
-4,O_Created,2016-01-05 04:51:39.674685,complete,System_Auto,New credit,Car,17440.54
-4,A_Complete,2016-01-05 04:51:39.674685,start,System_Auto,New credit,Car,17440.54
-4,A_Complete,2016-01-05 04:53:56.304685,complete,System_Auto,New credit,Car,17440.54
-4,O_Sent (mail and online),2016-01-05 04:53:56.304685,start,System_Auto,New credit,Car,17440.54
-4,O_Sent (mail and online),2016-01-05 04:53:57.304685,complete,System_Auto,New credit,Car,17440.54
-4,W_Call after offers,2016-01-05 04:53:57.304685,start,System_Auto,New credit,Car,17440.54
-1,W_Complete application,2016-01-05 05:57:37.987233,complete,System_Auto,New credit,Unknown,51442.23
-1,A_Accepted,2016-01-05 05:57:37.987233,start,System_Auto,New credit,Unknown,51442.23
-1,A_Accepted,2016-01-05 06:00:39.922233,complete,System_Auto,New credit,Unknown,51442.23
-1,O_Create Offer,2016-01-05 06:00:39.922233,start,System_Auto,New credit,Unknown,51442.23
-1,O_Create Offer,2016-01-05 06:00:40.942233,complete,System_Auto,New credit,Unknown,51442.23
-1,O_Created,2016-01-05 06:00:40.942233,start,System_Auto,New credit,Unknown,51442.23
-1,O_Created,2016-01-05 06:01:05.470233,complete,System_Auto,New credit,Unknown,51442.23
-1,O_Cancelled,2016-01-05 06:01:05.470233,start,System_Auto,New credit,Unknown,51442.23
-1,O_Cancelled,2016-01-05 06:01:06.470233,complete,System_Auto,New credit,Unknown,51442.23
-1,O_Create Offer,2016-01-05 06:01:06.470233,start,System_Auto,New credit,Unknown,51442.23
-1,O_Create Offer,2016-01-05 06:01:07.490233,complete,System_Auto,New credit,Unknown,51442.23
-1,O_Created,2016-01-05 06:01:07.490233,start,System_Auto,New credit,Unknown,51442.23
-1,O_Created,2016-01-05 06:01:32.018233,complete,System_Auto,New credit,Unknown,51442.23
-1,A_Complete,2016-01-05 06:01:32.018233,start,System_Auto,New credit,Unknown,51442.23
-1,A_Complete,2016-01-05 06:03:48.648233,complete,System_Auto,New credit,Unknown,51442.23
-1,O_Sent (mail and online),2016-01-05 06:03:48.648233,start,System_Auto,New credit,Unknown,51442.23
-1,O_Sent (mail and online),2016-01-05 06:03:49.648233,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Call after offers,2016-01-05 06:03:49.648233,start,System_Auto,New credit,Unknown,51442.23
-2,W_Call after offers,2016-01-05 13:07:47.857717,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Call after offers,2016-01-05 13:07:47.857717,start,System_Auto,New credit,Existing loan takeover,5304.08
-4,W_Call after offers,2016-01-06 05:06:32.575189,complete,System_Auto,New credit,Car,17440.54
-4,W_Call after offers,2016-01-06 05:06:32.575189,start,System_Auto,New credit,Car,17440.54
-3,W_Call after offers,2016-01-06 06:03:28.951175,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Call after offers,2016-01-06 06:03:28.951175,start,System_Auto,New credit,Home improvement,11390.18
-3,W_Call after offers,2016-01-07 17:09:46.544383,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Call after offers,2016-01-07 17:09:46.544383,start,System_Auto,New credit,Home improvement,11390.18
-3,W_Call after offers,2016-01-07 19:44:36.250656,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Call after offers,2016-01-07 19:44:36.250656,start,System_Auto,New credit,Home improvement,11390.18
-1,W_Call after offers,2016-01-09 01:16:06.069728,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Call after offers,2016-01-09 01:16:06.069728,start,System_Auto,New credit,Unknown,51442.23
-4,W_Call after offers,2016-01-10 10:07:01.131101,complete,System_Auto,New credit,Car,17440.54
-4,W_Call after offers,2016-01-10 10:07:01.131101,start,System_Auto,New credit,Car,17440.54
-1,W_Call after offers,2016-01-11 08:50:51.152266,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Call after offers,2016-01-11 08:50:51.152266,start,System_Auto,New credit,Unknown,51442.23
-3,W_Call after offers,2016-01-11 09:27:11.584187,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Call after offers,2016-01-11 09:27:11.584187,start,System_Auto,New credit,Home improvement,11390.18
-3,W_Call after offers,2016-01-11 09:32:47.227625,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Validate application,2016-01-11 09:32:47.227625,start,System_Auto,New credit,Home improvement,11390.18
-3,W_Validate application,2016-01-11 19:24:39.556189,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Validate application,2016-01-11 19:24:39.556189,start,System_Auto,New credit,Home improvement,11390.18
-3,W_Validate application,2016-01-11 19:37:14.636695,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Validate application,2016-01-11 19:37:14.636695,start,System_Auto,New credit,Home improvement,11390.18
-3,W_Validate application,2016-01-11 19:37:28.751039,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Validate application,2016-01-11 19:37:28.751039,start,System_Auto,New credit,Home improvement,11390.18
-3,W_Validate application,2016-01-11 19:37:52.553521,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Validate application,2016-01-11 19:37:52.553521,start,System_Auto,New credit,Home improvement,11390.18
-2,W_Call after offers,2016-01-11 19:38:28.161741,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Call after offers,2016-01-11 19:38:28.161741,start,System_Auto,New credit,Existing loan takeover,5304.08
-3,W_Validate application,2016-01-11 19:38:44.725959,complete,System_Auto,New credit,Home improvement,11390.18
-3,A_Validating,2016-01-11 19:38:44.725959,start,System_Auto,New credit,Home improvement,11390.18
-3,A_Validating,2016-01-11 19:39:10.778459,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Validate application,2016-01-11 19:39:10.778459,start,System_Auto,New credit,Home improvement,11390.18
-3,W_Validate application,2016-01-12 00:59:16.289516,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Validate application,2016-01-12 00:59:16.289516,start,System_Auto,New credit,Home improvement,11390.18
-3,W_Validate application,2016-01-12 01:04:33.925087,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Validate application,2016-01-12 01:04:33.925087,start,System_Auto,New credit,Home improvement,11390.18
-3,W_Validate application,2016-01-12 01:50:00.321619,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Validate application,2016-01-12 01:50:00.321619,start,System_Auto,New credit,Home improvement,11390.18
-3,W_Validate application,2016-01-12 06:02:15.711588,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Validate application,2016-01-12 06:02:15.711588,start,System_Auto,New credit,Home improvement,11390.18
-3,W_Validate application,2016-01-12 06:10:25.324348,complete,System_Auto,New credit,Home improvement,11390.18
-3,O_Returned,2016-01-12 06:10:25.324348,start,System_Auto,New credit,Home improvement,11390.18
-3,O_Returned,2016-01-12 06:13:14.274348,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-12 06:13:14.274348,start,System_Auto,New credit,Home improvement,11390.18
-2,W_Call after offers,2016-01-12 07:37:55.878938,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Call after offers,2016-01-12 07:37:55.878938,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Call after offers,2016-01-12 11:26:38.016580,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Call after offers,2016-01-12 11:26:38.016580,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Call after offers,2016-01-12 12:25:33.969546,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Cancelled,2016-01-12 12:25:33.969546,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Cancelled,2016-01-12 12:25:34.969546,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Create Offer,2016-01-12 12:25:34.969546,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Create Offer,2016-01-12 12:25:35.989546,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Created,2016-01-12 12:25:35.989546,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Created,2016-01-12 12:26:00.517546,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Cancelled,2016-01-12 12:26:00.517546,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Cancelled,2016-01-12 12:26:01.517546,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Cancelled,2016-01-12 12:26:01.517546,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Cancelled,2016-01-12 12:26:02.517546,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Cancelled,2016-01-12 12:26:02.517546,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Cancelled,2016-01-12 12:26:03.517546,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Create Offer,2016-01-12 12:26:03.517546,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Create Offer,2016-01-12 12:26:04.537546,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Created,2016-01-12 12:26:04.537546,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Created,2016-01-12 12:26:29.065546,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,A_Complete,2016-01-12 12:26:29.065546,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,A_Complete,2016-01-12 12:28:45.695546,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,A_Cancelled,2016-01-12 12:28:45.695546,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,A_Cancelled,2016-01-12 12:28:46.695546,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Sent (mail and online),2016-01-12 12:28:46.695546,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Sent (mail and online),2016-01-12 12:28:47.695546,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Call after offers,2016-01-12 12:28:47.695546,start,System_Auto,New credit,Existing loan takeover,5304.08
-3,W_Call incomplete files,2016-01-12 17:03:55.418890,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-12 17:03:55.418890,start,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-12 20:30:57.589348,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-12 20:30:57.589348,start,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-13 08:03:07.019886,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-13 08:03:07.019886,start,System_Auto,New credit,Home improvement,11390.18
-4,W_Call after offers,2016-01-13 12:15:03.280638,complete,System_Auto,New credit,Car,17440.54
-4,W_Call after offers,2016-01-13 12:15:03.280638,start,System_Auto,New credit,Car,17440.54
-5,W_Complete application,2016-01-13 12:45:00.921161,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,W_Complete application,2016-01-13 12:45:00.921161,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,W_Complete application,2016-01-13 12:56:38.031700,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,W_Complete application,2016-01-13 12:56:38.031700,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,W_Complete application,2016-01-13 13:26:20.445542,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,A_Accepted,2016-01-13 13:26:20.445542,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,A_Accepted,2016-01-13 13:29:22.380542,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Create Offer,2016-01-13 13:29:22.380542,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Create Offer,2016-01-13 13:29:23.400542,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Created,2016-01-13 13:29:23.400542,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Created,2016-01-13 13:29:47.928542,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,A_Complete,2016-01-13 13:29:47.928542,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,A_Complete,2016-01-13 13:32:04.558542,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Sent (mail and online),2016-01-13 13:32:04.558542,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Sent (mail and online),2016-01-13 13:32:05.558542,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,W_Call after offers,2016-01-13 13:32:05.558542,start,System_Auto,New credit,"Other, see explanation",8736.06
-1,W_Call after offers,2016-01-13 15:04:57.597696,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Call after offers,2016-01-13 15:04:57.597696,start,System_Auto,New credit,Unknown,51442.23
-5,W_Call after offers,2016-01-13 15:18:48.611007,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,W_Call after offers,2016-01-13 15:18:48.611007,start,System_Auto,New credit,"Other, see explanation",8736.06
-3,W_Call incomplete files,2016-01-13 18:36:50.810787,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-13 18:36:50.810787,start,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-13 19:56:52.702451,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-13 19:56:52.702451,start,System_Auto,New credit,Home improvement,11390.18
-2,W_Call after offers,2016-01-14 00:05:03.141040,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Call after offers,2016-01-14 00:05:03.141040,start,System_Auto,New credit,Existing loan takeover,5304.08
-5,W_Call after offers,2016-01-14 01:54:01.418459,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,W_Call after offers,2016-01-14 01:54:01.418459,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,W_Call after offers,2016-01-14 03:02:27.499742,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,W_Call after offers,2016-01-14 03:02:27.499742,start,System_Auto,New credit,"Other, see explanation",8736.06
-3,W_Call incomplete files,2016-01-14 18:18:29.986550,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-14 18:18:29.986550,start,System_Auto,New credit,Home improvement,11390.18
-4,W_Call after offers,2016-01-14 21:14:52.637984,complete,System_Auto,New credit,Car,17440.54
-4,W_Call after offers,2016-01-14 21:14:52.637984,start,System_Auto,New credit,Car,17440.54
-3,W_Call incomplete files,2016-01-15 04:32:45.488392,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-15 04:32:45.488392,start,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-15 04:37:34.892707,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-15 04:37:34.892707,start,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-15 08:39:01.040294,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-15 08:39:01.040294,start,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-15 09:30:13.607329,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-15 09:30:13.607329,start,System_Auto,New credit,Home improvement,11390.18
-2,W_Call after offers,2016-01-15 09:36:14.631388,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Call after offers,2016-01-15 09:36:14.631388,start,System_Auto,New credit,Existing loan takeover,5304.08
-5,W_Call after offers,2016-01-15 13:37:14.254672,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,W_Call after offers,2016-01-15 13:37:14.254672,start,System_Auto,New credit,"Other, see explanation",8736.06
-3,W_Call incomplete files,2016-01-15 15:35:24.885844,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-15 15:35:24.885844,start,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-15 23:58:22.891082,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-15 23:58:22.891082,start,System_Auto,New credit,Home improvement,11390.18
-5,W_Call after offers,2016-01-17 06:53:17.736889,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Cancelled,2016-01-17 06:53:17.736889,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Cancelled,2016-01-17 06:53:18.736889,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Cancelled,2016-01-17 06:53:18.736889,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Cancelled,2016-01-17 06:53:19.736889,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Cancelled,2016-01-17 06:53:19.736889,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Cancelled,2016-01-17 06:53:20.736889,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Cancelled,2016-01-17 06:53:20.736889,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Cancelled,2016-01-17 06:53:21.736889,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Cancelled,2016-01-17 06:53:21.736889,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Cancelled,2016-01-17 06:53:22.736889,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Cancelled,2016-01-17 06:53:22.736889,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Cancelled,2016-01-17 06:53:23.736889,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Cancelled,2016-01-17 06:53:23.736889,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Cancelled,2016-01-17 06:53:24.736889,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Cancelled,2016-01-17 06:53:24.736889,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Cancelled,2016-01-17 06:53:25.736889,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Cancelled,2016-01-17 06:53:25.736889,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Cancelled,2016-01-17 06:53:26.736889,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Cancelled,2016-01-17 06:53:26.736889,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Cancelled,2016-01-17 06:53:27.736889,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Create Offer,2016-01-17 06:53:27.736889,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Create Offer,2016-01-17 06:53:28.756889,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Created,2016-01-17 06:53:28.756889,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Created,2016-01-17 06:53:53.284889,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,A_Complete,2016-01-17 06:53:53.284889,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,A_Complete,2016-01-17 06:56:09.914889,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,A_Cancelled,2016-01-17 06:56:09.914889,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,A_Cancelled,2016-01-17 06:56:10.914889,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Sent (mail and online),2016-01-17 06:56:10.914889,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Sent (mail and online),2016-01-17 06:56:11.914889,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,W_Call after offers,2016-01-17 06:56:11.914889,start,System_Auto,New credit,"Other, see explanation",8736.06
-4,W_Call after offers,2016-01-17 08:05:22.618016,complete,System_Auto,New credit,Car,17440.54
-4,W_Validate application,2016-01-17 08:05:22.618016,start,System_Auto,New credit,Car,17440.54
-4,W_Validate application,2016-01-17 08:06:13.444159,complete,System_Auto,New credit,Car,17440.54
-4,W_Validate application,2016-01-17 08:06:13.444159,start,System_Auto,New credit,Car,17440.54
-4,W_Validate application,2016-01-17 08:12:17.868245,complete,System_Auto,New credit,Car,17440.54
-4,A_Validating,2016-01-17 08:12:17.868245,start,System_Auto,New credit,Car,17440.54
-4,A_Validating,2016-01-17 08:12:43.920745,complete,System_Auto,New credit,Car,17440.54
-4,W_Validate application,2016-01-17 08:12:43.920745,start,System_Auto,New credit,Car,17440.54
-4,W_Validate application,2016-01-17 08:12:53.663528,complete,System_Auto,New credit,Car,17440.54
-4,W_Validate application,2016-01-17 08:12:53.663528,start,System_Auto,New credit,Car,17440.54
-4,W_Validate application,2016-01-17 12:34:09.532222,complete,System_Auto,New credit,Car,17440.54
-4,W_Validate application,2016-01-17 12:34:09.532222,start,System_Auto,New credit,Car,17440.54
-4,W_Validate application,2016-01-17 12:45:23.616637,complete,System_Auto,New credit,Car,17440.54
-4,W_Validate application,2016-01-17 12:45:23.616637,start,System_Auto,New credit,Car,17440.54
-4,W_Validate application,2016-01-17 12:45:30.513800,complete,System_Auto,New credit,Car,17440.54
-4,W_Validate application,2016-01-17 12:45:30.513800,start,System_Auto,New credit,Car,17440.54
-4,W_Validate application,2016-01-17 12:46:07.176994,complete,System_Auto,New credit,Car,17440.54
-4,O_Returned,2016-01-17 12:46:07.176994,start,System_Auto,New credit,Car,17440.54
-4,O_Returned,2016-01-17 12:48:56.126994,complete,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-01-17 12:48:56.126994,start,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-01-17 20:18:43.262008,complete,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-01-17 20:18:43.262008,start,System_Auto,New credit,Car,17440.54
-2,W_Call after offers,2016-01-18 09:26:58.254645,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Call after offers,2016-01-18 09:26:58.254645,start,System_Auto,New credit,Existing loan takeover,5304.08
-4,W_Call incomplete files,2016-01-19 01:17:32.119097,complete,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-01-19 01:17:32.119097,start,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-01-19 11:00:54.579064,complete,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-01-19 11:00:54.579064,start,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-01-19 11:16:33.285674,complete,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-01-19 11:16:33.285674,start,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-01-19 11:17:22.672890,complete,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-01-19 11:17:22.672890,start,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-01-19 17:57:04.701937,complete,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-01-19 17:57:04.701937,start,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-01-19 18:21:44.530149,complete,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-01-19 18:21:44.530149,start,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-01-19 19:30:28.008883,complete,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-01-19 19:30:28.008883,start,System_Auto,New credit,Car,17440.54
-5,W_Call after offers,2016-01-19 19:50:51.124564,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,W_Call after offers,2016-01-19 19:50:51.124564,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,W_Call after offers,2016-01-19 19:53:25.102206,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,W_Call after offers,2016-01-19 19:53:25.102206,start,System_Auto,New credit,"Other, see explanation",8736.06
-4,W_Call incomplete files,2016-01-19 20:11:51.341819,complete,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-01-19 20:11:51.341819,start,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-01-19 20:25:44.847130,complete,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-01-19 20:25:44.847130,start,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-01-19 20:28:25.387307,complete,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-01-19 20:28:25.387307,start,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-01-19 21:25:39.718055,complete,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-01-19 21:25:39.718055,start,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-01-20 00:20:11.193097,complete,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-01-20 00:20:11.193097,start,System_Auto,New credit,Car,17440.54
-2,W_Call after offers,2016-01-20 01:23:02.032706,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Call after offers,2016-01-20 01:23:02.032706,start,System_Auto,New credit,Existing loan takeover,5304.08
-3,W_Call incomplete files,2016-01-22 01:09:26.525671,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-22 01:09:26.525671,start,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-22 02:04:47.792691,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-22 02:04:47.792691,start,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-22 02:14:15.068436,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-22 02:14:15.068436,start,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-22 02:30:54.762162,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-22 02:30:54.762162,start,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-22 03:01:49.996913,complete,System_Auto,New credit,Home improvement,11390.18
-3,W_Call incomplete files,2016-01-22 03:01:49.996913,start,System_Auto,New credit,Home improvement,11390.18
-2,W_Call after offers,2016-01-25 18:20:03.027958,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Create Offer,2016-01-25 18:20:03.027958,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Create Offer,2016-01-25 18:20:04.047958,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Created,2016-01-25 18:20:04.047958,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Created,2016-01-25 18:20:28.575958,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Cancelled,2016-01-25 18:20:28.575958,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Cancelled,2016-01-25 18:20:29.575958,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Create Offer,2016-01-25 18:20:29.575958,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Create Offer,2016-01-25 18:20:30.595958,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Created,2016-01-25 18:20:30.595958,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Created,2016-01-25 18:20:55.123958,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,A_Complete,2016-01-25 18:20:55.123958,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,A_Complete,2016-01-25 18:23:11.753958,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Sent (mail and online),2016-01-25 18:23:11.753958,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Sent (mail and online),2016-01-25 18:23:12.753958,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Call after offers,2016-01-25 18:23:12.753958,start,System_Auto,New credit,Existing loan takeover,5304.08
-1,W_Call after offers,2016-01-27 10:36:04.593068,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Call after offers,2016-01-27 10:36:04.593068,start,System_Auto,New credit,Unknown,51442.23
-1,W_Call after offers,2016-01-28 02:11:40.851864,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Validate application,2016-01-28 02:11:40.851864,start,System_Auto,New credit,Unknown,51442.23
-1,W_Validate application,2016-01-28 03:55:59.097580,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Validate application,2016-01-28 03:55:59.097580,start,System_Auto,New credit,Unknown,51442.23
-1,W_Validate application,2016-01-28 04:10:16.621086,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Validate application,2016-01-28 04:10:16.621086,start,System_Auto,New credit,Unknown,51442.23
-1,W_Validate application,2016-01-28 04:32:08.618444,complete,System_Auto,New credit,Unknown,51442.23
-1,A_Validating,2016-01-28 04:32:08.618444,start,System_Auto,New credit,Unknown,51442.23
-1,A_Validating,2016-01-28 04:32:34.670944,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Validate application,2016-01-28 04:32:34.670944,start,System_Auto,New credit,Unknown,51442.23
-1,W_Validate application,2016-01-28 04:34:52.478942,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Validate application,2016-01-28 04:34:52.478942,start,System_Auto,New credit,Unknown,51442.23
-1,W_Validate application,2016-01-28 06:45:24.433270,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Validate application,2016-01-28 06:45:24.433270,start,System_Auto,New credit,Unknown,51442.23
-1,W_Validate application,2016-01-28 06:50:11.333297,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Validate application,2016-01-28 06:50:11.333297,start,System_Auto,New credit,Unknown,51442.23
-1,W_Validate application,2016-01-28 06:50:28.295456,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Validate application,2016-01-28 06:50:28.295456,start,System_Auto,New credit,Unknown,51442.23
-1,W_Validate application,2016-01-28 06:50:42.293668,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Call incomplete files,2016-01-28 06:50:42.293668,start,System_Auto,New credit,Unknown,51442.23
-1,W_Call incomplete files,2016-01-28 12:03:29.745931,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Call incomplete files,2016-01-28 12:03:29.745931,start,System_Auto,New credit,Unknown,51442.23
-5,W_Call after offers,2016-02-01 07:12:15.591876,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,W_Call after offers,2016-02-01 07:12:15.591876,start,System_Auto,New credit,"Other, see explanation",8736.06
-4,W_Call incomplete files,2016-02-02 06:41:43.401234,complete,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-02-02 06:41:43.401234,start,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-02-02 13:40:31.715955,complete,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-02-02 13:40:31.715955,start,System_Auto,New credit,Car,17440.54
-2,W_Call after offers,2016-02-02 17:29:25.065264,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Call after offers,2016-02-02 17:29:25.065264,start,System_Auto,New credit,Existing loan takeover,5304.08
-1,W_Call incomplete files,2016-02-05 15:43:55.035212,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Call incomplete files,2016-02-05 15:43:55.035212,start,System_Auto,New credit,Unknown,51442.23
-4,W_Call incomplete files,2016-02-06 14:28:01.757174,complete,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-02-06 14:28:01.757174,start,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-02-07 00:33:22.816035,complete,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-02-07 00:33:22.816035,start,System_Auto,New credit,Car,17440.54
-1,W_Call incomplete files,2016-02-08 01:34:44.168941,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Call incomplete files,2016-02-08 01:34:44.168941,start,System_Auto,New credit,Unknown,51442.23
-1,W_Call incomplete files,2016-02-08 06:56:13.757148,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Call incomplete files,2016-02-08 06:56:13.757148,start,System_Auto,New credit,Unknown,51442.23
-1,W_Call incomplete files,2016-02-08 07:04:46.087305,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Call incomplete files,2016-02-08 07:04:46.087305,start,System_Auto,New credit,Unknown,51442.23
-1,W_Call incomplete files,2016-02-08 07:10:39.843611,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Call incomplete files,2016-02-08 07:10:39.843611,start,System_Auto,New credit,Unknown,51442.23
-2,W_Call after offers,2016-02-08 12:48:14.109845,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Call after offers,2016-02-08 12:48:14.109845,start,System_Auto,New credit,Existing loan takeover,5304.08
-5,W_Call after offers,2016-02-13 06:16:07.486488,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,W_Call after offers,2016-02-13 06:16:07.486488,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,W_Call after offers,2016-02-13 10:43:26.798398,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Create Offer,2016-02-13 10:43:26.798398,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Create Offer,2016-02-13 10:43:27.818398,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Created,2016-02-13 10:43:27.818398,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Created,2016-02-13 10:43:52.346398,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,A_Complete,2016-02-13 10:43:52.346398,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,A_Complete,2016-02-13 10:46:08.976398,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Sent (mail and online),2016-02-13 10:46:08.976398,start,System_Auto,New credit,"Other, see explanation",8736.06
-5,O_Sent (mail and online),2016-02-13 10:46:09.976398,complete,System_Auto,New credit,"Other, see explanation",8736.06
-5,W_Call after offers,2016-02-13 10:46:09.976398,start,System_Auto,New credit,"Other, see explanation",8736.06
-4,W_Call incomplete files,2016-02-14 07:33:01.360721,complete,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-02-14 07:33:01.360721,start,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-02-14 07:52:59.923354,complete,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-02-14 07:52:59.923354,start,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-02-15 01:25:26.091085,complete,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-02-15 01:25:26.091085,start,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-02-15 02:37:56.134094,complete,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-02-15 02:37:56.134094,start,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-02-15 05:55:46.887359,complete,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-02-15 05:55:46.887359,start,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-02-15 08:07:20.119314,complete,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-02-15 08:07:20.119314,start,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-02-15 16:05:53.885265,complete,System_Auto,New credit,Car,17440.54
-4,W_Call incomplete files,2016-02-15 16:05:53.885265,start,System_Auto,New credit,Car,17440.54
-2,W_Call after offers,2016-02-16 13:24:45.253608,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Call after offers,2016-02-16 13:24:45.253608,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Call after offers,2016-02-16 15:40:50.756408,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Call after offers,2016-02-16 15:40:50.756408,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,W_Call after offers,2016-02-16 17:35:18.638331,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Cancelled,2016-02-16 17:35:18.638331,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Cancelled,2016-02-16 17:35:19.638331,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Cancelled,2016-02-16 17:35:19.638331,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Cancelled,2016-02-16 17:35:20.638331,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Cancelled,2016-02-16 17:35:20.638331,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Cancelled,2016-02-16 17:35:21.638331,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Cancelled,2016-02-16 17:35:21.638331,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Cancelled,2016-02-16 17:35:22.638331,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Cancelled,2016-02-16 17:35:22.638331,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,O_Cancelled,2016-02-16 17:35:23.638331,complete,System_Auto,New credit,Existing loan takeover,5304.08
-2,A_Cancelled,2016-02-16 17:35:23.638331,start,System_Auto,New credit,Existing loan takeover,5304.08
-2,A_Cancelled,2016-02-16 17:35:24.638331,complete,System_Auto,New credit,Existing loan takeover,5304.08
-1,W_Call incomplete files,2016-02-18 02:39:11.962793,complete,System_Auto,New credit,Unknown,51442.23
-1,W_Call incomplete files,2016-02-18 02:39:11.962793,start,System_Auto,New credit,Unknown,51442.23
-1,W_Call incomplete files,2016-02-18 03:02:00.655081,complete,System_Auto,New credit,Unknown,51442.23
+1,A_Create Application,2016-01-04 09:15:00.000000,start,User_101,New credit,Unknown,10908.52
+1,A_Create Application,2016-01-04 09:15:01.000000,complete,User_101,New credit,Unknown,10908.52
+1,A_Submitted,2016-01-04 09:15:01.000000,start,User_1,New credit,Unknown,10908.52
+1,A_Submitted,2016-01-04 09:15:02.000000,complete,User_1,New credit,Unknown,10908.52
+1,W_Handle leads,2016-01-04 09:15:02.000000,start,User_24,New credit,Unknown,10908.52
+1,W_Handle leads,2016-01-04 09:16:50.982392,complete,User_24,New credit,Unknown,10908.52
+1,W_Handle leads,2016-01-04 09:16:50.982392,start,User_10,New credit,Unknown,10908.52
+1,W_Handle leads,2016-01-04 09:17:01.809197,complete,User_10,New credit,Unknown,10908.52
+1,W_Handle leads,2016-01-04 09:17:01.809197,start,User_21,New credit,Unknown,10908.52
+1,W_Handle leads,2016-01-04 09:20:31.572239,complete,User_21,New credit,Unknown,10908.52
+1,W_Handle leads,2016-01-04 09:20:31.572239,start,User_3,New credit,Unknown,10908.52
+2,A_Create Application,2016-01-04 09:22:05.827967,start,User_75,New credit,Unknown,30536.69
+2,A_Create Application,2016-01-04 09:22:06.827967,complete,User_75,New credit,Unknown,30536.69
+2,A_Concept,2016-01-04 09:22:06.827967,start,User_71,New credit,Unknown,30536.69
+1,W_Handle leads,2016-01-04 09:25:20.579757,complete,User_3,New credit,Unknown,10908.52
+1,W_Handle leads,2016-01-04 09:25:20.579757,start,User_41,New credit,Unknown,10908.52
+1,W_Handle leads,2016-01-04 09:25:22.936253,complete,User_41,New credit,Unknown,10908.52
+1,A_Concept,2016-01-04 09:25:22.936253,start,User_120,New credit,Unknown,10908.52
+3,A_Create Application,2016-01-04 09:44:23.161178,start,User_15,New credit,Car,50561.34
+3,A_Create Application,2016-01-04 09:44:24.161178,complete,User_15,New credit,Car,50561.34
+3,A_Submitted,2016-01-04 09:44:24.161178,start,User_1,New credit,Car,50561.34
+3,A_Submitted,2016-01-04 09:44:25.161178,complete,User_1,New credit,Car,50561.34
+3,W_Handle leads,2016-01-04 09:44:25.161178,start,User_17,New credit,Car,50561.34
+3,W_Handle leads,2016-01-04 09:44:50.373701,complete,User_17,New credit,Car,50561.34
+3,W_Handle leads,2016-01-04 09:44:50.373701,start,User_58,New credit,Car,50561.34
+3,W_Handle leads,2016-01-04 09:46:16.797319,complete,User_58,New credit,Car,50561.34
+3,A_Concept,2016-01-04 09:46:16.797319,start,User_69,New credit,Car,50561.34
+4,A_Create Application,2016-01-04 09:48:44.985939,start,User_58,New credit,Car,12629.61
+4,A_Create Application,2016-01-04 09:48:45.985939,complete,User_58,New credit,Car,12629.61
+4,A_Submitted,2016-01-04 09:48:45.985939,start,User_1,New credit,Car,12629.61
+4,A_Submitted,2016-01-04 09:48:46.985939,complete,User_1,New credit,Car,12629.61
+4,W_Handle leads,2016-01-04 09:48:46.985939,start,User_43,New credit,Car,12629.61
+5,A_Create Application,2016-01-04 09:49:13.911053,start,User_53,New credit,Car,7009.9
+5,A_Create Application,2016-01-04 09:49:14.911053,complete,User_53,New credit,Car,7009.9
+5,A_Submitted,2016-01-04 09:49:14.911053,start,User_1,New credit,Car,7009.9
+5,A_Submitted,2016-01-04 09:49:15.911053,complete,User_1,New credit,Car,7009.9
+5,W_Handle leads,2016-01-04 09:49:15.911053,start,User_59,New credit,Car,7009.9
+4,W_Handle leads,2016-01-04 09:49:48.408281,complete,User_43,New credit,Car,12629.61
+4,W_Handle leads,2016-01-04 09:49:48.408281,start,User_19,New credit,Car,12629.61
+4,W_Handle leads,2016-01-04 09:50:03.240137,complete,User_19,New credit,Car,12629.61
+4,W_Handle leads,2016-01-04 09:50:03.240137,start,User_36,New credit,Car,12629.61
+5,W_Handle leads,2016-01-04 09:50:36.036461,complete,User_59,New credit,Car,7009.9
+5,W_Handle leads,2016-01-04 09:50:36.036461,start,User_138,New credit,Car,7009.9
+4,W_Handle leads,2016-01-04 09:54:24.292460,complete,User_36,New credit,Car,12629.61
+4,W_Handle leads,2016-01-04 09:54:24.292460,start,User_49,New credit,Car,12629.61
+5,W_Handle leads,2016-01-04 09:54:26.112785,complete,User_138,New credit,Car,7009.9
+5,W_Handle leads,2016-01-04 09:54:26.112785,start,User_31,New credit,Car,7009.9
+4,W_Handle leads,2016-01-04 09:55:31.779627,complete,User_49,New credit,Car,12629.61
+4,W_Handle leads,2016-01-04 09:55:31.779627,start,User_15,New credit,Car,12629.61
+4,W_Handle leads,2016-01-04 09:57:43.367158,complete,User_15,New credit,Car,12629.61
+4,A_Concept,2016-01-04 09:57:43.367158,start,User_107,New credit,Car,12629.61
+5,W_Handle leads,2016-01-04 10:01:00.341393,complete,User_31,New credit,Car,7009.9
+5,W_Handle leads,2016-01-04 10:01:00.341393,start,User_14,New credit,Car,7009.9
+5,W_Handle leads,2016-01-04 10:01:14.824027,complete,User_14,New credit,Car,7009.9
+5,W_Handle leads,2016-01-04 10:01:14.824027,start,User_24,New credit,Car,7009.9
+5,W_Handle leads,2016-01-04 10:03:06.479515,complete,User_24,New credit,Car,7009.9
+5,A_Concept,2016-01-04 10:03:06.479515,start,User_48,New credit,Car,7009.9
+2,A_Concept,2016-01-04 10:44:14.762967,complete,User_71,New credit,Unknown,30536.69
+2,W_Complete application,2016-01-04 10:44:14.762967,start,User_3,New credit,Unknown,30536.69
+2,W_Complete application,2016-01-04 10:46:37.841754,complete,User_3,New credit,Unknown,30536.69
+2,A_Accepted,2016-01-04 10:46:37.841754,start,User_3,New credit,Unknown,30536.69
+1,A_Concept,2016-01-04 10:47:30.871253,complete,User_120,New credit,Unknown,10908.52
+1,W_Complete application,2016-01-04 10:47:30.871253,start,User_75,New credit,Unknown,10908.52
+2,A_Accepted,2016-01-04 10:49:39.776754,complete,User_3,New credit,Unknown,30536.69
+2,O_Create Offer,2016-01-04 10:49:39.776754,start,User_119,New credit,Unknown,30536.69
+2,O_Create Offer,2016-01-04 10:49:40.796754,complete,User_119,New credit,Unknown,30536.69
+2,O_Created,2016-01-04 10:49:40.796754,start,User_119,New credit,Unknown,30536.69
+2,O_Created,2016-01-04 10:50:05.324754,complete,User_119,New credit,Unknown,30536.69
+2,A_Complete,2016-01-04 10:50:05.324754,start,User_71,New credit,Unknown,30536.69
+2,A_Complete,2016-01-04 10:52:21.954754,complete,User_71,New credit,Unknown,30536.69
+2,O_Sent (mail and online),2016-01-04 10:52:21.954754,start,User_87,New credit,Unknown,30536.69
+2,O_Sent (mail and online),2016-01-04 10:52:22.954754,complete,User_87,New credit,Unknown,30536.69
+2,W_Call after offers,2016-01-04 10:52:22.954754,start,User_7,New credit,Unknown,30536.69
+2,W_Call after offers,2016-01-04 10:55:42.849094,complete,User_7,New credit,Unknown,30536.69
+2,W_Call after offers,2016-01-04 10:55:42.849094,start,User_119,New credit,Unknown,30536.69
+2,W_Call after offers,2016-01-04 10:56:26.132080,complete,User_119,New credit,Unknown,30536.69
+2,W_Call after offers,2016-01-04 10:56:26.132080,start,User_71,New credit,Unknown,30536.69
+2,W_Call after offers,2016-01-04 10:56:59.173958,complete,User_71,New credit,Unknown,30536.69
+2,W_Call after offers,2016-01-04 10:56:59.173958,start,User_16,New credit,Unknown,30536.69
+1,W_Complete application,2016-01-04 11:01:17.815871,complete,User_75,New credit,Unknown,10908.52
+1,W_Complete application,2016-01-04 11:01:17.815871,start,User_19,New credit,Unknown,10908.52
+1,W_Complete application,2016-01-04 11:02:05.433484,complete,User_19,New credit,Unknown,10908.52
+1,W_Complete application,2016-01-04 11:02:05.433484,start,User_86,New credit,Unknown,10908.52
+2,W_Call after offers,2016-01-04 11:05:14.862923,complete,User_16,New credit,Unknown,30536.69
+2,W_Call after offers,2016-01-04 11:05:14.862923,start,User_45,New credit,Unknown,30536.69
+2,W_Call after offers,2016-01-04 11:06:07.613354,complete,User_45,New credit,Unknown,30536.69
+2,W_Validate application,2016-01-04 11:06:07.613354,start,User_143,New credit,Unknown,30536.69
+3,A_Concept,2016-01-04 11:08:24.732319,complete,User_69,New credit,Car,50561.34
+3,W_Complete application,2016-01-04 11:08:24.732319,start,User_47,New credit,Car,50561.34
+1,W_Complete application,2016-01-04 11:13:53.713430,complete,User_86,New credit,Unknown,10908.52
+1,A_Accepted,2016-01-04 11:13:53.713430,start,User_102,New credit,Unknown,10908.52
+1,A_Accepted,2016-01-04 11:16:55.648430,complete,User_102,New credit,Unknown,10908.52
+1,O_Create Offer,2016-01-04 11:16:55.648430,start,User_25,New credit,Unknown,10908.52
+1,O_Create Offer,2016-01-04 11:16:56.668430,complete,User_25,New credit,Unknown,10908.52
+1,O_Created,2016-01-04 11:16:56.668430,start,User_41,New credit,Unknown,10908.52
+1,O_Created,2016-01-04 11:17:21.196430,complete,User_41,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 11:17:21.196430,start,User_104,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 11:17:22.196430,complete,User_104,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 11:17:22.196430,start,User_49,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 11:17:23.196430,complete,User_49,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 11:17:23.196430,start,User_116,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 11:17:24.196430,complete,User_116,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 11:17:24.196430,start,User_87,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 11:17:25.196430,complete,User_87,New credit,Unknown,10908.52
+1,O_Create Offer,2016-01-04 11:17:25.196430,start,User_68,New credit,Unknown,10908.52
+1,O_Create Offer,2016-01-04 11:17:26.216430,complete,User_68,New credit,Unknown,10908.52
+1,O_Created,2016-01-04 11:17:26.216430,start,User_109,New credit,Unknown,10908.52
+3,W_Complete application,2016-01-04 11:17:32.677362,complete,User_47,New credit,Car,50561.34
+3,W_Complete application,2016-01-04 11:17:32.677362,start,User_4,New credit,Car,50561.34
+1,O_Created,2016-01-04 11:17:50.744430,complete,User_109,New credit,Unknown,10908.52
+1,A_Complete,2016-01-04 11:17:50.744430,start,User_26,New credit,Unknown,10908.52
+4,A_Concept,2016-01-04 11:19:51.302158,complete,User_107,New credit,Car,12629.61
+4,W_Complete application,2016-01-04 11:19:51.302158,start,User_14,New credit,Car,12629.61
+1,A_Complete,2016-01-04 11:20:07.374430,complete,User_26,New credit,Unknown,10908.52
+1,O_Sent (mail and online),2016-01-04 11:20:07.374430,start,User_42,New credit,Unknown,10908.52
+1,O_Sent (mail and online),2016-01-04 11:20:08.374430,complete,User_42,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 11:20:08.374430,start,User_33,New credit,Unknown,10908.52
+3,W_Complete application,2016-01-04 11:20:54.652389,complete,User_4,New credit,Car,50561.34
+3,W_Complete application,2016-01-04 11:20:54.652389,start,User_55,New credit,Car,50561.34
+2,W_Validate application,2016-01-04 11:22:48.060107,complete,User_143,New credit,Unknown,30536.69
+2,W_Validate application,2016-01-04 11:22:48.060107,start,User_30,New credit,Unknown,30536.69
+2,W_Validate application,2016-01-04 11:23:32.658852,complete,User_30,New credit,Unknown,30536.69
+2,W_Validate application,2016-01-04 11:23:32.658852,start,User_93,New credit,Unknown,30536.69
+2,W_Validate application,2016-01-04 11:23:57.090924,complete,User_93,New credit,Unknown,30536.69
+2,W_Validate application,2016-01-04 11:23:57.090924,start,User_53,New credit,Unknown,30536.69
+5,A_Concept,2016-01-04 11:25:14.414515,complete,User_48,New credit,Car,7009.9
+5,W_Complete application,2016-01-04 11:25:14.414515,start,User_3,New credit,Car,7009.9
+4,W_Complete application,2016-01-04 11:28:48.440856,complete,User_14,New credit,Car,12629.61
+4,W_Complete application,2016-01-04 11:28:48.440856,start,User_106,New credit,Car,12629.61
+4,W_Complete application,2016-01-04 11:29:41.153414,complete,User_106,New credit,Car,12629.61
+4,W_Complete application,2016-01-04 11:29:41.153414,start,User_4,New credit,Car,12629.61
+2,W_Validate application,2016-01-04 11:30:26.393712,complete,User_53,New credit,Unknown,30536.69
+2,W_Validate application,2016-01-04 11:30:26.393712,start,User_131,New credit,Unknown,30536.69
+2,W_Validate application,2016-01-04 11:30:50.434176,complete,User_131,New credit,Unknown,30536.69
+2,W_Validate application,2016-01-04 11:30:50.434176,start,User_31,New credit,Unknown,30536.69
+4,W_Complete application,2016-01-04 11:37:37.708545,complete,User_4,New credit,Car,12629.61
+4,A_Accepted,2016-01-04 11:37:37.708545,start,User_25,New credit,Car,12629.61
+2,W_Validate application,2016-01-04 11:37:54.855784,complete,User_31,New credit,Unknown,30536.69
+2,W_Validate application,2016-01-04 11:37:54.855784,start,User_50,New credit,Unknown,30536.69
+1,W_Call after offers,2016-01-04 11:38:31.182643,complete,User_33,New credit,Unknown,10908.52
+1,O_Create Offer,2016-01-04 11:38:31.182643,start,User_53,New credit,Unknown,10908.52
+1,O_Create Offer,2016-01-04 11:38:32.202643,complete,User_53,New credit,Unknown,10908.52
+1,O_Created,2016-01-04 11:38:32.202643,start,User_45,New credit,Unknown,10908.52
+1,O_Created,2016-01-04 11:38:56.730643,complete,User_45,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 11:38:56.730643,start,User_24,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 11:38:57.730643,complete,User_24,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 11:38:57.730643,start,User_106,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 11:38:58.730643,complete,User_106,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 11:38:58.730643,start,User_117,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 11:38:59.730643,complete,User_117,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 11:38:59.730643,start,User_112,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 11:39:00.730643,complete,User_112,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 11:39:00.730643,start,User_112,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 11:39:01.730643,complete,User_112,New credit,Unknown,10908.52
+1,O_Create Offer,2016-01-04 11:39:01.730643,start,User_48,New credit,Unknown,10908.52
+1,O_Create Offer,2016-01-04 11:39:02.750643,complete,User_48,New credit,Unknown,10908.52
+1,O_Created,2016-01-04 11:39:02.750643,start,User_95,New credit,Unknown,10908.52
+3,W_Complete application,2016-01-04 11:39:06.063676,complete,User_55,New credit,Car,50561.34
+3,W_Complete application,2016-01-04 11:39:06.063676,start,User_20,New credit,Car,50561.34
+1,O_Created,2016-01-04 11:39:27.278643,complete,User_95,New credit,Unknown,10908.52
+1,A_Complete,2016-01-04 11:39:27.278643,start,User_30,New credit,Unknown,10908.52
+4,A_Accepted,2016-01-04 11:40:39.643545,complete,User_25,New credit,Car,12629.61
+4,O_Create Offer,2016-01-04 11:40:39.643545,start,User_4,New credit,Car,12629.61
+4,O_Create Offer,2016-01-04 11:40:40.663545,complete,User_4,New credit,Car,12629.61
+4,O_Created,2016-01-04 11:40:40.663545,start,User_75,New credit,Car,12629.61
+4,O_Created,2016-01-04 11:41:05.191545,complete,User_75,New credit,Car,12629.61
+4,A_Complete,2016-01-04 11:41:05.191545,start,User_87,New credit,Car,12629.61
+1,A_Complete,2016-01-04 11:41:43.908643,complete,User_30,New credit,Unknown,10908.52
+1,O_Sent (mail and online),2016-01-04 11:41:43.908643,start,User_106,New credit,Unknown,10908.52
+1,O_Sent (mail and online),2016-01-04 11:41:44.908643,complete,User_106,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 11:41:44.908643,start,User_30,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 11:41:50.624715,complete,User_30,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 11:41:50.624715,start,User_78,New credit,Unknown,10908.52
+5,W_Complete application,2016-01-04 11:42:34.575335,complete,User_3,New credit,Car,7009.9
+5,W_Complete application,2016-01-04 11:42:34.575335,start,User_59,New credit,Car,7009.9
+5,W_Complete application,2016-01-04 11:42:48.716709,complete,User_59,New credit,Car,7009.9
+5,W_Complete application,2016-01-04 11:42:48.716709,start,User_95,New credit,Car,7009.9
+4,A_Complete,2016-01-04 11:43:21.821545,complete,User_87,New credit,Car,12629.61
+4,O_Sent (mail and online),2016-01-04 11:43:21.821545,start,User_29,New credit,Car,12629.61
+4,O_Sent (mail and online),2016-01-04 11:43:22.821545,complete,User_29,New credit,Car,12629.61
+4,W_Call after offers,2016-01-04 11:43:22.821545,start,User_18,New credit,Car,12629.61
+1,W_Call after offers,2016-01-04 11:44:43.292438,complete,User_78,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 11:44:43.292438,start,User_31,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 11:46:35.071152,complete,User_31,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 11:46:35.071152,start,User_109,New credit,Unknown,10908.52
+4,W_Call after offers,2016-01-04 11:47:02.096521,complete,User_18,New credit,Car,12629.61
+4,W_Call after offers,2016-01-04 11:47:02.096521,start,User_31,New credit,Car,12629.61
+2,W_Validate application,2016-01-04 11:47:25.783101,complete,User_50,New credit,Unknown,30536.69
+2,W_Validate application,2016-01-04 11:47:25.783101,start,User_119,New credit,Unknown,30536.69
+4,W_Call after offers,2016-01-04 11:48:19.526776,complete,User_31,New credit,Car,12629.61
+4,W_Call after offers,2016-01-04 11:48:19.526776,start,User_10,New credit,Car,12629.61
+4,W_Call after offers,2016-01-04 11:49:49.094796,complete,User_10,New credit,Car,12629.61
+4,W_Call after offers,2016-01-04 11:49:49.094796,start,User_41,New credit,Car,12629.61
+1,W_Call after offers,2016-01-04 11:51:26.099906,complete,User_109,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 11:51:26.099906,start,User_18,New credit,Unknown,10908.52
+4,W_Call after offers,2016-01-04 11:51:53.031497,complete,User_41,New credit,Car,12629.61
+4,W_Call after offers,2016-01-04 11:51:53.031497,start,User_45,New credit,Car,12629.61
+4,W_Call after offers,2016-01-04 11:52:02.612428,complete,User_45,New credit,Car,12629.61
+4,O_Cancelled,2016-01-04 11:52:02.612428,start,User_23,New credit,Car,12629.61
+4,O_Cancelled,2016-01-04 11:52:03.612428,complete,User_23,New credit,Car,12629.61
+4,O_Cancelled,2016-01-04 11:52:03.612428,start,User_122,New credit,Car,12629.61
+4,O_Cancelled,2016-01-04 11:52:04.612428,complete,User_122,New credit,Car,12629.61
+4,O_Cancelled,2016-01-04 11:52:04.612428,start,User_57,New credit,Car,12629.61
+4,O_Cancelled,2016-01-04 11:52:05.612428,complete,User_57,New credit,Car,12629.61
+4,O_Cancelled,2016-01-04 11:52:05.612428,start,User_7,New credit,Car,12629.61
+4,O_Cancelled,2016-01-04 11:52:06.612428,complete,User_7,New credit,Car,12629.61
+4,O_Cancelled,2016-01-04 11:52:06.612428,start,User_104,New credit,Car,12629.61
+4,O_Cancelled,2016-01-04 11:52:07.612428,complete,User_104,New credit,Car,12629.61
+4,O_Create Offer,2016-01-04 11:52:07.612428,start,User_43,New credit,Car,12629.61
+4,O_Create Offer,2016-01-04 11:52:08.632428,complete,User_43,New credit,Car,12629.61
+4,A_Cancelled,2016-01-04 11:52:08.632428,start,User_69,New credit,Car,12629.61
+4,A_Cancelled,2016-01-04 11:52:09.632428,complete,User_69,New credit,Car,12629.61
+4,O_Created,2016-01-04 11:52:09.632428,start,User_49,New credit,Car,12629.61
+4,O_Created,2016-01-04 11:52:34.160428,complete,User_49,New credit,Car,12629.61
+4,A_Complete,2016-01-04 11:52:34.160428,start,User_30,New credit,Car,12629.61
+3,W_Complete application,2016-01-04 11:53:20.146901,complete,User_20,New credit,Car,50561.34
+3,W_Complete application,2016-01-04 11:53:20.146901,start,User_49,New credit,Car,50561.34
+1,W_Call after offers,2016-01-04 11:54:50.766437,complete,User_18,New credit,Unknown,10908.52
+1,O_Create Offer,2016-01-04 11:54:50.766437,start,User_83,New credit,Unknown,10908.52
+4,A_Complete,2016-01-04 11:54:50.790428,complete,User_30,New credit,Car,12629.61
+4,O_Sent (mail and online),2016-01-04 11:54:50.790428,start,User_23,New credit,Car,12629.61
+1,O_Create Offer,2016-01-04 11:54:51.786437,complete,User_83,New credit,Unknown,10908.52
+1,O_Created,2016-01-04 11:54:51.786437,start,User_109,New credit,Unknown,10908.52
+4,O_Sent (mail and online),2016-01-04 11:54:51.790428,complete,User_23,New credit,Car,12629.61
+4,W_Call after offers,2016-01-04 11:54:51.790428,start,User_16,New credit,Car,12629.61
+5,W_Complete application,2016-01-04 11:55:04.623926,complete,User_95,New credit,Car,7009.9
+5,A_Accepted,2016-01-04 11:55:04.623926,start,User_58,New credit,Car,7009.9
+1,O_Created,2016-01-04 11:55:16.314437,complete,User_109,New credit,Unknown,10908.52
+1,A_Complete,2016-01-04 11:55:16.314437,start,User_43,New credit,Unknown,10908.52
+4,W_Call after offers,2016-01-04 11:55:32.496385,complete,User_16,New credit,Car,12629.61
+4,W_Call after offers,2016-01-04 11:55:32.496385,start,User_114,New credit,Car,12629.61
+2,W_Validate application,2016-01-04 11:55:57.727609,complete,User_119,New credit,Unknown,30536.69
+2,W_Validate application,2016-01-04 11:55:57.727609,start,User_47,New credit,Unknown,30536.69
+4,W_Call after offers,2016-01-04 11:56:20.713541,complete,User_114,New credit,Car,12629.61
+4,W_Call after offers,2016-01-04 11:56:20.713541,start,User_31,New credit,Car,12629.61
+1,A_Complete,2016-01-04 11:57:32.944437,complete,User_43,New credit,Unknown,10908.52
+1,O_Sent (mail and online),2016-01-04 11:57:32.944437,start,User_83,New credit,Unknown,10908.52
+1,O_Sent (mail and online),2016-01-04 11:57:33.944437,complete,User_83,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 11:57:33.944437,start,User_26,New credit,Unknown,10908.52
+2,W_Validate application,2016-01-04 11:57:39.350058,complete,User_47,New credit,Unknown,30536.69
+2,W_Validate application,2016-01-04 11:57:39.350058,start,User_80,New credit,Unknown,30536.69
+5,A_Accepted,2016-01-04 11:58:06.558926,complete,User_58,New credit,Car,7009.9
+5,O_Create Offer,2016-01-04 11:58:06.558926,start,User_66,New credit,Car,7009.9
+5,O_Create Offer,2016-01-04 11:58:07.578926,complete,User_66,New credit,Car,7009.9
+5,O_Created,2016-01-04 11:58:07.578926,start,User_30,New credit,Car,7009.9
+1,W_Call after offers,2016-01-04 11:58:10.258765,complete,User_26,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 11:58:10.258765,start,User_26,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 11:58:23.345441,complete,User_26,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 11:58:23.345441,start,User_107,New credit,Unknown,10908.52
+5,O_Created,2016-01-04 11:58:32.106926,complete,User_30,New credit,Car,7009.9
+5,A_Complete,2016-01-04 11:58:32.106926,start,User_15,New credit,Car,7009.9
+1,W_Call after offers,2016-01-04 11:59:33.834160,complete,User_107,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 11:59:33.834160,start,User_43,New credit,Unknown,10908.52
+5,A_Complete,2016-01-04 12:00:48.736926,complete,User_15,New credit,Car,7009.9
+5,O_Sent (mail and online),2016-01-04 12:00:48.736926,start,User_48,New credit,Car,7009.9
+5,O_Sent (mail and online),2016-01-04 12:00:49.736926,complete,User_48,New credit,Car,7009.9
+5,W_Call after offers,2016-01-04 12:00:49.736926,start,User_30,New credit,Car,7009.9
+1,W_Call after offers,2016-01-04 12:01:45.081779,complete,User_43,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 12:01:45.081779,start,User_71,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 12:06:05.482263,complete,User_71,New credit,Unknown,10908.52
+1,O_Create Offer,2016-01-04 12:06:05.482263,start,User_51,New credit,Unknown,10908.52
+1,O_Create Offer,2016-01-04 12:06:06.502263,complete,User_51,New credit,Unknown,10908.52
+1,O_Created,2016-01-04 12:06:06.502263,start,User_83,New credit,Unknown,10908.52
+5,W_Call after offers,2016-01-04 12:06:18.127712,complete,User_30,New credit,Car,7009.9
+5,W_Call after offers,2016-01-04 12:06:18.127712,start,User_60,New credit,Car,7009.9
+1,O_Created,2016-01-04 12:06:31.030263,complete,User_83,New credit,Unknown,10908.52
+1,A_Complete,2016-01-04 12:06:31.030263,start,User_20,New credit,Unknown,10908.52
+3,W_Complete application,2016-01-04 12:06:31.353679,complete,User_49,New credit,Car,50561.34
+3,A_Accepted,2016-01-04 12:06:31.353679,start,User_11,New credit,Car,50561.34
+4,W_Call after offers,2016-01-04 12:07:53.839219,complete,User_31,New credit,Car,12629.61
+4,W_Call after offers,2016-01-04 12:07:53.839219,start,User_74,New credit,Car,12629.61
+1,A_Complete,2016-01-04 12:08:47.660263,complete,User_20,New credit,Unknown,10908.52
+1,O_Sent (mail and online),2016-01-04 12:08:47.660263,start,User_38,New credit,Unknown,10908.52
+1,O_Sent (mail and online),2016-01-04 12:08:48.660263,complete,User_38,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 12:08:48.660263,start,User_87,New credit,Unknown,10908.52
+4,W_Call after offers,2016-01-04 12:09:03.119766,complete,User_74,New credit,Car,12629.61
+4,W_Call after offers,2016-01-04 12:09:03.119766,start,User_14,New credit,Car,12629.61
+3,A_Accepted,2016-01-04 12:09:33.288679,complete,User_11,New credit,Car,50561.34
+3,O_Create Offer,2016-01-04 12:09:33.288679,start,User_27,New credit,Car,50561.34
+3,O_Create Offer,2016-01-04 12:09:34.308679,complete,User_27,New credit,Car,50561.34
+3,O_Created,2016-01-04 12:09:34.308679,start,User_112,New credit,Car,50561.34
+1,W_Call after offers,2016-01-04 12:09:48.773220,complete,User_87,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 12:09:48.773220,start,User_54,New credit,Unknown,10908.52
+3,O_Created,2016-01-04 12:09:58.836679,complete,User_112,New credit,Car,50561.34
+3,A_Complete,2016-01-04 12:09:58.836679,start,User_69,New credit,Car,50561.34
+5,W_Call after offers,2016-01-04 12:10:02.424859,complete,User_60,New credit,Car,7009.9
+5,W_Call after offers,2016-01-04 12:10:02.424859,start,User_2,New credit,Car,7009.9
+5,W_Call after offers,2016-01-04 12:10:14.925808,complete,User_2,New credit,Car,7009.9
+5,W_Call after offers,2016-01-04 12:10:14.925808,start,User_51,New credit,Car,7009.9
+5,W_Call after offers,2016-01-04 12:10:30.328744,complete,User_51,New credit,Car,7009.9
+5,W_Call after offers,2016-01-04 12:10:30.328744,start,User_109,New credit,Car,7009.9
+5,W_Call after offers,2016-01-04 12:10:51.402634,complete,User_109,New credit,Car,7009.9
+5,W_Validate application,2016-01-04 12:10:51.402634,start,User_51,New credit,Car,7009.9
+1,W_Call after offers,2016-01-04 12:11:13.109232,complete,User_54,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 12:11:13.109232,start,User_5,New credit,Unknown,10908.52
+2,W_Validate application,2016-01-04 12:11:35.357183,complete,User_80,New credit,Unknown,30536.69
+2,W_Validate application,2016-01-04 12:11:35.357183,start,User_71,New credit,Unknown,30536.69
+3,A_Complete,2016-01-04 12:12:15.466679,complete,User_69,New credit,Car,50561.34
+3,O_Sent (mail and online),2016-01-04 12:12:15.466679,start,User_66,New credit,Car,50561.34
+3,O_Sent (mail and online),2016-01-04 12:12:16.466679,complete,User_66,New credit,Car,50561.34
+3,W_Call after offers,2016-01-04 12:12:16.466679,start,User_4,New credit,Car,50561.34
+1,W_Call after offers,2016-01-04 12:13:21.066138,complete,User_5,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 12:13:21.066138,start,User_109,New credit,Unknown,10908.52
+4,W_Call after offers,2016-01-04 12:14:15.910739,complete,User_14,New credit,Car,12629.61
+4,O_Create Offer,2016-01-04 12:14:15.910739,start,User_83,New credit,Car,12629.61
+4,O_Create Offer,2016-01-04 12:14:16.930739,complete,User_83,New credit,Car,12629.61
+4,O_Created,2016-01-04 12:14:16.930739,start,User_18,New credit,Car,12629.61
+4,O_Created,2016-01-04 12:14:41.458739,complete,User_18,New credit,Car,12629.61
+4,A_Complete,2016-01-04 12:14:41.458739,start,User_14,New credit,Car,12629.61
+3,W_Call after offers,2016-01-04 12:14:50.035006,complete,User_4,New credit,Car,50561.34
+3,W_Call after offers,2016-01-04 12:14:50.035006,start,User_52,New credit,Car,50561.34
+1,W_Call after offers,2016-01-04 12:15:31.624788,complete,User_109,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 12:15:31.624788,start,User_114,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 12:16:43.568084,complete,User_114,New credit,Unknown,10908.52
+1,O_Create Offer,2016-01-04 12:16:43.568084,start,User_3,New credit,Unknown,10908.52
+1,O_Create Offer,2016-01-04 12:16:44.588084,complete,User_3,New credit,Unknown,10908.52
+1,O_Created,2016-01-04 12:16:44.588084,start,User_69,New credit,Unknown,10908.52
+4,A_Complete,2016-01-04 12:16:58.088739,complete,User_14,New credit,Car,12629.61
+4,O_Sent (mail and online),2016-01-04 12:16:58.088739,start,User_4,New credit,Car,12629.61
+4,O_Sent (mail and online),2016-01-04 12:16:59.088739,complete,User_4,New credit,Car,12629.61
+4,W_Call after offers,2016-01-04 12:16:59.088739,start,User_43,New credit,Car,12629.61
+1,O_Created,2016-01-04 12:17:09.116084,complete,User_69,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 12:17:09.116084,start,User_36,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 12:17:10.116084,complete,User_36,New credit,Unknown,10908.52
+1,O_Create Offer,2016-01-04 12:17:10.116084,start,User_83,New credit,Unknown,10908.52
+1,O_Create Offer,2016-01-04 12:17:11.136084,complete,User_83,New credit,Unknown,10908.52
+1,O_Created,2016-01-04 12:17:11.136084,start,User_29,New credit,Unknown,10908.52
+1,O_Created,2016-01-04 12:17:35.664084,complete,User_29,New credit,Unknown,10908.52
+1,A_Complete,2016-01-04 12:17:35.664084,start,User_27,New credit,Unknown,10908.52
+3,W_Call after offers,2016-01-04 12:18:08.014859,complete,User_52,New credit,Car,50561.34
+3,W_Call after offers,2016-01-04 12:18:08.014859,start,User_109,New credit,Car,50561.34
+3,W_Call after offers,2016-01-04 12:18:41.909724,complete,User_109,New credit,Car,50561.34
+3,W_Call after offers,2016-01-04 12:18:41.909724,start,User_87,New credit,Car,50561.34
+3,W_Call after offers,2016-01-04 12:19:34.276155,complete,User_87,New credit,Car,50561.34
+3,W_Call after offers,2016-01-04 12:19:34.276155,start,User_15,New credit,Car,50561.34
+1,A_Complete,2016-01-04 12:19:52.294084,complete,User_27,New credit,Unknown,10908.52
+1,O_Sent (mail and online),2016-01-04 12:19:52.294084,start,User_30,New credit,Unknown,10908.52
+1,O_Sent (mail and online),2016-01-04 12:19:53.294084,complete,User_30,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 12:19:53.294084,start,User_4,New credit,Unknown,10908.52
+4,W_Call after offers,2016-01-04 12:20:01.358859,complete,User_43,New credit,Car,12629.61
+4,W_Call after offers,2016-01-04 12:20:01.358859,start,User_17,New credit,Car,12629.61
+1,W_Call after offers,2016-01-04 12:20:17.294222,complete,User_4,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 12:20:17.294222,start,User_30,New credit,Unknown,10908.52
+2,W_Validate application,2016-01-04 12:20:17.441094,complete,User_71,New credit,Unknown,30536.69
+2,W_Validate application,2016-01-04 12:20:17.441094,start,User_101,New credit,Unknown,30536.69
+3,W_Call after offers,2016-01-04 12:20:25.237709,complete,User_15,New credit,Car,50561.34
+3,O_Cancelled,2016-01-04 12:20:25.237709,start,User_23,New credit,Car,50561.34
+3,O_Cancelled,2016-01-04 12:20:26.237709,complete,User_23,New credit,Car,50561.34
+3,O_Cancelled,2016-01-04 12:20:26.237709,start,User_29,New credit,Car,50561.34
+3,O_Cancelled,2016-01-04 12:20:27.237709,complete,User_29,New credit,Car,50561.34
+3,O_Cancelled,2016-01-04 12:20:27.237709,start,User_45,New credit,Car,50561.34
+3,O_Cancelled,2016-01-04 12:20:28.237709,complete,User_45,New credit,Car,50561.34
+3,O_Cancelled,2016-01-04 12:20:28.237709,start,User_67,New credit,Car,50561.34
+3,O_Cancelled,2016-01-04 12:20:29.237709,complete,User_67,New credit,Car,50561.34
+3,O_Cancelled,2016-01-04 12:20:29.237709,start,User_107,New credit,Car,50561.34
+3,O_Cancelled,2016-01-04 12:20:30.237709,complete,User_107,New credit,Car,50561.34
+3,O_Create Offer,2016-01-04 12:20:30.237709,start,User_136,New credit,Car,50561.34
+3,O_Create Offer,2016-01-04 12:20:31.257709,complete,User_136,New credit,Car,50561.34
+3,A_Cancelled,2016-01-04 12:20:31.257709,start,User_109,New credit,Car,50561.34
+3,A_Cancelled,2016-01-04 12:20:32.257709,complete,User_109,New credit,Car,50561.34
+3,O_Created,2016-01-04 12:20:32.257709,start,User_41,New credit,Car,50561.34
+3,O_Created,2016-01-04 12:20:56.785709,complete,User_41,New credit,Car,50561.34
+3,A_Complete,2016-01-04 12:20:56.785709,start,User_5,New credit,Car,50561.34
+1,W_Call after offers,2016-01-04 12:21:15.807510,complete,User_30,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 12:21:15.807510,start,User_60,New credit,Unknown,10908.52
+2,W_Validate application,2016-01-04 12:23:02.905484,complete,User_101,New credit,Unknown,30536.69
+2,W_Validate application,2016-01-04 12:23:02.905484,start,User_114,New credit,Unknown,30536.69
+4,W_Call after offers,2016-01-04 12:23:10.507995,complete,User_17,New credit,Car,12629.61
+4,W_Call after offers,2016-01-04 12:23:10.507995,start,User_56,New credit,Car,12629.61
+3,A_Complete,2016-01-04 12:23:13.415709,complete,User_5,New credit,Car,50561.34
+3,O_Sent (mail and online),2016-01-04 12:23:13.415709,start,User_46,New credit,Car,50561.34
+3,O_Sent (mail and online),2016-01-04 12:23:14.415709,complete,User_46,New credit,Car,50561.34
+3,W_Call after offers,2016-01-04 12:23:14.415709,start,User_17,New credit,Car,50561.34
+1,W_Call after offers,2016-01-04 12:24:23.517457,complete,User_60,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 12:24:23.517457,start,User_68,New credit,Unknown,10908.52
+3,W_Call after offers,2016-01-04 12:24:31.379851,complete,User_17,New credit,Car,50561.34
+3,W_Call after offers,2016-01-04 12:24:31.379851,start,User_83,New credit,Car,50561.34
+5,W_Validate application,2016-01-04 12:24:53.563818,complete,User_51,New credit,Car,7009.9
+5,W_Validate application,2016-01-04 12:24:53.563818,start,User_116,New credit,Car,7009.9
+5,W_Validate application,2016-01-04 12:24:57.223306,complete,User_116,New credit,Car,7009.9
+5,W_Validate application,2016-01-04 12:24:57.223306,start,User_106,New credit,Car,7009.9
+5,W_Validate application,2016-01-04 12:25:03.134380,complete,User_106,New credit,Car,7009.9
+5,W_Validate application,2016-01-04 12:25:03.134380,start,User_75,New credit,Car,7009.9
+5,W_Validate application,2016-01-04 12:25:10.701675,complete,User_75,New credit,Car,7009.9
+5,W_Validate application,2016-01-04 12:25:10.701675,start,User_4,New credit,Car,7009.9
+5,W_Validate application,2016-01-04 12:25:25.141448,complete,User_4,New credit,Car,7009.9
+5,W_Validate application,2016-01-04 12:25:25.141448,start,User_93,New credit,Car,7009.9
+1,W_Call after offers,2016-01-04 12:25:25.435669,complete,User_68,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 12:25:25.435669,start,User_107,New credit,Unknown,10908.52
+3,W_Call after offers,2016-01-04 12:25:45.524339,complete,User_83,New credit,Car,50561.34
+3,W_Call after offers,2016-01-04 12:25:45.524339,start,User_86,New credit,Car,50561.34
+1,W_Call after offers,2016-01-04 12:25:59.705807,complete,User_107,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 12:25:59.705807,start,User_36,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 12:26:00.705807,complete,User_36,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 12:26:00.705807,start,User_29,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 12:26:01.705807,complete,User_29,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 12:26:01.705807,start,User_55,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 12:26:02.705807,complete,User_55,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 12:26:02.705807,start,User_87,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 12:26:03.705807,complete,User_87,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 12:26:03.705807,start,User_71,New credit,Unknown,10908.52
+1,O_Cancelled,2016-01-04 12:26:04.705807,complete,User_71,New credit,Unknown,10908.52
+1,O_Create Offer,2016-01-04 12:26:04.705807,start,User_3,New credit,Unknown,10908.52
+1,O_Create Offer,2016-01-04 12:26:05.725807,complete,User_3,New credit,Unknown,10908.52
+1,A_Cancelled,2016-01-04 12:26:05.725807,start,User_52,New credit,Unknown,10908.52
+1,A_Cancelled,2016-01-04 12:26:06.725807,complete,User_52,New credit,Unknown,10908.52
+1,O_Created,2016-01-04 12:26:06.725807,start,User_49,New credit,Unknown,10908.52
+1,O_Created,2016-01-04 12:26:31.253807,complete,User_49,New credit,Unknown,10908.52
+1,A_Complete,2016-01-04 12:26:31.253807,start,User_48,New credit,Unknown,10908.52
+3,W_Call after offers,2016-01-04 12:26:32.869498,complete,User_86,New credit,Car,50561.34
+3,W_Call after offers,2016-01-04 12:26:32.869498,start,User_18,New credit,Car,50561.34
+4,W_Call after offers,2016-01-04 12:27:05.937761,complete,User_56,New credit,Car,12629.61
+4,W_Call after offers,2016-01-04 12:27:05.937761,start,User_87,New credit,Car,12629.61
+4,W_Call after offers,2016-01-04 12:28:13.163229,complete,User_87,New credit,Car,12629.61
+4,W_Call after offers,2016-01-04 12:28:13.163229,start,User_61,New credit,Car,12629.61
+1,A_Complete,2016-01-04 12:28:47.883807,complete,User_48,New credit,Unknown,10908.52
+1,O_Sent (mail and online),2016-01-04 12:28:47.883807,start,User_38,New credit,Unknown,10908.52
+2,W_Validate application,2016-01-04 12:28:48.190493,complete,User_114,New credit,Unknown,30536.69
+2,W_Validate application,2016-01-04 12:28:48.190493,start,User_29,New credit,Unknown,30536.69
+1,O_Sent (mail and online),2016-01-04 12:28:48.883807,complete,User_38,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 12:28:48.883807,start,User_67,New credit,Unknown,10908.52
+5,W_Validate application,2016-01-04 12:29:16.418987,complete,User_93,New credit,Car,7009.9
+5,W_Validate application,2016-01-04 12:29:16.418987,start,User_129,New credit,Car,7009.9
+2,W_Validate application,2016-01-04 12:29:22.017828,complete,User_29,New credit,Unknown,30536.69
+2,W_Validate application,2016-01-04 12:29:22.017828,start,User_75,New credit,Unknown,30536.69
+5,W_Validate application,2016-01-04 12:29:47.473158,complete,User_129,New credit,Car,7009.9
+5,W_Validate application,2016-01-04 12:29:47.473158,start,User_48,New credit,Car,7009.9
+1,W_Call after offers,2016-01-04 12:30:10.520282,complete,User_67,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 12:30:10.520282,start,User_45,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 12:30:23.258845,complete,User_45,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 12:30:23.258845,start,User_24,New credit,Unknown,10908.52
+2,W_Validate application,2016-01-04 12:30:54.284907,complete,User_75,New credit,Unknown,30536.69
+2,W_Validate application,2016-01-04 12:30:54.284907,start,User_66,New credit,Unknown,30536.69
+4,W_Call after offers,2016-01-04 12:32:30.375675,complete,User_61,New credit,Car,12629.61
+4,O_Cancelled,2016-01-04 12:32:30.375675,start,User_37,New credit,Car,12629.61
+4,O_Cancelled,2016-01-04 12:32:31.375675,complete,User_37,New credit,Car,12629.61
+4,O_Create Offer,2016-01-04 12:32:31.375675,start,User_95,New credit,Car,12629.61
+4,O_Create Offer,2016-01-04 12:32:32.395675,complete,User_95,New credit,Car,12629.61
+4,A_Cancelled,2016-01-04 12:32:32.395675,start,User_19,New credit,Car,12629.61
+4,A_Cancelled,2016-01-04 12:32:33.395675,complete,User_19,New credit,Car,12629.61
+4,O_Created,2016-01-04 12:32:33.395675,start,User_43,New credit,Car,12629.61
+4,O_Created,2016-01-04 12:32:57.923675,complete,User_43,New credit,Car,12629.61
+4,A_Complete,2016-01-04 12:32:57.923675,start,User_60,New credit,Car,12629.61
+1,W_Call after offers,2016-01-04 12:33:21.529736,complete,User_24,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 12:33:21.529736,start,User_10,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 12:34:12.074747,complete,User_10,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 12:34:12.074747,start,User_58,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 12:34:30.052434,complete,User_58,New credit,Unknown,10908.52
+1,O_Create Offer,2016-01-04 12:34:30.052434,start,User_58,New credit,Unknown,10908.52
+1,O_Create Offer,2016-01-04 12:34:31.072434,complete,User_58,New credit,Unknown,10908.52
+1,O_Created,2016-01-04 12:34:31.072434,start,User_51,New credit,Unknown,10908.52
+1,O_Created,2016-01-04 12:34:55.600434,complete,User_51,New credit,Unknown,10908.52
+1,A_Complete,2016-01-04 12:34:55.600434,start,User_83,New credit,Unknown,10908.52
+2,W_Validate application,2016-01-04 12:34:58.497598,complete,User_66,New credit,Unknown,30536.69
+2,W_Validate application,2016-01-04 12:34:58.497598,start,User_19,New credit,Unknown,30536.69
+4,A_Complete,2016-01-04 12:35:14.553675,complete,User_60,New credit,Car,12629.61
+4,O_Sent (mail and online),2016-01-04 12:35:14.553675,start,User_5,New credit,Car,12629.61
+4,O_Sent (mail and online),2016-01-04 12:35:15.553675,complete,User_5,New credit,Car,12629.61
+4,W_Call after offers,2016-01-04 12:35:15.553675,start,User_75,New credit,Car,12629.61
+4,W_Call after offers,2016-01-04 12:36:10.224022,complete,User_75,New credit,Car,12629.61
+4,W_Call after offers,2016-01-04 12:36:10.224022,start,User_24,New credit,Car,12629.61
+3,W_Call after offers,2016-01-04 12:36:21.926496,complete,User_18,New credit,Car,50561.34
+3,W_Call after offers,2016-01-04 12:36:21.926496,start,User_45,New credit,Car,50561.34
+1,A_Complete,2016-01-04 12:37:12.230434,complete,User_83,New credit,Unknown,10908.52
+1,O_Sent (mail and online),2016-01-04 12:37:12.230434,start,User_97,New credit,Unknown,10908.52
+1,O_Sent (mail and online),2016-01-04 12:37:13.230434,complete,User_97,New credit,Unknown,10908.52
+1,W_Call after offers,2016-01-04 12:37:13.230434,start,User_86,New credit,Unknown,10908.52
+3,W_Call after offers,2016-01-04 12:37:48.235716,complete,User_45,New credit,Car,50561.34
+3,O_Create Offer,2016-01-04 12:37:48.235716,start,User_55,New credit,Car,50561.34
+3,O_Create Offer,2016-01-04 12:37:49.255716,complete,User_55,New credit,Car,50561.34
+3,O_Created,2016-01-04 12:37:49.255716,start,User_14,New credit,Car,50561.34
+2,W_Validate application,2016-01-04 12:38:01.242936,complete,User_19,New credit,Unknown,30536.69
+2,W_Validate application,2016-01-04 12:38:01.242936,start,User_126,New credit,Unknown,30536.69
+3,O_Created,2016-01-04 12:38:13.783716,complete,User_14,New credit,Car,50561.34
+3,A_Complete,2016-01-04 12:38:13.783716,start,User_29,New credit,Car,50561.34
+4,W_Call after offers,2016-01-04 12:38:28.073467,complete,User_24,New credit,Car,12629.61
+4,W_Call after offers,2016-01-04 12:38:28.073467,start,User_40,New credit,Car,12629.61
+4,W_Call after offers,2016-01-04 12:38:58.093950,complete,User_40,New credit,Car,12629.61
+4,W_Call after offers,2016-01-04 12:38:58.093950,start,User_4,New credit,Car,12629.61
+2,W_Validate application,2016-01-04 12:39:49.536083,complete,User_126,New credit,Unknown,30536.69
+2,W_Validate application,2016-01-04 12:39:49.536083,start,User_52,New credit,Unknown,30536.69
+5,W_Validate application,2016-01-04 12:40:20.884807,complete,User_48,New credit,Car,7009.9
+5,W_Validate application,2016-01-04 12:40:20.884807,start,User_120,New credit,Car,7009.9
+3,A_Complete,2016-01-04 12:40:30.413716,complete,User_29,New credit,Car,50561.34
+3,O_Sent (mail and online),2016-01-04 12:40:30.413716,start,User_55,New credit,Car,50561.34
+3,O_Sent (mail and online),2016-01-04 12:40:31.413716,complete,User_55,New credit,Car,50561.34
+3,W_Call after offers,2016-01-04 12:40:31.413716,start,User_43,New credit,Car,50561.34
+4,W_Call after offers,2016-01-04 12:41:07.294275,complete,User_4,New credit,Car,12629.61
+4,W_Call after offers,2016-01-04 12:41:07.294275,start,User_49,New credit,Car,12629.61
+2,W_Validate application,2016-01-04 12:43:44.606574,complete,User_52,New credit,Unknown,30536.69
+2,W_Validate application,2016-01-04 12:43:44.606574,start,User_131,New credit,Unknown,30536.69
+4,W_Call after offers,2016-01-04 12:43:49.246337,complete,User_49,New credit,Car,12629.61
+4,O_Create Offer,2016-01-04 12:43:49.246337,start,User_87,New credit,Car,12629.61
+4,O_Create Offer,2016-01-04 12:43:50.266337,complete,User_87,New credit,Car,12629.61
+4,O_Created,2016-01-04 12:43:50.266337,start,User_54,New credit,Car,12629.61

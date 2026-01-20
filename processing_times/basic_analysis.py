@@ -306,3 +306,61 @@ def save_json(obj: Dict[str, Any], path: str | Path) -> None:
 
 def load_json(path: str | Path) -> Dict[str, Any]:
     return json.loads(Path(path).read_text())
+
+def add_case_context(
+    inst: pd.DataFrame,
+    df: pd.DataFrame,
+    *,
+    case_col: str = "case:concept:name",
+    ctx_cols: Sequence[str] = ("case:ApplicationType", "case:RequestedAmount"),
+    strict: bool = False,
+    numeric_cols: Sequence[str] = ("case:RequestedAmount",),
+    add_log1p: bool = True,
+    log1p_col_map: Optional[Dict[str, str]] = None,
+    agg: str = "first",
+) -> pd.DataFrame:
+    """Attach case-level context columns to the instance table."""
+    if case_col not in inst.columns:
+        raise KeyError(f"inst is missing case column '{case_col}'")
+
+    missing = [c for c in ctx_cols if c not in df.columns]
+    if missing:
+        raise KeyError(f"df is missing context columns: {missing}")
+
+    if agg not in {"first", "last"}:
+        raise ValueError("agg must be 'first' or 'last'")
+
+    cols = [case_col] + list(ctx_cols)
+    case_df = df[cols].copy().dropna(subset=[case_col])
+
+    # Const-within-case check (only non-null values)
+    for c in ctx_cols:
+        nun = case_df.loc[case_df[c].notna()].groupby(case_col)[c].nunique(dropna=True)
+        n_bad = int((nun > 1).sum())
+        if n_bad > 0:
+            msg = f"Context column '{c}' is not constant within {n_bad} cases"
+            if strict:
+                raise ValueError(msg)
+            print(f"[basic_analysis] WARN: {msg}; using agg='{agg}'.")
+
+    agg_fn = "first" if agg == "first" else "last"
+    case_tbl = case_df.groupby(case_col, as_index=False).agg({c: agg_fn for c in ctx_cols})
+
+    out = inst.merge(case_tbl, on=case_col, how="left")
+
+    # Numeric conversion + optional log1p
+    numeric_cols = tuple(numeric_cols)
+    for c in numeric_cols:
+        if c in out.columns:
+            out[c] = pd.to_numeric(out[c], errors="coerce")
+
+    if add_log1p and numeric_cols:
+        m = dict(log1p_col_map or {})
+        for c in numeric_cols:
+            if c not in out.columns:
+                continue
+            if c not in m:
+                m[c] = "req_log" if c == "case:RequestedAmount" else f"{c}_log1p"
+            out[m[c]] = np.log1p(out[c].fillna(0.0).astype(float))
+
+    return out
