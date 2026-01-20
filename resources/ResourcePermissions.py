@@ -17,8 +17,8 @@ class ResourcePermissions:
         self._mode = mode
 
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        file_path = os.path.join(current_dir, 'resources', permissions_file)
-
+        #file_path = os.path.join(current_dir, 'resources', permissions_file)
+        file_path = os.path.join(current_dir, 'permissions', permissions_file)
         if mode == 'basic':
             self._load_permissions(file_path)
         elif mode == 'advanced':
@@ -33,7 +33,7 @@ class ResourcePermissions:
 
         df = pd.read_csv(path)
         grouped = df.groupby('Activity')['Resource'].unique()
-        self.permissions = {
+        self._permissions = {
             act: set(res) for act, res in grouped.items()
         }
 
@@ -44,7 +44,7 @@ class ResourcePermissions:
 
         df = pd.read_csv(path)
         grouped = df.groupby('Activity')['Role'].unique()
-        self.permissions = {
+        self._permissions = {
             act: set(role) for act, role in grouped.items()
         }
 
