@@ -1,6 +1,7 @@
 import pm4py
 import os
 import sys
+import pm4py.objects.log.importer.xes as xes_importer
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent / 'sim_core'))
 from .utils import is_invisible_label
@@ -18,10 +19,17 @@ class DecisionPointManager:
     The bridge between Engine and the Decision analysis modules.
     """
 
-    def __init__(self, log, bpmn_path=None, net=None, im=None, fm=None, mode='basic', output_folder="data", config=None):
-        self.log = log
+    def __init__(self, xes_path=None, bpmn_path=None, net=None, im=None, fm=None, mode='basic', output_folder="data", config=None):
         self.mode = mode
         self.config = config if config else {}
+        if xes_path is None:
+            xes_path = os.path.join("data", "BPI Challenge 2017.xes.gz")
+        #Muss log hier laden
+        log = pm4py.read_xes(xes_path) 
+        if not isinstance(log, pm4py.objects.log.obj.EventLog):
+            log = pm4py.convert_to_event_log(log) 
+        self.log = log
+        print(f"      -> Loaded {len(log)} traces.")
 
         if net is None or im is None or fm is None:
             if bpmn_path is None:
