@@ -5,7 +5,7 @@ import random
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from processing_times import Functions as fk
-from generators import CaseGenerator
+from decision_analysis import generators
 from processing_times.sampling import ProcessingTimeSampler  # dein Sampler
 import numpy as np
 
