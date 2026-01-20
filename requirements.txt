@@ -4,4 +4,5 @@ pm4py~=2.7.19
 matplotlib~=3.10.7
 scipy~=1.16.2
 scikit-learn~=1.7.2
+holidays~=0.40
 torch

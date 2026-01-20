@@ -10,7 +10,7 @@ sys.path.append(os.path.join(current_dir, "resources"))
 from sim_core.engine import Engine
 from resources.ResourceManager import ResourceManager
 from decision_analysis.decision_point_manager import DecisionPointManager
-from spawn_rates import StaticSpawner, AdvancedSpawner, generate_rate_table
+from spawn_rates import StaticSpawner, AdvancedSpawner, get_rate_table, get_holidays
 
 
 def run_system_test():
@@ -40,8 +40,17 @@ def run_system_test():
 
     resource_manager = ResourceManager()
 
+    #Spawn rates part
+    holidays = get_holidays()                  # loads or generates NL holidays and caches them
+    rate_table = get_rate_table(holidays)      # loads cached rate table or builds it once
+    spawner = AdvancedSpawner(
+        rate_table=rate_table,
+        holidays=holidays,
+        seed=42,
+    )
+
     print(" Initializing Simulation Engine...")
-    spawner = StaticSpawner(mean_minutes=30) #Static Spawner
+
 
     engine = Engine(
         pn=pn_structure,
@@ -56,7 +65,9 @@ def run_system_test():
     print("-"*30)
 
     try:
-        engine.spawn() 
+        # schedule first case using the spawner
+        first_spawn_time = spawner.calculate_next_spawn(engine.now)
+        engine.spawn(at_time=first_spawn_time)
         engine.run(max_events=500)
         print("\nSuccess: Simulation finished.")
 
