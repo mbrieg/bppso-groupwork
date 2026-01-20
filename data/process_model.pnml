@@ -30,17 +30,14 @@
           <text>ent_sid-D1695530-1BA9-47A1-97F7-3A1D6D7431F4</text>
         </name>
       </place>
-      <place id="source">
+      <place id="ent_sid-FDC740E2-2891-47FA-A84D-F4C30A70FC74">
         <name>
-          <text>source</text>
+          <text>ent_sid-FDC740E2-2891-47FA-A84D-F4C30A70FC74</text>
         </name>
-        <initialMarking>
-          <text>1</text>
-        </initialMarking>
       </place>
-      <place id="exi_sid-D7146A8A-1F4F-485F-8356-77D648459246">
+      <place id="ent_sid-08BCF5EE-77CE-4A4B-A2A8-7F4CE84A6FAB">
         <name>
-          <text>exi_sid-D7146A8A-1F4F-485F-8356-77D648459246</text>
+          <text>ent_sid-08BCF5EE-77CE-4A4B-A2A8-7F4CE84A6FAB</text>
         </name>
       </place>
       <place id="exi_sid-3D466E65-6F0D-4770-94E4-5F72CFB4EDDE">
@@ -58,9 +55,9 @@
           <text>sink</text>
         </name>
       </place>
-      <place id="exi_sid-274DBB0B-34E1-4CB6-A2D3-C9B9D5559860">
+      <place id="sid-7348F32A-CEBB-4E41-92F1-538ED5F35325">
         <name>
-          <text>exi_sid-274DBB0B-34E1-4CB6-A2D3-C9B9D5559860</text>
+          <text>sid-7348F32A-CEBB-4E41-92F1-538ED5F35325</text>
         </name>
       </place>
       <place id="exi_sid-FAA22873-3CE4-49C4-8EA0-C64F442C0ECB">
@@ -78,9 +75,9 @@
           <text>ent_sid-27FAABC7-6A39-409C-AD8B-19120D99D05F</text>
         </name>
       </place>
-      <place id="ent_sid-E681FFDD-3445-4DDF-AB02-B48C73B47B52">
+      <place id="ent_sid-B510DC1B-2C9D-4AC2-A94F-4C8F95D5AFD9">
         <name>
-          <text>ent_sid-E681FFDD-3445-4DDF-AB02-B48C73B47B52</text>
+          <text>ent_sid-B510DC1B-2C9D-4AC2-A94F-4C8F95D5AFD9</text>
         </name>
       </place>
       <place id="sid-7348F32A-CEBB-4E41-92F1-538ED5F35325">
@@ -138,9 +135,9 @@
           <text>exi_sid-08D92741-EB77-4B00-9C30-5D991C18B148</text>
         </name>
       </place>
-      <place id="sid-6E38DA6D-0D38-4A87-80E4-FCBCEDF5D0D3">
+      <place id="ent_sid-92841747-6D90-4FF6-AC6F-CF8C4B4C1124">
         <name>
-          <text>sid-6E38DA6D-0D38-4A87-80E4-FCBCEDF5D0D3</text>
+          <text>ent_sid-92841747-6D90-4FF6-AC6F-CF8C4B4C1124</text>
         </name>
       </place>
       <place id="ent_sid-6C0A6DCB-BA81-4BD0-AC5C-012F92B0D538">
@@ -168,9 +165,9 @@
           <text>ent_sid-963C8901-F033-4A4C-96CC-8D4B26F12C74</text>
         </name>
       </place>
-      <place id="ent_sid-67C39E91-E542-4A25-9A15-15E9916AE781">
+      <place id="source">
         <name>
-          <text>ent_sid-67C39E91-E542-4A25-9A15-15E9916AE781</text>
+          <text>source</text>
         </name>
       </place>
       <place id="exi_sid-6EC39BA9-766E-43E2-9BAD-8C2CA360E7DA">
@@ -193,9 +190,9 @@
           <text>exi_sid-86348F5B-1E4A-4DB9-84C0-BD24591BF63D</text>
         </name>
       </place>
-      <place id="ent_sid-E0885007-EAFB-4EC5-94FE-2DC4BDE35509">
+      <place id="ent_sid-85C3AEE9-3A3D-4156-84CA-9F77DFE7E492">
         <name>
-          <text>ent_sid-E0885007-EAFB-4EC5-94FE-2DC4BDE35509</text>
+          <text>ent_sid-85C3AEE9-3A3D-4156-84CA-9F77DFE7E492</text>
         </name>
       </place>
       <place id="ent_sid-2EE79FC0-9612-4DA2-89AD-5B6D95FB4081">
@@ -266,6 +263,7 @@
         <name>
           <text>A_Cancelled</text>
         </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="1bd19024-cce1-4ad0-b587-33582523d75d"/>
       </transition>
       <transition id="sid-66D38314-1954-44A0-9125-B7AB4712B7D4">
         <name>
@@ -288,7 +286,7 @@
           <text>A_Concept</text>
         </name>
       </transition>
-      <transition id="sfl_sid-E5FB0BC8-AC8B-49A1-BDAF-3ACEB7C3B938">
+      <transition id="sid-FDC740E2-2891-47FA-A84D-F4C30A70FC74">
         <name>
           <text>sfl_sid-E5FB0BC8-AC8B-49A1-BDAF-3ACEB7C3B938</text>
         </name>
@@ -307,7 +305,7 @@
       </transition>
       <transition id="sid-D2A6B231-4F16-4736-8D59-37AE23694BA8">
         <name>
-          <text>W_Complete application</text>
+          <text>W_Handle leads</text>
         </name>
       </transition>
       <transition id="sfl_sid-36F20FCA-A37A-4D69-8FDF-D3F117FBC89D">
@@ -322,10 +320,11 @@
         </name>
         <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="5f9996f3-5ad7-4ac7-93a2-8eced8264a96"/>
       </transition>
-      <transition id="sid-CFB2384F-B409-401F-BEEB-248E78AA3C61">
+      <transition id="sfl_sid-5A2F66BE-9FD8-4AA2-9C3A-B11ABCC49BAD">
         <name>
-          <text>A_Create Application</text>
+          <text>sfl_sid-5A2F66BE-9FD8-4AA2-9C3A-B11ABCC49BAD</text>
         </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="51a1c941-59db-4105-a800-57cfe6fc0512"/>
       </transition>
       <transition id="sid-BE6D2E27-3349-453E-A510-63379BA89F40">
         <name>
@@ -413,9 +412,9 @@
         </name>
         <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="995186b9-defd-474e-924d-53e37f0128e5"/>
       </transition>
-      <transition id="sid-E681FFDD-3445-4DDF-AB02-B48C73B47B52">
+      <transition id="sfl_sid-484B4370-3453-40CD-98A8-1087BF30B570">
         <name>
-          <text>sid-E681FFDD-3445-4DDF-AB02-B48C73B47B52</text>
+          <text>sfl_sid-484B4370-3453-40CD-98A8-1087BF30B570</text>
         </name>
         <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="3dd705e9-376b-423f-9632-ab35becc895e"/>
       </transition>
@@ -430,9 +429,9 @@
         </name>
         <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="09e1fbf9-55d9-420d-b780-77a5111a7814"/>
       </transition>
-      <transition id="sid-85C3AEE9-3A3D-4156-84CA-9F77DFE7E492">
+      <transition id="sid-49B336A3-EF05-437C-8F66-75BDB0CC6FC1">
         <name>
-          <text>O_Created</text>
+          <text>W_Call after offers</text>
         </name>
       </transition>
       <transition id="sid-769596CE-210A-4709-948C-600AACB92D15">
