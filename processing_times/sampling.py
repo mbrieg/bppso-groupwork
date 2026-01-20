@@ -61,13 +61,19 @@ def _apply_p0(spec: Mapping[str, Any], out: np.ndarray, rng: np.random.Generator
     return out2
 
 
-def _time_features(now: Optional[datetime]) -> Tuple[float, float, float]:
-    """Return (tod_sin, tod_cos, weekday). Falls now=None -> (0,0,0)."""
+def _time_features(now: Optional[datetime]) -> Tuple[float, float, float, float]:
+    """Return (minute_of_day, tod_sin, tod_cos, weekday). Falls now=None -> (0,0,0,0)."""
     if now is None:
-        return 0.0, 0.0, 0.0
-    minute_of_day = now.hour * 60 + now.minute
+        return 0.0, 0.0, 0.0, 0.0
+    # include seconds/microseconds for smoother minute_of_day
+    minute_of_day = (
+        now.hour * 60
+        + now.minute
+        + now.second / 60.0
+        + now.microsecond / 60.0 / 1_000_000.0
+    )
     angle = 2 * math.pi * (minute_of_day / (24 * 60))
-    return float(math.sin(angle)), float(math.cos(angle)), float(now.weekday())
+    return float(minute_of_day), float(math.sin(angle)), float(math.cos(angle)), float(now.weekday())
 
 
 @dataclass(frozen=True)
@@ -237,12 +243,22 @@ class QuantileBundleSampler:
         self.cat_cols: Sequence[str] = list(meta.get("cat_cols", []))
         self.num_cols: Sequence[str] = list(meta.get("num_cols", []))
 
-        if self.cat_cols != ["concept:name"]:
-            raise ModelSpecError(f"Expected meta.cat_cols == ['concept:name'], got {self.cat_cols!r}")
+        # Flexible: allow additional case context columns (e.g., case:ApplicationType)
+        if 'concept:name' not in self.cat_cols:
+            raise ModelSpecError(f"Expected meta.cat_cols to include 'concept:name', got {self.cat_cols!r}")
 
-        needed = {"tod_sin", "tod_cos", "instance", "weekday"}
-        if not needed.issubset(set(self.num_cols)):
-            raise ModelSpecError(f"Expected num_cols to include {sorted(needed)}, got {self.num_cols!r}")
+        # Required numeric context
+        needed_base = {'instance', 'weekday'}
+        if not needed_base.issubset(set(self.num_cols)):
+            raise ModelSpecError(f"Expected num_cols to include {sorted(needed_base)}, got {self.num_cols!r}")
+
+        # Time-of-day encoding: allow either minute_of_day or (tod_sin,tod_cos) or both
+        has_minute = 'minute_of_day' in set(self.num_cols)
+        has_sincos = {'tod_sin', 'tod_cos'}.issubset(set(self.num_cols))
+        if not (has_minute or has_sincos):
+            raise ModelSpecError(
+                f"Expected num_cols to include either 'minute_of_day' or both 'tod_sin'/'tod_cos', got {self.num_cols!r}"
+            )
 
     @classmethod
     def from_joblib(cls, path: Union[str, Path], **kwargs: Any) -> "QuantileBundleSampler":
@@ -257,18 +273,36 @@ class QuantileBundleSampler:
         *,
         now: Optional[datetime] = None,
         instance: int = 0,
+        ctx: Optional[Mapping[str, Any]] = None,
     ) -> Tuple[float, float, float]:
-        tod_sin, tod_cos, weekday = _time_features(now)
+        minute_of_day, tod_sin, tod_cos, weekday = _time_features(now)
 
         import pandas as pd  # local import
 
-        row = {
-            "concept:name": str(activity),
-            "tod_sin": float(tod_sin),
-            "tod_cos": float(tod_cos),
-            "instance": float(instance),
-            "weekday": float(weekday),
+        ctx = dict(ctx) if ctx is not None else {}
+
+        # Base feature dict (can be extended/overridden by ctx)
+        base: Dict[str, Any] = {
+            'concept:name': str(activity),
+            'minute_of_day': float(minute_of_day),
+            'tod_sin': float(tod_sin),
+            'tod_cos': float(tod_cos),
+            'instance': float(instance),
+            'weekday': float(weekday),
         }
+        base.update(ctx)
+
+        row: Dict[str, Any] = {}
+        for c in self.cat_cols:
+            v = base.get(c, 'UNK')
+            row[c] = 'UNK' if v is None else str(v)
+        for c in self.num_cols:
+            v = base.get(c, 0.0)
+            try:
+                row[c] = float(v)
+            except Exception:
+                row[c] = 0.0
+
         X = pd.DataFrame([row], columns=list(self.cat_cols) + list(self.num_cols))
 
         qL, qM, qH = self.qs
@@ -288,10 +322,11 @@ class QuantileBundleSampler:
         *,
         now: Optional[datetime] = None,
         instance: int = 0,
+        ctx: Optional[Mapping[str, Any]] = None,
         rng: Optional[np.random.Generator] = None,
     ) -> float:
         rng = _as_rng(rng, self.seed)
-        qL, qM, qH = self.predict_quantiles(activity, now=now, instance=instance)
+        qL, qM, qH = self.predict_quantiles(activity, now=now, instance=instance, ctx=ctx)
 
         if not (qH > qL):
             return float(max(0.0, qM))
@@ -362,6 +397,7 @@ class ProcessingTimeSampler:
         kind: str = "proc",
         now: Optional[datetime] = None,
         instance: int = 0,
+        ctx: Optional[Mapping[str, Any]] = None,
         rng: Optional[np.random.Generator] = None,
         use_qr: bool = False,
     ) -> float:
@@ -369,7 +405,7 @@ class ProcessingTimeSampler:
         rng = _as_rng(rng, self.seed)
 
         if use_qr and kind in self.qr:
-            return float(self.qr[kind].sample(activity, now=now, instance=instance, rng=rng))
+            return float(self.qr[kind].sample(activity, now=now, instance=instance, ctx=ctx, rng=rng))
 
         if kind == "proc":
             if self.proc is None:

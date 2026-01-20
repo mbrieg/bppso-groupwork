@@ -154,15 +154,28 @@ class BasicRouter:
         
         print("Basic Router training completed.")
 
-    def predict(self, place_name, prev_act):
+    def predict(self, place_name, context):
         """
         Called by the Engine
-        asks I am at the place_name and the last thing I did was prev_act. where should I go now?
+        asks I am at the place_name and the last thing I did was context (history list or prev_act string). 
+        where should I go now?
         """
         dp = self.decision_points.get(place_name)
 
         # if this place isnt knpw as a dp, return none (engine handles default)
         if not dp: return None
+
+        # Parse context
+        prev_act = None
+        history = []
+        
+        if isinstance(context, list):
+            history = context
+            if len(history) > 0:
+                prev_act = history[-1].strip() # Clean it just in case
+        elif isinstance(context, str):
+            prev_act = context
+            history = [context]
 
         # Stratagey 1: Conditioned Prob (best accuracy)
         # do we have specific stats for this prev act
@@ -179,9 +192,42 @@ class BasicRouter:
             if not candidates : return None
             return random.choice(candidates)
 
+        # Apply Loop Decay / Penalty
+        weighted_probs = probs.copy()
+        
+        if prev_act and history:
+            # Count how many times we've done this recently
+            consecutive_count = 0
+            for act in reversed(history):
+                # Ensure we compare stripped strings
+                if str(act).strip() == prev_act:
+                    consecutive_count += 1
+                else:
+                    break
+            
+            # The 'prev_act' is what we JUST did.
+            # If the router suggests doing 'prev_act' AGAIN, checks how many times we already did it.
+            # But wait, 'prev_act' is the INCOMING trigger.
+            # The 'probs' keys are the OUTGOING next steps.
+            # If we want to prevent loops (doing A -> A -> A), we check if the candidate next step is 'prev_act'?
+            # Actually, the loop usually is A -> B -> A -> B.
+            # But the user logic was: "If we try to repeat the same activity...".
+            
+            # Let's apply the penalty to ANY predicted activity that matches the immediate history
+            # But the user logic specifically checked `if prev_act in weighted_probs`.
+            # If `prev_act` (the trigger) is also a possible OUTCOME, then it's a self-loop (A->A).
+            
+            # User Code adapted:
+            # P_new = P_old / (3 ^ count) -> Drastic reduction
+            if prev_act in weighted_probs and consecutive_count > 0:
+                penalty = 3 ** consecutive_count 
+                original_p = weighted_probs[prev_act]
+                weighted_probs[prev_act] = original_p / penalty
+                # print(f"Decayed '{prev_act}' chance from {original_p:.2f} to {weighted_probs[prev_act]:.4f} (Count: {consecutive_count})")
+
         # Strategy 4: Roulette Wheel Selection (Weighted random)
         # randomly choose based on the calculated probs
-        choices = list(probs.keys())
-        weights = list(probs.values())
+        choices = list(weighted_probs.keys())
+        weights = list(weighted_probs.values())
 
         return random.choices(choices, weights= weights, k=1)[0]

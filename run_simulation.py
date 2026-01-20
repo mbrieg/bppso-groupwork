@@ -57,7 +57,7 @@ def run_system_test():
         spawner=spawner,
         resource_manager=resource_manager,
         decision_manager=dp_manager,  
-        max_cases=5
+        max_cases=5              
     )
 
     print("\n" + "-"*30)
@@ -68,7 +68,7 @@ def run_system_test():
         # schedule first case using the spawner
         first_spawn_time = spawner.calculate_next_spawn(engine.now)
         engine.spawn(at_time=first_spawn_time)
-        engine.run(max_events=500)
+        engine.run(max_events=2000)
         print("\nSuccess: Simulation finished.")
 
     except Exception as e:
