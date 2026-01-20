@@ -102,25 +102,31 @@ class DecisionPoint:
 
         # Check for Infinite Loop
         if isinstance(trace_history, list) and trace_history:
+            window_size = 20
+            threshold = 10
+            
+            # Get the recent history window
+            window = trace_history[-window_size:] if len(trace_history) > window_size else trace_history
+            
+            # Count occurrences of predicted_act in the window
             loop_count = 0
-            # Walk backwards through history to count consecutive repetitions
-            for item in reversed(trace_history):
-                # Extract string name if item is a dictionary (Event object)
+            for item in window:
                 if isinstance(item, dict):
                     act_name = item.get("concept:name")
-                elif hasattr(item, "label"): # Handle object with label attribute
+                elif hasattr(item, "label"):
                     act_name = item.label
                 else:
-                    act_name = str(item) # Fallback for strings
-
-                # Compare Sanitized String names
+                    act_name = str(item)
+                
                 if act_name == predicted_act:
                     loop_count += 1
-                else:
-                    break
             
-            # 3. If we hit the limit, FORCE a change
-            if loop_count >= limit:
+            # Debug (Optional, can be removed after verification)
+            print(f"DEBUG: {predicted_act} count in last {len(window)}: {loop_count}")
+
+            # 3. If frequency exceeds threshold, FORCE a change
+            if loop_count >= threshold:
+
                 print(f"DEBUG: Loop limit ({limit}) hit for {predicted_act}. Switching path.")
                 print(f"DEBUG: Breaking loop. Options available: {list(self.outgoing_transitions.keys())}")
                 
@@ -132,7 +138,10 @@ class DecisionPoint:
                 
                 if alternatives:
                     # Return the first safe alternative found
+                    print(f"DEBUG: Switching to {alternatives[0]}")
                     return alternatives[0]
+                else:
+                    print(f"DEBUG: No alternatives found! Stuck in loop.")
 
         # 4. If safe, return the original prediction
         return predicted_act

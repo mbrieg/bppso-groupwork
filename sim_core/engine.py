@@ -20,8 +20,9 @@ class Event:
 
 
 class Engine:
-    def __init__(self, pn, resource_manager, decision_manager, start_time=None, max_cases=50):
+    def __init__(self,pn ,spawner ,resource_manager, decision_manager, start_time=None, max_cases=50):
         self.pn = pn
+        self.spawner = spawner # Spawner Object Strategy
         self.resource_manager = resource_manager
         self.decision_manager= decision_manager
         self.case_generator = CaseGenerator()
@@ -93,6 +94,8 @@ class Engine:
                 if all(m.get(p, 0) > 0 for p in inputs):
                     potential.append(t)
             print(f"  -> Enabled Transitions found: {potential}")
+            potential_labels = [self.pn.labels.get(t, t).strip() for t in potential]
+            print(f"  -> Enabled Labels: {potential_labels}")
             if not potential:
                 print("  -> CRITICAL: No transitions enabled. Check Initial Marking (im).")
 
@@ -129,6 +132,10 @@ class Engine:
                                 break
                             else:
                                 # The manager chose a path, but it's not enabled.
+                                required_inputs = self.pn.inputs.get(t_obj.name, [])
+                                input_status = {p: m.get(p, 0) for p in required_inputs}
+                                print(f"  -> [DEBUG ENGINE] Manager suggested {t_obj.name} (Label: {self.pn.labels.get(t_obj.name, '')}) but it is NOT in enabled list: {enabled}")
+                                print(f"  -> [DEBUG ENGINE] Required inputs for {t_obj.name}: {input_status}")
                                 # Fallback to standard behavior.
                                 pass
 
@@ -215,11 +222,10 @@ class Engine:
             "start_time": self.now
         }
 
-        # 1.2 Basic: Static parametric distribution (e.g.: Exponential), only 10 for testing
+        # 1.2 Instance spawn rates
         if self.next_case_id < self.max_cases:
-            inter_arrival_time = random.expovariate(1 / 30)  # Average every 30 mins
-            next_arrival = self.now + timedelta(minutes=inter_arrival_time)
-            heapq.heappush(self.queue, Event(next_arrival, "SPAWN", self.next_case_id + 1))
+            next_time = self.spawner.calculate_next_spawn(self.now)
+            heapq.heappush(self.queue, Event(next_time, "SPAWN", self.next_case_id + 1))
 
         self._process_flow(e.case_id)
 

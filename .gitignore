@@ -9,4 +9,9 @@ __pycache__/
 .vscode/
 .idea/
 
+# Environments
+venv/
+.env
+
+
 # TODO: Evaluate and add more
