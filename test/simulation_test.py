@@ -1,12 +1,11 @@
-import os
-
 import pandas as pd
 
 from resources.ResourceManager import ResourceManager
 from sim_core.engineOG import EngineOG
 from sim_core.pn_model import wrap_net
 from sim_core.bpmn_io import read_bpmn
-from spawn_rates import StaticSpawner, AdvancedSpawner, get_rate_table, get_holidays
+from spawn_rates import AdvancedSpawner, get_rate_table, get_holidays
+
 
 def run_test():
     print("Preparing Dataframes...")
@@ -29,8 +28,7 @@ def run_test():
         seed=42,
     )
 
-
-    engine = EngineOG(pn_model, spawner, res_manager)
+    engine = EngineOG(pn_model, spawner, res_manager, max_cases=100)
 
     print("Running Simulation...")
     engine.spawn()
