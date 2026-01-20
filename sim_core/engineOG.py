@@ -12,24 +12,27 @@ class Event:
     case_id: int = field(compare=False)
     transition_id: str = field(compare=False, default=None)
     resource: str = field(compare=False, default=None)
+    duration: timedelta = field(compare=False, default=None)
 
 
 class EngineOG:
-    def __init__(self, pn, spawner, start_time=None, max_cases=50):
+    def __init__(self, pn, spawner, resource_manager, start_time=None, max_cases=50):
+        # Managers
         self.pn = pn
         self.spawner = spawner
+        self.resource_manager = resource_manager
+        # TODO insert processing times and decision point managers/interfaces HERE
+
+        # Other stuff
         self.now = start_time or datetime(2016, 1, 1, 9, 15, 0)
         self.queue = []
         self.cases = {}
         self.log = []
         self.next_case_id = 0
         self.max_cases = max_cases
-        self.available_resources = ["User_1", "User_2", "User_3"]
-
 
     def spawn(self, at_time=None):
         heapq.heappush(self.queue, Event(at_time or self.now, "SPAWN", self.next_case_id + 1))
-
 
     def run(self, max_events=1000):
         count = 0
@@ -41,32 +44,39 @@ class EngineOG:
                 self._handle_spawn(e)
             elif e.type == "START":
                 self._handle_start(e)
+            elif e.type == "RETRY":     # Used when no resource was available yet
+                self._process_flow(e.case_id)
             elif e.type == "COMPLETE":
                 self._handle_complete(e)
             count += 1
-
 
     def _process_flow(self, case_id):
         m = self.cases[case_id]
         enabled = [t for t in self.pn.trans_ids if all(m.get(p, 0) > 0 for p in self.pn.inputs.get(t, []))]
 
         while enabled:
-            tid = random.choice(enabled) # 1.4 XOR logic random now
+            tid = random.choice(enabled)    # TODO @Zeynep: Insert get_next_transition() from decision manager --> sid...
             label = self.pn.labels.get(tid, "")
 
-            if label == "": # Silent Gateway, instant consume and produce
+            if label == "":     # Silent Gateway, instant consume and produce
                 self._consume(m, tid)
                 self._produce(m, tid)
                 enabled = [t for t in self.pn.trans_ids if all(m.get(p, 0) > 0 for p in self.pn.inputs.get(t, []))]
-            else: # Real Transition
-                if self.available_resources:
-                    res = self.available_resources.pop(0)
+            else:   # Real Transition
+                duration = timedelta(minutes=1)     # TODO @Simon: Insert duration for given event
+                res = self.resource_manager.assign_resource(label, self.now, duration)
+                if res:     # Resource is assigned NOW
                     if label.startswith('W_'):
-                        heapq.heappush(self.queue, Event(self.now, "START", case_id, tid, res))
+                        heapq.heappush(self.queue, Event(self.now, "START", case_id, tid, res, duration))
                     else:
-                        heapq.heappush(self.queue, Event(self.now, "COMPLETE", case_id, tid, res))
+                        heapq.heappush(self.queue, Event(self.now, "COMPLETE", case_id, tid, res, duration))
+                else:   # Find next possible starting time
+                    next_avail_time = self.resource_manager.get_earliest_availability(label, self.now)
+                    retry_time = self.now + timedelta(minutes=15)       # Check if resource is free until then
+                    if next_avail_time and next_avail_time > self.now:
+                        retry_time = max(retry_time, next_avail_time)
+                    heapq.heappush(self.queue, Event(retry_time, "RETRY", case_id))
                 break
-
 
     def _handle_spawn(self, e):
         self.next_case_id += 1
@@ -78,13 +88,11 @@ class EngineOG:
 
         self._process_flow(e.case_id)
 
-
     def _handle_start(self, e):
         self._consume(self.cases[e.case_id], e.transition_id)
         self._record(e, "start")
         duration = timedelta(minutes=random.randint(5, 15))# 1.3 Processing times
         heapq.heappush(self.queue, Event(self.now + duration, "COMPLETE", e.case_id, e.transition_id, e.resource))
-
 
     def _handle_complete(self, e):
         self._produce(self.cases[e.case_id], e.transition_id)
@@ -92,16 +100,13 @@ class EngineOG:
         self.available_resources.append(e.resource)
         self._process_flow(e.case_id)
 
-
     def _consume(self, m, tid):
         for p in self.pn.inputs.get(tid, []):
             m[p] -= 1
 
-
     def _produce(self, m, tid):
         for p in self.pn.outputs.get(tid, []):
             m[p] = m.get(p, 0) + 1
-
 
     def _record(self, e, phase):
         self.log.append({
@@ -111,7 +116,6 @@ class EngineOG:
             "lifecycle:transition": phase,
             "org:resource": e.resource
         })
-
 
     def export_log(self, path="simulation_log.csv"):
         pd.DataFrame(self.log).to_csv(path, index=False)
