@@ -1,6 +1,7 @@
 import heapq
 import pandas as pd
 import random
+import numpy as np
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 
@@ -65,6 +66,10 @@ class EngineOG:
                 self._produce(m, tid)
                 enabled = [t for t in self.pn.trans_ids if all(m.get(p, 0) > 0 for p in self.pn.inputs.get(t, []))]
             else:
+
+
+
+                '''Processing Times'''
                 if label.startswith(("A_", "O_")):
                     sec = self.pt.sample(label, kind="total", use_qr=False)
                     duration = timedelta(seconds=float(sec))
@@ -88,13 +93,16 @@ class EngineOG:
                         use_qr=False
                     )
                     duration = timedelta(seconds=float(sec))
+                ''' End Processing Times '''
+
 
                 res = self.resource_manager.assign_resource(label, self.now, duration)
                 if res:     # Resource is assigned NOW,
                     if label.startswith('W_'):
-                        # do not change duration, because the sampler also takes into account duration between activities
-                        heapq.heappush(self.queue, Event(self.now+duration, "START", case_id, tid, res, duration))
+                        # give a small, neglegtable delay for the starting time of W_Activities, as their processing time is the relevant
+                        heapq.heappush(self.queue, Event(self.now + timedelta(seconds=float(np.random.uniform(0, 1))), "START", case_id, tid, res, duration))
                     else:
+                        # insert delay for O and A activities
                         heapq.heappush(self.queue, Event(self.now+duration, "COMPLETE", case_id, tid, res, duration))
                 else:   # Find next possible starting time
                     next_avail_time = self.resource_manager.get_earliest_availability(label, self.now)
