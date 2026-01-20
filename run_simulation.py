@@ -39,7 +39,7 @@ def main():
         seed=42,
     )
 
-    bpmn_net, initial_marking, final_marking = bpmn_io.read_bpmn('../data/process_model.bpmn')
+    bpmn_net, initial_marking, final_marking = bpmn_io.read_bpmn(bpmn_path)
     pn = pn_model.wrap_net(bpmn_net, initial_marking, final_marking)
     eng = engine.Engine(
         pn=pn,
