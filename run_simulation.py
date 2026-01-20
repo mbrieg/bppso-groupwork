@@ -53,7 +53,7 @@ def run_system_test():
 
     try:
         engine.spawn() 
-        engine.run(max_events=500)
+        engine.run(max_events=2000)
         print("\nSuccess: Simulation finished.")
 
     except Exception as e:
