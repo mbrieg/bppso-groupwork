@@ -95,9 +95,14 @@ class EngineOG:
         heapq.heappush(self.queue, Event(self.now + duration, "COMPLETE", e.case_id, e.transition_id, e.resource))
 
     def _handle_complete(self, e):
+
+        label = self.pn.labels.get(e.transition_id, "")
+
+        if not label.startswith("W_"):
+            self._consume(self.cases[e.case_id], e.transition_id)
+
         self._produce(self.cases[e.case_id], e.transition_id)
         self._record(e, "complete")
-        self.available_resources.append(e.resource)
         self._process_flow(e.case_id)
 
     def _consume(self, m, tid):
