@@ -10,13 +10,13 @@ RateTable = Dict[Tuple[int, int, bool], float]
 TZ_NAME = "Europe/Amsterdam"
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-
 project_root = os.path.dirname(current_dir)
 
 DEFAULT_XES_PATH = os.path.join(project_root, "data", "BPI Challenge 2017.xes.gz")
 
-DEFAULT_HOLIDAYS_PATH = "spawn_rates/artifacts/holidays_nl.pkl"
-DEFAULT_RATE_TABLE_PATH = "spawn_rates/artifacts/rate_table_nl_hourly.pkl"
+ARTIFACTS_DIR = os.path.join(project_root, "spawn_rates", "artifacts")
+DEFAULT_HOLIDAYS_PATH = os.path.join(ARTIFACTS_DIR, "holidays_nl.pkl")
+DEFAULT_RATE_TABLE_PATH = os.path.join(ARTIFACTS_DIR, "rate_table_nl_hourly.pkl")
 
 
 def _generate_nl_holidays(years: List[int]) -> List[date]:
