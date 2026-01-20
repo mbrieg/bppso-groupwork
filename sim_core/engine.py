@@ -23,7 +23,7 @@ class Engine:
         self.resource_manager = resource_manager
         self.decision_manager= decision_manager
         self.case_generator = CaseGenerator()
-        self.now = start_time or datetime(2016, 1, 1, 9, 15, 0)
+        self.now = start_time or datetime(2016, 1, 4, 9, 15, 0)
         self.queue = []
         self.cases = {} # Token state per case: {case_id: {place_id: count}}
         self.cases_meta = {} # Context per case: {case_id: {history: [], attributes: {}}}
@@ -63,6 +63,21 @@ class Engine:
         m = self.cases[case_id]
         enabled = [t for t in self.pn.trans_ids if all(m.get(p, 0) > 0 for p in self.pn.inputs.get(t, []))]
 
+        # Have to debug the engine
+        if case_id == 1:
+            print(f"\n[DEBUG ENGINE] Processing Case {case_id} at {self.now}")
+            print(f"  -> Current Tokens (Marking): {m}")
+            # Check what is theoretically enabled
+            all_trans = self.pn.trans_ids
+            potential = []
+            for t in all_trans:
+                inputs = self.pn.inputs.get(t, [])
+                if all(m.get(p, 0) > 0 for p in inputs):
+                    potential.append(t)
+            print(f"  -> Enabled Transitions found: {potential}")
+            if not potential:
+                print("  -> CRITICAL: No transitions enabled. Check Initial Marking (im).")
+
         if not enabled: return
 
         loop_prevention_counter = 0
@@ -77,21 +92,27 @@ class Engine:
             decision_found = False
             for p_id, tokens in m.items():
                 if tokens > 0:
-                    # Find transitions in 'enabled' that consume from this place
-                    consumers = [t for t in enabled if p_id in self.pn.inputs.get(t, [])]
+                    place_obj = self.place_map.get(p_id)
                     
-                    if len(consumers) > 1:
-                        # conflict detected -> use decision point manager
-                        p_obj = self.place_map.get(p_id)
-                        if p_obj:
-                            ctx = self.cases_meta.get(case_id, {})
-                            # call the DecisionPointManager
-                            t_obj = self.decision_manager.get_next_transition(p_obj, ctx)
-                            
-                            if t_obj and t_obj.name in consumers:
+                    # Check if this place is a known Decision Point (registered in DPManager)
+                    if place_obj and place_obj.name in self.decision_manager.decision_points:
+                        
+                        # Prepare context
+                        ctx = self.cases_meta.get(case_id, {}).get("history", [])
+                        
+                        # Ask Manager: "Where should I go from here?"
+                        t_obj = self.decision_manager.get_next_transition(place_obj, ctx)
+                        
+                        if t_obj:
+                            # Verify the suggested transition is actually enabled right now
+                            if t_obj.name in enabled:
                                 tid = t_obj.name
                                 decision_found = True
-                                break # decision made
+                                break
+                            else:
+                                # The manager chose a path, but it's not enabled. 
+                                # Fallback to standard behavior.
+                                pass
             
             # If no conflict found or manager failed, pick first enabled (FIFO/Random)
             if not decision_found or tid is None:
@@ -107,6 +128,9 @@ class Engine:
                 
                 enabled = [t for t in self.pn.trans_ids if all(m.get(p, 0) > 0 for p in self.pn.inputs.get(t, []))]
             else:  # Real Transition
+
+                label = self.pn.labels.get(tid, tid)
+                print(f"[DEBUG RESOURCE] Asking for resource for task: '{label}' (ID: {tid})")
                 task_duration = fk.sample_duration(label, path=self.time_model_path)  # TODO: Insert duration of event
                 res = self.resource_manager.assign_resource(label, self.now, task_duration)
                 if res:  # Resource is assigned NOW

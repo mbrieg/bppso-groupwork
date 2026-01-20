@@ -1,7 +1,7 @@
 import sys
 import os
 import pm4py
-
+sys.stdout.reconfigure(line_buffering=True)
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
 sys.path.append(os.path.join(current_dir, "sim_core"))
@@ -14,7 +14,7 @@ from decision_analysis.decision_point_manager import DecisionPointManager
 
 def run_system_test():
     print("\n" + "="*60)
-    print("STARTING FULL SIMULATION (NEW STRUCTURE)")
+    print("STARTING FULL SIMULATION")
     print("="*60)
 
     xes_path = os.path.join("data", "BPI Challenge 2017.xes.gz")
@@ -44,7 +44,7 @@ def run_system_test():
         pn=pn_structure,
         resource_manager=resource_manager,
         decision_manager=dp_manager,  
-        max_cases=100              
+        max_cases=5              
     )
 
     print("\n" + "-"*30)
@@ -53,7 +53,7 @@ def run_system_test():
 
     try:
         engine.spawn() 
-        engine.run(max_events=5000)
+        engine.run(max_events=500)
         print("\nSuccess: Simulation finished.")
 
     except Exception as e:
