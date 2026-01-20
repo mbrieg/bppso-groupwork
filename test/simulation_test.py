@@ -18,7 +18,7 @@ def run_test():
     pn_model = wrap_net(bpmn_net, initial_marking, final_marking)
 
     print("Initializing Manager and Engine...")
-    manager = ResourceManager()
+    res_manager = ResourceManager()
 
     print("SpawnRates...")
     holidays = get_holidays()                  # loads or generates NL holidays and caches them
@@ -29,7 +29,8 @@ def run_test():
         seed=42,
     )
 
-    engine = EngineOG(pn_model, spawner)
+
+    engine = EngineOG(pn_model, spawner, res_manager)
 
     print("Running Simulation...")
     engine.spawn()
