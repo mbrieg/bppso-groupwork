@@ -189,7 +189,10 @@ class DecisionPointManager:
         #Test
         #Infinite loop handling is also moved to structures.py
         # Asks the DecisionPoint: is it safe? if there is an infinite loop break it
-        final_activity_name = dp.get_safe_activity(predicted_activity_name, simple_history, limit=5)
+        prediction_input = simple_history
+        # Now the Router receives the list and can count the loops
+        predicted_activity_name = self.router.predict(current_place.name, prediction_input)
+        final_activity_name = dp.get_safe_activity(predicted_activity_name, simple_history, limit=10)
         
         if final_activity_name != predicted_activity_name:
             print(f"   -> [LOOP BREAKER] Switched {predicted_activity_name} to {final_activity_name}")
