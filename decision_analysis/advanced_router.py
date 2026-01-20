@@ -171,6 +171,7 @@ class AdvancedRouter:
         """
         Uses pm4py alignments to extract precise context for every decision.
         """
+        # TODO: Create files folder in /decision_analysis/file and save .pkl things there
         cache_file = "alignment_cache.pkl"
         
         # try to load from cache
