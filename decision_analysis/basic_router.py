@@ -185,13 +185,6 @@ class BasicRouter:
         if not probs: 
             probs = dp.probs_marginal
 
-        # Strategy 3: Random
-        # if we have really no data, pick a random valid output
-        if not probs:
-            candidates = dp.get_possible_activities()
-            if not candidates : return None
-            return random.choice(candidates)
-
         # Apply Loop Decay / Penalty
         weighted_probs = probs.copy()
         
@@ -231,3 +224,10 @@ class BasicRouter:
         weights = list(weighted_probs.values())
 
         return random.choices(choices, weights= weights, k=1)[0]
+
+        # Strategy 3: Random
+        # if we have really no data, pick a random valid output
+        if not probs:
+            candidates = dp.get_possible_activities()
+            if not candidates : return None
+            return random.choice(candidates)
