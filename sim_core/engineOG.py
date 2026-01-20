@@ -4,6 +4,7 @@ import random
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 
+
 @dataclass(order=True)
 class Event:
     time: datetime
@@ -12,14 +13,17 @@ class Event:
     transition_id: str = field(compare=False, default=None)
     resource: str = field(compare=False, default=None)
 
-class Engine:
-    def __init__(self, pn, start_time=None):
+
+class EngineOG:
+    def __init__(self, pn, spawner, start_time=None, max_cases=50):
         self.pn = pn
+        self.spawner = spawner
         self.now = start_time or datetime(2016, 1, 1, 9, 15, 0)
         self.queue = []
         self.cases = {}
         self.log = []
         self.next_case_id = 0
+        self.max_cases = max_cases
         self.available_resources = ["User_1", "User_2", "User_3"]
 
 
@@ -57,7 +61,10 @@ class Engine:
             else: # Real Transition
                 if self.available_resources:
                     res = self.available_resources.pop(0)
-                    heapq.heappush(self.queue, Event(self.now, "START", case_id, tid, res))
+                    if label.startswith('W_'):
+                        heapq.heappush(self.queue, Event(self.now, "START", case_id, tid, res))
+                    else:
+                        heapq.heappush(self.queue, Event(self.now, "COMPLETE", case_id, tid, res))
                 break
 
 
@@ -65,11 +72,9 @@ class Engine:
         self.next_case_id += 1
         self.cases[e.case_id] = dict(self.pn.im)
 
-        # 1.2 Basic: Static parametric distribution (e.g.: Exponential), only 10 for testing
-        if self.next_case_id < 10:
-            inter_arrival_time = random.expovariate(1/30) # Average every 30 mins
-            next_arrival = self.now + timedelta(minutes=inter_arrival_time)
-            heapq.heappush(self.queue, Event(next_arrival, "SPAWN", self.next_case_id + 1))
+        if self.next_case_id < self.max_cases:
+            next_time = self.spawner.calculate_next_spawn(self.now)
+            heapq.heappush(self.queue, Event(next_time, "SPAWN", self.next_case_id + 1))
 
         self._process_flow(e.case_id)
 

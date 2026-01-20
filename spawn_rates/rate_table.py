@@ -9,7 +9,12 @@ import pm4py
 RateTable = Dict[Tuple[int, int, bool], float]
 TZ_NAME = "Europe/Amsterdam"
 
-DEFAULT_XES_PATH = "data/BPI Challenge 2017.xes.gz"
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+project_root = os.path.dirname(current_dir)
+
+DEFAULT_XES_PATH = os.path.join(project_root, "data", "BPI Challenge 2017.xes.gz")
+
 DEFAULT_HOLIDAYS_PATH = "spawn_rates/artifacts/holidays_nl.pkl"
 DEFAULT_RATE_TABLE_PATH = "spawn_rates/artifacts/rate_table_nl_hourly.pkl"
 

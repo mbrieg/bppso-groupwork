@@ -1,10 +1,12 @@
+import os
+
 import pandas as pd
 
 from resources.ResourceManager import ResourceManager
-from sim_core.engine import Engine
+from sim_core.engineOG import EngineOG
 from sim_core.pn_model import wrap_net
 from sim_core.bpmn_io import read_bpmn
-
+from spawn_rates import StaticSpawner, AdvancedSpawner, get_rate_table, get_holidays
 
 def run_test():
     print("Preparing Dataframes...")
@@ -17,7 +19,17 @@ def run_test():
 
     print("Initializing Manager and Engine...")
     manager = ResourceManager()
-    engine = Engine(pn_model, manager)
+
+    print("SpawnRates...")
+    holidays = get_holidays()                  # loads or generates NL holidays and caches them
+    rate_table = get_rate_table(holidays)      # loads cached rate table or builds it once
+    spawner = AdvancedSpawner(
+        rate_table=rate_table,
+        holidays=holidays,
+        seed=42,
+    )
+
+    engine = EngineOG(pn_model, spawner)
 
     print("Running Simulation...")
     engine.spawn()
