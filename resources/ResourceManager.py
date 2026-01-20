@@ -20,7 +20,8 @@ class ResourceManager:
         """
 
         self.availabilities = ResourceAvailabilities(availabilities)
-        self.permissions = ResourcePermissions(mode, permissions)
+        #self.permissions = ResourcePermissions(mode, permissions)
+        self.permissions = ResourcePermissions(permissions, mode)
 
         current_dir = os.path.dirname(os.path.abspath(__file__))
         file_path = os.path.join(current_dir, 'availabilities', availabilities)

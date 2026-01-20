@@ -143,9 +143,15 @@ class DecisionPointManager:
 
     def get_next_transition(self, current_place, trace_history):
 
+        print(f" [DP Manager] Engine is at place: {current_place.name}")
+
         if current_place.name not in self.decision_points:
             if current_place.out_arcs:
-                return list(current_place.out_arcs)[0].target
+                #return list(current_place.out_arcs)[0].target
+                target = list(current_place.out_arcs)[0].target
+                print(f"   -> Simple path. Moving to: {target.name}")
+                return target
+            print("   -> Dead end (No outgoing arcs).")
             return None 
         
         # retrieve the Decision Point Object
@@ -169,16 +175,32 @@ class DecisionPointManager:
         
         # ask the Router: "Where should I go?"
         predicted_activity_name = self.router.predict(current_place.name, prediction_input)
-
+        print(f"   -> Router predicted: {predicted_activity_name}")
+        simple_history = []
+        if isinstance(trace_history, list):
+            for item in trace_history:
+                if hasattr(item, 'get'):  # Dictionary (Event)
+                    simple_history.append(item.get('concept:name'))
+                elif hasattr(item, 'label'): # Object with label
+                    simple_history.append(item.label)
+                else: 
+                    simple_history.append(str(item))
         #Infinite loop in W_Complete application detected in the final_output csv --> Infinite loop breaker
         #Test
         #Infinite loop handling is also moved to structures.py
         # Asks the DecisionPoint: is it safe? if there is an infinite loop break it
-        final_activity_name = dp.get_safe_activity(predicted_activity_name, trace_history, limit=20)
+        prediction_input = simple_history
+        # Now the Router receives the list and can count the loops
+        predicted_activity_name = self.router.predict(current_place.name, prediction_input)
+        final_activity_name = dp.get_safe_activity(predicted_activity_name, simple_history, limit=10)
         
+        if final_activity_name != predicted_activity_name:
+            print(f"   -> [LOOP BREAKER] Switched {predicted_activity_name} to {final_activity_name}")
+
         if final_activity_name and final_activity_name in dp.outgoing_transitions:
             return dp.outgoing_transitions[final_activity_name]
         
+        print("   -> Prediction invalid/None. Using fallback.")
         #if something went wrong, pick the first valid option to prevent crash
         valid_transitions = list(dp.outgoing_transitions.values())
         if valid_transitions:

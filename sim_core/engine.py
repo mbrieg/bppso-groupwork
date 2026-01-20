@@ -6,6 +6,8 @@ from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from processing_times import Functions as fk
 from generators import CaseGenerator
+from processing_times.sampling import ProcessingTimeSampler  # dein Sampler
+import numpy as np
 
 @dataclass(order=True)
 class Event:
@@ -23,7 +25,7 @@ class Engine:
         self.resource_manager = resource_manager
         self.decision_manager= decision_manager
         self.case_generator = CaseGenerator()
-        self.now = start_time or datetime(2016, 1, 1, 9, 15, 0)
+        self.now = start_time or datetime(2016, 1, 4, 9, 15, 0)
         self.queue = []
         self.cases = {} # Token state per case: {case_id: {place_id: count}}
         self.cases_meta = {} # Context per case: {case_id: {history: [], attributes: {}}}
@@ -34,7 +36,23 @@ class Engine:
 
         base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         self.time_model_path = os.path.join(base_dir, "processing_times", "processing_models.json")
-        
+        self.rng = np.random.default_rng(42)
+
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        pt_dir = os.path.join(base_dir, "processing_times")
+
+        self.proc_sampler = ProcessingTimeSampler.from_paths(
+            proc_json=os.path.join(pt_dir, "processing_models_proc.json"),
+            qr_joblib={"proc": os.path.join(pt_dir, "proc_qr_bundle.joblib")},  # <—
+            seed=None,
+            default_value=60.0
+        )
+
+        self.total_sampler = ProcessingTimeSampler.from_paths(
+            total_json=os.path.join(pt_dir, "processing_models_full_dur.json"),
+            seed=None,
+            default_value=0.0
+        )
         print(f" Simulation Engine initialized")
         print(f"  - Decision mode: {self.decision_manager.mode}")
         print(f"  - Max cases: {max_cases}")
@@ -63,10 +81,25 @@ class Engine:
         m = self.cases[case_id]
         enabled = [t for t in self.pn.trans_ids if all(m.get(p, 0) > 0 for p in self.pn.inputs.get(t, []))]
 
+        # Have to debug the engine
+        if case_id == 1:
+            print(f"\n[DEBUG ENGINE] Processing Case {case_id} at {self.now}")
+            print(f"  -> Current Tokens (Marking): {m}")
+            # Check what is theoretically enabled
+            all_trans = self.pn.trans_ids
+            potential = []
+            for t in all_trans:
+                inputs = self.pn.inputs.get(t, [])
+                if all(m.get(p, 0) > 0 for p in inputs):
+                    potential.append(t)
+            print(f"  -> Enabled Transitions found: {potential}")
+            if not potential:
+                print("  -> CRITICAL: No transitions enabled. Check Initial Marking (im).")
+
         if not enabled: return
 
         loop_prevention_counter = 0
-        MAX_SILENT_STEPS = 100 
+        MAX_SILENT_STEPS = 100
 
         while enabled:
             if loop_prevention_counter > MAX_SILENT_STEPS:
@@ -77,38 +110,86 @@ class Engine:
             decision_found = False
             for p_id, tokens in m.items():
                 if tokens > 0:
-                    # Find transitions in 'enabled' that consume from this place
-                    consumers = [t for t in enabled if p_id in self.pn.inputs.get(t, [])]
-                    
-                    if len(consumers) > 1:
-                        # conflict detected -> use decision point manager
-                        p_obj = self.place_map.get(p_id)
-                        if p_obj:
-                            ctx = self.cases_meta.get(case_id, {})
-                            # call the DecisionPointManager
-                            t_obj = self.decision_manager.get_next_transition(p_obj, ctx)
-                            
-                            if t_obj and t_obj.name in consumers:
+                    place_obj = self.place_map.get(p_id)
+
+                    # Check if this place is a known Decision Point (registered in DPManager)
+                    if place_obj and place_obj.name in self.decision_manager.decision_points:
+
+                        # Prepare context
+                        ctx = self.cases_meta.get(case_id, {}).get("history", [])
+
+                        # Ask Manager: "Where should I go from here?"
+                        t_obj = self.decision_manager.get_next_transition(place_obj, ctx)
+
+                        if t_obj:
+                            # Verify the suggested transition is actually enabled right now
+                            if t_obj.name in enabled:
                                 tid = t_obj.name
                                 decision_found = True
-                                break # decision made
-            
+                                break
+                            else:
+                                # The manager chose a path, but it's not enabled.
+                                # Fallback to standard behavior.
+                                pass
+
             # If no conflict found or manager failed, pick first enabled (FIFO/Random)
             if not decision_found or tid is None:
                 tid = enabled[0]  # 1.4 XOR logic added
-            
+
             label = self.pn.labels.get(tid, "")
 
             if label == "":  # Silent Gateway, instant consume and produce
                 self._consume(m, tid)
                 self._produce(m, tid)
 
-                loop_prevention_counter += 1 
-                
+                loop_prevention_counter += 1
+
                 enabled = [t for t in self.pn.trans_ids if all(m.get(p, 0) > 0 for p in self.pn.inputs.get(t, []))]
             else:  # Real Transition
-                task_duration = fk.sample_duration(label, path=self.time_model_path)  # TODO: Insert duration of event
+
+                label = self.pn.labels.get(tid, tid).strip()
+                # print(f"[DEBUG RESOURCE] Asking for resource for task: '{label}' (ID: {tid})")
+                # label = self.pn.labels.get(tid, tid)
+                # print(f"[DEBUG RESOURCE] Asking for resource for task: '{label}' (ID: {tid})")
+                # label = self.pn.labels.get(tid, tid).strip()
+
+                if label.startswith(("A_", "O_")):
+                    sec = self.total_sampler.sample(label, kind="total", rng=self.rng, use_qr=False)
+
+                    # optional: damit O_ nicht praktisch 0 bleibt
+                    sec = max(sec, 1.0)
+
+                    task_duration = timedelta(seconds=float(sec))
+
+                    # A/O ohne Ressourcenlogik starten (sonst baust du künstliche Bottlenecks)
+                    # heapq.heappush(self.queue, Event(self.now, "START", case_id, tid, "System_Auto", task_duration))
+                else:
+                    # Instance-Index (wie oft kam diese Activity schon im Case vor)
+                    instance = self.cases_meta[case_id]["history"].count(label)
+
+                    attrs = self.cases_meta[case_id]["attributes"]
+                    ctx = {
+                        "case:ApplicationType": attrs.get("case:ApplicationType", "UNK"),
+                        "case:RequestedAmount": float(attrs.get("case:RequestedAmount", 0.0)),
+                    }
+
+                    sec = self.proc_sampler.sample(
+                        label,
+                        kind="proc",
+                        now=self.now,
+                        instance=instance,
+                        ctx=ctx,
+                        rng=self.rng,
+                        use_qr=True  # <— QR aktiv
+                    )
+                    task_duration = timedelta(seconds=float(sec))
+
                 res = self.resource_manager.assign_resource(label, self.now, task_duration)
+                if res is None:
+                    # Optional: Print warning only once per activity type to avoid spam
+                    print(f"  [WARN] No resource mapping for '{label}'. Assigning 'System_Auto'.")
+                    res = "System_Auto"
+
                 if res:  # Resource is assigned NOW
                     heapq.heappush(self.queue, Event(self.now, "START", case_id, tid, res, task_duration))
                 else:

@@ -86,7 +86,7 @@ class DecisionPoint:
         """
         return list(self.outgoing_transitions.keys())
     
-    def get_safe_activity(self, predicted_act, trace_history, limit=20):
+    def get_safe_activity(self, predicted_act, trace_history, limit=5):
         """
         Infinite Loop Breaker for activities such as W_. In final_output, it is seen 
         that there is always a lot of W_ activites but not even one A_Accepted activity.
@@ -104,15 +104,25 @@ class DecisionPoint:
         if isinstance(trace_history, list) and trace_history:
             loop_count = 0
             # Walk backwards through history to count consecutive repetitions
-            for act in reversed(trace_history):
-                if act == predicted_act:
+            for item in reversed(trace_history):
+                # Extract string name if item is a dictionary (Event object)
+                if isinstance(item, dict):
+                    act_name = item.get("concept:name")
+                elif hasattr(item, "label"): # Handle object with label attribute
+                    act_name = item.label
+                else:
+                    act_name = str(item) # Fallback for strings
+
+                # Compare Sanitized String names
+                if act_name == predicted_act:
                     loop_count += 1
                 else:
-                    break  # The sequence is broken, so no loop here
+                    break
             
             # 3. If we hit the limit, FORCE a change
             if loop_count >= limit:
                 print(f"DEBUG: Loop limit ({limit}) hit for {predicted_act}. Switching path.")
+                print(f"DEBUG: Breaking loop. Options available: {list(self.outgoing_transitions.keys())}")
                 
                 # Get all options except the one causing the loop
                 alternatives = [

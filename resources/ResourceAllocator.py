@@ -27,7 +27,7 @@ class ResourceAllocator:
                 # Check if resource is occupied
                 if not resource.is_occupied(start_time):
                     available.append(res_id)
-
+            
         if not available:
             return None
 
