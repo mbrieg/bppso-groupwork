@@ -1,0 +1,44 @@
+case:concept:name,concept:name,time:timestamp,lifecycle:transition,org:resource
+1,A_Create Application,2016-01-01 09:15:00,complete,User_3
+1,A_Submitted,2016-01-01 09:15:00,complete,User_1
+1,W_Handle leads,2016-01-01 09:15:00,start,User_31
+1,W_Handle leads,2016-01-01 09:25:00,complete,User_31
+1,W_Complete application,2016-01-01 09:25:00,start,User_93
+1,W_Complete application,2016-01-01 09:35:00,complete,User_93
+1,A_Concept,2016-01-01 09:35:00,complete,User_79
+1,A_Accepted,2016-01-01 09:35:00,complete,User_13
+1,O_Create Offer,2016-01-01 09:35:00,complete,User_68
+1,O_Created,2016-01-01 09:35:00,complete,User_66
+1,O_Sent (mail and online),2016-01-01 09:35:00,complete,User_91
+1,W_Call after offers,2016-01-01 09:35:00,start,User_30
+1,W_Call after offers,2016-01-01 09:42:00,complete,User_30
+1,A_Complete,2016-01-01 09:42:00,complete,User_54
+1,A_Validating,2016-01-01 09:42:00,complete,User_12
+1,W_Validate application,2016-01-01 09:42:00,start,User_126
+1,W_Validate application,2016-01-01 09:48:00,complete,User_126
+1,O_Returned,2016-01-01 09:48:00,complete,User_53
+1,W_Call incomplete files,2016-01-01 09:48:00,start,User_28
+1,W_Call incomplete files,2016-01-01 09:55:00,complete,User_28
+1,A_Incomplete,2016-01-01 09:55:00,complete,User_130
+1,O_Cancelled,2016-01-01 09:55:00,complete,User_3
+1,A_Cancelled,2016-01-01 09:55:00,complete,User_79
+1,O_Create Offer,2016-01-01 09:55:00,complete,User_12
+1,O_Created,2016-01-01 09:55:00,complete,User_9
+1,A_Complete,2016-01-01 09:55:00,complete,User_51
+1,W_Call after offers,2016-01-01 09:55:00,start,User_87
+1,W_Call after offers,2016-01-01 10:10:00,complete,User_87
+1,O_Sent (mail and online),2016-01-01 10:10:00,complete,User_13
+1,A_Cancelled,2016-01-01 10:10:00,complete,User_123
+1,O_Cancelled,2016-01-01 10:10:00,complete,User_16
+1,O_Create Offer,2016-01-01 10:10:00,complete,User_58
+1,O_Created,2016-01-01 10:10:00,complete,User_132
+1,W_Call after offers,2016-01-01 10:10:00,start,User_55
+1,W_Call after offers,2016-01-01 10:24:00,complete,User_55
+1,O_Sent (mail and online),2016-01-01 10:24:00,complete,User_24
+1,A_Complete,2016-01-01 10:24:00,complete,User_87
+1,A_Validating,2016-01-01 10:24:00,complete,User_112
+1,W_Validate application,2016-01-01 10:24:00,start,User_144
+1,W_Validate application,2016-01-01 10:34:00,complete,User_144
+1,O_Returned,2016-01-01 10:34:00,complete,User_118
+1,A_Denied,2016-01-01 10:34:00,complete,User_58
+1,O_Refused,2016-01-01 10:34:00,complete,User_68

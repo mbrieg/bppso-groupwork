@@ -16,7 +16,7 @@ class Event:
 
 
 class EngineOG:
-    def __init__(self, pn, spawner, resource_manager, start_time=None, max_cases=50):
+    def __init__(self, pn, spawner, resource_manager, start_time=None, max_cases=100):
         # Managers
         self.pn = pn
         self.spawner = spawner
