@@ -1,13 +1,13 @@
 import heapq
 import os
 import pandas as pd
-import random
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from processing_times import Functions as fk
-from decision_analysis import generators
-from processing_times.sampling import ProcessingTimeSampler  # dein Sampler
+from decision_analysis.generators import CaseGenerator
+from processing_times.sampling import ProcessingTimeSampler
 import numpy as np
+
 
 @dataclass(order=True)
 class Event:
@@ -20,16 +20,16 @@ class Event:
 
 
 class Engine:
-    def __init__(self,pn ,spawner ,resource_manager, decision_manager, start_time=None, max_cases=50):
+    def __init__(self, pn, spawner, resource_manager, decision_manager, start_time=None, max_cases=50):
         self.pn = pn
-        self.spawner = spawner # Spawner Object Strategy
+        self.spawner = spawner  # Spawner Object Strategy
         self.resource_manager = resource_manager
-        self.decision_manager= decision_manager
+        self.decision_manager = decision_manager
         self.case_generator = CaseGenerator()
         self.now = start_time or datetime(2016, 1, 4, 9, 15, 0)
         self.queue = []
-        self.cases = {} # Token state per case: {case_id: {place_id: count}}
-        self.cases_meta = {} # Context per case: {case_id: {history: [], attributes: {}}}
+        self.cases = {}  # Token state per case: {case_id: {place_id: count}}
+        self.cases_meta = {}  # Context per case: {case_id: {history: [], attributes: {}}}
         self.log = []
         self.next_case_id = 0
         self.max_cases = max_cases
@@ -134,7 +134,8 @@ class Engine:
                                 # The manager chose a path, but it's not enabled.
                                 required_inputs = self.pn.inputs.get(t_obj.name, [])
                                 input_status = {p: m.get(p, 0) for p in required_inputs}
-                                print(f"  -> [DEBUG ENGINE] Manager suggested {t_obj.name} (Label: {self.pn.labels.get(t_obj.name, '')}) but it is NOT in enabled list: {enabled}")
+                                print(
+                                    f"  -> [DEBUG ENGINE] Manager suggested {t_obj.name} (Label: {self.pn.labels.get(t_obj.name, '')}) but it is NOT in enabled list: {enabled}")
                                 print(f"  -> [DEBUG ENGINE] Required inputs for {t_obj.name}: {input_status}")
                                 # Fallback to standard behavior.
                                 pass
@@ -218,7 +219,7 @@ class Engine:
         # 1.4 Decision Point Analysis case history metadata
         self.cases_meta[e.case_id] = {
             "history": [],
-            "attributes": attributes, # CaseGenerator()
+            "attributes": attributes,  # CaseGenerator()
             "start_time": self.now
         }
 
@@ -282,7 +283,6 @@ class Engine:
             "lifecycle:transition": phase,
             "org:resource": e.resource
         })
-
 
     def export_log(self, path="simulation_log.csv"):
         if not self.log:
