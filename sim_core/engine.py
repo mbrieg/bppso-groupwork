@@ -18,8 +18,9 @@ class Event:
 
 
 class Engine:
-    def __init__(self, pn, resource_manager, decision_manager, start_time=None, max_cases=50):
+    def __init__(self,pn ,spawner ,resource_manager, decision_manager, start_time=None, max_cases=50):
         self.pn = pn
+        self.spawner = spawner # Spawner Object Strategy
         self.resource_manager = resource_manager
         self.decision_manager= decision_manager
         self.case_generator = CaseGenerator()
@@ -134,11 +135,10 @@ class Engine:
             "start_time": self.now
         }
 
-        # 1.2 Basic: Static parametric distribution (e.g.: Exponential), only 10 for testing
+        # 1.2 Instance spawn rates
         if self.next_case_id < self.max_cases:
-            inter_arrival_time = random.expovariate(1 / 30)  # Average every 30 mins
-            next_arrival = self.now + timedelta(minutes=inter_arrival_time)
-            heapq.heappush(self.queue, Event(next_arrival, "SPAWN", self.next_case_id + 1))
+            next_time = self.spawner.calculate_next_spawn(self.now)
+            heapq.heappush(self.queue, Event(next_time, "SPAWN", self.next_case_id + 1))
 
         self._process_flow(e.case_id)
 

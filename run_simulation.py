@@ -10,6 +10,7 @@ sys.path.append(os.path.join(current_dir, "resources"))
 from sim_core.engine import Engine
 from resources.ResourceManager import ResourceManager
 from decision_analysis.decision_point_manager import DecisionPointManager
+from spawn_rates import StaticSpawner, AdvancedSpawner, generate_rate_table
 
 def run_system_test():
     print("\n" + "="*60)
@@ -36,11 +37,14 @@ def run_system_test():
     pn_structure = dp_manager.get_pn_model()
     print(f"      -> Structure Ready: {len(pn_structure.place_ids)} places.")
 
-    resource_manager = ResourceManager()
+    resource_manager = None
 
     print(" Initializing Simulation Engine...")
+    spawner = StaticSpawner(mean_minutes=30) #Static Spawner
+
     engine = Engine(
         pn=pn_structure,
+        spawner=spawner,
         resource_manager=resource_manager,
         decision_manager=dp_manager,  
         max_cases=100              
@@ -51,7 +55,7 @@ def run_system_test():
     print("-"*30)
 
     try:
-        engine.spawn() 
+        engine.spawn()
         engine.run(max_events=5000)
         print("\nSuccess: Simulation finished.")
 
