@@ -12,7 +12,7 @@ class ResourceAllocator:
 
     def allocate_resource(self, act_name, start_time, duration):
         # Check permissions
-        permitted = self.permissions.get_permitted_resources(act_name)
+        permitted = self.permissions.get_permitted_resources(act_name, self.resources)
         if not permitted:
             return None
 

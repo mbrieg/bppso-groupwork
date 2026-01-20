@@ -1,0 +1,496 @@
+case:concept:name,concept:name,time:timestamp,lifecycle:transition,org:resource,case:ApplicationType,case:LoanGoal,case:RequestedAmount
+1,A_Create Application,2016-01-04 09:15:00.000000,start,System_Auto,Limit raise,Home improvement,6202.11
+1,A_Create Application,2016-01-04 09:15:00.000000,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,A_Submitted,2016-01-04 09:15:00.000000,start,System_Auto,Limit raise,Home improvement,6202.11
+1,A_Submitted,2016-01-04 09:15:00.000000,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Handle leads,2016-01-04 09:15:00.000000,start,System_Auto,Limit raise,Home improvement,6202.11
+2,A_Create Application,2016-01-04 09:19:50.990720,start,System_Auto,New credit,Car,52098.01
+2,A_Create Application,2016-01-04 09:19:50.990720,complete,System_Auto,New credit,Car,52098.01
+2,A_Submitted,2016-01-04 09:19:50.990720,start,System_Auto,New credit,Car,52098.01
+2,A_Submitted,2016-01-04 09:19:50.990720,complete,System_Auto,New credit,Car,52098.01
+2,W_Handle leads,2016-01-04 09:19:50.990720,start,System_Auto,New credit,Car,52098.01
+1,W_Handle leads,2016-01-04 09:20:06.725419,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Handle leads,2016-01-04 09:20:06.725419,start,System_Auto,Limit raise,Home improvement,6202.11
+3,A_Create Application,2016-01-04 09:20:47.136894,start,System_Auto,New credit,Existing loan takeover,40166.69
+3,A_Create Application,2016-01-04 09:20:47.136894,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,A_Concept,2016-01-04 09:20:47.136894,start,System_Auto,New credit,Existing loan takeover,40166.69
+3,A_Concept,2016-01-04 09:20:47.136894,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Complete application,2016-01-04 09:20:47.136894,start,System_Auto,New credit,Existing loan takeover,40166.69
+4,A_Create Application,2016-01-04 09:21:16.036004,start,System_Auto,New credit,Existing loan takeover,43796.33
+4,A_Create Application,2016-01-04 09:21:16.036004,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,A_Concept,2016-01-04 09:21:16.036004,start,System_Auto,New credit,Existing loan takeover,43796.33
+4,A_Concept,2016-01-04 09:21:16.036004,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Complete application,2016-01-04 09:21:16.036004,start,System_Auto,New credit,Existing loan takeover,43796.33
+1,W_Handle leads,2016-01-04 09:22:13.428491,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,A_Concept,2016-01-04 09:22:13.428491,start,System_Auto,Limit raise,Home improvement,6202.11
+1,A_Concept,2016-01-04 09:22:13.428491,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Complete application,2016-01-04 09:22:13.428491,start,System_Auto,Limit raise,Home improvement,6202.11
+2,W_Handle leads,2016-01-04 09:22:53.868624,complete,System_Auto,New credit,Car,52098.01
+2,A_Concept,2016-01-04 09:22:53.868624,start,System_Auto,New credit,Car,52098.01
+2,A_Concept,2016-01-04 09:22:53.868624,complete,System_Auto,New credit,Car,52098.01
+2,W_Complete application,2016-01-04 09:22:53.868624,start,System_Auto,New credit,Car,52098.01
+3,W_Complete application,2016-01-04 09:23:54.761739,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Complete application,2016-01-04 09:23:54.761739,start,System_Auto,New credit,Existing loan takeover,40166.69
+2,W_Complete application,2016-01-04 09:25:54.775370,complete,System_Auto,New credit,Car,52098.01
+2,A_Accepted,2016-01-04 09:25:54.775370,start,System_Auto,New credit,Car,52098.01
+2,A_Accepted,2016-01-04 09:25:54.775370,complete,System_Auto,New credit,Car,52098.01
+2,O_Create Offer,2016-01-04 09:25:54.775370,start,System_Auto,New credit,Car,52098.01
+2,O_Create Offer,2016-01-04 09:25:54.775370,complete,System_Auto,New credit,Car,52098.01
+2,O_Created,2016-01-04 09:25:54.775370,start,System_Auto,New credit,Car,52098.01
+2,O_Created,2016-01-04 09:25:54.775370,complete,System_Auto,New credit,Car,52098.01
+2,O_Sent (mail and online),2016-01-04 09:25:54.775370,start,System_Auto,New credit,Car,52098.01
+2,O_Sent (mail and online),2016-01-04 09:25:54.775370,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 09:25:54.775370,start,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 09:27:38.664623,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 09:27:38.664623,start,System_Auto,New credit,Car,52098.01
+3,W_Complete application,2016-01-04 09:29:47.050988,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Complete application,2016-01-04 09:29:47.050988,start,System_Auto,New credit,Existing loan takeover,40166.69
+1,W_Complete application,2016-01-04 09:30:39.466894,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Complete application,2016-01-04 09:30:39.466894,start,System_Auto,Limit raise,Home improvement,6202.11
+2,W_Call after offers,2016-01-04 09:32:49.897083,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 09:32:49.897083,start,System_Auto,New credit,Car,52098.01
+3,W_Complete application,2016-01-04 09:35:57.524275,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Complete application,2016-01-04 09:35:57.524275,start,System_Auto,New credit,Existing loan takeover,40166.69
+5,A_Create Application,2016-01-04 09:36:25.362458,start,System_Auto,New credit,Unknown,21406.54
+5,A_Create Application,2016-01-04 09:36:25.362458,complete,System_Auto,New credit,Unknown,21406.54
+5,A_Submitted,2016-01-04 09:36:25.362458,start,System_Auto,New credit,Unknown,21406.54
+5,A_Submitted,2016-01-04 09:36:25.362458,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Handle leads,2016-01-04 09:36:25.362458,start,System_Auto,New credit,Unknown,21406.54
+5,W_Handle leads,2016-01-04 09:37:48.549454,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Handle leads,2016-01-04 09:37:48.549454,start,System_Auto,New credit,Unknown,21406.54
+4,W_Complete application,2016-01-04 09:38:16.690703,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,A_Accepted,2016-01-04 09:38:16.690703,start,System_Auto,New credit,Existing loan takeover,43796.33
+4,A_Accepted,2016-01-04 09:38:16.690703,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,O_Create Offer,2016-01-04 09:38:16.690703,start,System_Auto,New credit,Existing loan takeover,43796.33
+4,O_Create Offer,2016-01-04 09:38:16.690703,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,O_Created,2016-01-04 09:38:16.690703,start,System_Auto,New credit,Existing loan takeover,43796.33
+4,O_Created,2016-01-04 09:38:16.690703,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,O_Sent (mail and online),2016-01-04 09:38:16.690703,start,System_Auto,New credit,Existing loan takeover,43796.33
+4,O_Sent (mail and online),2016-01-04 09:38:16.690703,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 09:38:16.690703,start,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 09:38:26.079983,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 09:38:26.079983,start,System_Auto,New credit,Existing loan takeover,43796.33
+5,W_Handle leads,2016-01-04 09:38:57.759207,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Handle leads,2016-01-04 09:38:57.759207,start,System_Auto,New credit,Unknown,21406.54
+5,W_Handle leads,2016-01-04 09:40:32.804345,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Handle leads,2016-01-04 09:40:32.804345,start,System_Auto,New credit,Unknown,21406.54
+4,W_Call after offers,2016-01-04 09:42:44.080445,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 09:42:44.080445,start,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 09:44:30.663351,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 09:44:30.663351,start,System_Auto,New credit,Existing loan takeover,43796.33
+1,W_Complete application,2016-01-04 09:44:34.550627,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Complete application,2016-01-04 09:44:34.550627,start,System_Auto,Limit raise,Home improvement,6202.11
+4,W_Call after offers,2016-01-04 09:44:56.960237,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 09:44:56.960237,start,System_Auto,New credit,Existing loan takeover,43796.33
+1,W_Complete application,2016-01-04 09:46:56.065525,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Complete application,2016-01-04 09:46:56.065525,start,System_Auto,Limit raise,Home improvement,6202.11
+2,W_Call after offers,2016-01-04 09:47:15.428916,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 09:47:15.428916,start,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 09:48:29.494224,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 09:48:29.494224,start,System_Auto,New credit,Car,52098.01
+4,W_Call after offers,2016-01-04 09:49:28.599681,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 09:49:28.599681,start,System_Auto,New credit,Existing loan takeover,43796.33
+3,W_Complete application,2016-01-04 09:49:52.378741,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Complete application,2016-01-04 09:49:52.378741,start,System_Auto,New credit,Existing loan takeover,40166.69
+5,W_Handle leads,2016-01-04 09:51:20.990189,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Handle leads,2016-01-04 09:51:20.990189,start,System_Auto,New credit,Unknown,21406.54
+5,W_Handle leads,2016-01-04 09:51:32.467152,complete,System_Auto,New credit,Unknown,21406.54
+5,A_Concept,2016-01-04 09:51:32.467152,start,System_Auto,New credit,Unknown,21406.54
+5,A_Concept,2016-01-04 09:51:32.467152,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Complete application,2016-01-04 09:51:32.467152,start,System_Auto,New credit,Unknown,21406.54
+5,W_Complete application,2016-01-04 09:53:42.763735,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Complete application,2016-01-04 09:53:42.763735,start,System_Auto,New credit,Unknown,21406.54
+1,W_Complete application,2016-01-04 09:55:12.316241,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Complete application,2016-01-04 09:55:12.316241,start,System_Auto,Limit raise,Home improvement,6202.11
+3,W_Complete application,2016-01-04 09:55:27.969488,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,A_Accepted,2016-01-04 09:55:27.969488,start,System_Auto,New credit,Existing loan takeover,40166.69
+3,A_Accepted,2016-01-04 09:55:27.969488,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,O_Create Offer,2016-01-04 09:55:27.969488,start,System_Auto,New credit,Existing loan takeover,40166.69
+3,O_Create Offer,2016-01-04 09:55:27.969488,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,O_Created,2016-01-04 09:55:27.969488,start,System_Auto,New credit,Existing loan takeover,40166.69
+3,O_Created,2016-01-04 09:55:27.969488,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,O_Sent (mail and online),2016-01-04 09:55:27.969488,start,System_Auto,New credit,Existing loan takeover,40166.69
+3,O_Sent (mail and online),2016-01-04 09:55:27.969488,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 09:55:27.969488,start,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 09:58:34.880780,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 09:58:34.880780,start,System_Auto,New credit,Existing loan takeover,40166.69
+5,W_Complete application,2016-01-04 09:58:58.579696,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Complete application,2016-01-04 09:58:58.579696,start,System_Auto,New credit,Unknown,21406.54
+1,W_Complete application,2016-01-04 09:59:08.556224,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,A_Accepted,2016-01-04 09:59:08.556224,start,System_Auto,Limit raise,Home improvement,6202.11
+1,A_Accepted,2016-01-04 09:59:08.556224,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,O_Create Offer,2016-01-04 09:59:08.556224,start,System_Auto,Limit raise,Home improvement,6202.11
+1,O_Create Offer,2016-01-04 09:59:08.556224,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,O_Created,2016-01-04 09:59:08.556224,start,System_Auto,Limit raise,Home improvement,6202.11
+1,O_Created,2016-01-04 09:59:08.556224,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,O_Sent (mail and online),2016-01-04 09:59:08.556224,start,System_Auto,Limit raise,Home improvement,6202.11
+1,O_Sent (mail and online),2016-01-04 09:59:08.556224,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 09:59:08.556224,start,System_Auto,Limit raise,Home improvement,6202.11
+2,W_Call after offers,2016-01-04 10:01:17.461405,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 10:01:17.461405,start,System_Auto,New credit,Car,52098.01
+4,W_Call after offers,2016-01-04 10:01:29.795730,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 10:01:29.795730,start,System_Auto,New credit,Existing loan takeover,43796.33
+3,W_Call after offers,2016-01-04 10:01:51.039760,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 10:01:51.039760,start,System_Auto,New credit,Existing loan takeover,40166.69
+4,W_Call after offers,2016-01-04 10:02:41.078803,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 10:02:41.078803,start,System_Auto,New credit,Existing loan takeover,43796.33
+1,W_Call after offers,2016-01-04 10:04:46.492372,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 10:04:46.492372,start,System_Auto,Limit raise,Home improvement,6202.11
+3,W_Call after offers,2016-01-04 10:05:03.510006,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 10:05:03.510006,start,System_Auto,New credit,Existing loan takeover,40166.69
+5,W_Complete application,2016-01-04 10:05:55.761540,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Complete application,2016-01-04 10:05:55.761540,start,System_Auto,New credit,Unknown,21406.54
+4,W_Call after offers,2016-01-04 10:06:11.845064,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 10:06:11.845064,start,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 10:07:57.515073,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 10:07:57.515073,start,System_Auto,New credit,Existing loan takeover,43796.33
+3,W_Call after offers,2016-01-04 10:08:25.271113,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 10:08:25.271113,start,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 10:10:10.771971,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 10:10:10.771971,start,System_Auto,New credit,Existing loan takeover,40166.69
+4,W_Call after offers,2016-01-04 10:11:16.543113,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 10:11:16.543113,start,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 10:11:37.458387,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 10:11:37.458387,start,System_Auto,New credit,Existing loan takeover,43796.33
+5,W_Complete application,2016-01-04 10:12:43.463949,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Complete application,2016-01-04 10:12:43.463949,start,System_Auto,New credit,Unknown,21406.54
+3,W_Call after offers,2016-01-04 10:13:23.988926,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 10:13:23.988926,start,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 10:13:57.577492,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 10:13:57.577492,start,System_Auto,New credit,Existing loan takeover,40166.69
+4,W_Call after offers,2016-01-04 10:16:16.312242,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 10:16:16.312242,start,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 10:17:37.356459,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 10:17:37.356459,start,System_Auto,New credit,Existing loan takeover,43796.33
+1,W_Call after offers,2016-01-04 10:18:20.649937,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 10:18:20.649937,start,System_Auto,Limit raise,Home improvement,6202.11
+4,W_Call after offers,2016-01-04 10:20:01.000073,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 10:20:01.000073,start,System_Auto,New credit,Existing loan takeover,43796.33
+3,W_Call after offers,2016-01-04 10:20:37.725184,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 10:20:37.725184,start,System_Auto,New credit,Existing loan takeover,40166.69
+1,W_Call after offers,2016-01-04 10:21:27.426245,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 10:21:27.426245,start,System_Auto,Limit raise,Home improvement,6202.11
+4,W_Call after offers,2016-01-04 10:21:39.026076,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 10:21:39.026076,start,System_Auto,New credit,Existing loan takeover,43796.33
+1,W_Call after offers,2016-01-04 10:22:42.086316,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 10:22:42.086316,start,System_Auto,Limit raise,Home improvement,6202.11
+4,W_Call after offers,2016-01-04 10:24:38.428263,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 10:24:38.428263,start,System_Auto,New credit,Existing loan takeover,43796.33
+5,W_Complete application,2016-01-04 10:25:01.040239,complete,System_Auto,New credit,Unknown,21406.54
+5,A_Accepted,2016-01-04 10:25:01.040239,start,System_Auto,New credit,Unknown,21406.54
+5,A_Accepted,2016-01-04 10:25:01.040239,complete,System_Auto,New credit,Unknown,21406.54
+5,O_Create Offer,2016-01-04 10:25:01.040239,start,System_Auto,New credit,Unknown,21406.54
+5,O_Create Offer,2016-01-04 10:25:01.040239,complete,System_Auto,New credit,Unknown,21406.54
+5,O_Created,2016-01-04 10:25:01.040239,start,System_Auto,New credit,Unknown,21406.54
+5,O_Created,2016-01-04 10:25:01.040239,complete,System_Auto,New credit,Unknown,21406.54
+5,O_Sent (mail and online),2016-01-04 10:25:01.040239,start,System_Auto,New credit,Unknown,21406.54
+5,O_Sent (mail and online),2016-01-04 10:25:01.040239,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 10:25:01.040239,start,System_Auto,New credit,Unknown,21406.54
+2,W_Call after offers,2016-01-04 10:25:33.011493,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 10:25:33.011493,start,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 10:27:37.089926,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 10:27:37.089926,start,System_Auto,New credit,Car,52098.01
+5,W_Call after offers,2016-01-04 10:30:23.257674,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 10:30:23.257674,start,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 10:31:03.815299,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 10:31:03.815299,start,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 10:32:36.629364,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 10:32:36.629364,start,System_Auto,New credit,Unknown,21406.54
+4,W_Call after offers,2016-01-04 10:32:59.012876,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 10:32:59.012876,start,System_Auto,New credit,Existing loan takeover,43796.33
+5,W_Call after offers,2016-01-04 10:34:38.573492,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 10:34:38.573492,start,System_Auto,New credit,Unknown,21406.54
+4,W_Call after offers,2016-01-04 10:34:59.067837,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 10:34:59.067837,start,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 10:35:11.545507,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 10:35:11.545507,start,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 10:36:34.526816,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 10:36:34.526816,start,System_Auto,New credit,Existing loan takeover,43796.33
+2,W_Call after offers,2016-01-04 10:39:37.071443,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 10:39:37.071443,start,System_Auto,New credit,Car,52098.01
+5,W_Call after offers,2016-01-04 10:42:09.547998,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 10:42:09.547998,start,System_Auto,New credit,Unknown,21406.54
+1,W_Call after offers,2016-01-04 10:42:47.984984,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 10:42:47.984984,start,System_Auto,Limit raise,Home improvement,6202.11
+4,W_Call after offers,2016-01-04 10:44:26.003192,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 10:44:26.003192,start,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 10:44:49.670661,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 10:44:49.670661,start,System_Auto,New credit,Existing loan takeover,43796.33
+2,W_Call after offers,2016-01-04 10:46:22.791354,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 10:46:22.791354,start,System_Auto,New credit,Car,52098.01
+5,W_Call after offers,2016-01-04 10:47:59.858797,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 10:47:59.858797,start,System_Auto,New credit,Unknown,21406.54
+4,W_Call after offers,2016-01-04 10:49:07.378261,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 10:49:07.378261,start,System_Auto,New credit,Existing loan takeover,43796.33
+2,W_Call after offers,2016-01-04 10:49:27.145485,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 10:49:27.145485,start,System_Auto,New credit,Car,52098.01
+5,W_Call after offers,2016-01-04 10:51:08.165129,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 10:51:08.165129,start,System_Auto,New credit,Unknown,21406.54
+2,W_Call after offers,2016-01-04 10:52:02.116716,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 10:52:02.116716,start,System_Auto,New credit,Car,52098.01
+1,W_Call after offers,2016-01-04 10:52:13.066628,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 10:52:13.066628,start,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 10:53:38.609879,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 10:53:38.609879,start,System_Auto,Limit raise,Home improvement,6202.11
+3,W_Call after offers,2016-01-04 10:53:48.193056,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 10:53:48.193056,start,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 10:55:05.219659,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 10:55:05.219659,start,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 10:56:02.071810,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 10:56:02.071810,start,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 10:56:44.754844,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 10:56:44.754844,start,System_Auto,New credit,Existing loan takeover,40166.69
+4,W_Call after offers,2016-01-04 10:56:45.465723,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 10:56:45.465723,start,System_Auto,New credit,Existing loan takeover,43796.33
+2,W_Call after offers,2016-01-04 11:00:34.772790,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 11:00:34.772790,start,System_Auto,New credit,Car,52098.01
+3,W_Call after offers,2016-01-04 11:02:12.356886,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 11:02:12.356886,start,System_Auto,New credit,Existing loan takeover,40166.69
+4,W_Call after offers,2016-01-04 11:03:01.533670,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 11:03:01.533670,start,System_Auto,New credit,Existing loan takeover,43796.33
+2,W_Call after offers,2016-01-04 11:03:20.853820,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 11:03:20.853820,start,System_Auto,New credit,Car,52098.01
+1,W_Call after offers,2016-01-04 11:03:37.873050,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 11:03:37.873050,start,System_Auto,Limit raise,Home improvement,6202.11
+5,W_Call after offers,2016-01-04 11:04:16.046399,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 11:04:16.046399,start,System_Auto,New credit,Unknown,21406.54
+2,W_Call after offers,2016-01-04 11:05:16.697487,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 11:05:16.697487,start,System_Auto,New credit,Car,52098.01
+1,W_Call after offers,2016-01-04 11:07:45.511044,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 11:07:45.511044,start,System_Auto,Limit raise,Home improvement,6202.11
+4,W_Call after offers,2016-01-04 11:08:46.974288,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 11:08:46.974288,start,System_Auto,New credit,Existing loan takeover,43796.33
+3,W_Call after offers,2016-01-04 11:09:23.674747,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 11:09:23.674747,start,System_Auto,New credit,Existing loan takeover,40166.69
+1,W_Call after offers,2016-01-04 11:12:49.470168,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 11:12:49.470168,start,System_Auto,Limit raise,Home improvement,6202.11
+2,W_Call after offers,2016-01-04 11:13:01.862563,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 11:13:01.862563,start,System_Auto,New credit,Car,52098.01
+4,W_Call after offers,2016-01-04 11:13:54.954633,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 11:13:54.954633,start,System_Auto,New credit,Existing loan takeover,43796.33
+3,W_Call after offers,2016-01-04 11:15:26.877871,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 11:15:26.877871,start,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 11:16:35.842954,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 11:16:35.842954,start,System_Auto,New credit,Existing loan takeover,40166.69
+4,W_Call after offers,2016-01-04 11:17:12.467673,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 11:17:12.467673,start,System_Auto,New credit,Existing loan takeover,43796.33
+5,W_Call after offers,2016-01-04 11:17:33.278492,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 11:17:33.278492,start,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 11:19:06.143436,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 11:19:06.143436,start,System_Auto,New credit,Unknown,21406.54
+3,W_Call after offers,2016-01-04 11:19:37.924485,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 11:19:37.924485,start,System_Auto,New credit,Existing loan takeover,40166.69
+2,W_Call after offers,2016-01-04 11:20:00.674826,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 11:20:00.674826,start,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 11:20:51.273575,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 11:20:51.273575,start,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 11:21:54.939661,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 11:21:54.939661,start,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 11:22:43.313765,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 11:22:43.313765,start,System_Auto,New credit,Car,52098.01
+5,W_Call after offers,2016-01-04 11:22:54.159621,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 11:22:54.159621,start,System_Auto,New credit,Unknown,21406.54
+3,W_Call after offers,2016-01-04 11:23:25.028436,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 11:23:25.028436,start,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 11:23:46.929319,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 11:23:46.929319,start,System_Auto,New credit,Existing loan takeover,40166.69
+1,W_Call after offers,2016-01-04 11:23:57.617414,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 11:23:57.617414,start,System_Auto,Limit raise,Home improvement,6202.11
+5,W_Call after offers,2016-01-04 11:24:06.855830,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 11:24:06.855830,start,System_Auto,New credit,Unknown,21406.54
+3,W_Call after offers,2016-01-04 11:24:52.585444,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 11:24:52.585444,start,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 11:25:11.384704,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 11:25:11.384704,start,System_Auto,New credit,Existing loan takeover,40166.69
+1,W_Call after offers,2016-01-04 11:25:12.581177,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 11:25:12.581177,start,System_Auto,Limit raise,Home improvement,6202.11
+4,W_Call after offers,2016-01-04 11:25:50.462136,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 11:25:50.462136,start,System_Auto,New credit,Existing loan takeover,43796.33
+3,W_Call after offers,2016-01-04 11:25:52.930994,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 11:25:52.930994,start,System_Auto,New credit,Existing loan takeover,40166.69
+2,W_Call after offers,2016-01-04 11:26:26.463441,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 11:26:26.463441,start,System_Auto,New credit,Car,52098.01
+5,W_Call after offers,2016-01-04 11:26:42.066583,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 11:26:42.066583,start,System_Auto,New credit,Unknown,21406.54
+2,W_Call after offers,2016-01-04 11:27:17.965051,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 11:27:17.965051,start,System_Auto,New credit,Car,52098.01
+4,W_Call after offers,2016-01-04 11:27:27.221011,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 11:27:27.221011,start,System_Auto,New credit,Existing loan takeover,43796.33
+5,W_Call after offers,2016-01-04 11:28:45.097757,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 11:28:45.097757,start,System_Auto,New credit,Unknown,21406.54
+3,W_Call after offers,2016-01-04 11:29:21.491891,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 11:29:21.491891,start,System_Auto,New credit,Existing loan takeover,40166.69
+5,W_Call after offers,2016-01-04 11:30:56.251793,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 11:30:56.251793,start,System_Auto,New credit,Unknown,21406.54
+3,W_Call after offers,2016-01-04 11:32:28.324173,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 11:32:28.324173,start,System_Auto,New credit,Existing loan takeover,40166.69
+5,W_Call after offers,2016-01-04 11:32:29.857158,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 11:32:29.857158,start,System_Auto,New credit,Unknown,21406.54
+2,W_Call after offers,2016-01-04 11:33:49.827318,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 11:33:49.827318,start,System_Auto,New credit,Car,52098.01
+5,W_Call after offers,2016-01-04 11:34:46.293236,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 11:34:46.293236,start,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 11:35:53.707972,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 11:35:53.707972,start,System_Auto,New credit,Unknown,21406.54
+4,W_Call after offers,2016-01-04 11:38:13.995354,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 11:38:13.995354,start,System_Auto,New credit,Existing loan takeover,43796.33
+1,W_Call after offers,2016-01-04 11:39:09.047291,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 11:39:09.047291,start,System_Auto,Limit raise,Home improvement,6202.11
+4,W_Call after offers,2016-01-04 11:39:47.357953,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 11:39:47.357953,start,System_Auto,New credit,Existing loan takeover,43796.33
+3,W_Call after offers,2016-01-04 11:39:51.298190,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 11:39:51.298190,start,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 11:40:21.670704,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 11:40:21.670704,start,System_Auto,New credit,Existing loan takeover,40166.69
+1,W_Call after offers,2016-01-04 11:40:28.476944,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 11:40:28.476944,start,System_Auto,Limit raise,Home improvement,6202.11
+4,W_Call after offers,2016-01-04 11:42:11.133168,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 11:42:11.133168,start,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 11:42:47.432094,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 11:42:47.432094,start,System_Auto,New credit,Existing loan takeover,43796.33
+3,W_Call after offers,2016-01-04 11:43:42.087495,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 11:43:42.087495,start,System_Auto,New credit,Existing loan takeover,40166.69
+2,W_Call after offers,2016-01-04 11:46:50.258369,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 11:46:50.258369,start,System_Auto,New credit,Car,52098.01
+3,W_Call after offers,2016-01-04 11:47:33.155387,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 11:47:33.155387,start,System_Auto,New credit,Existing loan takeover,40166.69
+2,W_Call after offers,2016-01-04 11:47:47.668401,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 11:47:47.668401,start,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 11:48:44.477022,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 11:48:44.477022,start,System_Auto,New credit,Car,52098.01
+5,W_Call after offers,2016-01-04 11:50:32.897409,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 11:50:32.897409,start,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 11:52:16.546369,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 11:52:16.546369,start,System_Auto,New credit,Unknown,21406.54
+1,W_Call after offers,2016-01-04 11:53:15.277640,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 11:53:15.277640,start,System_Auto,Limit raise,Home improvement,6202.11
+3,W_Call after offers,2016-01-04 11:54:13.797574,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 11:54:13.797574,start,System_Auto,New credit,Existing loan takeover,40166.69
+5,W_Call after offers,2016-01-04 11:55:09.081219,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 11:55:09.081219,start,System_Auto,New credit,Unknown,21406.54
+1,W_Call after offers,2016-01-04 11:55:12.660534,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 11:55:12.660534,start,System_Auto,Limit raise,Home improvement,6202.11
+3,W_Call after offers,2016-01-04 11:56:36.930900,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 11:56:36.930900,start,System_Auto,New credit,Existing loan takeover,40166.69
+1,W_Call after offers,2016-01-04 11:57:32.204880,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 11:57:32.204880,start,System_Auto,Limit raise,Home improvement,6202.11
+5,W_Call after offers,2016-01-04 11:57:57.153233,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 11:57:57.153233,start,System_Auto,New credit,Unknown,21406.54
+1,W_Call after offers,2016-01-04 11:58:24.220260,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 11:58:24.220260,start,System_Auto,Limit raise,Home improvement,6202.11
+5,W_Call after offers,2016-01-04 12:00:55.360637,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 12:00:55.360637,start,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 12:01:42.087118,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 12:01:42.087118,start,System_Auto,New credit,Unknown,21406.54
+2,W_Call after offers,2016-01-04 12:02:42.359489,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 12:02:42.359489,start,System_Auto,New credit,Car,52098.01
+3,W_Call after offers,2016-01-04 12:03:39.736130,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 12:03:39.736130,start,System_Auto,New credit,Existing loan takeover,40166.69
+1,W_Call after offers,2016-01-04 12:08:58.940970,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 12:08:58.940970,start,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 12:09:55.086233,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 12:09:55.086233,start,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 12:11:30.828287,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 12:11:30.828287,start,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 12:12:30.888686,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 12:12:30.888686,start,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 12:13:24.403448,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 12:13:24.403448,start,System_Auto,Limit raise,Home improvement,6202.11
+2,W_Call after offers,2016-01-04 12:14:49.824238,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 12:14:49.824238,start,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 12:16:10.409112,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 12:16:10.409112,start,System_Auto,New credit,Car,52098.01
+4,W_Call after offers,2016-01-04 12:17:49.284782,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 12:17:49.284782,start,System_Auto,New credit,Existing loan takeover,43796.33
+2,W_Call after offers,2016-01-04 12:20:01.630850,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 12:20:01.630850,start,System_Auto,New credit,Car,52098.01
+4,W_Call after offers,2016-01-04 12:20:32.683606,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 12:20:32.683606,start,System_Auto,New credit,Existing loan takeover,43796.33
+5,W_Call after offers,2016-01-04 12:22:01.401810,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 12:22:01.401810,start,System_Auto,New credit,Unknown,21406.54
+1,W_Call after offers,2016-01-04 12:23:24.733106,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 12:23:24.733106,start,System_Auto,Limit raise,Home improvement,6202.11
+2,W_Call after offers,2016-01-04 12:23:32.225080,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 12:23:32.225080,start,System_Auto,New credit,Car,52098.01
+4,W_Call after offers,2016-01-04 12:24:01.554594,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 12:24:01.554594,start,System_Auto,New credit,Existing loan takeover,43796.33
+2,W_Call after offers,2016-01-04 12:24:10.253603,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 12:24:10.253603,start,System_Auto,New credit,Car,52098.01
+4,W_Call after offers,2016-01-04 12:24:10.795715,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 12:24:10.795715,start,System_Auto,New credit,Existing loan takeover,43796.33
+1,W_Call after offers,2016-01-04 12:25:14.549530,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 12:25:14.549530,start,System_Auto,Limit raise,Home improvement,6202.11
+2,W_Call after offers,2016-01-04 12:26:36.347222,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 12:26:36.347222,start,System_Auto,New credit,Car,52098.01
+1,W_Call after offers,2016-01-04 12:28:31.349700,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 12:28:31.349700,start,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 12:28:53.483951,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 12:28:53.483951,start,System_Auto,Limit raise,Home improvement,6202.11
+4,W_Call after offers,2016-01-04 12:28:55.846804,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 12:28:55.846804,start,System_Auto,New credit,Existing loan takeover,43796.33
+5,W_Call after offers,2016-01-04 12:29:28.220334,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 12:29:28.220334,start,System_Auto,New credit,Unknown,21406.54
+2,W_Call after offers,2016-01-04 12:29:52.588548,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 12:29:52.588548,start,System_Auto,New credit,Car,52098.01
+1,W_Call after offers,2016-01-04 12:30:04.515893,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 12:30:04.515893,start,System_Auto,Limit raise,Home improvement,6202.11
+3,W_Call after offers,2016-01-04 12:30:19.215635,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 12:30:19.215635,start,System_Auto,New credit,Existing loan takeover,40166.69
+4,W_Call after offers,2016-01-04 12:30:48.502118,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 12:30:48.502118,start,System_Auto,New credit,Existing loan takeover,43796.33
+3,W_Call after offers,2016-01-04 12:30:51.028791,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 12:30:51.028791,start,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 12:31:25.458771,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 12:31:25.458771,start,System_Auto,New credit,Existing loan takeover,40166.69
+5,W_Call after offers,2016-01-04 12:31:31.856843,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 12:31:31.856843,start,System_Auto,New credit,Unknown,21406.54
+3,W_Call after offers,2016-01-04 12:32:18.977874,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 12:32:18.977874,start,System_Auto,New credit,Existing loan takeover,40166.69
+4,W_Call after offers,2016-01-04 12:33:33.857970,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 12:33:33.857970,start,System_Auto,New credit,Existing loan takeover,43796.33
+3,W_Call after offers,2016-01-04 12:33:54.578301,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 12:33:54.578301,start,System_Auto,New credit,Existing loan takeover,40166.69
+5,W_Call after offers,2016-01-04 12:34:31.936809,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 12:34:31.936809,start,System_Auto,New credit,Unknown,21406.54
+1,W_Call after offers,2016-01-04 12:35:14.828055,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 12:35:14.828055,start,System_Auto,Limit raise,Home improvement,6202.11
+5,W_Call after offers,2016-01-04 12:36:10.543370,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 12:36:10.543370,start,System_Auto,New credit,Unknown,21406.54
+3,W_Call after offers,2016-01-04 12:36:15.689509,complete,System_Auto,New credit,Existing loan takeover,40166.69
+3,W_Call after offers,2016-01-04 12:36:15.689509,start,System_Auto,New credit,Existing loan takeover,40166.69
+4,W_Call after offers,2016-01-04 12:36:47.405436,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 12:36:47.405436,start,System_Auto,New credit,Existing loan takeover,43796.33
+2,W_Call after offers,2016-01-04 12:36:49.036747,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 12:36:49.036747,start,System_Auto,New credit,Car,52098.01
+1,W_Call after offers,2016-01-04 12:37:37.359566,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 12:37:37.359566,start,System_Auto,Limit raise,Home improvement,6202.11
+5,W_Call after offers,2016-01-04 12:38:15.770426,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 12:38:15.770426,start,System_Auto,New credit,Unknown,21406.54
+4,W_Call after offers,2016-01-04 12:39:48.604623,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 12:39:48.604623,start,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 12:40:38.745184,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 12:40:38.745184,start,System_Auto,New credit,Existing loan takeover,43796.33
+2,W_Call after offers,2016-01-04 12:42:06.108293,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 12:42:06.108293,start,System_Auto,New credit,Car,52098.01
+4,W_Call after offers,2016-01-04 12:43:47.565373,complete,System_Auto,New credit,Existing loan takeover,43796.33
+4,W_Call after offers,2016-01-04 12:43:47.565373,start,System_Auto,New credit,Existing loan takeover,43796.33
+5,W_Call after offers,2016-01-04 12:45:44.363070,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 12:45:44.363070,start,System_Auto,New credit,Unknown,21406.54
+1,W_Call after offers,2016-01-04 12:45:56.970900,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 12:45:56.970900,start,System_Auto,Limit raise,Home improvement,6202.11
+2,W_Call after offers,2016-01-04 12:46:58.837334,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 12:46:58.837334,start,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 12:48:16.652292,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 12:48:16.652292,start,System_Auto,New credit,Car,52098.01
+1,W_Call after offers,2016-01-04 12:49:57.037776,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 12:49:57.037776,start,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 12:51:24.688912,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 12:51:24.688912,start,System_Auto,Limit raise,Home improvement,6202.11
+5,W_Call after offers,2016-01-04 12:52:41.557863,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 12:52:41.557863,start,System_Auto,New credit,Unknown,21406.54
+2,W_Call after offers,2016-01-04 12:53:56.951501,complete,System_Auto,New credit,Car,52098.01
+2,W_Call after offers,2016-01-04 12:53:56.951501,start,System_Auto,New credit,Car,52098.01
+5,W_Call after offers,2016-01-04 12:55:23.104748,complete,System_Auto,New credit,Unknown,21406.54
+5,W_Call after offers,2016-01-04 12:55:23.104748,start,System_Auto,New credit,Unknown,21406.54
+1,W_Call after offers,2016-01-04 12:58:30.788379,complete,System_Auto,Limit raise,Home improvement,6202.11
+1,W_Call after offers,2016-01-04 12:58:30.788379,start,System_Auto,Limit raise,Home improvement,6202.11

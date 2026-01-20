@@ -1,7 +1,7 @@
 import sys
 import os
 import pm4py
-
+sys.stdout.reconfigure(line_buffering=True)
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
 sys.path.append(os.path.join(current_dir, "sim_core"))
@@ -12,14 +12,15 @@ from resources.ResourceManager import ResourceManager
 from decision_analysis.decision_point_manager import DecisionPointManager
 from spawn_rates import StaticSpawner, AdvancedSpawner, generate_rate_table
 
+
 def run_system_test():
     print("\n" + "="*60)
-    print("STARTING FULL SIMULATION (NEW STRUCTURE)")
+    print("STARTING FULL SIMULATION")
     print("="*60)
 
     xes_path = os.path.join("data", "BPI Challenge 2017.xes.gz")
     bpmn_path = os.path.join("data", "process_model.bpmn")
-    output_csv = "final_simulation_log.csv"
+    output_csv = "sim_output/final_simulation_log.csv"
 
     if not os.path.exists(xes_path):
         print(f"CRITICAL ERROR: Log file not found at {xes_path}")
@@ -37,7 +38,7 @@ def run_system_test():
     pn_structure = dp_manager.get_pn_model()
     print(f"      -> Structure Ready: {len(pn_structure.place_ids)} places.")
 
-    resource_manager = None
+    resource_manager = ResourceManager()
 
     print(" Initializing Simulation Engine...")
     spawner = StaticSpawner(mean_minutes=30) #Static Spawner
@@ -47,7 +48,7 @@ def run_system_test():
         spawner=spawner,
         resource_manager=resource_manager,
         decision_manager=dp_manager,  
-        max_cases=100              
+        max_cases=5
     )
 
     print("\n" + "-"*30)
@@ -55,8 +56,8 @@ def run_system_test():
     print("-"*30)
 
     try:
-        engine.spawn()
-        engine.run(max_events=5000)
+        engine.spawn() 
+        engine.run(max_events=500)
         print("\nSuccess: Simulation finished.")
 
     except Exception as e:
@@ -73,5 +74,7 @@ def run_system_test():
     print(f"Results saved to: {output_csv}")
     
     print("-" * 30)
+
+
 if __name__ == "__main__":
     run_system_test()

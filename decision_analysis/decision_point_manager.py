@@ -129,70 +129,29 @@ class DecisionPointManager:
                 # 1. Backtracking
                 dp.analyse_preset(max_depth=2)
                
-                for arc in place.out_arcs:
-                    trans = arc.target
-                    label = trans.label
-                    name = trans.name
-
-                    is_hidden = is_invisible_label(trans.label)
-                    
-                    activity_name = None
-
-                    if is_hidden:
-                        # Basic Router + Advanced için görünmez yolları çöz
-                        activity_name = self._resolve_downstream_activity(trans)
-                        if not activity_name:
-                            activity_name = trans.name
-                    elif trans.label:
-                        activity_name = trans.label.strip()
-                    else:
-                        # Advanced mode veya görünür ama etiketsiz (nadiren olur)
-                        activity_name = trans.name
-                    
-                    if activity_name:
-                        dp.add_outgoing(trans, activity_name)
+                # now --> 2. Looking forward finding next 
+                # valid activites skipping the silent transitions
+                dp.detect_outgoing_transitions()
                 
                 if dp.get_possible_activities():
                     dps[place.name] = dp
         
         print(f"  -> Found {len(dps)} decision points in the model.")
         return dps
-
-    def _resolve_downstream_activity(self, start_trans):
-        """
-        BASIC MODE ONLY for now:
-        Looks past silent transitions to find the next visible activity name.
-        Uses BFS to find the nearest real activity.
-        """
-        queue = deque([start_trans])
-        visited = {start_trans}
-        
-        # Maksimum 100 adım ileri git (Güvenlik)
-        steps = 0
-        while queue and steps < 100:
-            curr_trans = queue.popleft()
-            steps += 1
-            
-            # 1. Bu geçişin etiketi geçerli bir aktivite mi?
-            if not is_invisible_label(curr_trans.label):
-                return curr_trans.label.strip()
-            
-            # 2. Değilse, bir sonraki adımları kuyruğa ekle
-            for out_arc in curr_trans.out_arcs:
-                next_place = out_arc.target
-                for next_arc in next_place.out_arcs:
-                    next_trans = next_arc.target
-                    if next_trans not in visited:
-                        visited.add(next_trans)
-                        queue.append(next_trans)
-            
-        return None
+    
+    #_resolve_downstream_activity is now handled in DecisionPoint structures.py
 
     def get_next_transition(self, current_place, trace_history):
 
+        print(f" [DP Manager] Engine is at place: {current_place.name}")
+
         if current_place.name not in self.decision_points:
             if current_place.out_arcs:
-                return list(current_place.out_arcs)[0].target
+                #return list(current_place.out_arcs)[0].target
+                target = list(current_place.out_arcs)[0].target
+                print(f"   -> Simple path. Moving to: {target.name}")
+                return target
+            print("   -> Dead end (No outgoing arcs).")
             return None 
         
         # retrieve the Decision Point Object
@@ -216,39 +175,35 @@ class DecisionPointManager:
         
         # ask the Router: "Where should I go?"
         predicted_activity_name = self.router.predict(current_place.name, prediction_input)
-
+        print(f"   -> Router predicted: {predicted_activity_name}")
+        simple_history = []
+        if isinstance(trace_history, list):
+            for item in trace_history:
+                if hasattr(item, 'get'):  # Dictionary (Event)
+                    simple_history.append(item.get('concept:name'))
+                elif hasattr(item, 'label'): # Object with label
+                    simple_history.append(item.label)
+                else: 
+                    simple_history.append(str(item))
         #Infinite loop in W_Complete application detected in the final_output csv --> Infinite loop breaker
         #Test
-        if isinstance(trace_history, list):
-            loop_count = 0
-            for act in reversed(trace_history):
-                if act == predicted_act:
-                    loop_count += 1
-                else:
-                    break
-            
-            #Threshold BPI 2017 --> 20 for W_
-            SAFE_LIMIT = 20 
-            
-            if loop_count >= SAFE_LIMIT:
-                print(f"DEBUG: Loop limit ({SAFE_LIMIT}) hit for {predicted_act}. Breaking loop.")
-                # Alternative activity ( A_Accepted / O_Create Offer)
-                alternatives = [act for act in dp.outgoing_transitions.keys() if act != predicted_act]
-                if alternatives:
-                    predicted_act = alternatives[0]
-
-         # convert Name back to Transition Object
-        if predicted_activity_name and predicted_activity_name in dp.outgoing_transitions:
-            return dp.outgoing_transitions[predicted_activity_name]
+        #Infinite loop handling is also moved to structures.py
+        # Asks the DecisionPoint: is it safe? if there is an infinite loop break it
+        final_activity_name = dp.get_safe_activity(predicted_activity_name, simple_history, limit=5)
         
-        # fallback 
-        # if the Router returns None (unknown path) or something went wrong, 
-        # pick the first valid option to prevent simulation crash.
+        if final_activity_name != predicted_activity_name:
+            print(f"   -> [LOOP BREAKER] Switched {predicted_activity_name} to {final_activity_name}")
+
+        if final_activity_name and final_activity_name in dp.outgoing_transitions:
+            return dp.outgoing_transitions[final_activity_name]
+        
+        print("   -> Prediction invalid/None. Using fallback.")
+        #if something went wrong, pick the first valid option to prevent crash
         valid_transitions = list(dp.outgoing_transitions.values())
         if valid_transitions:
             return valid_transitions[0]
         
-        # absolute fallback (should probably not reach here)
+        #fallback (should not reach here if model is valid)
         return list(current_place.out_arcs)[0].target
     
     def get_pn_model(self):

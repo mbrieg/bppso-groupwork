@@ -29,7 +29,7 @@ class BasicRouter:
 
     def train(self, horizon = 60, debug = True):
         """
-        Analyses the llog and populates the prob tables in the DecisionPoint objects.
+        Analyses the log and populates the prob tables in the DecisionPoint objects.
         horizon = max num of steps to wait for an outcome after a decision point is triggered.
         """
 

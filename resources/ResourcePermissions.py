@@ -49,7 +49,7 @@ class ResourcePermissions:
         }
 
     def is_permitted(self, act_name, res):
-        allowed = self.permissions.get(act_name)
+        allowed = self._permissions.get(act_name)
         if allowed:
             if self._mode == 'advanced':
                 return res.role in allowed
@@ -58,7 +58,7 @@ class ResourcePermissions:
         return False
 
     def get_permitted_resources(self, act_name, resources):
-        allowed = self.permissions.get(act_name)
+        allowed = self._permissions.get(act_name, set())
         if self._mode == 'advanced':
-            return list(res for res in resources if res.name in allowed)
+            return [res for res in resources if res.name in allowed]
         return list(allowed)
