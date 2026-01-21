@@ -65,7 +65,7 @@ class EngineOG:
             last_act = self.case_last_activity.get(case_id, None)
             #tid = random.choice(enabled)    # TODO @Zeynep: Insert get_next_transition() from decision manager --> sid...
             # ### DP Integration
-            tid = self.decision_manager.get_next_transition(case_id = case_id, enabled_transitions=enabled, last_activity=last_act)
+            tid = self.decision_manager.get_next_transition(case_id = case_id, enabled_transitions=enabled, last_activity=last_act, marking=m)
             label = self.pn.labels.get(tid, "")
 
             if label == "":     # Silent Gateway, instant consume and produce
@@ -147,7 +147,7 @@ class EngineOG:
 
         if label !="":
             self.case_last_activity[e.case_id] = label # write to the memory when is completed
-            
+
         self._process_flow(e.case_id)
 
     def _consume(self, m, tid):

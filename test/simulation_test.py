@@ -28,7 +28,7 @@ def run_test():
 
 
     print("Initializing Decision Manager")
-    rules_path = Path(__file__).resolve().parents[1] / "decision_prob_rules.json"
+    rules_path = Path(__file__).resolve().parents[1] / "decision_analysis" / "decision_prob_rules.json"
     dp_manager = DPManager(pn_model, str(rules_path))
 
     print("SpawnRates...")
