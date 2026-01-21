@@ -174,7 +174,6 @@ def build_duration_counts(
     drop_na: bool = True,
 ) -> Dict[str, List[Tuple[int, float]]]:
     """Build JSON-friendly compressed duration lists per activity.
-
     Returns dict: activity -> [(count, value), ...] sorted by value.
     """
     x = inst[[act_col, value_col]].copy()
