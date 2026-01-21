@@ -14,7 +14,7 @@ import numpy as np
 import pandas as pd
 import scipy.stats as stats
 
-# Lifecycle sets (align with your original Functions.py)
+# Lifecycle sets
 BEGIN = {"start", "resume"}
 END = {"suspend", "complete", "ate_abort", "withdraw"}
 TERMINAL = {"complete", "ate_abort", "withdraw"}
@@ -29,8 +29,7 @@ def build_segments_and_instances(df: pd.DataFrame, workflow_only: bool = True) -
     if workflow_only:
         x = x[x["concept:name"].astype(str).str.startswith("W_")]
 
-    x = x.sort_values(["case:concept:name", "concept:name", "time:timestamp"])  # stable order
-
+    x = x.sort_values(["case:concept:name", "concept:name", "time:timestamp"])
     seg_rows: List[dict] = []
     inst_rows: List[dict] = []
 
@@ -175,7 +174,6 @@ def build_duration_counts(
     drop_na: bool = True,
 ) -> Dict[str, List[Tuple[int, float]]]:
     """Build JSON-friendly compressed duration lists per activity.
-
     Returns dict: activity -> [(count, value), ...] sorted by value.
     """
     x = inst[[act_col, value_col]].copy()
@@ -206,9 +204,6 @@ def fit_parametric_models(
     allow_lognorm: bool = True,
 ) -> Dict[str, Dict[str, Any]]:
     """Fit a simple per-activity parametric distribution (gamma vs lognorm).
-
-    Input is compressed counts: act -> [(count, value), ...]
-    Output is JSON-serializable: act -> {dist: ..., params: ...}
     """
     models: Dict[str, Dict[str, Any]] = {}
 
@@ -262,8 +257,6 @@ def add_case_context(
     ctx_cols: Sequence[str] = ("case:ApplicationType", "case:RequestedAmount"),
     strict: bool = False,
     numeric_cols: Sequence[str] = ("case:RequestedAmount",),
-    add_log1p: bool = True,
-    log1p_col_map: Optional[Dict[str, str]] = None,
     agg: str = "first",
 ) -> pd.DataFrame:
     """Attach case-level context columns to the instance table."""
@@ -299,15 +292,6 @@ def add_case_context(
     for c in numeric_cols:
         if c in out.columns:
             out[c] = pd.to_numeric(out[c], errors="coerce")
-
-    if add_log1p and numeric_cols:
-        m = dict(log1p_col_map or {})
-        for c in numeric_cols:
-            if c not in out.columns:
-                continue
-            if c not in m:
-                m[c] = "req_log" if c == "case:RequestedAmount" else f"{c}_log1p"
-            out[m[c]] = np.log1p(out[c].fillna(0.0).astype(float))
 
     return out
 
