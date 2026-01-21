@@ -2,6 +2,7 @@ import math
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Union, Tuple
 import pandas as pd
+import numpy as np
 
 @dataclass
 class TreeNode:
@@ -31,7 +32,7 @@ class C45DecisionTree:
     def __init__(
         self,
         attribute_types: Dict[str, str],
-        min_samples_split: int = 2,
+        min_samples_split: int = 500,
         max_depth: Optional[int] = None,
         min_non_nan_ratio: float = 0.2,
     ):
@@ -217,7 +218,7 @@ class C45DecisionTree:
             
             if node.is_leaf:
                 label_text = f"Leaf: {clean(node.prediction)}\n(n={node.num_samples})"
-                color = "lightred"
+                color = "lightyellow"
             else:
                 label_text = f"Split: {clean(node.split_attr)}\n(n={node.num_samples})"
                 color = "lightblue"
@@ -395,7 +396,14 @@ class C45DecisionTree:
         unique_vals = x_sorted.unique()
         if len(unique_vals) <= 1: return 0.0, 0.0, None
 
-        thresholds = [(unique_vals[i] + unique_vals[i + 1]) / 2.0 for i in range(len(unique_vals) - 1)]
+        #thresholds = [(unique_vals[i] + unique_vals[i + 1]) / 2.0 for i in range(len(unique_vals) - 1)]
+
+        num_thresholds = 20
+        if len(unique_vals) > num_thresholds:
+        # Get values at specific percentiles
+            thresholds = [np.percentile(unique_vals, q) for q in np.linspace(0, 100, num_thresholds + 1)[1:-1]]
+        else:
+           thresholds = [(unique_vals[i] + unique_vals[i + 1]) / 2.0 for i in range(len(unique_vals) - 1)]
 
         best_gain_ratio = 0.0
         best_gain = 0.0

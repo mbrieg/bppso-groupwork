@@ -71,8 +71,16 @@ def _build_rate_table_from_df(df: pd.DataFrame, holidays_set: Set[date]) -> Rate
     counts = arrivals.groupby(["weekday", "hour", "is_holiday"]).size()
     days = arrivals.groupby(["weekday", "hour", "is_holiday"])["date"].nunique()
 
-    # lambda = average arrivals per observed day in that slot
-    return (counts / days).to_dict()
+    rate_table = (counts / days).to_dict()
+
+    for wd in range(7):
+        for hr in range(24):
+            k_false = (wd, hr, False)
+            k_true = (wd, hr, True)
+            if k_true not in rate_table and k_false in rate_table:
+                rate_table[k_true] = rate_table[k_false]
+
+    return rate_table
 
 
 def get_rate_table(

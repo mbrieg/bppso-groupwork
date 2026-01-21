@@ -49,8 +49,15 @@ class AdvancedSpawner(BaseSpawner):
             return self.rate_table[context]
 
         weekday, hour, is_holiday = context
-        alt_context = (weekday, hour, not is_holiday)
-        return self.rate_table.get(alt_context, self._global_mean)
+        candidates = [self.rate_table.get((weekday, h, is_holiday)) for h in (hour - 1, hour + 1)]
+        candidates = [x for x in candidates if x is not None]
+        if candidates:
+            return sum(candidates) / len(candidates)
+
+        if 0 <= hour <= 5:
+            return min(self._global_mean, 1.2)
+
+        return self.rate_table.get((weekday, hour, not is_holiday), self._global_mean)
 
     def _refill_buffer(self, current_time: datetime) -> None:
         context = self._get_context(current_time)

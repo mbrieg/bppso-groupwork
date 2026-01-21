@@ -35,6 +35,8 @@ class EngineOG:
 
         # ### Dict to track the current last activity for each case (DP)
         self.case_last_activity = {}
+        self.case_start_times = {}     # When the case is started
+        self.case_last_duration = {}
 
 
     def spawn(self, at_time=None):
@@ -61,11 +63,12 @@ class EngineOG:
         enabled = [t for t in self.pn.trans_ids if all(m.get(p, 0) > 0 for p in self.pn.inputs.get(t, []))]
 
         while enabled:
-            #Get the last activity for this specific case
-            last_act = self.case_last_activity.get(case_id, None)
-            #tid = random.choice(enabled)    # TODO @Zeynep: Insert get_next_transition() from decision manager --> sid...
+            last_act = self.case_last_activity.get(case_id, "START")
+            last_dur = self.case_last_duration.get(case_id, 0)
+            start_time = self.case_start_times.get(case_id, self.now)
+            # TODO @Zeynep: Insert get_next_transition() from decision manager --> sid...
             # ### DP Integration
-            tid = self.decision_manager.get_next_transition(case_id = case_id, enabled_transitions=enabled, last_activity=last_act)
+            tid = self.decision_manager.get_next_transition(case_id = case_id, enabled_transitions=enabled, last_activity=last_act,last_duration_sec=last_dur,case_start_time=start_time,current_now=self.now)
             label = self.pn.labels.get(tid, "")
 
             if label == "":     # Silent Gateway, instant consume and produce
@@ -119,7 +122,11 @@ class EngineOG:
     def _handle_spawn(self, e):
         self.next_case_id += 1
         self.cases[e.case_id] = dict(self.pn.im)
-        self.case_last_activity[e.case_id] = None # a new memory for each case
+        #DP
+        self.case_last_activity[e.case_id] = "START" # a new memory for each case
+        self.case_start_times[e.case_id] = self.now 
+        self.case_last_duration[e.case_id] = 0
+        #DP
         if self.next_case_id < self.max_cases:
             next_time = self.spawner.calculate_next_spawn(self.now)
             heapq.heappush(self.queue, Event(next_time, "SPAWN", self.next_case_id + 1))
@@ -144,6 +151,10 @@ class EngineOG:
 
         if label !="":
             self.case_last_activity[e.case_id] = label # write to the memory when is completed
+            if e.duration:
+                self.case_last_duration[e.case_id] = e.duration.total_seconds()
+            else:
+                self.case_last_duration[e.case_id] = 0
 
         self._process_flow(e.case_id)
 
