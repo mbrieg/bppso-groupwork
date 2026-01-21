@@ -1,17 +1,22 @@
+# Environments
 .DS_Store
+.vscode/
+.idea/
+venv/
+.env
 
-# Python cache
+# Python
 __pycache__/
 *.pyc
 *.pyo
 *.pkl
+.pytest_cache/
 
-.vscode/
-.idea/
+# Simulation outputs
+sim_output/*.csv
 
-# Environments
-venv/
-.env
-
-
-# TODO: Evaluate and add more
+# Checkpoints and Plots
+.ipynb_checkpoints/
+*.png
+*.svg
+*.pdf
