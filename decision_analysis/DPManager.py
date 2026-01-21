@@ -1,52 +1,76 @@
 import json
 import random
+import pickle
 from collections import defaultdict
+from .BasicRouter import BasicRouter
+from .AdvancedRouter import AdvancedRouter
 
 class DPManager:
-    def __init__(self, pn, rules_path="decision_prob_rules.json"):
+    def __init__(self, pn, mode="basic", model_path="simulation_brain.pkl", rules_path="decision_prob_rules.json"):
         self.pn = pn
-        self.rules_path = rules_path
-        self.probabilities = {}
+        self.mode = mode.lower()
+        self.router = None
 
-        self._load_rules()
+        if self.mode == "advanced":
+            self._setup_advanced(model_path, rules_path)
+        else:
+            self._setup_basic(rules_path)
 
-    def _load_rules(self):
+    def _setup_basic(self, rules_path):
+        """Probabilitiy based BasicRouter"""
         try:
-            with open(self.rules_path, 'r') as f:
-                self.probabilities = json.load(f)
-            print(f"DecisionManager: Loaded rules from {self.rules_path}")
+            with open(rules_path, 'r') as f:
+                probabilities = json.load(f)
+            self.router = BasicRouter(probabilities, self.pn)
+            print(f"DPManager: BasicRouter activited (Rules: {rules_path})")
         except FileNotFoundError:
-            print(f"DecisionManager: WARNING - {self.rules_path} not found. Defaulting to Random.")
+            print("DPManager: Not found , working random")
+            self.router = BasicRouter({}, self.pn)
 
-    def get_next_transition(self, case_id, enabled_transitions, last_activity):
+    def _setup_advanced(self, model_path, rules_path):
+        """C4.5 tree + AdvancedRouter"""
+        try:
+            with open(model_path, "rb") as f:
+                pkg = pickle.load(f)
+            self.router = AdvancedRouter(pkg["model"], pkg["bins"], self.pn)
+            print(f"DPManager: AdvancedRouter activated. (Model: {model_path})")
+        except Exception as e:
+            print(f"DPManager: Advanced not found ({e}), Back to basic.")
+            self.mode = "basic"
+            self._setup_basic(rules_path)   
+
+    def get_next_transition(self, case_id, enabled_transitions, last_activity, 
+                            last_duration_sec=0, case_start_time=None, current_now=None):
+        """
+        EngineOG calls it.
+        """
+        # A) If there is only one choice no need to think actually
         if len(enabled_transitions) == 1:
             return enabled_transitions[0]
 
-        # label -> list[tids]
-        candidates_map = defaultdict(list)
-        for tid in enabled_transitions:
-            label = self.pn.labels.get(tid, "")
-            if isinstance(label, str):
-                label = label.strip()
-            candidates_map[label].append(tid)
+        # B) Take the decision from router
+        tid = None
+        if self.router:
+            if self.mode == "advanced":
+                # AdvancedRouter wants these parameters
+                tid = self.router.route(
+                    enabled=enabled_transitions, 
+                    last_activity=last_activity, 
+                    last_duration =last_duration_sec, 
+                    case_start_time=case_start_time, 
+                    current_now=current_now
+                )
+            else:
+                # BasicRouter
+                tid = self.router.route(enabled=enabled_transitions, last_activity=last_activity)
 
-        learned_dist = self.probabilities.get(last_activity, None)
-
-        if learned_dist:
-            visible_labels = [lbl for lbl in candidates_map.keys() if lbl != ""]
-            if visible_labels:
-                weights = [float(learned_dist.get(lbl, 0.0)) for lbl in visible_labels]
-                if sum(weights) > 0:
-                    chosen_label = random.choices(visible_labels, weights=weights, k=1)[0]
-                    return random.choice(candidates_map[chosen_label])
-
-        # fallback: if there is visible select a random among visibles, not full random
-        visible_tids = [tid for lbl, tids in candidates_map.items() if lbl != "" for tid in tids]
-        return random.choice(visible_tids) if visible_tids else random.choice(enabled_transitions)
-    
-        # Do what Luca as random macht, tid = random.choice(enabled)
-        # e.g. when last_activity is None at the start of the process   
-        #return random.choice(enabled_transitions)   
+        # C) Fallback: Random
+        if tid is None:
+            return self._fallback_random(enabled_transitions)
         
-        
-    
+        return tid
+
+    def _fallback_random(self, enabled):
+        """Wenn nothing works, macht was Luca macht vorher"""
+        visible_tids = [t for t in enabled if self.pn.labels.get(t, "") != ""]
+        return random.choice(visible_tids) if visible_tids else random.choice(enabled)
