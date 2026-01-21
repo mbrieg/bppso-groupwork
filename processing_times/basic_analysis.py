@@ -1,25 +1,7 @@
-"""processing_times.basic_analysis
-
-Reusable helpers for:
-- building segments and instance durations
-- adding modelling features (time-of-day, weekday, occurrence)
-- exporting empirical references and fitting simple parametric distributions
-
-The core modelling table is the instance dataframe `inst` with columns:
-- case:concept:name
-- concept:name
-- instance
-- proc_seconds
-- total_seconds
-- wait_seconds
-- inst_start
-- inst_end
-
-This module is designed so you can:
-- do analysis in a notebook
-- export JSON artefacts
-- reuse the same artefacts in a simulator
-"""
+'''
+Basic analysis:
+Different functions used in the basic part of the Processing Times notebook
+'''
 
 from __future__ import annotations
 
@@ -28,7 +10,7 @@ from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
 import json
 import math
-
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import scipy.stats as stats
@@ -364,3 +346,123 @@ def add_case_context(
             out[m[c]] = np.log1p(out[c].fillna(0.0).astype(float))
 
     return out
+
+
+def density_plot_from_counts(
+        durations_full, act,
+        bins=80, zoom_q=1.0, log_x=False, drop_zeros=False, plot_data=True,
+        show_model=False, dist="gamma", max_samples=200000, min_samples=200
+):
+    """
+    Density plot (histogram with density=True) for one activity.
+    Uses the complete processing time list in format: durations_full[act] = [(count, value), ...]
+    drop_zeros=True removes duration==0(for zero-inflated).
+    show_model=True overlays the model on the plot
+    dist: "gamma" or "lognorm"
+    """
+    lst = durations_full.get(act, [])
+    if not lst:
+        print("No data for", act)
+        return
+
+    values = np.array([v for cnt, v in lst], dtype=float)
+    weights = np.array([cnt for cnt, v in lst], dtype=float)
+
+    m = np.isfinite(values) & np.isfinite(weights) & (weights > 0)
+    values, weights = values[m], weights[m]
+
+    # drop zeros
+    if drop_zeros:
+        m0 = values > 0
+        values, weights = values[m0], weights[m0]
+        if len(values) == 0:
+            print("Only zeros -> nothing to plot for", act)
+            return
+
+    idx = np.argsort(values)
+    values, weights = values[idx], weights[idx]
+
+    # zoom threshold on quantiles
+    if zoom_q < 1.0:
+        cum = np.cumsum(weights)
+        thr = values[np.searchsorted(cum, zoom_q * cum[-1], side="left")]
+    else:
+        thr = values.max()
+
+    # filter to range
+    mask = values <= thr
+    v = values[mask]
+    w = weights[mask]
+
+    if log_x:
+        mask_pos = v > 0
+        v, w = v[mask_pos], w[mask_pos]
+        if len(v) == 0:
+            print("No positive values in range -> log_x not possible for", act)
+            return
+
+    # plot empirical density
+    if plot_data:
+        plt.figure(figsize=(9, 5))
+        plt.hist(v, bins=bins, weights=w, density=True, alpha=0.7, label="Empirical")
+
+    # fit + overlay the model
+    model = None
+    if show_model:
+        # Fit always on positive values
+        mfit = v > 0
+        vfit = v[mfit]
+        wfit = w[mfit]
+
+        # capped expand using weights
+        pos = []
+        for val, cnt in zip(vfit, wfit.astype(int)):
+            if len(pos) >= max_samples:
+                break
+            take = min(int(cnt), max_samples - len(pos))
+            if take > 0:
+                pos.extend([float(val)] * take)
+
+        pos = np.asarray(pos, dtype=float)
+
+        # Fitting the model to the data
+        if len(pos) >= min_samples:
+            x = np.linspace(max(v.min(), 1e-9), v.max(), 1000)
+
+            if dist == "gamma":
+                a, loc, scale = stats.gamma.fit(pos, floc=0)
+                y = stats.gamma.pdf(x, a, loc=loc, scale=scale)
+                params = (float(a), float(loc), float(scale))
+                model = {"type": "parametric", "dist": "gamma",
+                         "params": {"a": float(a), "scale": float(scale)}}
+                plt.plot(x, y, label=f"Gamma fit")
+            elif dist == "lognorm":
+                s, loc, scale = stats.lognorm.fit(pos, floc=0)
+                y = stats.lognorm.pdf(x, s, loc=loc, scale=scale)
+                params = (float(s), float(loc), float(scale))
+                model = {"type": "parametric", "dist": "lognorm",
+                         "params": {"s": float(s), "scale": float(scale)}}
+                plt.plot(x, y, label=f"Lognorm fit")
+            else:
+                raise ValueError("dist must be 'gamma' or 'lognorm'")
+        else:
+            print(f"Too few samples to fit for {act}: {len(pos)} (min={min_samples})")
+
+    if plot_data or show_model:
+        plt.title(f"{act} – density (zoom_q={zoom_q}, drop_zeros={drop_zeros}, show_model={show_model})")
+        plt.xlabel("seconds")
+        plt.ylabel("density")
+        if log_x:
+            plt.xscale("log")
+            plt.xlim(max(v.min(), 1e-6), v.max())
+        else:
+            plt.xlim(0 if not drop_zeros else v.min(), thr)
+
+        if show_model:
+            plt.legend()
+
+        plt.show()
+
+    # retrun the model
+    return model
+
