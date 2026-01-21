@@ -18,9 +18,10 @@ def run_test():
     print("Preparing Dataframes...")
     permissions_path = ''
     availabilities_path = ''
+    bpmn_path = os.path.join(project_root, "data", "process_model.bpmn")
 
     print("Loading BPMN Model...")
-    bpmn_net, initial_marking, final_marking = read_bpmn('data/process_model.bpmn')
+    bpmn_net, initial_marking, final_marking = read_bpmn(bpmn_path)
     pn_model = wrap_net(bpmn_net, initial_marking, final_marking)
     
     print("Initializing Manager and Engine...")
