@@ -46,9 +46,9 @@ def run_test():
     pt_dir = root / "processing_times"
 
     pt = ProcessingTimeSampler.from_paths(
-        proc_json=pt_dir / "processing_models_proc.json",
-        total_json=pt_dir / "processing_models_full_dur.json",
-        wait_json=pt_dir / "wait_reference.json",
+        proc_json=pt_dir / "Basic_Models/processing_models_proc.json",
+        total_json=pt_dir / "Basic_Models/processing_models_full_dur.json",
+        wait_json=pt_dir / "Basic_Models/wait_reference.json",
         seed=42,
         default_value=60.0
     )
