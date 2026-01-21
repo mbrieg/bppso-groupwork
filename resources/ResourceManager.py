@@ -8,20 +8,20 @@ from resources.ResourceAllocator import ResourceAllocator
 
 
 class ResourceManager:
-    def __init__(self, availabilities='weekly_schedule_median.csv',
+    def __init__(self, availabilities='availabilities_basic.csv',
                  permissions='permissions_basic.csv',
-                 roles='resource_roles.csv',
-                 mode='basic'):
+                 roles='resource_roles.csv'):
         """
-        :param availabilities: CSV file with ['Resource', 'DayId', 'StartTime', 'EndTime']
-        :param permissions:    CSV file with ['Activity', 'Resource'] (Basic) or ['Activity', 'Role'] (Advanced)
-        :param roles:          CSV file with ['Resource', 'Role'] (Only used in Advanced mode)
-        :param mode:           'basic' or 'advanced'
+        :param availabilities: CSV file with ['Resource', 'DayId', 'StartTime', 'EndTime'] (basic) or
+                                ['Resource', 'DayId', 'StartTime', 'EndTime', 'BreakStart', 'DurationMin'] (advanced)
+        :param permissions:    CSV file with ['Activity', 'Resource'] (basic) or ['Activity', 'Role'] (advanced)
+        :param roles:          CSV file with ['Resource', 'Role'] (Only used in advanced mode)
         """
+        avail_adv = availabilities != 'availabilities_basic.csv'
+        perm_adv = permissions != 'permissions_basic.csv'
 
-        self.availabilities = ResourceAvailabilities(availabilities)
-        #self.permissions = ResourcePermissions(mode, permissions)
-        self.permissions = ResourcePermissions(permissions, mode)
+        self.availabilities = ResourceAvailabilities(availabilities, avail_adv)
+        self.permissions = ResourcePermissions(permissions, perm_adv)
 
         current_dir = os.path.dirname(os.path.abspath(__file__))
         file_path = os.path.join(current_dir, 'availabilities', availabilities)
@@ -30,7 +30,7 @@ class ResourceManager:
             str(res_name): Resource(res_name) for res_name in all_res_names['Resource'].unique()
         }
 
-        if mode == 'advanced':
+        if perm_adv:
             self._assign_roles_to_resources(roles)
 
         self.allocator = ResourceAllocator(
@@ -40,6 +40,9 @@ class ResourceManager:
         )
 
     def _assign_roles_to_resources(self, file: str):
+        """
+        Helper used for initialisation.
+        """
         current_dir = os.path.dirname(os.path.abspath(__file__))
         roles_path = os.path.join(current_dir, 'permissions', file)
 

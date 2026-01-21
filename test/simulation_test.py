@@ -1,6 +1,7 @@
 import os
 import sys
 import pandas as pd
+from datetime import datetime
 from pathlib import Path
 project_root = Path(__file__).resolve().parents[1]
 sys.path.append(str(project_root))
@@ -30,7 +31,8 @@ def run_test():
 
     print("Initializing Decision Manager")
     rules_path = Path(__file__).resolve().parents[1] / "decision_analysis" / "decision_prob_rules.json"
-    dp_manager = DPManager(pn_model, str(rules_path))
+    model_path = Path(__file__).resolve().parents[1] / "decision_analysis" / "simulation_brain.pkl"
+    dp_manager = DPManager(pn=pn_model, mode="advanced",model_path= str(model_path),rules_path= str(rules_path))
 
     print("SpawnRates...")
     holidays = get_holidays()                  # loads or generates NL holidays and caches them
@@ -61,7 +63,12 @@ def run_test():
     print("\n--- Simulation Output ---")
     print(sim_log.head(30))
 
-    sim_log.to_csv("test_output.csv", index=False)
+    #didnt wanna break the previous output
+    #sim_log.to_csv("test_output.csv", index=False)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    output_filename = f"test_output_advanced_{timestamp}.csv"
+
+    sim_log.to_csv(output_filename, index=False)
     print("\nResults saved to 'test_output.csv'")
 
 
