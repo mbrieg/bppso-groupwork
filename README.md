@@ -1,8 +1,8 @@
 # Group Exercise - Business Process Prediction, Simulation, and Optimization
 ## Business Process Simulation Model
 
-## Description
-
+## Event log
+This repository is based on the Application: 10.4121/uuid:5f3067df-f10b-45da-b98b-86ae4c7a310b
 ## Getting started
 This project requires a Python environment (preferably Conda) and the following external libraries with versions listed in `requirements.txt`.
 ### Dependencies
