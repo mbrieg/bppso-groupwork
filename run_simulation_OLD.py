@@ -2,7 +2,7 @@ import sys
 import os
 import pm4py
 
-from sim_core import engine, pn_model, bpmn_io
+from sim_core import engineOLD, pn_model, bpmn_io
 from resources.ResourceManager import ResourceManager
 from decision_analysis.decision_point_manager import DecisionPointManager
 from spawn_rates import StaticSpawner, AdvancedSpawner, get_rate_table, get_holidays
