@@ -40,6 +40,9 @@ class ResourceManager:
         )
 
     def _assign_roles_to_resources(self, file: str):
+        """
+        Helper used for initialisation.
+        """
         current_dir = os.path.dirname(os.path.abspath(__file__))
         roles_path = os.path.join(current_dir, 'permissions', file)
 
