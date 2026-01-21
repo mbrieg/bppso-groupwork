@@ -3,7 +3,7 @@ import os
 import pandas as pd
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
-from processing_times import Functions as fk
+
 from decision_analysis.generators import CaseGenerator
 from processing_times.sampling import ProcessingTimeSampler
 import numpy as np

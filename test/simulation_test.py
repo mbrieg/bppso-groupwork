@@ -42,7 +42,7 @@ def run_test():
         holidays=holidays,
         seed=42,
     )
-    root = Path(__file__).resolve().parents[1]  # ggf. anpassen (0/1/2)
+    root = Path(__file__).resolve().parents[1]
     pt_dir = root / "processing_times"
 
     pt = ProcessingTimeSampler.from_paths(
