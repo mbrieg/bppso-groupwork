@@ -20,7 +20,7 @@ def run_test():
     availabilities_path = ''
 
     print("Loading BPMN Model...")
-    bpmn_net, initial_marking, final_marking = read_bpmn('data/process_model.bpmn')
+    bpmn_net, initial_marking, final_marking = read_bpmn('../data/process_model.bpmn')
     pn_model = wrap_net(bpmn_net, initial_marking, final_marking)
     
     print("Initializing Manager and Engine...")
