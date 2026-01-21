@@ -1,9 +1,16 @@
+import sys
 import json
 import random
 import pickle
 from collections import defaultdict
 from .BasicRouter import BasicRouter
 from .AdvancedRouter import AdvancedRouter
+try:
+    from decision_analysis import c45_tree
+    sys.modules['c45_tree'] = c45_tree
+except ImportError:
+    import c45_tree
+    sys.modules['c45_tree'] = c45_tree
 
 class DPManager:
     def __init__(self, pn, mode="basic", model_path="simulation_brain.pkl", rules_path="decision_prob_rules.json"):
