@@ -6,6 +6,5 @@ scikit-learn~=1.7.2
 pm4py~=2.7.19
 holidays~=0.40
 
-torch
 matplotlib~=3.10.7
 ipykernel
