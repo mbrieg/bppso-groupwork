@@ -50,7 +50,7 @@ def main():
     )
 
     # Initialise engine
-    start_time = datetime(2016, 1, 1, 9, 15, 0)
+    start_time = datetime(2016, 5, 17, 9, 15, 0)
     engine = Engine(pn=pn_model,
                     spawner=spawner,
                     resource_manager=res_manager,
