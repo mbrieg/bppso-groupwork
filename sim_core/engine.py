@@ -77,22 +77,12 @@ class Engine:
                     sec = self.pt.sample(label, kind="total", use_qr=False)
                     duration = timedelta(seconds=float(sec))
                 else:
-                    # Processing times: Ich brauche den auskommentierten code
-                    # instance = self.cases_meta[case_id]["history"].count(label)
-
-                    # attrs = self.cases_meta[case_id]["attributes"]
-                    # ctx = {
-                    #    "case:ApplicationType": attrs.get("case:ApplicationType", "UNK"),
-                    #    "case:RequestedAmount": float(attrs.get("case:RequestedAmount", 0.0)),
-                    #}
+                    # Only Basic, because there are no features about loan type, or amount
 
                     sec = self.pt.sample(
                         label,
                         kind="proc",
                         now=self.now,
-                        # instance=instance,
-                        # ctx=ctx,
-                        # rng=self.rng,
                         use_qr=False
                     )
                     duration = timedelta(seconds=float(sec))
