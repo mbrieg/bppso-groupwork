@@ -19,9 +19,10 @@ def run_test():
     print("Preparing Dataframes...")
     permissions_path = ''
     availabilities_path = ''
+    bpmn_path = os.path.join(project_root, "data", "process_model.bpmn")
 
     print("Loading BPMN Model...")
-    bpmn_net, initial_marking, final_marking = read_bpmn('../data/process_model.bpmn')
+    bpmn_net, initial_marking, final_marking = read_bpmn(bpmn_path)
     pn_model = wrap_net(bpmn_net, initial_marking, final_marking)
     
     print("Initializing Manager and Engine...")
@@ -31,7 +32,7 @@ def run_test():
     print("Initializing Decision Manager")
     rules_path = Path(__file__).resolve().parents[1] / "decision_analysis" / "decision_prob_rules.json"
     model_path = Path(__file__).resolve().parents[1] / "decision_analysis" / "simulation_brain.pkl"
-    dp_manager = DPManager(pn=pn_model, mode="advanced",model_path= str(model_path),rules_path= str(rules_path))
+    dp_manager = DPManager(pn=pn_model, mode="basic",model_path= str(model_path),rules_path= str(rules_path))
 
     print("SpawnRates...")
     holidays = get_holidays()                  # loads or generates NL holidays and caches them
