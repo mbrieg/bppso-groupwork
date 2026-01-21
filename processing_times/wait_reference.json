@@ -1,75 +1,75 @@
 {
   "A_Accepted": {
     "dist": "const",
-    "value": 181.935
+    "value": 1.024
   },
   "A_Cancelled": {
     "dist": "const",
-    "value": 0.028
+    "value": 0.016
   },
   "A_Complete": {
     "dist": "const",
-    "value": 136.63
+    "value": 1.546
   },
   "A_Concept": {
     "dist": "const",
-    "value": 4927.935
+    "value": 0.004
   },
   "A_Create Application": {
     "dist": "const",
-    "value": 0.043
+    "value": 0.001
   },
   "A_Denied": {
     "dist": "const",
-    "value": 0.033
+    "value": 0.016
   },
   "A_Incomplete": {
     "dist": "const",
-    "value": 29.369
+    "value": 1.426
   },
   "A_Pending": {
     "dist": "const",
-    "value": 0.003
+    "value": 0.001
   },
   "A_Submitted": {
     "dist": "const",
-    "value": 0.298
+    "value": 0.098
   },
   "A_Validating": {
     "dist": "const",
-    "value": 26.052500000000002
+    "value": 1.154
   },
   "O_Accepted": {
     "dist": "const",
-    "value": 0.004
+    "value": 0.002
   },
   "O_Cancelled": {
     "dist": "const",
-    "value": 0.01
+    "value": 0.001
   },
   "O_Create Offer": {
     "dist": "const",
-    "value": 1.02
+    "value": 0.463
   },
   "O_Created": {
     "dist": "const",
-    "value": 24.528
+    "value": 0.089
   },
   "O_Refused": {
     "dist": "const",
-    "value": 0.011
+    "value": 0.005
   },
   "O_Returned": {
     "dist": "const",
-    "value": 168.95
+    "value": 1.525
   },
   "O_Sent (mail and online)": {
     "dist": "const",
-    "value": 0.017
+    "value": 0.001
   },
   "O_Sent (online only)": {
     "dist": "const",
-    "value": 266.6035
+    "value": 0.001
   },
   "W_Assess potential fraud": {
     "counts": [
@@ -236058,11 +236058,11 @@
   },
   "W_Personal Loan collection": {
     "dist": "const",
-    "value": 23.444499999999998
+    "value": 0.002
   },
   "W_Shortened completion ": {
     "dist": "const",
-    "value": 2.747
+    "value": 0.001
   },
   "W_Validate application": {
     "counts": [

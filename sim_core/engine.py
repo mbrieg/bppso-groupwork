@@ -118,11 +118,11 @@ class Engine:
     def _handle_spawn(self, e):
         self.next_case_id += 1
         self.cases[e.case_id] = dict(self.pn.im)
-        #DP
+        # DP
         self.case_last_activity[e.case_id] = "START"    # a new memory for each case
         self.case_start_times[e.case_id] = self.now 
         self.case_last_duration[e.case_id] = 0
-        #DP
+        # DP
         if self.next_case_id < self.max_cases:
             next_time = self.spawner.calculate_next_spawn(self.now)
             heapq.heappush(self.queue, Event(next_time, "SPAWN", self.next_case_id + 1))

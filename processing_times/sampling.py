@@ -1,4 +1,3 @@
-# processing_times/samplers.py
 
 from __future__ import annotations
 
@@ -12,7 +11,7 @@ import math
 import numpy as np
 
 try:
-    import joblib  # optional (nur nötig wenn du QR-Bundles nutzt)
+    import joblib
 except Exception:
     joblib = None
 
@@ -39,9 +38,7 @@ def _clip_nonneg(x: np.ndarray) -> np.ndarray:
 
 def _apply_p0(spec: Mapping[str, Any], out: np.ndarray, rng: np.random.Generator) -> np.ndarray:
     """
-    Optional: Zero-Inflation.
-    Wenn spec ein p0 in [0,1] enthält: setze Werte mit Wkt p0 auf 0.
-    (Kompatibilität, falls du z.B. Wait-Times als p0 + positive-part modellierst.)
+    opt: zero.inflation.
     """
     p0 = spec.get("p0", None)
     if p0 is None:
@@ -84,7 +81,7 @@ class _EmpCache:
 
 class SpecSampler:
     """
-    Sampler für deine JSON-Specs:
+    Sampler for JSON-Specs:
       - const
       - gamma
       - lognorm

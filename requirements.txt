@@ -1,10 +1,11 @@
 pandas~=2.3.3
 numpy~=2.3.4
-pm4py~=2.7.19
-matplotlib~=3.10.7
 scipy~=1.16.2
 scikit-learn~=1.7.2
-holidays~=0.40
-torch
 
-# TODO Evaluate
+pm4py~=2.7.19
+holidays~=0.40
+
+torch
+matplotlib~=3.10.7
+ipykernel
