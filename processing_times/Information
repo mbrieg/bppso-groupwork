@@ -1,0 +1,40 @@
+How to understand Processing times:
+
+There are 3 json files related to the processing times:
+
+processing_models_full_dur.json
+processing_models_proc.json
+wait_reference.json
+
+These files contain as they are named the full duration of an activity, the processing time of an activity
+and the waiting times respectively.
+
+But the internal logic differs for different kind of activities (W_ and A/O_ activities):
+
+W_ Activities:
+    - For theses activities there exists a real processing time.
+    - In the processing_models_proc.json saves therefor the real active working time of W_ activities
+        in form of a fitted model, considering that there are waiting times between the activities
+    - The processing_models_full_dur.json contains the full duration model fitted by the first timestamp of
+        an activity until the last timestamp of that same activity (with an other lifecycle)
+    - The waiting times in wait_reference.json contain an empirical sample of the waiting times between the
+        actual working times of the processing times (they are not fitted onto a model as they appear random
+        due to influence of other factors in the application process
+
+
+A/O_ Activities:
+    - These Activities do not have a real processing time
+    - Therefor they do not have an entry in processing_models_proc.json
+    - The durations saved in processing_models_full_dur.json and wait_reference.json use as artificial delay
+        to simulate the reality, because the system does also need minimal (but not 0) time to process
+    - As these activities only contain "complete" transitions, I used the minimum duration distance to the
+        next activity to approximate the reality
+    - The total times are therefor the same as the waiting times
+
+
+Quantile Regression:
+    I used quantile regression for the advanced analysis (compare in the notebook and quantile_regression.py)
+    This advanced method produced very noticable better results than the basic sampling from the json files
+    but they need contextual data, which we did not include in the simulation to make a noticable difference.
+
+    This is the reason why I included basic sampling in our simulator
