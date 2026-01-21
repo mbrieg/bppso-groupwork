@@ -6,10 +6,9 @@ Different functions used in the basic part of the Processing Times notebook
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
+from typing import Any, Dict, List, Optional, Sequence, Tuple
 
 import json
-import math
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -23,21 +22,6 @@ TERMINAL = {"complete", "ate_abort", "withdraw"}
 
 def build_segments_and_instances(df: pd.DataFrame, workflow_only: bool = True) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """Build segment-level and instance-level processing timetables.
-
-    Required columns in df:
-    - case:concept:name
-    - concept:name
-    - time:timestamp
-    - lifecycle:transition
-    Optional:
-    - org:resource
-
-    Returns
-    -------
-    seg:
-        segment table with seg_start/seg_end and segment proc_seconds
-    proc_inst:
-        instance table with proc_seconds (sum of segments)
     """
     x = df.dropna(subset=["time:timestamp"]).copy()
     x["time:timestamp"] = pd.to_datetime(x["time:timestamp"], utc=True)
@@ -142,12 +126,8 @@ def build_instance_times(
 
 
 def add_occurrence_features(inst: pd.DataFrame, instance_col: str = "instance") -> pd.DataFrame:
-    """Add occurrence index features.
-
-    In your logs, `instance` already represents the occurrence per (case, activity).
-    We keep it AND add explicit numeric features:
-    - occ_idx (int)
-    - occ_log (log1p)
+    """
+    Add occurrence index features.
     """
     out = inst.copy()
     out["occ_idx"] = out[instance_col].astype(int)
@@ -155,20 +135,9 @@ def add_occurrence_features(inst: pd.DataFrame, instance_col: str = "instance") 
     return out
 
 
-def add_time_features(
-    inst: pd.DataFrame,
-    ts_col: str = "inst_start",
-    *,
-    add_weekday: bool = True,
-    add_tod_sin_cos: bool = True,
-    drop_ts_na: bool = False,
-) -> pd.DataFrame:
-    """Add time-of-day features based on inst_start (or other timestamp column).
-
-    Adds:
-    - minute_of_day (0..1439)
-    - tod_sin, tod_cos (circular time encoding)
-    - weekday (0=Mon..6=Sun)
+def add_time_features(inst: pd.DataFrame,ts_col: str = "inst_start",*,add_weekday: bool = True,add_tod_sin_cos: bool = True, drop_ts_na: bool = False,) -> pd.DataFrame:
+    """
+    Add time-of-day features
     """
     out = inst.copy()
     ts = pd.to_datetime(out[ts_col], utc=True, errors="coerce")
@@ -284,10 +253,6 @@ def fit_parametric_models(
 
 def save_json(obj: Dict[str, Any], path: str | Path) -> None:
     Path(path).write_text(json.dumps(obj, indent=2, sort_keys=True))
-
-
-def load_json(path: str | Path) -> Dict[str, Any]:
-    return json.loads(Path(path).read_text())
 
 def add_case_context(
     inst: pd.DataFrame,
