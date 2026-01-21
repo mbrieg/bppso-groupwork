@@ -73,9 +73,6 @@ class EngineOG:
                 self._produce(m, tid)
                 enabled = [t for t in self.pn.trans_ids if all(m.get(p, 0) > 0 for p in self.pn.inputs.get(t, []))]
             else:
-
-
-
                 '''Processing Times'''
                 if label.startswith(("A_", "O_")):
                     sec = self.pt.sample(label, kind="total", use_qr=False)
@@ -102,7 +99,6 @@ class EngineOG:
                     duration = timedelta(seconds=float(sec))
                 ''' End Processing Times '''
 
-
                 res = self.resource_manager.assign_resource(label, self.now, duration)
                 if res:     # Resource is assigned NOW,
                     if label.startswith('W_'):
@@ -113,9 +109,10 @@ class EngineOG:
                         heapq.heappush(self.queue, Event(self.now+duration, "COMPLETE", case_id, tid, res, duration))
                 else:   # Find next possible starting time
                     next_avail_time = self.resource_manager.get_earliest_availability(label, self.now)
-                    retry_time = self.now + timedelta(minutes=15)       # Check if resource is free until then
                     if next_avail_time and next_avail_time > self.now:
-                        retry_time = max(retry_time, next_avail_time)
+                        retry_time = next_avail_time
+                    else:
+                        retry_time = self.now + timedelta(minutes=15)       # Just to be safe :D
                     heapq.heappush(self.queue, Event(retry_time, "RETRY", case_id))
                 break
 
