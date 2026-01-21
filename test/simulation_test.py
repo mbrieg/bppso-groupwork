@@ -54,11 +54,11 @@ def run_test():
 
     print("Running Simulation...")
     engine.spawn()
-    engine.run(max_events=10000)
+    engine.run(max_events=50000)
 
     sim_log = pd.DataFrame(engine.log)
     print("\n--- Simulation Output ---")
-    print(sim_log.head(50))
+    print(sim_log.head(30))
 
     sim_log.to_csv("test_output.csv", index=False)
     print("\nResults saved to 'test_output.csv'")
