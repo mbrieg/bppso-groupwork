@@ -21,9 +21,9 @@ def main():
     output_csv = "sim_output/final_simulation_log.csv"
     rules_path = os.path.join(project_root, "decision_analysis", "decision_prob_rules.json")
     model_path = os.path.join(project_root, "decision_analysis", "simulation_brain.pkl")
-    proc_json = os.path.join(project_root, "processing_times", "processing_models_proc.json")
-    total_json = os.path.join(project_root, "processing_times", "processing_models_full_dur.json")
-    wait_json = os.path.join(project_root, "processing_times", "wait_reference.json")
+    proc_json = os.path.join(project_root, "processing_times", "Basic_Models/processing_models_proc.json")
+    total_json = os.path.join(project_root, "processing_times", "Basic_Models/processing_models_full_dur.json")
+    wait_json = os.path.join(project_root, "processing_times", "Basic_Models/wait_reference.json")
 
     print("Starting Setup...")
 
