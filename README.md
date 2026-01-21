@@ -31,7 +31,8 @@ pip install -r requirements.txt
 ```
 .
 ├── data/                       # Data folder containing bpmn model and event log
-├── decision_analysis/     
+├── decision_analysis/ 
+    
 ├── processing_times/
 ├── resources/
     ├── availabilities/
