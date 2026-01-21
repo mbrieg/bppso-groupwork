@@ -7,7 +7,7 @@ class ResourcePermissions:
     Manages resource permissions for activities using either
     Basic (ACL) or Advanced (RBAC) approach.
     """
-    def __init__(self, permissions_file, mode='basic'):
+    def __init__(self, permissions_file, mode):
         """
         Args:
             mode (str): 'basic' (default) or 'advanced'.
@@ -17,14 +17,13 @@ class ResourcePermissions:
         self._mode = mode
 
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        #file_path = os.path.join(current_dir, 'resources', permissions_file)
         file_path = os.path.join(current_dir, 'permissions', permissions_file)
         if mode == 'basic':
             self._load_permissions(file_path)
         elif mode == 'advanced':
             if not permissions_file:
                 raise ValueError("Advanced mode requires a valid permissions_file path.")
-            self._load_roles(permissions_file)
+            self._load_roles(file_path)
 
     def _load_permissions(self, path):
         print(f"Loading Basic Permissions (ACL) from {os.path.basename(path)}...")
@@ -60,5 +59,5 @@ class ResourcePermissions:
     def get_permitted_resources(self, act_name, resources):
         allowed = self._permissions.get(act_name, set())
         if self._mode == 'advanced':
-            return [res for res in resources if res.name in allowed]
+            return [res_id for (res_id, res) in resources.items() if res.role in allowed]
         return list(allowed)

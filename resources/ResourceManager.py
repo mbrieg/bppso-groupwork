@@ -8,19 +8,19 @@ from resources.ResourceAllocator import ResourceAllocator
 
 
 class ResourceManager:
-    def __init__(self, availabilities='weekly_schedule_median.csv',
+    def __init__(self, availabilities='availabilities_basic.csv',
                  permissions='permissions_basic.csv',
                  roles='resource_roles.csv',
                  mode='basic'):
         """
-        :param availabilities: CSV file with ['Resource', 'DayId', 'StartTime', 'EndTime']
-        :param permissions:    CSV file with ['Activity', 'Resource'] (Basic) or ['Activity', 'Role'] (Advanced)
-        :param roles:          CSV file with ['Resource', 'Role'] (Only used in Advanced mode)
+        :param availabilities: CSV file with ['Resource', 'DayId', 'StartTime', 'EndTime'] (basic) or
+                                ['Resource', 'DayId', 'StartTime', 'EndTime', 'BreakStart', 'DurationMin'] (advanced)
+        :param permissions:    CSV file with ['Activity', 'Resource'] (basic) or ['Activity', 'Role'] (advanced)
+        :param roles:          CSV file with ['Resource', 'Role'] (Only used in advanced mode)
         :param mode:           'basic' or 'advanced'
         """
 
-        self.availabilities = ResourceAvailabilities(availabilities)
-        #self.permissions = ResourcePermissions(mode, permissions)
+        self.availabilities = ResourceAvailabilities(availabilities, mode)
         self.permissions = ResourcePermissions(permissions, mode)
 
         current_dir = os.path.dirname(os.path.abspath(__file__))
