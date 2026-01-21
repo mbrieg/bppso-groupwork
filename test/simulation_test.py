@@ -32,7 +32,7 @@ def run_test():
     print("Initializing Decision Manager")
     rules_path = Path(__file__).resolve().parents[1] / "decision_analysis" / "decision_prob_rules.json"
     model_path = Path(__file__).resolve().parents[1] / "decision_analysis" / "simulation_brain.pkl"
-    dp_manager = DPManager(pn=pn_model, mode="advanced",model_path= str(model_path),rules_path= str(rules_path))
+    dp_manager = DPManager(pn=pn_model, mode="basic",model_path= str(model_path),rules_path= str(rules_path))
 
     print("SpawnRates...")
     holidays = get_holidays()                  # loads or generates NL holidays and caches them
