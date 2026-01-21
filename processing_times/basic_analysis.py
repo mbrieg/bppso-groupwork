@@ -1,7 +1,7 @@
-'''
+"""
 Basic analysis:
 Different functions used in the basic part of the Processing Times notebook
-'''
+"""
 
 from __future__ import annotations
 
@@ -22,7 +22,7 @@ TERMINAL = {"complete", "ate_abort", "withdraw"}
 
 
 def build_segments_and_instances(df: pd.DataFrame, workflow_only: bool = True) -> Tuple[pd.DataFrame, pd.DataFrame]:
-    """Build segment-level and instance-level processing time tables.
+    """Build segment-level and instance-level processing timetables.
 
     Required columns in df:
     - case:concept:name
@@ -330,7 +330,6 @@ def add_case_context(
 
     out = inst.merge(case_tbl, on=case_col, how="left")
 
-    # Numeric conversion + optional log1p
     numeric_cols = tuple(numeric_cols)
     for c in numeric_cols:
         if c in out.columns:
