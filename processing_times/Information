@@ -19,7 +19,8 @@ W_ Activities:
         an activity until the last timestamp of that same activity (with an other lifecycle)
     - The waiting times in wait_reference.json contain an empirical sample of the waiting times between the
         actual working times of the processing times (they are not fitted onto a model as they appear random
-        due to influence of other factors in the application process
+        due to influence of other factors in the application process)
+      -> t(total) = t(proc) + t(wait)
 
 
 A/O_ Activities:
@@ -30,6 +31,8 @@ A/O_ Activities:
     - As these activities only contain "complete" transitions, I used the minimum duration distance to the
         next activity to approximate the reality
     - The total times are therefor the same as the waiting times
+    - t(total) = t(wait)
+    - t(proc) = 0
 
 
 Quantile Regression:
