@@ -1,7 +1,7 @@
 # Business Process Prediction, Simulation, and Optimization  
 ## Group Exercise – Business Process Simulation Model (BPIC 2017)
 
-This repository contains a **event simulation** of the BPIC 2017 *Application* process. 
+This repository contains a **event simulation** of the BPIC 2017 Application process. 
 The simulator spawns new cases, enforces the **control-flow**  defined by the BPMN model, handles **resource availability, processing times & permissions**, and produces a **simulated event log**.
 
 ### Dataset
@@ -63,7 +63,7 @@ sim_output/final_simulation_log.csv
 
 ## How the Simulator Works
 
-Our simulator is an **Event Simulation** with a global clock and a **heapq based event queue**. The BPMN model is transformed into an executable **Petri net**. Events are scheduled as **SPAWN**, **START**, **COMPLETE**, and **RETRY**. The architecture is modular: spawn rates, routing, resources, and timing.
+Our simulator is a **data driven event Simulation** with a global clock and a **heapq based event queue**. The BPMN model is used as an executable **Petri net**. Events are scheduled as **SPAWN**, **START**, **COMPLETE**, and **RETRY**. The architecture is splitted: spawn rates, routing, resources, and timing.
 
 
 
