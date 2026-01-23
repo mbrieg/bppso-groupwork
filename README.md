@@ -70,6 +70,6 @@ Our simulator is an **Event Simulation** with a global clock and a **heapq based
 ## Notebooks
 - `decision_analysis/xor_identification.ipynb` – XOR discovery  
 - `decision_analysis/probabilities.ipynb` – branching probabilities → `decision_prob_rules.json`  
-- `processing_times/Processing_Times.ipynb` – processing-time models (basic vs quantile regression)
+- `processing_times/Processing_Times.ipynb` – processing-time models (basic vs quantile regression), look up the information sheet for further information
 
 ---
