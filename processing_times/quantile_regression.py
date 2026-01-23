@@ -19,20 +19,11 @@ def fit_and_eval_quantiles(data, target, cat_cols, num_cols, seed=42, qs=(0.10, 
     X = data[cat_cols + num_cols]
     y = data[target].astype(float)
 
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=seed
-    )
-
-    pre = ColumnTransformer(
-        transformers=[
-            ("cat", OneHotEncoder(handle_unknown="ignore", sparse_output=False), cat_cols),
-            ("num", "passthrough", num_cols),
-        ]
-    )
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=seed)
+    pre = ColumnTransformer(transformers=[("cat", OneHotEncoder(handle_unknown="ignore", sparse_output=False), cat_cols),("num", "passthrough", num_cols),])
 
     def fit_q(alpha):
-        return Pipeline(steps=[
-            ("pre", pre),
+        return Pipeline(steps=[("pre", pre),
             ("q", GradientBoostingRegressor(loss="quantile", alpha=alpha, random_state=seed)),
         ]).fit(X_train, y_train)
 
@@ -44,11 +35,10 @@ def fit_and_eval_quantiles(data, target, cat_cols, num_cols, seed=42, qs=(0.10, 
     pM = mM.predict(X_test)
     pH = mH.predict(X_test)
 
-    # ordering
     pL = np.minimum(pL, pM)
     pH = np.maximum(pH, pM)
 
-    # evaluation
+    # values
     coverage = np.mean((y_test >= pL) & (y_test <= pH))
     avg_width = np.mean(pH - pL)
 
@@ -81,8 +71,7 @@ def fit_and_eval_quantiles(data, target, cat_cols, num_cols, seed=42, qs=(0.10, 
 def baseline_empirical_by_activity(X_train, y_train, X_test, y_test,
                                    act_col="concept:name", qs=(0.10, 0.50, 0.90)):
     """
-    Empirical baseline: per-activity quantiles on train set.
-    Uses the SAME quantiles qs as the model, so comparisons are fair.
+    lookup-table, per-activity quantile baseline
     """
     qL, qM, qH = qs
 
@@ -97,6 +86,8 @@ def baseline_empirical_by_activity(X_train, y_train, X_test, y_test,
     bM = np.array([q_train.loc[a, qM] if a in q_train.index else global_q[1] for a in acts], dtype=float)
     bH = np.array([q_train.loc[a, qH] if a in q_train.index else global_q[2] for a in acts], dtype=float)
 
+
+    # values
     cov_b = np.mean((y_test >= bL) & (y_test <= bH))
     wid_b = np.mean(bH - bL)
 
