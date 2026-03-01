@@ -4,13 +4,13 @@ import pandas as pd
 from resources.Resource import Resource
 from resources.ResourcePermissions import ResourcePermissions
 from resources.ResourceAvailabilities import ResourceAvailabilities
-from resources.ResourceAllocator import ResourceAllocator
+from resources.ResourceAllocator import ResourceAllocator, Methods
 
 
 class ResourceManager:
     def __init__(self, availabilities='availabilities_basic.csv',
                  permissions='permissions_basic.csv',
-                 roles='resource_roles.csv'):
+                 roles='resource_roles.csv', method=Methods.RANDOM):
         """
         :param availabilities: CSV file with ['Resource', 'DayId', 'StartTime', 'EndTime'] (basic) or
                                 ['Resource', 'DayId', 'StartTime', 'EndTime', 'BreakStart', 'DurationMin'] (advanced)
@@ -36,7 +36,8 @@ class ResourceManager:
         self.allocator = ResourceAllocator(
             self.resources,
             self.availabilities,
-            self.permissions
+            self.permissions,
+            method
         )
 
     def _assign_roles_to_resources(self, file: str):
@@ -62,11 +63,11 @@ class ResourceManager:
         """
         return self.resources.values()
 
-    def assign_resource(self, act_name, current_time, duration):
+    def assign_resource(self, act_name, current_time, duration, case_id, tid):
         """
         Returns: Resource name or None if no resource is available.
         """
-        return self.allocator.allocate_resource(act_name, current_time, duration)
+        return self.allocator.allocate_resource(act_name, current_time, duration, case_id, tid)
 
     def get_earliest_availability(self, act_name, current_time):
         """

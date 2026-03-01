@@ -1,9 +1,9 @@
 import os
-import sys
 import pandas as pd
 from datetime import datetime
 from pathlib import Path
 
+import resources.ResourceAllocator
 from decision_analysis.DPManager import DPManager
 from resources.ResourceManager import ResourceManager
 from sim_core.engine import Engine
@@ -39,7 +39,8 @@ def main():
         holidays=holidays,
         seed=42,
     )
-    res_manager = ResourceManager(permissions='role_permissions.csv', availabilities='availabilities_advanced.csv')
+    allocation_method = resources.ResourceAllocator.Methods.ROUND_ROBIN
+    res_manager = ResourceManager(permissions='role_permissions.csv', availabilities='availabilities_advanced.csv', method=allocation_method)
     dp_manager = DPManager(pn=pn_model, mode="basic", model_path=str(model_path), rules_path=str(rules_path))
     pt = ProcessingTimeSampler.from_paths(
         proc_json=proc_json,

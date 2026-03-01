@@ -48,7 +48,7 @@ class Engine:
                 self._handle_spawn(e)
             elif e.type == "START":
                 self._handle_start(e)
-            elif e.type == "RETRY":     # Used when no resource was available yet
+            elif e.type == "RETRY":     # Used when no resource was assigned
                 self._process_flow(e.case_id)
             elif e.type == "COMPLETE":
                 self._handle_complete(e)
@@ -64,7 +64,7 @@ class Engine:
             start_time = self.case_start_times.get(case_id, self.now)
 
             # DP Integration
-            tid = self.decision_manager.get_next_transition(case_id = case_id, enabled_transitions=enabled, last_activity=last_act,last_duration_sec=last_dur,case_start_time=start_time,current_now=self.now)
+            tid = self.decision_manager.get_next_transition(case_id=case_id, enabled_transitions=enabled, last_activity=last_act, last_duration_sec=last_dur, case_start_time=start_time, current_now=self.now)
             label = self.pn.labels.get(tid, "")
 
             if label == "":     # Silent Gateway, instant consume and produce
@@ -81,21 +81,27 @@ class Engine:
 
                     sec = self.pt.sample(
                         label,
-                        kind="total", # use total to simulate complete behavior, change to "proc" when real procesiing times
+                        kind="total",   # use total to simulate complete behavior, change to "proc" when real procesiing times
                         now=self.now,
                         use_qr=False
                     )
                     duration = timedelta(seconds=float(sec))
                 ''' End Processing Times '''
 
-                res = self.resource_manager.assign_resource(label, self.now, duration)
-                if res:     # Resource is assigned NOW,
-                    if label.startswith('W_'):
-                        # give a small, neglegtable delay for the starting time of W_Activities, as their processing time is the relevant
-                        heapq.heappush(self.queue, Event(self.now + timedelta(seconds=float(np.random.uniform(0, 1))), "START", case_id, tid, res, duration))
+                res_id = self.resource_manager.assign_resource(label, self.now, duration, case_id, tid)
+                if res_id is not None:
+                    resource = self.resource_manager.resources[res_id]
+                    if not resource.is_occupied():      # Assign resource NOW
+                        task = resource.pop_task()
+                        resource.occupy()
+                        if label.startswith('W_'):
+                            # give a small, neglegtable delay for the starting time of W_Activities, as their processing time is the relevant
+                            heapq.heappush(self.queue, Event(self.now + timedelta(seconds=float(np.random.uniform(0, 1))), "START", task['cid'], task['tid'], res_id, task['duration']))
+                        else:
+                            # insert delay for O and A activities
+                            heapq.heappush(self.queue, Event(self.now+duration, "COMPLETE", task['cid'], task['tid'], res_id, task['duration']))
                     else:
-                        # insert delay for O and A activities
-                        heapq.heappush(self.queue, Event(self.now+duration, "COMPLETE", case_id, tid, res, duration))
+                        pass    # Resources currently busy
                 else:   # Find next possible starting time
                     next_avail_time = self.resource_manager.get_earliest_availability(label, self.now)
                     if next_avail_time and next_avail_time > self.now:
@@ -126,7 +132,6 @@ class Engine:
         heapq.heappush(self.queue, Event(self.now + duration, "COMPLETE", e.case_id, e.transition_id, e.resource, duration))
 
     def _handle_complete(self, e):
-
         label = self.pn.labels.get(e.transition_id, "")
 
         if not label.startswith("W_"):
@@ -134,6 +139,14 @@ class Engine:
 
         self._produce(self.cases[e.case_id], e.transition_id)
         self._record(e, "complete")
+
+        resource = self.resource_manager.resources[e.resource]
+        resource.release()
+        if resource.get_queue_length() > 0:
+            next_act = resource.pop_task()
+            resource.occupy()
+            heapq.heappush(self.queue, Event(self.now, "START", next_act["cid"], next_act["tid"],
+                                             e.resource, next_act["duration"]))
 
         if label != "":
             self.case_last_activity[e.case_id] = label  # write to the memory when is completed
