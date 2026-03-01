@@ -8,3 +8,4 @@ holidays~=0.40
 
 matplotlib~=3.10.7
 ipykernel
+seaborn~=0.13.2
