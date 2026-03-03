@@ -65,12 +65,14 @@ def main():
     print("STARTING SIMULATION")
     print("=" * 60)
     engine.spawn()
-    engine.run(max_events=50000)
+    #In order to mock the event log, I increased the num of events to 475 306, you can change again as you want
+    engine.run(max_events=475306)
     sim_log = pd.DataFrame(engine.log)
 
     print("\n--- Simulation Output ---")
     print(sim_log.head(30))
     sim_log.to_csv(output_csv, index=False)
+    #sim_log.to_csv("decision_analysis/sim_output_advanced.csv", index=False)
     print(f"\nResults saved to '{output_csv}'")
 
 
