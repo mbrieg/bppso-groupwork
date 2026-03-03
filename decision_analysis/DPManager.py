@@ -46,8 +46,9 @@ class DPManager:
             self.mode = "basic"
             self._setup_basic(rules_path)   
 
-    def get_next_transition(self, case_id, enabled_transitions, last_activity, 
-                            last_duration_sec=0, case_start_time=None, current_now=None):
+    def get_next_transition(self, case_id, enabled_transitions, last_activity,
+                            last_duration_sec=0, case_start_time=None, current_now=None,
+                            case_context=None):
         """
         EngineOG calls it.
         """
@@ -61,11 +62,12 @@ class DPManager:
             if self.mode == "advanced":
                 # AdvancedRouter wants these parameters
                 tid = self.router.route(
-                    enabled=enabled_transitions, 
-                    last_activity=last_activity, 
-                    last_duration =last_duration_sec, 
-                    case_start_time=case_start_time, 
-                    current_now=current_now
+                    enabled=enabled_transitions,
+                    last_activity=last_activity,
+                    last_duration =last_duration_sec,
+                    case_start_time=case_start_time,
+                    current_now=current_now,
+                    case_context=case_context
                 )
             else:
                 # BasicRouter

@@ -2,7 +2,7 @@
 import pandas as pd
 from collections import defaultdict
 class AdvancedRouter:
-    """Decide according to the pkl created as a output of the xor_d.ipynb"""
+    """Decide according to the pkl created as a output."""
 
     def __init__(self, model, bins, pn):
         self.model = model
@@ -44,7 +44,7 @@ class AdvancedRouter:
                 input_dict["offer_category"]      = str(case_context.get("offer_category", "None"))
                 input_dict["has_rejection"]       = str(case_context.get("has_rejection", 0))
                 input_dict["has_accepted_offer"]  = str(case_context.get("has_accepted_offer", 0))
-                input_dict["is_repeated"]         = str(case_context.get("is_repeaated", "False"))
+                input_dict["is_repeated"]         = str(case_context.get("is_repeated", "False"))
 
             input_data = pd.Series(input_dict)
             predicted_label = self.model.predict_one(input_data)
