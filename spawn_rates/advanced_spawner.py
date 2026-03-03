@@ -94,3 +94,6 @@ class AdvancedSpawner(BaseSpawner):
             current_time = (current_time + timedelta(hours=1)).replace(minute=0, second=0, microsecond=0)
 
         return current_time + timedelta(minutes=30)
+    
+    # Add case attributes to the spawner
+    
