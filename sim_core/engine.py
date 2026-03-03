@@ -16,7 +16,7 @@ class Event:
 
 
 class Engine:
-    def __init__(self, pn, spawner, resource_manager, decision_manager, start_time=None, max_cases=100, pt_sampler=None):
+    def __init__(self, pn, spawner, resource_manager, decision_manager, start_time=None, max_cases=31509, pt_sampler=None):
         self.pn = pn
         self.spawner = spawner
         self.resource_manager = resource_manager

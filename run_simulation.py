@@ -72,7 +72,7 @@ def main():
     print("\n--- Simulation Output ---")
     print(sim_log.head(30))
     sim_log.to_csv(output_csv, index=False)
-    #sim_log.to_csv("decision_analysis/sim_output_advanced.csv", index=False)
+    #sim_log.to_csv("decision_analysis/sim_output_basic.csv", index=False)
     print(f"\nResults saved to '{output_csv}'")
 
 
