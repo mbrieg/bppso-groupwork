@@ -173,13 +173,30 @@ class Engine:
             m[p] = m.get(p, 0) + 1
 
     def _record(self, e, phase):
-        self.log.append({
+        label = self.pn.labels.get(e.transition_id, e.transition_id)
+        if label.startswith("O_"):
+            origin = "Offer"
+        elif label.startswith("W_"):
+            origin = "Workflow"
+        else:
+            origin = "Application"
+
+        row = {
             "case:concept:name": e.case_id,
-            "concept:name": self.pn.labels.get(e.transition_id, e.transition_id),
+            "concept:name": label,
             "time:timestamp": self.now,
             "lifecycle:transition": phase,
-            "org:resource": e.resource
-        })
+            "org:resource": e.resource,
+            "EventOrigin": origin,
+        }
+
+        ctx = self.case_attributes.get(e.case_id)
+        if ctx:
+            row["case:ApplicationType"] = ctx.get("application_type", "")
+            row["case:LoanGoal"] = ctx.get("loan_goal", "")
+            row["case:RequestedAmount"] = ctx.get("requested_amount", "")
+
+        self.log.append(row)
 
     def export_log(self, path="simulation_log.csv"):
         pd.DataFrame(self.log).to_csv(path, index=False)
