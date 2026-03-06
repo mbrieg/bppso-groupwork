@@ -44,7 +44,11 @@ class DPManager:
         try:
             with open(model_path, "rb") as f:
                 pkg = pickle.load(f)
-            self.router = AdvancedRouter(pkg["model"], pkg["bins"], self.pn)
+            self.router = AdvancedRouter(
+                pkg["model"], pkg["bins"], self.pn,
+                encoder=pkg.get("encoder"),
+                feature_names=pkg.get("features")
+            )
             print(f"DPManager: AdvancedRouter activated. (Model: {model_path})")
         except Exception as e:
             print(f"DPManager: Advanced not found ({e}), Back to basic.")

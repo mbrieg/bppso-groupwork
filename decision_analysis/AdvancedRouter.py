@@ -4,10 +4,12 @@ from collections import defaultdict
 class AdvancedRouter:
     """Decide according to the pkl created as a output."""
 
-    def __init__(self, model, bins, pn):
+    def __init__(self, model, bins, pn, encoder=None, feature_names=None):
         self.model = model
         self.bins = bins
         self.pn = pn
+        self.encoder = encoder            # None → C4.5 mode; set → RF mode
+        self.feature_names = feature_names
 
     def _get_bin_label(self, value, bin_edges, labels):
         """sec/hours -> categories"""
@@ -47,7 +49,14 @@ class AdvancedRouter:
                 input_dict["is_repeated"]         = str(case_context.get("is_repeated", "False"))
 
             input_data = pd.Series(input_dict)
-            predicted_label = self.model.predict_one(input_data)
+            if self.encoder is not None and self.feature_names is not None:
+                # RF path: encode then predict
+                input_df = pd.DataFrame([input_data[self.feature_names].to_dict()])
+                X_enc = self.encoder.transform(input_df)
+                predicted_label = self.model.predict(X_enc)[0]
+            else:
+                # C4.5 path
+                predicted_label = self.model.predict_one(input_data)
 
             for tid in enabled:
                 label = self.pn.labels.get(tid, "")
