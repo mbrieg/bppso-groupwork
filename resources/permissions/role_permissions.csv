@@ -4,39 +4,38 @@ Role_0,A_Concept
 Role_0,A_Create Application
 Role_0,A_Submitted
 Role_0,O_Cancelled
-Role_1,A_Denied
-Role_1,A_Incomplete
-Role_1,A_Pending
-Role_1,O_Accepted
-Role_1,O_Cancelled
-Role_1,O_Refused
-Role_1,O_Returned
-Role_1,W_Validate application
-Role_2,A_Accepted
-Role_2,A_Cancelled
-Role_2,A_Complete
-Role_2,A_Concept
-Role_2,A_Create Application
-Role_2,A_Validating
+Role_1,A_Accepted
+Role_1,A_Complete
+Role_1,A_Concept
+Role_1,A_Create Application
+Role_1,O_Create Offer
+Role_1,O_Created
+Role_1,O_Sent (mail and online)
+Role_1,W_Complete application
+Role_2,A_Denied
+Role_2,A_Incomplete
+Role_2,A_Pending
+Role_2,O_Accepted
 Role_2,O_Cancelled
-Role_2,O_Create Offer
-Role_2,O_Created
-Role_2,O_Sent (mail and online)
-Role_2,W_Call incomplete files
-Role_2,W_Complete application
-Role_2,W_Handle leads
+Role_2,O_Refused
+Role_2,W_Validate application
 Role_3,A_Incomplete
 Role_3,A_Pending
 Role_3,A_Validating
 Role_3,O_Accepted
-Role_3,O_Cancelled
 Role_3,O_Returned
 Role_3,W_Validate application
-Role_4,A_Denied
-Role_4,O_Refused
-Role_5,A_Incomplete
+Role_4,A_Incomplete
+Role_4,A_Pending
+Role_4,A_Validating
+Role_4,O_Accepted
+Role_4,O_Cancelled
+Role_4,O_Returned
+Role_5,A_Denied
 Role_5,O_Refused
-Role_6,A_Concept
-Role_6,A_Create Application
-Role_6,W_Handle leads
+Role_5,W_Validate application
+Role_2,W_Call incomplete files
+Role_3,W_Call incomplete files
 Role_1,W_Call after offers
+Role_2,W_Call after offers
+Role_1,W_Handle leads
