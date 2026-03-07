@@ -59,5 +59,5 @@ class ResourcePermissions:
     def get_permitted_resources(self, act_name, resources):
         allowed = self._permissions.get(act_name, set())
         if self._mode:
-            return [res_id for (res_id, res) in resources.items() if res.role in allowed]
+            return [res_id for (res_id, res) in resources.items() if res.get_role() in allowed]
         return list(allowed)

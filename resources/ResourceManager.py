@@ -55,7 +55,7 @@ class ResourceManager:
         role_map = pd.Series(df.Role.values, index=df.Resource).to_dict()
 
         for res_name, res_obj in self.resources.items():
-            res_obj.role = role_map.get(res_name)
+            res_obj.set_role(role_map.get(res_name))
 
     def get_resources(self):
         """
