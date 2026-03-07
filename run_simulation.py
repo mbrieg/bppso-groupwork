@@ -1,3 +1,4 @@
+import argparse
 import os
 import pandas as pd
 from datetime import datetime
@@ -16,9 +17,17 @@ project_root = Path(__file__).resolve().parents[0]
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Run the BPMS simulation.")
+    parser.add_argument(
+        "--no-fired",
+        action="store_true",
+        help="Run without User_120 and User_121 (uses availabilities_no_fired.csv).",
+    )
+    args = parser.parse_args()
+
     # Define paths
     bpmn_path = os.path.join(project_root, "data", "process_model.bpmn")
-    output_csv = "sim_output/final_simulation_log.csv"
+    # output_csv = "sim_output/final_simulation_log.csv"
     rules_path = os.path.join(project_root, "decision_analysis", "decision_prob_rules.json")
     model_path = os.path.join(project_root, "decision_analysis", "simulation_brain.pkl")
     proc_json = os.path.join(project_root, "processing_times", "Basic_Models/processing_models_proc.json")
@@ -40,7 +49,8 @@ def main():
         seed=42,
     )
     allocation_method = resources.ResourceAllocator.Methods.RANDOM
-    res_manager = ResourceManager(permissions='role_permissions.csv', availabilities='availabilities_advanced.csv', method=allocation_method)
+    avail_file = 'availabilities_no_fired.csv' if args.no_fired else 'availabilities_advanced.csv'
+    res_manager = ResourceManager(permissions='role_permissions.csv', availabilities=avail_file, method=allocation_method)
     dp_manager = DPManager(pn=pn_model, mode="advanced", model_path=str(model_path), rules_path=str(rules_path))
     pt = ProcessingTimeSampler.from_paths(
         proc_json=proc_json,
@@ -69,11 +79,12 @@ def main():
     engine.run(max_events=475306)
     sim_log = pd.DataFrame(engine.log)
 
+    output_csv = "decision_analysis/sim_output_no_fired.csv" if args.no_fired else "decision_analysis/sim_output_advanced.csv"
+
     print("\n--- Simulation Output ---")
     print(sim_log.head(30))
-    #sim_log.to_csv(output_csv, index=False)
-    sim_log.to_csv("decision_analysis/sim_output_advanced.csv", index=False)
-    #print(f"\nResults saved to '{output_csv}'")
+    sim_log.to_csv(output_csv, index=False)
+    print(f"\nResults saved to '{output_csv}'")
 
 
 if __name__ == "__main__":
