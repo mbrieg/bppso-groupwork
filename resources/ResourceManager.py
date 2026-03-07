@@ -63,6 +63,12 @@ class ResourceManager:
         """
         return self.resources.values()
 
+    def get_resource(self, res_id):
+        """
+        Returns: A resource object.
+        """
+        return self.resources[res_id]
+
     def assign_resource(self, act_name, current_time, duration, case_id, tid):
         """
         Returns: Resource name or None if no resource is available.

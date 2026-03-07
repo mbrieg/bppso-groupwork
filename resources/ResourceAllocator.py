@@ -6,6 +6,8 @@ class Methods(Enum):
     RANDOM = 0
     ROUND_ROBIN = 1
     SHORTEST_QUEUE = 2
+    BATCHING = 3
+    ADVANCED = 4    # Adapted assignment problem
 
 
 class ResourceAllocator:
@@ -18,6 +20,7 @@ class ResourceAllocator:
         self.permissions = permissions
         self.method = method
         self.rr_index = 0
+        self.batching_ctr = 0
 
     def allocate_resource(self, act_name, start_time, duration, case_id, tid):
         # Check permissions
@@ -34,6 +37,10 @@ class ResourceAllocator:
             selected_id = self._allocate_round_robin(permitted, start_time)
         elif self.method == Methods.SHORTEST_QUEUE:
             selected_id = self._allocate_shortest_queue(permitted)
+        elif self.method == Methods.BATCHING:
+            selected_id = self._allocate_batch(permitted)
+        elif self.method == Methods.ADVANCED:
+            selected_id = self._allocate_advanced(permitted)
 
         if selected_id:
             act_info = {
@@ -89,3 +96,11 @@ class ResourceAllocator:
         resources = [self.resources[res_id] for res_id in resources]
         selected_res = min(resources, key=lambda res: res.get_queue_length())
         return selected_res.get_id()
+
+    def _allocate_batch(self, resources):
+        # TODO
+        raise NotImplementedError
+
+    def _allocate_advanced(self, resources):
+        # TODO
+        raise NotImplementedError
