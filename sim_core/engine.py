@@ -90,7 +90,7 @@ class Engine:
 
                 res_id = self.resource_manager.assign_resource(label, self.now, duration, case_id, tid)
                 if res_id is not None:
-                    resource = self.resource_manager.resources[res_id]
+                    resource = self.resource_manager.get_resource(res_id)
                     if not resource.is_occupied():      # Assign resource NOW
                         task = resource.pop_task()
                         resource.occupy()

@@ -39,7 +39,7 @@ def main():
         holidays=holidays,
         seed=42,
     )
-    allocation_method = resources.ResourceAllocator.Methods.ROUND_ROBIN
+    allocation_method = resources.ResourceAllocator.Methods.RANDOM
     res_manager = ResourceManager(permissions='role_permissions.csv', availabilities='availabilities_advanced.csv', method=allocation_method)
     dp_manager = DPManager(pn=pn_model, mode="basic", model_path=str(model_path), rules_path=str(rules_path))
     pt = ProcessingTimeSampler.from_paths(
