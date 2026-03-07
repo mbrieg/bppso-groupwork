@@ -16,7 +16,7 @@ class Event:
 
 
 class Engine:
-    def __init__(self, pn, spawner, resource_manager, decision_manager, start_time=None, max_cases=100, pt_sampler=None):
+    def __init__(self, pn, spawner, resource_manager, decision_manager, start_time=None, max_cases=31509, pt_sampler=None):
         self.pn = pn
         self.spawner = spawner
         self.resource_manager = resource_manager
@@ -34,6 +34,9 @@ class Engine:
         self.case_last_activity = {}
         self.case_start_times = {}     # When the case is started
         self.case_last_duration = {}
+
+        #case attributes
+        self.case_attributes = {}
 
     def spawn(self, at_time=None):
         heapq.heappush(self.queue, Event(at_time or self.now, "SPAWN", self.next_case_id + 1))
@@ -64,7 +67,8 @@ class Engine:
             start_time = self.case_start_times.get(case_id, self.now)
 
             # DP Integration
-            tid = self.decision_manager.get_next_transition(case_id=case_id, enabled_transitions=enabled, last_activity=last_act, last_duration_sec=last_dur, case_start_time=start_time, current_now=self.now)
+            case_ctx = self.case_attributes.get(case_id)
+            tid = self.decision_manager.get_next_transition(case_id=case_id, enabled_transitions=enabled, last_activity=last_act, last_duration_sec=last_dur, case_start_time=start_time, current_now=self.now, case_context=case_ctx)
             label = self.pn.labels.get(tid, "")
 
             if label == "":     # Silent Gateway, instant consume and produce
@@ -116,8 +120,11 @@ class Engine:
         self.cases[e.case_id] = dict(self.pn.im)
         # DP
         self.case_last_activity[e.case_id] = "START"    # a new memory for each case
-        self.case_start_times[e.case_id] = self.now 
+        self.case_start_times[e.case_id] = self.now
         self.case_last_duration[e.case_id] = 0
+        # Case attributes
+        if hasattr(self.spawner, "get_case_attributes"):
+            self.case_attributes[e.case_id] = self.spawner.get_case_attributes(e.case_id)
         # DP
         if self.next_case_id < self.max_cases:
             next_time = self.spawner.calculate_next_spawn(self.now)
@@ -166,13 +173,30 @@ class Engine:
             m[p] = m.get(p, 0) + 1
 
     def _record(self, e, phase):
-        self.log.append({
+        label = self.pn.labels.get(e.transition_id, e.transition_id)
+        if label.startswith("O_"):
+            origin = "Offer"
+        elif label.startswith("W_"):
+            origin = "Workflow"
+        else:
+            origin = "Application"
+
+        row = {
             "case:concept:name": e.case_id,
-            "concept:name": self.pn.labels.get(e.transition_id, e.transition_id),
+            "concept:name": label,
             "time:timestamp": self.now,
             "lifecycle:transition": phase,
-            "org:resource": e.resource
-        })
+            "org:resource": e.resource,
+            "EventOrigin": origin,
+        }
+
+        ctx = self.case_attributes.get(e.case_id)
+        if ctx:
+            row["case:ApplicationType"] = ctx.get("application_type", "")
+            row["case:LoanGoal"] = ctx.get("loan_goal", "")
+            row["case:RequestedAmount"] = ctx.get("requested_amount", "")
+
+        self.log.append(row)
 
     def export_log(self, path="simulation_log.csv"):
         pd.DataFrame(self.log).to_csv(path, index=False)

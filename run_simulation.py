@@ -41,7 +41,7 @@ def main():
     )
     allocation_method = resources.ResourceAllocator.Methods.RANDOM
     res_manager = ResourceManager(permissions='role_permissions.csv', availabilities='availabilities_advanced.csv', method=allocation_method)
-    dp_manager = DPManager(pn=pn_model, mode="basic", model_path=str(model_path), rules_path=str(rules_path))
+    dp_manager = DPManager(pn=pn_model, mode="advanced", model_path=str(model_path), rules_path=str(rules_path))
     pt = ProcessingTimeSampler.from_paths(
         proc_json=proc_json,
         total_json=total_json,
@@ -65,13 +65,15 @@ def main():
     print("STARTING SIMULATION")
     print("=" * 60)
     engine.spawn()
-    engine.run(max_events=50000)
+    #In order to mock the event log, I increased the num of events to 475 306, you can change again as you want
+    engine.run(max_events=475306)
     sim_log = pd.DataFrame(engine.log)
 
     print("\n--- Simulation Output ---")
     print(sim_log.head(30))
-    sim_log.to_csv(output_csv, index=False)
-    print(f"\nResults saved to '{output_csv}'")
+    #sim_log.to_csv(output_csv, index=False)
+    sim_log.to_csv("decision_analysis/sim_output_advanced.csv", index=False)
+    #print(f"\nResults saved to '{output_csv}'")
 
 
 if __name__ == "__main__":
