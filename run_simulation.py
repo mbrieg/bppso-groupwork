@@ -21,7 +21,7 @@ def main():
     parser.add_argument(
         "--no-fired",
         action="store_true",
-        help="Run without User_120 and User_121 (uses availabilities_no_fired.csv).",
+        help="Run without User_140 and User_125 (uses availabilities_no_fired.csv).",
     )
     args = parser.parse_args()
 
