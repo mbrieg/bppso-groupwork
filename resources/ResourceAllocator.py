@@ -69,18 +69,19 @@ class ResourceAllocator:
                 on_shift.append(res_id)
         return on_shift
 
-    def _get_idle_resources(self, on_shift):
+    def _get_idle_resources(self, on_shift, current_time):
         if not on_shift:
             return None
         idle = []
         for res_id in on_shift:
-            if not self.resources[res_id].is_occupied():
+            if (not self.resources[res_id].is_occupied()
+                    and not self.availabilities.is_resource_on_break(res_id, current_time)):
                 idle.append(res_id)
         return idle
 
     def _allocate_random(self, resources, start_time):
         on_shift = self._get_available_resources(resources, start_time)
-        idle = self._get_idle_resources(on_shift)
+        idle = self._get_idle_resources(on_shift, start_time)
         if not idle:
             return None
         return random.choice(idle)
@@ -90,8 +91,9 @@ class ResourceAllocator:
             selected_id = (self.rr_index + i) % len(resources)
             res_id = resources[selected_id]
 
-            if self.availabilities.is_resource_available(res_id, start_time) and not self.resources[
-                res_id].is_occupied():
+            if (self.availabilities.is_resource_available(res_id, start_time)
+                    and not self.resources[res_id].is_occupied()
+                    and not self.availabilities.is_resource_on_break(res_id, start_time)):
                 self.rr_index = (selected_id + 1) % len(resources)
                 return res_id
 
@@ -100,8 +102,13 @@ class ResourceAllocator:
     def _allocate_shortest_queue(self, resources, current_now):
         resources = [self.resources[res_id] for res_id in resources]
         selected_res = min(resources, key=lambda res: res.get_queue_length())
-        task_start = selected_res.get_remaining_working_time(current_now) if selected_res.is_occupied() else 0.0
-        return selected_res.get_id(), current_now + timedelta(seconds=task_start)
+
+        task_start = 0.0
+        if selected_res.is_occupied():
+            task_start = selected_res.get_remaining_working_time(current_now)
+        next_time = self.availabilities.get_next_available_time(selected_res.get_id(), current_now)
+
+        return selected_res.get_id(), next_time + timedelta(seconds=task_start)
 
     def _allocate_batch(self, resources):
         # TODO
@@ -130,9 +137,19 @@ class ResourceAllocator:
         # Update start time
         return best_res_id, (start_time + timedelta(seconds=task_start))
 
+    def get_next_available_time_adv(self, act_name, current_time):
+        total_costs = []
+        res_costs = self._predictor.get_all_costs(act_name)
+        for res_id, cost in res_costs.items():
+            remaining = self.resources[res_id].get_remaining_working_time(current_time)
+            total_costs.append(cost + remaining)
+
+        min_cost = min(total_costs)
+        return current_time + timedelta(seconds=min_cost)
+
     class _Predictor:
         """
-        costs: dict saving activities to dict of resources and their costs
+        costs: dict saving activities to dict of resources and their costs for the activity
         delta: factor variable used for cost estimation
         """
         def __init__(self, delta):
@@ -165,3 +182,9 @@ class ResourceAllocator:
             dummy_sum = sum(res_costs)
 
             return self._delta * (1 / len(res_costs)) * dummy_sum
+
+        def get_all_costs(self, act_name):
+            """
+            Returns a dictionary of all predicted resource costs for a specific activity.
+            """
+            return self._costs.get(act_name, {})

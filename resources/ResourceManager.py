@@ -19,6 +19,7 @@ class ResourceManager:
         """
         avail_adv = availabilities != 'availabilities_basic.csv'
         perm_adv = permissions != 'permissions_basic.csv'
+        self._mode_adv = method == Methods.ADVANCED
 
         self.availabilities = ResourceAvailabilities(availabilities, avail_adv)
         self.permissions = ResourcePermissions(permissions, perm_adv)
@@ -79,6 +80,9 @@ class ResourceManager:
         """
         Returns: Datetime object containing the next possible start time of ANY permitted resource or None.
         """
+        if self._mode_adv:  # Advanced allocation approach
+            return self.allocator.get_next_available_time_adv(act_name, current_time)
+
         permitted = self.permissions.get_permitted_resources(act_name, self.resources)
         if not permitted:
             return None

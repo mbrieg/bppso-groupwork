@@ -69,30 +69,42 @@ class ResourceAvailabilities:
 
         day_id = self._get_day_id(current_time)
         shift = self.schedule.get((res_name, day_id))
-
         if not shift:
             return False
-        start_time, end_time, break_start, break_duration = shift
 
+        start_time, end_time, _, _ = shift
         if not (start_time <= current_time.time() <= end_time):
             return False
+
+        return True
+
+    def is_resource_on_break(self, res_name, current_time):
+        day_id = self._get_day_id(current_time)
+        shift = self.schedule.get((res_name, day_id))
+        if not shift:
+            return None
+        start_time, end_time, break_start, break_duration = shift
 
         if break_duration > 0:
             break_start_dt = datetime.datetime.combine(current_time.date(), break_start)
             break_end_dt = break_start_dt + datetime.timedelta(minutes=break_duration)
 
             if break_start_dt <= current_time < break_end_dt:
-                return False
+                return break_end_dt
 
-        return True
+        return None
 
     def get_next_available_time(self, res_name, current_time):
+        # Check if resource is available but currently on break
         if self.is_resource_available(res_name, current_time):
-            return current_time
-
-        current_day_id = self._get_day_id(current_time)
+            break_end = self.is_resource_on_break(res_name, current_time)
+            if not break_end:
+                return current_time
+            else:
+                return break_end
 
         # Check today
+        current_day_id = self._get_day_id(current_time)
         if not (self._is_holiday(current_time.date()) and res_name != "User_1"):
             shift = self.schedule.get((res_name, current_day_id))
             if shift:

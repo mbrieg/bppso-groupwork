@@ -35,7 +35,7 @@ class Engine:
         self.case_start_times = {}     # When the case is started
         self.case_last_duration = {}
 
-        #case attributes
+        # case attributes
         self.case_attributes = {}
 
     def spawn(self, at_time=None):
