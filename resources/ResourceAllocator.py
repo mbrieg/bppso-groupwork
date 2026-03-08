@@ -1,5 +1,6 @@
 import random
 from enum import Enum
+from datetime import timedelta
 
 
 class Methods(Enum):
@@ -7,20 +8,24 @@ class Methods(Enum):
     ROUND_ROBIN = 1
     SHORTEST_QUEUE = 2
     BATCHING = 3
-    ADVANCED = 4    # Adapted assignment problem
+    ADVANCED = 4  # Adapted assignment problem
 
 
 class ResourceAllocator:
     """
     Assigns tasks to permitted and available resources based on the specified method.
     """
-    def __init__(self, resources, availabilities, permissions, method=Methods.RANDOM):
+
+    def __init__(self, resources, availabilities, permissions, method=Methods.RANDOM, delta=1):
         self.resources = resources
         self.availabilities = availabilities
         self.permissions = permissions
         self.method = method
         self.rr_index = 0
         self.batching_ctr = 0
+
+        if method == Methods.ADVANCED:
+            self._predictor = ResourceAllocator._Predictor(delta)
 
     def allocate_resource(self, act_name, start_time, duration, case_id, tid):
         # Check permissions
@@ -31,21 +36,22 @@ class ResourceAllocator:
 
         # Choose resource
         selected_id = None
+        task_start = None
         if self.method == Methods.RANDOM:
             selected_id = self._allocate_random(permitted, start_time)
         elif self.method == Methods.ROUND_ROBIN:
             selected_id = self._allocate_round_robin(permitted, start_time)
         elif self.method == Methods.SHORTEST_QUEUE:
-            selected_id = self._allocate_shortest_queue(permitted)
+            selected_id, task_start = self._allocate_shortest_queue(permitted, start_time)
         elif self.method == Methods.BATCHING:
             selected_id = self._allocate_batch(permitted)
         elif self.method == Methods.ADVANCED:
-            selected_id = self._allocate_advanced(permitted)
+            selected_id, task_start = self._allocate_advanced(act_name, permitted, start_time)
 
-        if selected_id:
+        if selected_id and task_start:  # Only used for SHQ and ADVANCED allocation
             act_info = {
                 "activity": act_name,
-                "start": start_time,
+                "start": task_start,
                 "duration": duration,
                 "cid": case_id,
                 "tid": tid
@@ -61,8 +67,6 @@ class ResourceAllocator:
                 continue
             if self.availabilities.is_resource_available(res_id, start_time):
                 on_shift.append(res_id)
-        if not on_shift:
-            return None
         return on_shift
 
     def _get_idle_resources(self, on_shift):
@@ -86,21 +90,78 @@ class ResourceAllocator:
             selected_id = (self.rr_index + i) % len(resources)
             res_id = resources[selected_id]
 
-            if self.availabilities.is_resource_available(res_id, start_time) and not self.resources[res_id].is_occupied():
+            if self.availabilities.is_resource_available(res_id, start_time) and not self.resources[
+                res_id].is_occupied():
                 self.rr_index = (selected_id + 1) % len(resources)
                 return res_id
 
         return None
 
-    def _allocate_shortest_queue(self, resources):
+    def _allocate_shortest_queue(self, resources, current_now):
         resources = [self.resources[res_id] for res_id in resources]
         selected_res = min(resources, key=lambda res: res.get_queue_length())
-        return selected_res.get_id()
+        task_start = selected_res.get_remaining_working_time(current_now) if selected_res.is_occupied() else 0.0
+        return selected_res.get_id(), current_now + timedelta(seconds=task_start)
 
     def _allocate_batch(self, resources):
         # TODO
         raise NotImplementedError
 
-    def _allocate_advanced(self, resources):
-        # TODO
-        raise NotImplementedError
+    def _allocate_advanced(self, act_name, permitted, start_time):
+        best_res_id = None
+        task_start = 0.0
+        min_cost = float('inf')
+
+        available = self._get_available_resources(permitted, start_time)
+        for res_id in available:    # Calculate costs for available resources
+            expected_cost = self._predictor.predict_cost(act_name, res_id)  # TODO: Check what other variables are needed for prediction, e.g. LoanGoal, CaseId, etc.
+            remaining_cost = self.resources[res_id].get_remaining_working_time(start_time)
+            total_cost = expected_cost + remaining_cost
+
+            if total_cost < min_cost:
+                min_cost = total_cost
+                best_res_id = res_id
+                task_start = remaining_cost
+
+        # Check if dummy value more cost-efficient
+        if self._predictor.get_dummy_cost(act_name) < min_cost:
+            return None, None
+
+        # Update start time
+        return best_res_id, (start_time + timedelta(seconds=task_start))
+
+    class _Predictor:
+        """
+        costs: dict saving activities to dict of resources and their costs
+        delta: factor variable used for cost estimation
+        """
+        def __init__(self, delta):
+            self._costs = {}
+            self._delta = delta
+
+        def predict_cost(self, act_name, res_id):
+            """
+            Retrieves cost if already predicted, otherwise predicts it.
+            """
+            if act_name not in self._costs:
+                self._costs[act_name] = {}
+
+            # TODO Predict using neural net
+            if res_id not in self._costs[act_name]:
+                predicted_value = random.uniform(300, 1800)
+                self._costs[act_name][res_id] = predicted_value
+
+            return self._costs[act_name][res_id]
+
+        def get_dummy_cost(self, act_name):
+            """
+            Calculates the cost of the 'Dummy Resource' based on the factorised
+            average cost of all authorized resources.
+            """
+            if act_name not in self._costs or not self._costs[act_name]:
+                return 0.0
+
+            res_costs = self._costs[act_name].values()
+            dummy_sum = sum(res_costs)
+
+            return self._delta * (1 / len(res_costs)) * dummy_sum

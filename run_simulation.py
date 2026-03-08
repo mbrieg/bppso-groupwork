@@ -48,8 +48,9 @@ def main():
         holidays=holidays,
         seed=42,
     )
-    allocation_method = resources.ResourceAllocator.Methods.RANDOM
     avail_file = 'availabilities_no_fired.csv' if args.no_fired else 'availabilities_advanced.csv'
+
+    allocation_method = resources.ResourceAllocator.Methods.RANDOM
     res_manager = ResourceManager(permissions='role_permissions.csv', availabilities=avail_file, method=allocation_method)
     dp_manager = DPManager(pn=pn_model, mode="advanced", model_path=str(model_path), rules_path=str(rules_path))
     pt = ProcessingTimeSampler.from_paths(

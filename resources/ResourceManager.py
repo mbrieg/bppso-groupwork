@@ -10,7 +10,7 @@ from resources.ResourceAllocator import ResourceAllocator, Methods
 class ResourceManager:
     def __init__(self, availabilities='availabilities_basic.csv',
                  permissions='permissions_basic.csv',
-                 roles='resource_roles.csv', method=Methods.RANDOM):
+                 roles='resource_roles.csv', method=Methods.RANDOM, delta=1):
         """
         :param availabilities: CSV file with ['Resource', 'DayId', 'StartTime', 'EndTime'] (basic) or
                                 ['Resource', 'DayId', 'StartTime', 'EndTime', 'BreakStart', 'DurationMin'] (advanced)

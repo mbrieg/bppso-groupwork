@@ -92,26 +92,27 @@ class Engine:
                     duration = timedelta(seconds=float(sec))
                 ''' End Processing Times '''
 
+                # Resource allocation
                 res_id = self.resource_manager.assign_resource(label, self.now, duration, case_id, tid)
                 if res_id is not None:
                     resource = self.resource_manager.get_resource(res_id)
                     if not resource.is_occupied():      # Assign resource NOW
-                        task = resource.pop_task()
+                        resource.pop_task()
                         resource.occupy()
                         if label.startswith('W_'):
                             # give a small, neglegtable delay for the starting time of W_Activities, as their processing time is the relevant
-                            heapq.heappush(self.queue, Event(self.now + timedelta(seconds=float(np.random.uniform(0, 1))), "START", task['cid'], task['tid'], res_id, task['duration']))
+                            heapq.heappush(self.queue, Event(self.now + timedelta(seconds=float(np.random.uniform(0, 1))), "START", case_id, tid, res_id, duration))
                         else:
                             # insert delay for O and A activities
-                            heapq.heappush(self.queue, Event(self.now+duration, "COMPLETE", task['cid'], task['tid'], res_id, task['duration']))
-                    else:
+                            heapq.heappush(self.queue, Event(self.now+duration, "COMPLETE", case_id, tid, res_id, duration))
+                    else:   # Used for SHQ und ADVANCED allocation
                         pass    # Resources currently busy
                 else:   # Find next possible starting time
                     next_avail_time = self.resource_manager.get_earliest_availability(label, self.now)
                     if next_avail_time and next_avail_time > self.now:
                         retry_time = next_avail_time
                     else:
-                        retry_time = self.now + timedelta(minutes=15)       # Just to be safe :D
+                        retry_time = self.now + timedelta(minutes=15)       # Fallback
                     heapq.heappush(self.queue, Event(retry_time, "RETRY", case_id))
                 break
 
@@ -152,8 +153,13 @@ class Engine:
         if resource.get_queue_length() > 0:
             next_act = resource.pop_task()
             resource.occupy()
-            heapq.heappush(self.queue, Event(self.now, "START", next_act["cid"], next_act["tid"],
-                                             e.resource, next_act["duration"]))
+            if label.startswith('W_'):
+                heapq.heappush(self.queue,
+                               Event(self.now + timedelta(seconds=float(np.random.uniform(0, 1))), "START",
+                                     next_act['cid'], next_act['tid'], resource.get_id(), next_act['duration']))
+            else:
+                heapq.heappush(self.queue, Event(self.now + next_act['duration'], "COMPLETE",
+                                                 next_act['cid'], next_act['tid'], resource.get_id(), next_act['duration']))
 
         if label != "":
             self.case_last_activity[e.case_id] = label  # write to the memory when is completed
