@@ -52,7 +52,8 @@ def main():
 
     allocation_method = resources.ResourceAllocator.Methods.RANDOM
     res_manager = ResourceManager(permissions='role_permissions.csv', availabilities=avail_file, method=allocation_method)
-    dp_manager = DPManager(pn=pn_model, mode="basic", model_path=str(model_path), rules_path=str(rules_path))
+    dp_mode = "advanced" if args.no_fired else "basic"
+    dp_manager = DPManager(pn=pn_model, mode=dp_mode, model_path=str(model_path), rules_path=str(rules_path))
     pt = ProcessingTimeSampler.from_paths(
         proc_json=proc_json,
         total_json=total_json,
