@@ -1,6 +1,6 @@
 Metric,Advanced (baseline),No-fired (re-sim),Delta,Fired
-# Completed Cases,244.0,242.0,-2.0,"['User_126', 'User_113']"
-Avg Cycle Time (h),131.2671,135.7432,4.476100000000002,"['User_126', 'User_113']"
-Avg Resource Occ (%),81.2168,83.3224,2.1055999999999955,"['User_126', 'User_113']"
-Fairness MAD (unwt),0.30053,0.27071,-0.029820000000000013,"['User_126', 'User_113']"
-Fairness MAD (wtd),0.30637,0.28085,-0.025519999999999987,"['User_126', 'User_113']"
+# Completed Cases,240.0,242.0,2.0,"['User_133', 'User_114']"
+Avg Cycle Time (h),138.6305,135.7432,-2.8873000000000104,"['User_133', 'User_114']"
+Avg Resource Occ (%),81.0162,83.3224,2.306200000000004,"['User_133', 'User_114']"
+Fairness MAD (unwt),0.30374,0.27071,-0.033030000000000004,"['User_133', 'User_114']"
+Fairness MAD (wtd),0.30931,0.28085,-0.028459999999999985,"['User_133', 'User_114']"

@@ -13,8 +13,11 @@ except ImportError:
     sys.modules['c45_tree'] = c45_tree
 
 class DPManager:
-    # Empty: C4.5 handles all decisions; BasicRouter only as fallback when C4.5 can't match.
-    BASIC_PREFERRED = set()
+    # O_ activities: customer behavior is stochastic, BasicRouter (empirical probs) is better.
+    # A_Complete, A_Validating, A_Incomplete kept with C4.5 — improved JSD when empty test showed.
+    BASIC_PREFERRED = {
+        "O_Created", "O_Returned", "O_Sent (mail and online)", "O_Sent (online only)", "O_Cancelled",
+    }
 
     def __init__(self, pn, mode="basic", model_path="simulation_brain.pkl", rules_path="decision_prob_rules.json"):
         self.pn = pn
