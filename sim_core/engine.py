@@ -32,6 +32,7 @@ class Engine:
 
         # Dict to track the current last activity for each case (DP)
         self.case_last_activity = {}
+        self.case_second_last_activity = {}
         self.case_start_times = {}     # When the case is started
         self.case_last_duration = {}
 
@@ -67,7 +68,8 @@ class Engine:
             start_time = self.case_start_times.get(case_id, self.now)
 
             # DP Integration
-            case_ctx = self.case_attributes.get(case_id)
+            case_ctx = dict(self.case_attributes.get(case_id) or {})
+            case_ctx["prev_activity_2"] = self.case_second_last_activity.get(case_id, "START")
             tid = self.decision_manager.get_next_transition(case_id=case_id, enabled_transitions=enabled, last_activity=last_act, last_duration_sec=last_dur, case_start_time=start_time, current_now=self.now, case_context=case_ctx)
             label = self.pn.labels.get(tid, "")
 
@@ -121,6 +123,7 @@ class Engine:
         self.cases[e.case_id] = dict(self.pn.im)
         # DP
         self.case_last_activity[e.case_id] = "START"    # a new memory for each case
+        self.case_second_last_activity[e.case_id] = "START"
         self.case_start_times[e.case_id] = self.now
         self.case_last_duration[e.case_id] = 0
         # Case attributes
@@ -162,6 +165,7 @@ class Engine:
                                                  next_act['cid'], next_act['tid'], resource.get_id(), next_act['duration']))
 
         if label != "":
+            self.case_second_last_activity[e.case_id] = self.case_last_activity.get(e.case_id, "START")
             self.case_last_activity[e.case_id] = label  # write to the memory when is completed
             if e.duration:
                 self.case_last_duration[e.case_id] = e.duration.total_seconds()

@@ -13,16 +13,8 @@ except ImportError:
     sys.modules['c45_tree'] = c45_tree
 
 class DPManager:
-    # Activities where AdvancedRouter's C4.5 predictions are unreliable.
-    # Advanced JSD > Basic JSD on these decision points.
-    # A_Complete and A_Validating added: C4.5 predicts the majority class deterministically
-    # at these key loop junctions, cutting the offer/validation cycle short and causing
-    # far fewer events per case (~4.8) than the real process (~42). Using probabilistic
-    # BasicRouter here restores the stochastic branching that drives longer case paths.
-    BASIC_PREFERRED = {
-        "O_Created", "O_Returned", "O_Sent (mail and online)", "O_Sent (online only)",
-        "A_Complete", "A_Validating",
-    }
+    # Empty: C4.5 handles all decisions; BasicRouter only as fallback when C4.5 can't match.
+    BASIC_PREFERRED = set()
 
     def __init__(self, pn, mode="basic", model_path="simulation_brain.pkl", rules_path="decision_prob_rules.json"):
         self.pn = pn

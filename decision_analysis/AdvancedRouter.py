@@ -34,6 +34,7 @@ class AdvancedRouter:
 
             input_dict = pd.Series({
                 "prev_activity": str(last_activity),
+                "prev_activity_2": str((case_context or {}).get("prev_activity_2", "START")),
                 "duration_bin": dur_bin,
                 "case_age_category": age_cat
             })
