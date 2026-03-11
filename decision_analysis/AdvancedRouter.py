@@ -56,8 +56,14 @@ class AdvancedRouter:
                 X_enc = self.encoder.transform(input_df)
                 predicted_label = self.model.predict(X_enc)[0]
             else:
-                # C4.5 path
-                predicted_label = self.model.predict_one(input_data)
+                # C4.5 path — supports both global tree and per-activity dict of trees
+                if isinstance(self.model, dict):
+                    tree = self.model.get(str(last_activity))
+                    if tree is None:
+                        raise KeyError(f"No tree for activity: {last_activity}")
+                    predicted_label = tree.predict_one_stochastic(input_data)
+                else:
+                    predicted_label = self.model.predict_one_stochastic(input_data)
 
             for tid in enabled:
                 label = self.pn.labels.get(tid, "")

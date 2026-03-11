@@ -16,7 +16,10 @@ class DPManager:
     # O_ activities: customer behavior is stochastic, BasicRouter (empirical probs) is better.
     # A_Complete, A_Validating, A_Incomplete kept with C4.5 — improved JSD when empty test showed.
     BASIC_PREFERRED = {
-        "O_Created", "O_Returned", "O_Sent (mail and online)", "O_Sent (online only)", "O_Cancelled",
+        "O_Created",
+        "O_Returned",
+        "O_Sent (mail and online)",
+        "O_Cancelled",
     }
 
     def __init__(self, pn, mode="basic", model_path="simulation_brain.pkl", rules_path="decision_prob_rules.json"):
@@ -46,8 +49,9 @@ class DPManager:
         try:
             with open(model_path, "rb") as f:
                 pkg = pickle.load(f)
+            model = pkg.get("models") or pkg.get("model")
             self.router = AdvancedRouter(
-                pkg["model"], pkg["bins"], self.pn,
+                model, pkg["bins"], self.pn,
                 encoder=pkg.get("encoder"),
                 feature_names=pkg.get("features")
             )
