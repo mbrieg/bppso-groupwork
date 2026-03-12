@@ -161,6 +161,56 @@ class C45DecisionTree:
 
         return node.prediction
 
+    def predict_one_stochastic(self, x: Union[pd.Series, Dict[str, Any]], rng=None) -> Any:
+        """
+        Like predict_one but samples from the leaf's class distribution
+        instead of always returning the majority class.
+        """
+        import random as _random
+        if rng is None:
+            rng = _random
+
+        if self.root is None:
+            raise RuntimeError("Tree is not fitted yet.")
+
+        if not isinstance(x, pd.Series):
+            x = pd.Series(x)
+
+        node = self.root
+        while not node.is_leaf:
+            attr = node.split_attr
+            if attr is None:
+                break
+
+            val = x.get(attr, None)
+            if attr in self.impute_values and (val is None or pd.isna(val)):
+                val = self.impute_values[attr]
+
+            if node.split_threshold is not None:
+                try:
+                    v = float(val)
+                except (TypeError, ValueError):
+                    break
+                node = node.left if v <= node.split_threshold else node.right
+                if node is None:
+                    return self._fallback_class()
+                continue
+
+            if node.branches is not None:
+                key = str(val)
+                if key in node.branches:
+                    node = node.branches[key]
+                else:
+                    break
+            else:
+                break
+
+        if node.distribution:
+            classes = list(node.distribution.keys())
+            weights = list(node.distribution.values())
+            return rng.choices(classes, weights=weights, k=1)[0]
+        return node.prediction
+
     def predict(self, X: pd.DataFrame) -> List[Any]:
         if self.root is None:
             raise RuntimeError("Tree is not fitted yet.")
