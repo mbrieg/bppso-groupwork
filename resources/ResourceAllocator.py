@@ -16,7 +16,7 @@ class ResourceAllocator:
     Assigns tasks to permitted and available resources based on the specified method.
     """
 
-    def __init__(self, resources, availabilities, permissions, method=Methods.RANDOM, delta=1):
+    def __init__(self, resources, availabilities, permissions, method=Methods.RANDOM, delta=1, batch_k=5):
         self.resources = resources
         self.availabilities = availabilities
         self.permissions = permissions

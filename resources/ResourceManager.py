@@ -38,7 +38,8 @@ class ResourceManager:
             self.resources,
             self.availabilities,
             self.permissions,
-            method
+            method,
+            delta=delta
         )
 
     def _assign_roles_to_resources(self, file: str):
