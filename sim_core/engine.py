@@ -58,6 +58,10 @@ class Engine:
                 self._handle_complete(e)
             count += 1
 
+        #Debug
+        print(f"[ENGINE-END] now={self.now} flushing remaining batches")
+        self.resource_manager.flush_remaining_batches(self.now)
+
     def _process_flow(self, case_id):
         m = self.cases[case_id]
         enabled = [t for t in self.pn.trans_ids if all(m.get(p, 0) > 0 for p in self.pn.inputs.get(t, []))]

@@ -107,4 +107,6 @@ class ResourceManager:
         self.allocator.reset()
 
     def flush_remaining_batches(self, current_time):
+        #Debug
+        print(f"[RM-FLUSH] current_time={current_time}")
         return self.allocator.flush_remaining_batches(current_time)
