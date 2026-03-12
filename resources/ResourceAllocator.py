@@ -23,7 +23,9 @@ class ResourceAllocator:
         self.method = method
         self.rr_index = 0
         self.batching_ctr = 0
+        self.pending_tasks = []
         self.last_batch_assignments = []
+        self.batch_k=batch_k
 
         if method == Methods.ADVANCED:
             self._predictor = ResourceAllocator._Predictor(delta)

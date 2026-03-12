@@ -38,6 +38,19 @@ class Resource:
         self._is_occupied = False
         self._task_queue.clear()
 
+    '''Maybe we can use get_remaining_working_time instead of this'''
+    def get_planned_workload(self, current_now):
+        if not self._task_queue:
+            return 0.0
+
+        remaining_seconds = 0.0
+        for task in self._task_queue:
+            expected_end = task['start'] + task['duration']
+            reference_time = max(task['start'], current_now)
+            remaining_seconds += max(0, (expected_end - reference_time).total_seconds())
+
+        return remaining_seconds
+
     def get_remaining_working_time(self, current_now):
         if not self._is_occupied or not self._task_queue:
             return 0.0
