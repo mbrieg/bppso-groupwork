@@ -87,7 +87,7 @@ class Engine:
 
                     sec = self.pt.sample(
                         label,
-                        kind="total",   # use total to simulate complete behavior, change to "proc" when real procesiing times
+                        kind="proc",   # use total to simulate complete behavior, change to "proc" when real procesiing times
                         now=self.now,
                         use_qr=False
                     )
