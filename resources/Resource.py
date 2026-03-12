@@ -34,6 +34,10 @@ class Resource:
     def release(self):
         self._is_occupied = False
 
+    def reset(self):
+        self._is_occupied = False
+        self._task_queue.clear()
+
     def get_remaining_working_time(self, current_now):
         if not self._is_occupied or not self._task_queue:
             return 0.0

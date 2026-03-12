@@ -23,6 +23,7 @@ class ResourceAllocator:
         self.method = method
         self.rr_index = 0
         self.batching_ctr = 0
+        self.last_batch_assignments = []
 
         if method == Methods.ADVANCED:
             self._predictor = ResourceAllocator._Predictor(delta)
@@ -113,6 +114,12 @@ class ResourceAllocator:
     def _allocate_batch(self, resources):
         # TODO
         raise NotImplementedError
+
+    def reset(self):
+        self.rr_index = 0
+        self.batching_ctr = 0
+        self.pending_tasks.clear()
+        self.last_batch_assignments = []
 
     def _allocate_advanced(self, act_name, permitted, start_time):
         best_res_id = None

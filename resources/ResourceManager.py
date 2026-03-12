@@ -103,3 +103,4 @@ class ResourceManager:
         """
         for res in self.resources.values():
             res.release()
+        self.allocator.reset()
