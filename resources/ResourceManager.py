@@ -10,7 +10,7 @@ from resources.ResourceAllocator import ResourceAllocator, Methods
 class ResourceManager:
     def __init__(self, availabilities='availabilities_basic.csv',
                  permissions='permissions_basic.csv',
-                 roles='resource_roles.csv', method=Methods.RANDOM, delta=1):
+                 roles='resource_roles.csv', method=Methods.RANDOM, delta=1, batch_k = 5):
         """
         :param availabilities: CSV file with ['Resource', 'DayId', 'StartTime', 'EndTime'] (basic) or
                                 ['Resource', 'DayId', 'StartTime', 'EndTime', 'BreakStart', 'DurationMin'] (advanced)
@@ -39,7 +39,8 @@ class ResourceManager:
             self.availabilities,
             self.permissions,
             method,
-            delta=delta
+            delta=delta,
+            batch_k=batch_k
         )
 
     def _assign_roles_to_resources(self, file: str):
@@ -104,3 +105,6 @@ class ResourceManager:
         for res in self.resources.values():
             res.release()
         self.allocator.reset()
+
+    def flush_remaining_batches(self, current_time):
+        return self.allocator.flush_remaining_batches(current_time)
