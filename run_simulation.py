@@ -50,8 +50,8 @@ def main():
     )
     avail_file = 'availabilities_no_fired.csv' if args.no_fired else 'availabilities_advanced.csv'
 
-    allocation_method = resources.ResourceAllocator.Methods.BATCHING
-    res_manager = ResourceManager(permissions='role_permissions.csv', availabilities=avail_file, method=allocation_method, batch_k=5)
+    allocation_method = resources.ResourceAllocator.Methods.RANDOM
+    res_manager = ResourceManager(permissions='role_permissions.csv', availabilities=avail_file, method=allocation_method, batch_k=1)
     dp_manager = DPManager(pn=pn_model, mode="advanced", model_path=str(model_path), rules_path=str(rules_path))
     pt = ProcessingTimeSampler.from_paths(
         proc_json=proc_json,

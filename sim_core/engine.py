@@ -84,14 +84,14 @@ class Engine:
             else:
                 '''Processing Times'''
                 if label.startswith(("A_", "O_")):
-                    sec = self.pt.sample(label, kind="total", use_qr=False)
+                    sec = self.pt.sample(label, kind="total", use_qr=False) # use total to simulate inter event delay
                     duration = timedelta(seconds=float(sec))
                 else:
-                    # Only Basic, because there are no features about loan type, or amount
+                    # Only Basic, because there are no too less features for QR
 
                     sec = self.pt.sample(
                         label,
-                        kind="total",   # use total to simulate complete behavior, change to "proc" when real procesiing times
+                        kind="proc",   # use proc to simulate real processing behavior
                         now=self.now,
                         use_qr=False
                     )
