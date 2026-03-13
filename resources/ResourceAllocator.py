@@ -26,8 +26,8 @@ class ResourceAllocator:
         self.pending_tasks = []
         self.last_batch_assignments = []
         self.batch_k=batch_k
-        self.pending_tids = set() # Needed to handle Retry envents that should not be flushed
-        self.assigned_batch_tids = {} # Needed to handle Retry envents that should not be flushed
+        self.pending_task_keys = set() # Needed to handle Retry envents that should not be flushed
+        self.assigned_batch_task_keys = {} # Needed to handle Retry envents that should not be flushed
 
         if method == Methods.ADVANCED:
             self._predictor = ResourceAllocator._Predictor(delta)
@@ -52,7 +52,7 @@ class ResourceAllocator:
             selected_id, task_start = self._allocate_shortest_queue(permitted, start_time)
         elif self.method == Methods.BATCHING:
             # Debug Print
-            print(f"[BATCH-IN] tid={tid} act={act_name} time={start_time} pending_before={len(self.pending_tasks)}")
+            #print(f"[BATCH-IN] tid={tid} act={act_name} time={start_time} pending_before={len(self.pending_tasks)}")
             selected_id = self._allocate_batch(act_name, start_time, duration, case_id, tid, permitted)
         elif self.method == Methods.ADVANCED:
             selected_id, task_start = self._allocate_advanced(act_name, permitted, start_time)
@@ -120,6 +120,15 @@ class ResourceAllocator:
         return selected_res.get_id(), next_time + timedelta(seconds=task_start)
 
     def _allocate_batch(self, act_name, start_time, duration, case_id, tid, permitted):
+
+        task_key = (case_id, tid)
+
+        if task_key in self.assigned_batch_task_keys:
+            return self.assigned_batch_task_keys[task_key]
+
+        if task_key in self.pending_task_keys:
+            return None
+
         task = {
             "activity": act_name,
             "arrival_time": start_time,
@@ -128,8 +137,8 @@ class ResourceAllocator:
             "tid": tid,
             "permitted": list(permitted)
         }
-
         self.pending_tasks.append(task)
+        self.pending_task_keys.add(task_key)
         # Debug Print
         print(f"[BATCH-QUEUE] appended tid={tid} pending_now={len(self.pending_tasks)} batch_k={self.batch_k}")
         if len(self.pending_tasks) < self.batch_k:
@@ -146,7 +155,7 @@ class ResourceAllocator:
         self.last_batch_assignments = assignments
 
         for a in assignments:
-            if a["tid"] == tid:
+            if a["cid"] == case_id and a["tid"] == tid:
                 return a["res_id"]
 
         return None
@@ -194,6 +203,9 @@ class ResourceAllocator:
             if best_res_id is None:
                 unassigned.append(task)
                 continue
+            task_key = (task["cid"], task["tid"])
+            self.pending_task_keys.discard(task_key)
+            self.assigned_batch_task_keys[task_key] = best_res_id
             # Debug
             print(f"[BATCH-ASSIGN] tid={task['tid']} -> res={best_res_id} start={best_start} end={best_end}")
 
@@ -209,6 +221,7 @@ class ResourceAllocator:
             ready_times[best_res_id] = best_end
 
             assignments.append({
+                "cid": task["cid"],
                 "tid": task["tid"],
                 "res_id": best_res_id,
                 "start": best_start
@@ -236,6 +249,8 @@ class ResourceAllocator:
         self.rr_index = 0
         self.batching_ctr = 0
         self.pending_tasks.clear()
+        self.pending_task_keys.clear()
+        self.assigned_batch_task_keys = {}
         self.last_batch_assignments = []
 
     def _allocate_advanced(self, act_name, permitted, start_time):

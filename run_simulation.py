@@ -77,7 +77,7 @@ def main():
     print("=" * 60)
     engine.spawn()
     #In order to mock the event log, I increased the num of events to 475 306, you can change again as you want
-    engine.run(max_events=1000)
+    engine.run(max_events=100000)
     sim_log = pd.DataFrame(engine.log)
 
     output_csv = "decision_analysis/sim_output_no_fired.csv" if args.no_fired else "decision_analysis/sim_output_advanced.csv"

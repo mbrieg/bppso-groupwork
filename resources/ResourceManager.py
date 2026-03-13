@@ -103,7 +103,7 @@ class ResourceManager:
         Clears all resource states for a new simulation run.
         """
         for res in self.resources.values():
-            res.release()
+            res.reset()
         self.allocator.reset()
 
     def flush_remaining_batches(self, current_time):
