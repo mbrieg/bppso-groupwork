@@ -23,12 +23,18 @@ class ResourceAllocator:
         self.method = method
         self.rr_index = 0
         self.batching_ctr = 0
+        self.pending_tasks = []
         self.last_batch_assignments = []
+        self.batch_k=batch_k
+        self.pending_task_keys = set() # Needed to handle Retry envents that should not be flushed
+        self.assigned_batch_task_keys = {} # Needed to handle Retry envents that should not be flushed
 
         if method == Methods.ADVANCED:
             self._predictor = ResourceAllocator._Predictor(delta)
 
     def allocate_resource(self, act_name, start_time, duration, case_id, tid):
+
+
         # Check permissions
         permitted = self.permissions.get_permitted_resources(act_name, self.resources)
         permitted.sort()
@@ -45,7 +51,9 @@ class ResourceAllocator:
         elif self.method == Methods.SHORTEST_QUEUE:
             selected_id, task_start = self._allocate_shortest_queue(permitted, start_time)
         elif self.method == Methods.BATCHING:
-            selected_id = self._allocate_batch(permitted)
+            # Debug Print
+            #print(f"[BATCH-IN] tid={tid} act={act_name} time={start_time} pending_before={len(self.pending_tasks)}")
+            selected_id = self._allocate_batch(act_name, start_time, duration, case_id, tid, permitted)
         elif self.method == Methods.ADVANCED:
             selected_id, task_start = self._allocate_advanced(act_name, permitted, start_time)
 
@@ -111,14 +119,138 @@ class ResourceAllocator:
 
         return selected_res.get_id(), next_time + timedelta(seconds=task_start)
 
-    def _allocate_batch(self, resources):
-        # TODO
-        raise NotImplementedError
+    def _allocate_batch(self, act_name, start_time, duration, case_id, tid, permitted):
+
+        task_key = (case_id, tid)
+
+        if task_key in self.assigned_batch_task_keys:
+            return self.assigned_batch_task_keys[task_key]
+
+        if task_key in self.pending_task_keys:
+            return None
+
+        task = {
+            "activity": act_name,
+            "arrival_time": start_time,
+            "duration": duration,
+            "cid": case_id,
+            "tid": tid,
+            "permitted": list(permitted)
+        }
+        self.pending_tasks.append(task)
+        self.pending_task_keys.add(task_key)
+        # Debug Print
+        #print(f"[BATCH-QUEUE] appended tid={tid} pending_now={len(self.pending_tasks)} batch_k={self.batch_k}")
+        if len(self.pending_tasks) < self.batch_k:
+            # Debug Pruint
+            #print(f"[BATCH-WAIT] not enough tasks yet: {len(self.pending_tasks)}/{self.batch_k}")
+            return None
+        # Debug Print
+        #print(f"[BATCH-TRIGGER] flushing batch of size {self.batch_k} at {start_time}")
+
+        batch = self.pending_tasks[:self.batch_k]
+        self.pending_tasks = self.pending_tasks[self.batch_k:]
+
+        assignments = self._flush_k_batch(batch, start_time)
+        self.last_batch_assignments = assignments
+
+        for a in assignments:
+            if a["cid"] == case_id and a["tid"] == tid:
+                return a["res_id"]
+
+        return None
+
+    def _get_projected_ready_time(self, res_id, current_time):
+        next_time = self.availabilities.get_next_available_time(res_id, current_time)
+        if next_time is None:
+            return None
+
+        backlog_seconds = self.resources[res_id].get_planned_workload(current_time)
+        return next_time + timedelta(seconds=backlog_seconds)
+
+    def _flush_k_batch(self, batch, batch_time):
+        assignments = []
+        unassigned = []
+
+        ready_times = {
+            res_id: self._get_projected_ready_time(res_id, batch_time)
+            for res_id in self.resources
+        }
+
+        batch_sorted = sorted(
+            batch,
+            key=lambda t: t["duration"].total_seconds(),
+            reverse=True
+        )
+
+        for task in batch_sorted:
+            best_res_id = None
+            best_start = None
+            best_end = None
+
+            for res_id in task["permitted"]:
+                projected_start = ready_times.get(res_id)
+                if projected_start is None:
+                    continue
+
+                projected_end = projected_start + task["duration"]
+
+                if best_end is None or projected_end < best_end:
+                    best_res_id = res_id
+                    best_start = projected_start
+                    best_end = projected_end
+
+            if best_res_id is None:
+                unassigned.append(task)
+                continue
+            task_key = (task["cid"], task["tid"])
+            self.pending_task_keys.discard(task_key)
+            self.assigned_batch_task_keys[task_key] = best_res_id
+            # Debug
+            #print(f"[BATCH-ASSIGN] tid={task['tid']} -> res={best_res_id} start={best_start} end={best_end}")
+
+            act_info = {
+                "activity": task["activity"],
+                "start": best_start,
+                "duration": task["duration"],
+                "cid": task["cid"],
+                "tid": task["tid"]
+            }
+
+            self.resources[best_res_id].add_task(act_info)
+            ready_times[best_res_id] = best_end
+
+            assignments.append({
+                "cid": task["cid"],
+                "tid": task["tid"],
+                "res_id": best_res_id,
+                "start": best_start
+            })
+
+        if unassigned:
+            self.pending_tasks = unassigned + self.pending_tasks
+
+        self.batching_ctr += 1
+        #Debug
+        #print(f"[BATCH-DONE] assigned={len(assignments)} unassigned={len(unassigned)} total_batches={self.batching_ctr}")
+        return assignments
+
+    def flush_remaining_batches(self, current_time):
+        if self.method != Methods.BATCHING or not self.pending_tasks:
+            return []
+
+        batch = self.pending_tasks
+        self.pending_tasks = []
+        assignments = self._flush_k_batch(batch, current_time)
+        self.last_batch_assignments = assignments
+        return assignments
 
     def reset(self):
         self.rr_index = 0
         self.batching_ctr = 0
         self.pending_tasks.clear()
+        self.pending_task_keys.clear()
+        self.assigned_batch_task_keys = {}
         self.last_batch_assignments = []
 
     def _allocate_advanced(self, act_name, permitted, start_time):

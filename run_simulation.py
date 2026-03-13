@@ -50,8 +50,8 @@ def main():
     )
     avail_file = 'availabilities_no_fired.csv' if args.no_fired else 'availabilities_advanced.csv'
 
-    allocation_method = resources.ResourceAllocator.Methods.RANDOM
-    res_manager = ResourceManager(permissions='role_permissions.csv', availabilities=avail_file, method=allocation_method)
+    allocation_method = resources.ResourceAllocator.Methods.BATCHING
+    res_manager = ResourceManager(permissions='role_permissions.csv', availabilities=avail_file, method=allocation_method, batch_k=5)
     dp_manager = DPManager(pn=pn_model, mode="advanced", model_path=str(model_path), rules_path=str(rules_path))
     pt = ProcessingTimeSampler.from_paths(
         proc_json=proc_json,
@@ -77,7 +77,7 @@ def main():
     print("=" * 60)
     engine.spawn()
     #In order to mock the event log, I increased the num of events to 475 306, you can change again as you want
-    engine.run(max_events=475306)
+    engine.run(max_events=100000)
     sim_log = pd.DataFrame(engine.log)
 
     output_csv = "decision_analysis/sim_output_no_fired.csv" if args.no_fired else "decision_analysis/sim_output_advanced.csv"
