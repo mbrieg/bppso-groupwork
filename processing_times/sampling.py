@@ -50,6 +50,7 @@ class SpecSampler:
         self.specs = {str(k): dict(v) for k, v in specs.items()}
         self.default_value = float(default_value)
         self.seed = seed
+        self.rng = np.random.default_rng(seed)
         self._emp: Dict[str, _Emp] = {}
         self._prep()
 
@@ -76,8 +77,8 @@ class SpecSampler:
                 probs /= probs.sum()
                 self._emp[act] = _Emp(values=np.asarray(vals, float), probs=probs)
 
-    def sample(self, activity: str, *, rng: Optional[np.random.Generator] = None) -> float:
-        rng = _as_rng(rng, self.seed)
+    def sample(self, activity: str, *, rng=None) -> float:
+        rng = rng if rng is not None else self.rng
         spec = self.specs.get(str(activity))
         if not spec:
             return float(self.default_value)
@@ -113,6 +114,7 @@ class QuantileBundleSampler:
     def __init__(self, bundle: Mapping[str, Any], *, seed: Optional[int] = None):
         self.seed = seed
         self.models = dict(bundle["models"])
+        self.rng = np.random.default_rng(seed)
         self.qs = tuple(bundle["qs"])  # (low, mid, high)
         meta = dict(bundle["meta"])
         self.cat_cols = list(meta.get("cat_cols", []))
@@ -129,6 +131,10 @@ class QuantileBundleSampler:
         base.update(_time_features(now))
         if ctx:
             base.update(dict(ctx))
+            if "case:ApplicationType" not in base and "application_type" in base:
+                base["case:ApplicationType"] = base["application_type"]
+            if "case:RequestedAmount" not in base and "requested_amount" in base:
+                base["case:RequestedAmount"] = base["requested_amount"]
         row = {}
         for c in self.cat_cols:
             row[c] = str(base.get(c, "UNK"))
@@ -139,8 +145,8 @@ class QuantileBundleSampler:
                 row[c] = 0.0
         return row
 
-    def sample(self, activity: str, *, now: Optional[datetime], instance: int, ctx: Optional[Mapping[str, Any]], rng: Optional[np.random.Generator] = None) -> float:
-        rng = _as_rng(rng, self.seed)
+    def sample(self, activity: str, *, now: Optional[datetime], instance: int, ctx: Optional[Mapping[str, Any]], rng= None) -> float:
+        rng = rng if rng is not None else self.rng
         import pandas as pd
         X = pd.DataFrame([self._row(activity, now, instance, ctx)], columns=self.cat_cols + self.num_cols)
 
@@ -166,6 +172,7 @@ class ProcessingTimeSampler:
         self.total = total
         self.qr = dict(qr) if qr else {}
         self.seed = seed
+        self.rng = np.random.default_rng(seed)
 
     @classmethod
     def from_paths(cls, *, proc_json=None, wait_json=None, total_json=None, qr_joblib=None, seed=None, default_value=0.0):
@@ -181,7 +188,7 @@ class ProcessingTimeSampler:
         return cls(proc=proc, wait=wait, total=total, qr=qr, seed=seed)
 
     def sample(self, activity: str, *, kind="proc", now=None, instance=0, ctx=None, rng=None, use_qr=False) -> float:
-        rng = _as_rng(rng, self.seed)
+        rng = rng if rng is not None else self.rng
         kind = str(kind)
 
         if use_qr and kind in self.qr:

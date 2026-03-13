@@ -16,11 +16,12 @@ class Event:
 
 
 class Engine:
-    def __init__(self, pn, spawner, resource_manager, decision_manager, start_time=None, max_cases=31509, pt_sampler=None):
+    def __init__(self, pn, spawner, resource_manager, decision_manager, start_time=None, max_cases=31509, pt_sampler=None, pt_use_qr = False):
         self.pn = pn
         self.spawner = spawner
         self.resource_manager = resource_manager
         self.pt = pt_sampler
+        self.pt_use_qr = pt_use_qr
         self.decision_manager = decision_manager
 
         self.now = start_time or datetime(2016, 1, 1, 9, 15, 0)
@@ -30,6 +31,8 @@ class Engine:
         self.next_case_id = 0
         self.max_cases = max_cases
 
+
+
         # Dict to track the current last activity for each case (DP)
         self.case_last_activity = {}
         self.case_second_last_activity = {}
@@ -38,6 +41,7 @@ class Engine:
 
         # case attributes
         self.case_attributes = {}
+        self.case_activity_counts = {}
 
     def spawn(self, at_time=None):
         heapq.heappush(self.queue, Event(at_time or self.now, "SPAWN", self.next_case_id + 1))
@@ -88,12 +92,16 @@ class Engine:
                     duration = timedelta(seconds=float(sec))
                 else:
                     # Only Basic, because there are no too less features for QR
+                    act_instance = self._current_activity_instance(case_id, label)
+                    pt_ctx = self._build_pt_context(case_id)
 
                     sec = self.pt.sample(
                         label,
                         kind="proc",   # use proc to simulate real processing behavior
                         now=self.now,
-                        use_qr=False
+                        instance=act_instance,
+                        ctx=pt_ctx,
+                        use_qr=self.pt_use_qr
                     )
                     duration = timedelta(seconds=float(sec))
                 ''' End Processing Times '''
@@ -101,6 +109,8 @@ class Engine:
                 # Resource allocation
                 res_id = self.resource_manager.assign_resource(label, self.now, duration, case_id, tid)
                 if res_id is not None:
+                    if label.startswith("W_"):
+                        self._advance_activity_instance(case_id, label)
                     resource = self.resource_manager.get_resource(res_id)
                     if not resource.is_occupied():      # Assign resource NOW
                         resource.pop_task()
@@ -130,6 +140,7 @@ class Engine:
         self.case_second_last_activity[e.case_id] = "START"
         self.case_start_times[e.case_id] = self.now
         self.case_last_duration[e.case_id] = 0
+        self.case_activity_counts[e.case_id] = {}
         # Case attributes
         if hasattr(self.spawner, "get_case_attributes"):
             self.case_attributes[e.case_id] = self.spawner.get_case_attributes(e.case_id)
@@ -214,3 +225,17 @@ class Engine:
 
     def export_log(self, path="simulation_log.csv"):
         pd.DataFrame(self.log).to_csv(path, index=False)
+
+    def _build_pt_context(self, case_id):
+        raw = dict(self.case_attributes.get(case_id) or {})
+        return {
+            "case:ApplicationType": raw.get("case:ApplicationType", raw.get("application_type", "UNK")),
+            "case:RequestedAmount": raw.get("case:RequestedAmount", raw.get("requested_amount", 0.0)),
+        }
+
+    def _current_activity_instance(self, case_id, label):
+        return int(self.case_activity_counts.get(case_id, {}).get(label, 0))
+
+    def _advance_activity_instance(self, case_id, label):
+        self.case_activity_counts.setdefault(case_id, {})
+        self.case_activity_counts[case_id][label] = self._current_activity_instance(case_id, label) + 1
