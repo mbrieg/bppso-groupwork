@@ -140,13 +140,13 @@ class ResourceAllocator:
         self.pending_tasks.append(task)
         self.pending_task_keys.add(task_key)
         # Debug Print
-        print(f"[BATCH-QUEUE] appended tid={tid} pending_now={len(self.pending_tasks)} batch_k={self.batch_k}")
+        #print(f"[BATCH-QUEUE] appended tid={tid} pending_now={len(self.pending_tasks)} batch_k={self.batch_k}")
         if len(self.pending_tasks) < self.batch_k:
             # Debug Pruint
-            print(f"[BATCH-WAIT] not enough tasks yet: {len(self.pending_tasks)}/{self.batch_k}")
+            #print(f"[BATCH-WAIT] not enough tasks yet: {len(self.pending_tasks)}/{self.batch_k}")
             return None
         # Debug Print
-        print(f"[BATCH-TRIGGER] flushing batch of size {self.batch_k} at {start_time}")
+        #print(f"[BATCH-TRIGGER] flushing batch of size {self.batch_k} at {start_time}")
 
         batch = self.pending_tasks[:self.batch_k]
         self.pending_tasks = self.pending_tasks[self.batch_k:]
@@ -207,7 +207,7 @@ class ResourceAllocator:
             self.pending_task_keys.discard(task_key)
             self.assigned_batch_task_keys[task_key] = best_res_id
             # Debug
-            print(f"[BATCH-ASSIGN] tid={task['tid']} -> res={best_res_id} start={best_start} end={best_end}")
+            #print(f"[BATCH-ASSIGN] tid={task['tid']} -> res={best_res_id} start={best_start} end={best_end}")
 
             act_info = {
                 "activity": task["activity"],
@@ -232,7 +232,7 @@ class ResourceAllocator:
 
         self.batching_ctr += 1
         #Debug
-        print(f"[BATCH-DONE] assigned={len(assignments)} unassigned={len(unassigned)} total_batches={self.batching_ctr}")
+        #print(f"[BATCH-DONE] assigned={len(assignments)} unassigned={len(unassigned)} total_batches={self.batching_ctr}")
         return assignments
 
     def flush_remaining_batches(self, current_time):

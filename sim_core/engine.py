@@ -59,7 +59,7 @@ class Engine:
             count += 1
 
         #Debug
-        print(f"[ENGINE-END] now={self.now} flushing remaining batches")
+        #print(f"[ENGINE-END] now={self.now} flushing remaining batches")
         self.resource_manager.flush_remaining_batches(self.now)
 
     def _process_flow(self, case_id):
