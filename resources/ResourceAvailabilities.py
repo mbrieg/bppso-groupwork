@@ -10,7 +10,7 @@ class ResourceAvailabilities:
         Determines when a resource is on shift and when they will be available next.
     """
     def __init__(self, availabilities_file, mode, interval=7):
-        """^
+        """
         Args:
             availabilities_file (str): Filename in 'resources/availabilities' directory.
             interval (int, optional): The cycle length in days. Defaults to 7 (Weekly).
@@ -40,7 +40,7 @@ class ResourceAvailabilities:
         df = pd.read_csv(path)
         df['StartTime'] = pd.to_datetime(df['StartTime'], format='%H:%M:%S').dt.time
         df['EndTime'] = pd.to_datetime(df['EndTime'], format='%H:%M:%S').dt.time
-        if self.mode == 'advanced':
+        if self.mode:
             df['BreakStart'] = pd.to_datetime(df['BreakStart'], format='%H:%M:%S').dt.time
             df['DurationMin'] = df['DurationMin'].fillna(0).astype(int)
         else:
@@ -56,6 +56,9 @@ class ResourceAvailabilities:
         return delta.days % self.interval
 
     def _is_holiday(self, current_date):
+        """
+        Checks if a given date falls on a defined custom holiday or a Dutch national holiday.
+        """
         if (current_date.day, current_date.month) in self.holidays:
             return True
         if self.nl_holidays.get(current_date) == "Hemelvaartsdag":  # Ascension Day
@@ -63,6 +66,13 @@ class ResourceAvailabilities:
         return False
 
     def is_resource_available(self, res_name, current_time):
+        """
+        Checks if a resource is currently on shift.
+        :param res_name: The ID of the resource.
+        :param current_time: The current simulation time.
+        :return: bool: Returns True if resource is on shift.
+                    Returns False if resource is not on shift or on holiday.
+        """
         if self._is_holiday(current_time.date()):
             if res_name != 'User_1':
                 return False
@@ -79,6 +89,13 @@ class ResourceAvailabilities:
         return True
 
     def is_resource_on_break(self, res_name, current_time):
+        """
+        Determines if a resource is currently on their scheduled break.
+        :param res_name: The ID of the resource.
+        :param current_time: The current simulation time.
+        :return: datetime or None: Returns the datetime of when the break ENDS if they are on break.
+                              Returns None if they are not on break or off-shift.
+        """
         day_id = self._get_day_id(current_time)
         shift = self.schedule.get((res_name, day_id))
         if not shift:
@@ -95,6 +112,15 @@ class ResourceAvailabilities:
         return None
 
     def get_next_available_time(self, res_name, current_time):
+        """
+        Calculates the exact future datetime when a resource will next be available to take a task.
+        It evaluates current breaks, upcoming shifts today, and shifts on future days.
+
+        :param res_name: The ID of the resource.
+        :param current_time: The time to search forward from.
+        :return: datetime or None: The exact time they will clock in / return from break.
+                              Returns None if they are never scheduled again.
+        """
         # Check if resource is available but currently on break
         if self.is_resource_available(res_name, current_time):
             break_end = self.is_resource_on_break(res_name, current_time)

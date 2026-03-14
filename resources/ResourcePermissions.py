@@ -7,6 +7,7 @@ class ResourcePermissions:
     Manages resource permissions for activities using either
     Basic (ACL) or Advanced (RBAC) approach.
     """
+
     def __init__(self, permissions_file, mode_adv):
         """
         Args:
@@ -48,6 +49,13 @@ class ResourcePermissions:
         }
 
     def is_permitted(self, act_name, res):
+        """
+        Checks if a specific resource is authorized to perform an activity.
+
+        :param act_name: The name of the activity (e.g., 'W_Validate application').
+        :param res: The Resource object being evaluated.
+        :return: bool: True if authorized, False otherwise.
+        """
         allowed = self._permissions.get(act_name)
         if allowed:
             if self._mode:
@@ -57,6 +65,12 @@ class ResourcePermissions:
         return False
 
     def get_permitted_resources(self, act_name, resources):
+        """
+        Retrieves a list of all resource IDs authorized to perform the given activity.
+        :param act_name: The name of the activity.
+        :param resources: A dictionary mapping resource IDs to Resource objects.
+        :return: list: A list of authorized resource ID strings.
+        """
         allowed = self._permissions.get(act_name, set())
         if self._mode:
             return [res_id for (res_id, res) in resources.items() if res.get_role() in allowed]
