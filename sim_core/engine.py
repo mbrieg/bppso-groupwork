@@ -114,14 +114,19 @@ class Engine:
                         self._advance_activity_instance(case_id, label)
                     resource = self.resource_manager.get_resource(res_id)
                     if not resource.is_occupied():      # Assign resource NOW
-                        resource.pop_task()
+                        popped_act = resource.pop_task()
                         resource.occupy()
+
+                        actual_start = self.now
+                        if popped_act is not None and 'start' in popped_act and popped_act['start'] is not None:
+                            actual_start = max(self.now, popped_act['start'])
+
                         if label.startswith('W_'):
                             # give a small, neglegtable delay for the starting time of W_Activities, as their processing time is the relevant
-                            heapq.heappush(self.queue, Event(self.now + timedelta(seconds=float(np.random.uniform(0, 1))), "START", case_id, tid, res_id, duration))
+                            heapq.heappush(self.queue, Event(actual_start + timedelta(seconds=float(np.random.uniform(0, 1))), "START", case_id, tid, res_id, duration))
                         else:
                             # insert delay for O and A activities
-                            heapq.heappush(self.queue, Event(self.now+duration, "COMPLETE", case_id, tid, res_id, duration))
+                            heapq.heappush(self.queue, Event(actual_start+duration, "COMPLETE", case_id, tid, res_id, duration))
                     else:   # Used for SHQ und ADVANCED allocation
                         pass    # Resources currently busy
                 else:   # Find next possible starting time
@@ -170,15 +175,23 @@ class Engine:
 
         resource = self.resource_manager.resources[e.resource]
         resource.release()
+
         if resource.get_queue_length() > 0:
             next_act = resource.pop_task()
             resource.occupy()
-            if label.startswith('W_'):
+
+            next_label = self.pn.labels.get(next_act['tid'], "")
+
+            actual_start = self.now
+            if next_act is not None and 'start' in next_act and next_act['start'] is not None:
+                actual_start = max(self.now, next_act['start'])
+
+            if next_label.startswith('W_'):
                 heapq.heappush(self.queue,
-                               Event(self.now + timedelta(seconds=float(np.random.uniform(0, 1))), "START",
+                               Event(actual_start + timedelta(seconds=float(np.random.uniform(0, 1))), "START",
                                      next_act['cid'], next_act['tid'], resource.get_id(), next_act['duration']))
             else:
-                heapq.heappush(self.queue, Event(self.now + next_act['duration'], "COMPLETE",
+                heapq.heappush(self.queue, Event(actual_start + next_act['duration'], "COMPLETE",
                                                  next_act['cid'], next_act['tid'], resource.get_id(), next_act['duration']))
 
         if label != "":
