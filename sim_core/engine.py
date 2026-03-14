@@ -248,11 +248,11 @@ class Engine:
         start = time(9, 0, 0)
         end = time(17, 0, 0)
 
-        # vor 9 Uhr -> auf 9 Uhr desselben Tages
+        # pre 9 am
         if dt.time() < start:
             return datetime.combine(dt.date(), start)
 
-        # nach 17 Uhr -> auf 9 Uhr des nächsten Tages
+        #after 5 pm
         if dt.time() > end:
             next_day = dt.date() + timedelta(days=1)
             return datetime.combine(next_day, start)
