@@ -49,9 +49,9 @@ def main():
         seed=42,
     )
     avail_file = 'availabilities_no_fired.csv' if args.no_fired else 'availabilities_advanced.csv'
-
+    #avail_file = 'availabilities_9to5.csv'
     allocation_method = resources.ResourceAllocator.Methods.BATCHING
-    res_manager = ResourceManager(permissions='role_permissions.csv', availabilities=avail_file, method=allocation_method, batch_k=1)
+    res_manager = ResourceManager(permissions='role_permissions.csv', availabilities=avail_file, method=allocation_method, batch_k=5)
     dp_manager = DPManager(pn=pn_model, mode="advanced", model_path=str(model_path), rules_path=str(rules_path))
     pt = ProcessingTimeSampler.from_paths(
         proc_json=proc_json,
@@ -68,7 +68,8 @@ def main():
                     resource_manager=res_manager,
                     decision_manager=dp_manager,
                     pt_sampler=pt,
-                    start_time=start_time)
+                    start_time=start_time,
+                    pt_use_qr=False)
     print("...Setup complete")
 
     # Run simulation
@@ -77,14 +78,14 @@ def main():
     print("=" * 60)
     engine.spawn()
     #In order to mock the event log, I increased the num of events to 475 306, you can change again as you want
-    engine.run(max_events=100000)
+    engine.run(max_events=10000)
     sim_log = pd.DataFrame(engine.log)
 
     output_csv = "decision_analysis/sim_output_no_fired.csv" if args.no_fired else "decision_analysis/sim_output_advanced.csv"
-
+    #output_csv = "simulation_evaluation/results/sim_output_9to5.csv"
     print("\n--- Simulation Output ---")
-    print(sim_log.head(30))
-    sim_log.to_csv(output_csv, index=False)
+    print(sim_log.head(300))
+    sim_log.to_csv(output_csv, index=False, chunksize=300)
     print(f"\nResults saved to '{output_csv}'")
 
 
