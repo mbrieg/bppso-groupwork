@@ -2,7 +2,8 @@ import heapq
 import pandas as pd
 import numpy as np
 from dataclasses import dataclass, field
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta,time
+
 
 
 @dataclass(order=True)
@@ -97,7 +98,7 @@ class Engine:
 
                     sec = self.pt.sample(
                         label,
-                        kind="proc",   # use proc to simulate real processing behavior
+                        kind="proc",   # only switch to "total" if pt_use_qr is FALSE
                         now=self.now,
                         instance=act_instance,
                         ctx=pt_ctx,
@@ -147,6 +148,7 @@ class Engine:
         # DP
         if self.next_case_id < self.max_cases:
             next_time = self.spawner.calculate_next_spawn(self.now)
+            # next_time = self._shift_to_business_hours(next_time) #Comment out to run simulation for management 9 to 5 question
             heapq.heappush(self.queue, Event(next_time, "SPAWN", self.next_case_id + 1))
 
         self._process_flow(e.case_id)
@@ -239,3 +241,20 @@ class Engine:
     def _advance_activity_instance(self, case_id, label):
         self.case_activity_counts.setdefault(case_id, {})
         self.case_activity_counts[case_id][label] = self._current_activity_instance(case_id, label) + 1
+
+
+    '''function only necessary for managemnet question working 9 to 5'''
+    def _shift_to_business_hours(self, dt):
+        start = time(9, 0, 0)
+        end = time(17, 0, 0)
+
+        # vor 9 Uhr -> auf 9 Uhr desselben Tages
+        if dt.time() < start:
+            return datetime.combine(dt.date(), start)
+
+        # nach 17 Uhr -> auf 9 Uhr des nächsten Tages
+        if dt.time() > end:
+            next_day = dt.date() + timedelta(days=1)
+            return datetime.combine(next_day, start)
+
+        return dt
