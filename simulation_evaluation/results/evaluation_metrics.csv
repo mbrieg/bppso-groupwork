@@ -1,3 +1,3 @@
 Router,Avg Cycle Time (h),Median Cycle Time (h),Avg Resource Occupation,Fairness MAD (unweighted),Fairness MAD (weighted)
 Basic,7.5285,2.1554,0.235987,0.111775,0.116405
-Advanced,6.7747,1.4603,0.157655,0.062561,0.067591
+Advanced,2.4975,1.3046,0.016372,0.026888,0.03073
