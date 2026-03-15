@@ -174,7 +174,7 @@ class Engine:
         self._produce(self.cases[e.case_id], e.transition_id)
         self._record(e, "complete")
 
-        resource = self.resource_manager.resources[e.resource]
+        resource = self.resource_manager.get_resource(e.resource)
         resource.release()
 
         if resource.get_queue_length() > 0:
