@@ -69,7 +69,7 @@ class DPManager:
             with open(rules_path, 'r') as f:
                 probabilities = json.load(f)
             self.router = BasicRouter(probabilities, self.pn)
-            print(f"DPManager: BasicRouter activited (Rules: {rules_path})")
+            print(f"DPManager: BasicRouter activated (Rules: {rules_path})")
         except FileNotFoundError:
             print("DPManager: Not found , working random")
             self.router = BasicRouter({}, self.pn)
