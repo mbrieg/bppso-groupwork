@@ -59,9 +59,9 @@ class ResourceAllocator:
             #print(f"[BATCH-IN] tid={tid} act={act_name} time={start_time} pending_before={len(self.pending_tasks)}")
             selected_id = self._allocate_batch(act_name, start_time, duration, case_id, tid, permitted)
         elif self.method == Methods.ADVANCED_LOCAL:
-            selected_id, task_start = self._allocate_advanced_local(act_name, permitted, start_time, duration)
+            selected_id, task_start = self._allocate_advanced_local(act_name, permitted, start_time)
         elif self.method == Methods.ADVANCED_GLOBAL:
-            selected_id, task_start = self._allocate_advanced_global(act_name, start_time, case_id, tid, permitted, duration)
+            selected_id, task_start = self._allocate_advanced_global(act_name, start_time, case_id, tid, permitted)
 
         if selected_id and task_start:  # Only used for SHQ and ADVANCED allocation for resources' task queues
             act_info = {
@@ -266,14 +266,14 @@ class ResourceAllocator:
         self.assigned_batch_task_keys = {}
         self.last_batch_assignments = []
 
-    def _allocate_advanced_local(self, act_name, permitted, start_time, duration):
+    def _allocate_advanced_local(self, act_name, permitted, start_time):
         best_res_id = None
         task_start = 0.0
         min_cost = float('inf')
 
         available = self._get_available_resources(permitted, start_time)
         for res_id in available:  # Calculate costs for available resources
-            expected_cost = duration.total_seconds() # TODO Change backself._predictor.predict_cost(act_name, res_id)
+            expected_cost = self._predictor.predict_cost(act_name, res_id)
             remaining_cost = self.resources[res_id].get_remaining_working_time(start_time)
 
             # Check for shift and break violations
@@ -285,9 +285,11 @@ class ResourceAllocator:
                 remaining_cost += delay
                 projected_start = break_end
 
-            projected_end = projected_start + timedelta(seconds=expected_cost)
+            safety_buffer = expected_cost * np.random.uniform(1.0, 1.5)    # To optimise shift/break violations
+
+            projected_end = projected_start + timedelta(seconds=safety_buffer)
             if not self.availabilities.is_resource_available(res_id, projected_end):
-                continue
+                remaining_cost += 43200  # Add penalty of 12h for working overtime
 
             total_cost = expected_cost + remaining_cost
 
@@ -303,7 +305,7 @@ class ResourceAllocator:
         # Update start time
         return best_res_id, (start_time + timedelta(seconds=task_start))
 
-    def _allocate_advanced_global(self, act_name, start_time, case_id, tid, permitted, duration):
+    def _allocate_advanced_global(self, act_name, start_time, case_id, tid, permitted):
         task_key = f"{case_id}_{tid}"
 
         # Check whether task was already assigned in previous run
@@ -346,7 +348,10 @@ class ResourceAllocator:
                         total_queue += delay
                         projected_start = break_end
 
-                    cost = duration.total_seconds() # TODO Change back self._predictor.predict_cost(task['act_name'], res_id)
+                    pred_cost = self._predictor.predict_cost(task['act_name'], res_id)
+                    safety_buffer = np.random.uniform(1.0, 1.5)    # To optimise shift/break violations
+                    cost = pred_cost * safety_buffer
+
                     projected_end = projected_start + timedelta(seconds=cost)
                     if self.availabilities.is_resource_available(res_id, projected_end):
                         total_cost = total_queue + cost
@@ -386,20 +391,19 @@ class ResourceAllocator:
         Finds the best worker based on Total Cost, but wakes the engine up
         the moment their current queue is finished.
         """
-        best_remaining = None
-        min_total_cost = float('inf')
+        best_remaining = float('inf')
 
         res_costs = self._predictor.get_all_costs(act_name)
         for res_id, expected_cost in res_costs.items():
             if self.availabilities.is_resource_available(res_id, current_time):
                 remaining = self.resources[res_id].get_remaining_working_time(current_time)
-                total_cost = expected_cost + remaining
-                if total_cost < min_total_cost:
-                    min_total_cost = total_cost
+                if remaining < best_remaining:
                     best_remaining = remaining
 
-        if best_remaining is not None:
-            return current_time + timedelta(seconds=best_remaining)
+        if best_remaining != float('inf'):
+            wakeup_delay = max(best_remaining, 100)     # To prevent infinite loops
+            return current_time + timedelta(seconds=wakeup_delay)
+        return None
 
     class _Predictor:
         """
