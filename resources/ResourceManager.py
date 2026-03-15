@@ -21,13 +21,13 @@ class ResourceManager:
         perm_adv = permissions != 'permissions_basic.csv'
         self._mode_adv = method in [Methods.ADVANCED_GLOBAL, Methods.ADVANCED_LOCAL]
 
-        self.availabilities = ResourceAvailabilities(availabilities, avail_adv)
-        self.permissions = ResourcePermissions(permissions, perm_adv)
+        self._availabilities = ResourceAvailabilities(availabilities, avail_adv)
+        self._permissions = ResourcePermissions(permissions, perm_adv)
 
         current_dir = os.path.dirname(os.path.abspath(__file__))
         file_path = os.path.join(current_dir, 'availabilities', availabilities)
         all_res_names = pd.read_csv(file_path, usecols=['Resource'])
-        self.resources = {
+        self._resources = {
             str(res_name): Resource(res_name) for res_name in all_res_names['Resource'].unique()
         }
 
@@ -35,9 +35,9 @@ class ResourceManager:
             self._assign_roles_to_resources(roles)
 
         self.allocator = ResourceAllocator(
-            self.resources,
-            self.availabilities,
-            self.permissions,
+            self._resources,
+            self._availabilities,
+            self._permissions,
             method,
             delta=delta,
             batch_k=batch_k
@@ -57,20 +57,20 @@ class ResourceManager:
         df = pd.read_csv(roles_path)
         role_map = pd.Series(df.Role.values, index=df.Resource).to_dict()
 
-        for res_name, res_obj in self.resources.items():
+        for res_name, res_obj in self._resources.items():
             res_obj.set_role(role_map.get(res_name))
 
     def get_resources(self):
         """
         Returns: A list of all resource objects.
         """
-        return self.resources.values()
+        return self._resources.values()
 
     def get_resource(self, res_id):
         """
         Returns: A resource object.
         """
-        return self.resources[res_id]
+        return self._resources[res_id]
 
     def assign_resource(self, act_name, current_time, duration, case_id, tid):
         """
@@ -85,13 +85,13 @@ class ResourceManager:
         if self._mode_adv:  # Advanced allocation approach
             return self.allocator.get_next_available_time_adv(act_name, current_time)
 
-        permitted = self.permissions.get_permitted_resources(act_name, self.resources)
+        permitted = self._permissions.get_permitted_resources(act_name, self._resources)
         if not permitted:
             return None
 
         earliest_time = None
         for res_id in permitted:
-            next_time = self.availabilities.get_next_available_time(res_id, current_time)
+            next_time = self._availabilities.get_next_available_time(res_id, current_time)
             if next_time:
                 if earliest_time is None or next_time < earliest_time:
                     earliest_time = next_time
@@ -102,7 +102,7 @@ class ResourceManager:
         """
         Clears all resource states for a new simulation run.
         """
-        for res in self.resources.values():
+        for res in self._resources.values():
             res.reset()
         self.allocator.reset()
 

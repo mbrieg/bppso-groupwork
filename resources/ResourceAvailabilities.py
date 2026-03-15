@@ -15,9 +15,9 @@ class ResourceAvailabilities:
             availabilities_file (str): Filename in 'resources/availabilities' directory.
             interval (int, optional): The cycle length in days. Defaults to 7 (Weekly).
         """
-        self.schedule = {}
-        self.start_date = datetime.date(2016, 1, 1)  # Day 0 of simulation
-        self.mode = mode
+        self._schedule = {}
+        self._start_date = datetime.date(2016, 1, 1)  # Day 0 of simulation
+        self._mode = mode
         self.interval = interval
 
         self.holidays = {
@@ -40,7 +40,7 @@ class ResourceAvailabilities:
         df = pd.read_csv(path)
         df['StartTime'] = pd.to_datetime(df['StartTime'], format='%H:%M:%S').dt.time
         df['EndTime'] = pd.to_datetime(df['EndTime'], format='%H:%M:%S').dt.time
-        if self.mode:
+        if self._mode:
             df['BreakStart'] = pd.to_datetime(df['BreakStart'], format='%H:%M:%S').dt.time
             df['DurationMin'] = df['DurationMin'].fillna(0).astype(int)
         else:
@@ -49,10 +49,10 @@ class ResourceAvailabilities:
 
         for _, row in df.iterrows():
             key = (row['Resource'], row['DayId'])
-            self.schedule[key] = (row['StartTime'], row['EndTime'], row['BreakStart'], row['DurationMin'])
+            self._schedule[key] = (row['StartTime'], row['EndTime'], row['BreakStart'], row['DurationMin'])
 
     def _get_day_id(self, current_time):
-        delta = current_time.date() - self.start_date
+        delta = current_time.date() - self._start_date
         return delta.days % self.interval
 
     def _is_holiday(self, current_date):
@@ -78,7 +78,7 @@ class ResourceAvailabilities:
                 return False
 
         day_id = self._get_day_id(current_time)
-        shift = self.schedule.get((res_name, day_id))
+        shift = self._schedule.get((res_name, day_id))
         if not shift:
             return False
 
@@ -97,7 +97,7 @@ class ResourceAvailabilities:
                               Returns None if they are not on break or off-shift.
         """
         day_id = self._get_day_id(current_time)
-        shift = self.schedule.get((res_name, day_id))
+        shift = self._schedule.get((res_name, day_id))
         if not shift:
             return None
         start_time, end_time, break_start, break_duration = shift
@@ -132,7 +132,7 @@ class ResourceAvailabilities:
         # Check today
         current_day_id = self._get_day_id(current_time)
         if not (self._is_holiday(current_time.date()) and res_name != "User_1"):
-            shift = self.schedule.get((res_name, current_day_id))
+            shift = self._schedule.get((res_name, current_day_id))
             if shift:
                 start_time, end_time, break_start, break_duration = shift
                 if current_time.time() < start_time:    # Shift starts later this day
@@ -150,7 +150,7 @@ class ResourceAvailabilities:
                 continue
 
             day_id = (current_day_id + next_day) % self.interval
-            shift = self.schedule.get((res_name, day_id))
+            shift = self._schedule.get((res_name, day_id))
 
             if shift:
                 start_time = shift[0]
