@@ -17,6 +17,7 @@ DEFAULT_XES_PATH = os.path.join(project_root, "data", "BPI Challenge 2017.xes.gz
 ARTIFACTS_DIR = os.path.join(project_root, "spawn_rates", "artifacts")
 DEFAULT_HOLIDAYS_PATH = os.path.join(ARTIFACTS_DIR, "holidays_nl.pkl")
 DEFAULT_RATE_TABLE_PATH = os.path.join(ARTIFACTS_DIR, "rate_table_nl_hourly.pkl")
+DEFAULT_RECENCY_HALF_LIFE_DAYS = 90
 
 
 def _generate_nl_holidays(years: List[int]) -> List[date]:
@@ -50,7 +51,11 @@ def get_holidays(
     return hols
 
 
-def _build_rate_table_from_df(df: pd.DataFrame, holidays_set: Set[date]) -> RateTable:
+def _build_rate_table_from_df(
+    df: pd.DataFrame,
+    holidays_set: Set[date],
+    recency_half_life_days: Optional[int] = None,
+) -> RateTable:
     required = {"case:concept:name", "time:timestamp"}
     missing = required - set(df.columns)
     if missing:
@@ -63,15 +68,71 @@ def _build_rate_table_from_df(df: pd.DataFrame, holidays_set: Set[date]) -> Rate
     )
 
     arrivals = df.groupby("case:concept:name")["timestamp"].min().reset_index()
+    if arrivals.empty:
+        return {}
+
     arrivals["date"] = arrivals["timestamp"].dt.date
     arrivals["weekday"] = arrivals["timestamp"].dt.weekday
     arrivals["hour"] = arrivals["timestamp"].dt.hour
     arrivals["is_holiday"] = arrivals["date"].isin(holidays_set) if holidays_set else False
 
-    counts = arrivals.groupby(["weekday", "hour", "is_holiday"]).size()
-    days = arrivals.groupby(["weekday", "hour", "is_holiday"])["date"].nunique()
+    if recency_half_life_days is not None and recency_half_life_days > 0:
+        arrivals["date_dt"] = pd.to_datetime(arrivals["date"])
+        ref_date = arrivals["date_dt"].max()
+        age_days = (ref_date - arrivals["date_dt"]).dt.days.astype(float)
+        arrivals["weight"] = 0.5 ** (age_days / float(recency_half_life_days))
 
-    rate_table = (counts / days).to_dict()
+        counts = (
+            arrivals.groupby(["weekday", "hour", "is_holiday"])["weight"]
+            .sum()
+            .rename("weighted_count")
+            .reset_index()
+        )
+
+        unique_days = arrivals[["date", "date_dt"]].drop_duplicates().copy()
+        unique_days["weekday"] = unique_days["date_dt"].dt.weekday
+        unique_days["is_holiday"] = unique_days["date"].isin(holidays_set) if holidays_set else False
+        day_age = (ref_date - unique_days["date_dt"]).dt.days.astype(float)
+        unique_days["weight"] = 0.5 ** (day_age / float(recency_half_life_days))
+
+        day_exposure = (
+            unique_days.groupby(["weekday", "is_holiday"])["weight"]
+            .sum()
+            .rename("weighted_exposure")
+            .reset_index()
+        )
+
+        rates = counts.merge(day_exposure, on=["weekday", "is_holiday"], how="left")
+        rates["rate"] = rates["weighted_count"] / rates["weighted_exposure"]
+    else:
+        counts = (
+            arrivals.groupby(["weekday", "hour", "is_holiday"])
+            .size()
+            .rename("count")
+            .reset_index()
+        )
+
+        calendar = pd.DataFrame({
+            "date": pd.date_range(arrivals["date"].min(), arrivals["date"].max(), freq="D")
+        })
+        calendar["date"] = calendar["date"].dt.date
+        calendar["weekday"] = pd.to_datetime(calendar["date"]).dt.weekday
+        calendar["is_holiday"] = calendar["date"].isin(holidays_set) if holidays_set else False
+
+        day_exposure = (
+            calendar.groupby(["weekday", "is_holiday"])
+            .size()
+            .rename("day_exposure")
+            .reset_index()
+        )
+
+        rates = counts.merge(day_exposure, on=["weekday", "is_holiday"], how="left")
+        rates["rate"] = rates["count"] / rates["day_exposure"]
+
+    rate_table = {
+        (int(r.weekday), int(r.hour), bool(r.is_holiday)): float(r.rate)
+        for r in rates.itertuples(index=False)
+    }
 
     for wd in range(7):
         for hr in range(24):
@@ -88,18 +149,28 @@ def get_rate_table(
         force_rebuild: bool = False,
         xes_path: str = DEFAULT_XES_PATH,
         cache_path: str = DEFAULT_RATE_TABLE_PATH,
+        recency_half_life_days: Optional[int] = DEFAULT_RECENCY_HALF_LIFE_DAYS,
 ) -> RateTable:
-    if (not force_rebuild) and os.path.exists(cache_path):
-        with open(cache_path, "rb") as f:
+    effective_cache_path = cache_path
+    if recency_half_life_days is not None and recency_half_life_days > 0:
+        base, ext = os.path.splitext(cache_path)
+        effective_cache_path = f"{base}_hl{recency_half_life_days}{ext}"
+
+    if (not force_rebuild) and os.path.exists(effective_cache_path):
+        with open(effective_cache_path, "rb") as f:
             return pickle.load(f)
 
     df = pm4py.convert_to_dataframe(pm4py.read_xes(xes_path))
 
     h_set = {h.date() if hasattr(h, "date") else h for h in holidays_list}
-    rate_table = _build_rate_table_from_df(df, h_set)
+    rate_table = _build_rate_table_from_df(
+        df,
+        h_set,
+        recency_half_life_days=recency_half_life_days,
+    )
 
-    os.makedirs(os.path.dirname(cache_path), exist_ok=True)
-    with open(cache_path, "wb") as f:
+    os.makedirs(os.path.dirname(effective_cache_path), exist_ok=True)
+    with open(effective_cache_path, "wb") as f:
         pickle.dump(rate_table, f)
 
     return rate_table
