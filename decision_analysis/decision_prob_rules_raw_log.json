@@ -1,0 +1,219 @@
+{
+    "A_Create Application": {
+        "A_Submitted": 0.6481640166301692,
+        "W_Complete application": 0.24427941223142594,
+        "A_Concept": 0.1075565711384049
+    },
+    "A_Submitted": {
+        "W_Handle leads": 1.0
+    },
+    "W_Handle leads": {
+        "W_Complete application": 0.998923942284177,
+        "W_Assess potential fraud": 0.0010760577158229396
+    },
+    "W_Complete application": {
+        "A_Concept": 0.33451898026433186,
+        "A_Accepted": 0.26467684181725176,
+        "W_Call after offers": 0.37308621120376867,
+        "A_Cancelled": 0.0004758449221398746,
+        "O_Create Offer": 0.018736393809257564,
+        "O_Sent (mail and online)": 0.007090089339884132,
+        "O_Sent (online only)": 0.00019033796885594984,
+        "A_Denied": 0.0001070651074814718,
+        "W_Shortened completion ": 0.00029740307633742164,
+        "O_Cancelled": 0.0006661828909958245,
+        "W_Assess potential fraud": 0.00015464959969545926
+    },
+    "A_Concept": {
+        "W_Complete application": 0.7065917674315275,
+        "A_Accepted": 0.29296391507188424,
+        "W_Shortened completion ": 0.00044431749658827637
+    },
+    "A_Accepted": {
+        "O_Create Offer": 0.9510298644831635,
+        "W_Complete application": 0.04881145069662636,
+        "W_Shortened completion ": 0.0001586848202100987
+    },
+    "O_Create Offer": {
+        "O_Created": 1.0
+    },
+    "O_Created": {
+        "O_Sent (mail and online)": 0.82809629026631,
+        "O_Cancelled": 0.016373996976392604,
+        "O_Create Offer": 0.09040586114664496,
+        "O_Sent (online only)": 0.04407489242935225,
+        "W_Complete application": 0.01679265030817537,
+        "A_Cancelled": 0.0018374229561576927,
+        "W_Call after offers": 0.0010698918478892895,
+        "W_Validate application": 0.00020932666589138272,
+        "W_Call incomplete files": 0.000651238516106524,
+        "A_Denied": 0.00041865333178276544,
+        "W_Shortened completion ": 6.977555529712758e-05
+    },
+    "O_Sent (mail and online)": {
+        "W_Complete application": 0.845028840108253,
+        "A_Cancelled": 0.014925781143216424,
+        "W_Call after offers": 0.09433859107186791,
+        "W_Call incomplete files": 0.020447773434296494,
+        "O_Create Offer": 0.01109865777316093,
+        "O_Cancelled": 0.009923184166643886,
+        "O_Returned": 0.0027336595500396382,
+        "W_Validate application": 0.001230146797517837,
+        "O_Accepted": 2.733659550039638e-05,
+        "A_Denied": 0.00021869276400317104,
+        "O_Sent (online only)": 2.733659550039638e-05
+    },
+    "W_Call after offers": {
+        "A_Complete": 0.4747071110707474,
+        "A_Cancelled": 0.12924953834044745,
+        "W_Validate application": 0.33118396754760393,
+        "O_Create Offer": 0.05950110495565041,
+        "O_Sent (mail and online)": 0.00021190930281839374,
+        "A_Denied": 0.0012865921956831047,
+        "O_Cancelled": 0.003148366784730421,
+        "W_Shortened completion ": 0.0003935458480913026,
+        "W_Assess potential fraud": 0.0002724548179093634,
+        "O_Accepted": 3.027275754548482e-05,
+        "O_Returned": 1.513637877274241e-05
+    },
+    "A_Complete": {
+        "W_Call after offers": 0.9691983929596327,
+        "O_Create Offer": 0.016612460939991074,
+        "O_Cancelled": 0.009151202091703335,
+        "A_Cancelled": 0.0018174861297111154,
+        "A_Denied": 0.0004782858236081883,
+        "W_Shortened completion ": 0.0014348574708245648,
+        "O_Sent (mail and online)": 0.0012435431413812894,
+        "O_Sent (online only)": 6.377144314775843e-05
+    },
+    "A_Cancelled": {
+        "O_Cancelled": 0.9845652382321926,
+        "W_Complete application": 0.0013421531972006519,
+        "W_Call incomplete files": 0.003930591506087624,
+        "W_Call after offers": 0.009874412807976225,
+        "W_Validate application": 0.0002876042565429968
+    },
+    "O_Cancelled": {
+        "W_Call after offers": 0.8025091392489199,
+        "O_Create Offer": 0.057161847789963444,
+        "W_Call incomplete files": 0.0764373546028581,
+        "O_Sent (mail and online)": 0.027583914921900963,
+        "W_Complete application": 0.010385510136257893,
+        "W_Validate application": 0.008391492190096378,
+        "A_Denied": 0.002409438351611831,
+        "A_Cancelled": 0.013791957460950481,
+        "O_Sent (online only)": 0.0009139248919906946,
+        "W_Shortened completion ": 8.308408109006314e-05,
+        "O_Returned": 0.0002492522432701894,
+        "O_Accepted": 8.308408109006314e-05
+    },
+    "W_Validate application": {
+        "A_Validating": 0.47777066614149966,
+        "O_Accepted": 0.14447836147900153,
+        "W_Call incomplete files": 0.28373787602776823,
+        "A_Denied": 0.04005218846930235,
+        "O_Cancelled": 0.03724582738417606,
+        "W_Assess potential fraud": 0.003052533110137364,
+        "O_Returned": 0.011360838954261238,
+        "A_Cancelled": 0.0009600708975432032,
+        "O_Create Offer": 0.0012800945300576042,
+        "W_Shortened completion ": 2.4617202501107776e-05,
+        "W_Personal Loan collection": 2.4617202501107776e-05,
+        "O_Sent (online only)": 1.2308601250553888e-05
+    },
+    "A_Validating": {
+        "O_Returned": 0.5325896537510305,
+        "W_Validate application": 0.4617941055234955,
+        "O_Accepted": 0.005100989282769992,
+        "A_Cancelled": 0.00015457543281121187,
+        "A_Denied": 0.00030915086562242374,
+        "O_Create Offer": 5.152514427040396e-05
+    },
+    "O_Returned": {
+        "W_Validate application": 0.9118430092751632,
+        "W_Call incomplete files": 0.06595671590518722,
+        "O_Accepted": 0.020740295431123327,
+        "A_Denied": 0.0010735142562693233,
+        "A_Cancelled": 0.00017176228100309173,
+        "O_Create Offer": 8.588114050154586e-05,
+        "W_Call after offers": 4.294057025077293e-05,
+        "O_Cancelled": 8.588114050154586e-05
+    },
+    "O_Accepted": {
+        "A_Pending": 1.0
+    },
+    "A_Pending": {
+        "W_Validate application": 0.713431622939401,
+        "W_Call incomplete files": 0.2864522869746924,
+        "W_Call after offers": 0.00011609008590666357
+    },
+    "W_Call incomplete files": {
+        "A_Incomplete": 0.46170021027335534,
+        "W_Validate application": 0.33902072694502855,
+        "O_Accepted": 0.0957845198758386,
+        "O_Create Offer": 0.0364273555622309,
+        "O_Returned": 0.014438770401521979,
+        "A_Cancelled": 0.017442675478121557,
+        "O_Cancelled": 0.030619805747471713,
+        "A_Denied": 0.0037248422949834785,
+        "W_Assess potential fraud": 0.0002603384399719636,
+        "W_Call after offers": 0.00010013016921998598,
+        "O_Sent (online only)": 0.00030039050765995795,
+        "O_Sent (mail and online)": 0.00016020827075197757,
+        "W_Personal Loan collection": 2.0026033843997196e-05
+    },
+    "A_Incomplete": {
+        "W_Call incomplete files": 0.9662546085447842,
+        "O_Returned": 0.0323574062025591,
+        "O_Accepted": 0.00082411624376491,
+        "A_Denied": 0.0003903708523096942,
+        "O_Create Offer": 0.00013012361743656474,
+        "W_Shortened completion ": 4.337453914552158e-05
+    },
+    "A_Denied": {
+        "O_Refused": 0.9914712153518124,
+        "W_Complete application": 0.002931769722814499,
+        "W_Call after offers": 0.002398720682302772,
+        "W_Validate application": 0.0005330490405117271,
+        "W_Call incomplete files": 0.0026652452025586353
+    },
+    "O_Refused": {
+        "W_Validate application": 0.8841397849462366,
+        "W_Assess potential fraud": 0.027419354838709678,
+        "W_Call incomplete files": 0.05241935483870968,
+        "W_Call after offers": 0.029301075268817204,
+        "W_Complete application": 0.006720430107526882
+    },
+    "O_Sent (online only)": {
+        "O_Create Offer": 0.04552509053285049,
+        "W_Call incomplete files": 0.4490429384376617,
+        "W_Complete application": 0.23279875840662184,
+        "O_Returned": 0.06311433005690636,
+        "W_Call after offers": 0.1551991722710812,
+        "O_Cancelled": 0.01396792550439731,
+        "W_Validate application": 0.014485256078634247,
+        "A_Cancelled": 0.023279875840662184,
+        "O_Sent (mail and online)": 0.0005173305742369374,
+        "A_Denied": 0.0005173305742369374,
+        "O_Accepted": 0.0015519917227108122
+    },
+    "W_Assess potential fraud": {
+        "A_Denied": 0.3248407643312102,
+        "W_Validate application": 0.5286624203821656,
+        "W_Handle leads": 0.07006369426751592,
+        "W_Call after offers": 0.03821656050955414,
+        "W_Complete application": 0.03821656050955414
+    },
+    "W_Shortened completion ": {
+        "W_Call after offers": 0.5811965811965812,
+        "A_Accepted": 0.24786324786324787,
+        "W_Complete application": 0.10256410256410256,
+        "O_Create Offer": 0.02564102564102564,
+        "W_Validate application": 0.017094017094017096,
+        "O_Sent (mail and online)": 0.017094017094017096,
+        "W_Call incomplete files": 0.008547008547008548
+    },
+    "W_Personal Loan collection": {
+        "W_Validate application": 1.0
+    }
+}

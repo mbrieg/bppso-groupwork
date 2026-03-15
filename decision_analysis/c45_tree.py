@@ -35,11 +35,15 @@ class C45DecisionTree:
         min_samples_split: int = 500,
         max_depth: Optional[int] = None,
         min_non_nan_ratio: float = 0.2,
+        min_samples_leaf: int = 1,
+        min_gain_ratio: float = 0.0,
     ):
         self.attribute_types = dict(attribute_types)
         self.min_samples_split = max(2, int(min_samples_split))
         self.max_depth = max_depth
         self.min_non_nan_ratio = float(min_non_nan_ratio)
+        self.min_samples_leaf = max(1, int(min_samples_leaf))
+        self.min_gain_ratio = float(min_gain_ratio)
 
         self.root: Optional[TreeNode] = None
         self._classes_: Optional[List[Any]] = None
@@ -210,6 +214,52 @@ class C45DecisionTree:
             weights = list(node.distribution.values())
             return rng.choices(classes, weights=weights, k=1)[0]
         return node.prediction
+
+    def predict_leaf_distribution(self, x: Union[pd.Series, Dict[str, Any]]) -> Dict[Any, float]:
+        """
+        Navigate to the leaf for input x and return the normalised class
+        probability distribution at that leaf (label → probability).
+        Falls back to {majority_class: 1.0} when the leaf has no distribution.
+        """
+        if self.root is None:
+            raise RuntimeError("Tree is not fitted yet.")
+
+        if not isinstance(x, pd.Series):
+            x = pd.Series(x)
+
+        node = self.root
+        while not node.is_leaf:
+            attr = node.split_attr
+            if attr is None:
+                break
+            val = x.get(attr, None)
+            if attr in self.impute_values and (val is None or pd.isna(val)):
+                val = self.impute_values[attr]
+            if node.split_threshold is not None:
+                try:
+                    v = float(val)
+                except (TypeError, ValueError):
+                    break
+                node = node.left if v <= node.split_threshold else node.right
+                if node is None:
+                    break
+                continue
+            if node.branches is not None:
+                key = str(val)
+                if key in node.branches:
+                    node = node.branches[key]
+                else:
+                    break
+            else:
+                break
+
+        if node.distribution:
+            total = sum(node.distribution.values())
+            if total > 0:
+                return {k: v / total for k, v in node.distribution.items()}
+        if node.prediction is not None:
+            return {node.prediction: 1.0}
+        return {}
 
     def predict(self, X: pd.DataFrame) -> List[Any]:
         if self.root is None:
@@ -406,6 +456,10 @@ class C45DecisionTree:
                 best_attr = attr
                 best_threshold = threshold
 
+        # Reject split if best gain ratio doesn't meet the minimum threshold
+        if best_gain_ratio < self.min_gain_ratio:
+            return None, None
+
         return best_attr, best_threshold
 
     def _gain_ratio_nominal(self, x_col: pd.Series, y: pd.Series, base_entropy: float) -> Tuple[float, float]:
@@ -421,6 +475,9 @@ class C45DecisionTree:
             y_v = y[mask]
             n_v = len(y_v)
             if n_v == 0: continue
+            # Reject this attribute entirely if any partition is too small
+            if n_v < self.min_samples_leaf:
+                return 0.0, 0.0
             p_v = n_v / n
             info_after += p_v * self._entropy(y_v)
             split_info -= p_v * math.log2(p_v)
@@ -468,7 +525,7 @@ class C45DecisionTree:
 
             n_left = len(y_left)
             n_right = len(y_right)
-            if n_left == 0 or n_right == 0: continue
+            if n_left < self.min_samples_leaf or n_right < self.min_samples_leaf: continue
 
             p_left = n_left / n
             p_right = n_right / n

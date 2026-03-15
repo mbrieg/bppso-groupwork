@@ -1,4 +1,3 @@
-import argparse
 import os
 import pandas as pd
 from datetime import datetime
@@ -17,13 +16,6 @@ project_root = Path(__file__).resolve().parents[0]
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Run the BPMS simulation.")
-    parser.add_argument(
-        "--no-fired",
-        action="store_true",
-        help="Run without User_140 and User_125 (uses availabilities_no_fired.csv).",
-    )
-    args = parser.parse_args()
 
     # Define paths
     bpmn_path = os.path.join(project_root, "data", "process_model.bpmn")
@@ -49,11 +41,11 @@ def main():
         holidays=holidays,
         seed=42,
     )
-    avail_file = 'avail_basic.csv' if args.no_fired else 'availabilities_advanced.csv'
+    avail_file = 'availabilities_advanced.csv'
     #avail_file = 'availabilities_9to5.csv'
-    allocation_method = resources.ResourceAllocator.Methods.RANDOM
+    allocation_method = resources.ResourceAllocator.Methods.SHORTEST_QUEUE
     res_manager = ResourceManager(permissions='role_permissions.csv', availabilities=avail_file, method=allocation_method, batch_k=5)
-    dp_manager = DPManager(pn=pn_model, mode="basic", model_path=str(model_path), rules_path=str(rules_path))
+    dp_manager = DPManager(pn=pn_model, mode="advanced", model_path=str(model_path), rules_path=str(rules_path))
     pt = ProcessingTimeSampler.from_paths(
         proc_json=proc_json,
         total_json=total_json,
@@ -71,7 +63,7 @@ def main():
                     decision_manager=dp_manager,
                     pt_sampler=pt,
                     start_time=start_time,
-                    pt_use_qr=False)
+                    pt_use_qr=True)
     print("...Setup complete")
 
     # Run simulation
@@ -82,14 +74,14 @@ def main():
     #In order to mock the event log, I increased the num of events to 475 306, you can change again as you want
     engine.run(max_events=100000)
     sim_log = pd.DataFrame(engine.log)
+    dp_manager.print_routing_stats()
 
-    output_csv = "decision_analysis/sim_output_no_fired.csv" if args.no_fired else "decision_analysis/sim_output_advanced.csv"
+    output_csv = "decision_analysis/sim_output_advanced.csv"
     #output_csv = "simulation_evaluation/results/sim_output_9to5.csv"
-
     print("\n--- Simulation Output ---")
     print(sim_log.head(300))
     sim_log.to_csv(output_csv, index=False, chunksize=300)
-    print(f"\nResults saved to '{output_csv}'")
+    print(f"\nsimulation_results saved to '{output_csv}'")
 
 
 if __name__ == "__main__":
