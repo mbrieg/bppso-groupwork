@@ -353,9 +353,11 @@ class ResourceAllocator:
                     cost = pred_cost * safety_buffer
 
                     projected_end = projected_start + timedelta(seconds=cost)
-                    if self.availabilities.is_resource_available(res_id, projected_end):
-                        total_cost = total_queue + cost
-                        cost_matrix[i, j] = total_cost
+                    total_cost = total_queue + cost
+                    if not self.availabilities.is_resource_available(res_id, projected_end):
+                        total_cost += 43200     # Add 12h penalty
+
+                    cost_matrix[i, j] = total_cost
 
             dummy_cost = self._predictor.get_dummy_cost(task['act_name'])
             cost_matrix[i, num_res + i] = dummy_cost
@@ -388,20 +390,20 @@ class ResourceAllocator:
 
     def get_next_available_time_adv(self, act_name, current_time):
         """
-        Finds the best worker based on Total Cost, but wakes the engine up
+        Finds the next available worker and wakes the engine up
         the moment their current queue is finished.
         """
-        best_remaining = float('inf')
+        min_remaining = float('inf')
 
         res_costs = self._predictor.get_all_costs(act_name)
         for res_id, expected_cost in res_costs.items():
             if self.availabilities.is_resource_available(res_id, current_time):
                 remaining = self.resources[res_id].get_remaining_working_time(current_time)
-                if remaining < best_remaining:
-                    best_remaining = remaining
+                if remaining < min_remaining:
+                    min_remaining = remaining
 
-        if best_remaining != float('inf'):
-            wakeup_delay = max(best_remaining, 100)     # To prevent infinite loops
+        if min_remaining != float('inf'):
+            wakeup_delay = max(min_remaining, np.random.uniform(0, 1))     # To prevent infinite loops
             return current_time + timedelta(seconds=wakeup_delay)
         return None
 
@@ -435,7 +437,7 @@ class ResourceAllocator:
                 self._costs[act_name] = {}
 
             if res_id not in self._costs[act_name]:
-                predicted_value = 0
+                predicted_value = np.random.uniform(0, 1)
                 if act_name.startswith('W_'):  # Processing times only available for W activities
                     avg = self.avg_stats.get(act_name, {}).get(res_id)
                     if avg is not None:

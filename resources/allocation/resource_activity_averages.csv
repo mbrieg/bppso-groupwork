@@ -1,0 +1,418 @@
+Resource,Activity,AverageDuration
+User_10,W_Call after offers,230.653
+User_10,W_Complete application,4092.128757793765
+User_10,W_Handle leads,126.56811627906977
+User_10,W_Validate application,29.405
+User_100,W_Call after offers,8.3122
+User_100,W_Call incomplete files,239497.89899999998
+User_100,W_Complete application,564.5276
+User_100,W_Validate application,6711.887735849056
+User_101,W_Call after offers,12.582
+User_101,W_Call incomplete files,6741.409136363636
+User_101,W_Complete application,687.6375
+User_101,W_Validate application,9466.811000000002
+User_102,W_Call after offers,34.565333333333335
+User_102,W_Call incomplete files,116048.40392307694
+User_102,W_Complete application,770.8695
+User_102,W_Validate application,130435.7765172414
+User_103,W_Call after offers,196.2735
+User_103,W_Complete application,199.4032
+User_103,W_Handle leads,52527.097
+User_104,W_Complete application,908.1781186440678
+User_105,W_Call after offers,149.711
+User_105,W_Complete application,3533.7545
+User_105,W_Handle leads,330.344
+User_105,W_Validate application,250.474
+User_106,W_Call after offers,13.3276
+User_106,W_Complete application,1162.9360000000001
+User_106,W_Validate application,158665.14157142857
+User_107,W_Call after offers,145.484
+User_107,W_Call incomplete files,62.42100000000001
+User_107,W_Complete application,686.69
+User_107,W_Validate application,191.6070303030303
+User_108,W_Complete application,2200.0316190476187
+User_109,W_Call after offers,1198.2458235294118
+User_109,W_Call incomplete files,3993.1405
+User_109,W_Complete application,366.33966666666663
+User_109,W_Validate application,51538.05821428571
+User_11,W_Call after offers,129.185
+User_11,W_Complete application,3536.449939655173
+User_11,W_Handle leads,75.22
+User_110,W_Complete application,587.2572
+User_111,W_Complete application,278.086
+User_112,W_Call incomplete files,26.630625
+User_112,W_Validate application,220.653464
+User_113,W_Call incomplete files,15.353500000000002
+User_113,W_Validate application,9583.070606060608
+User_114,W_Call incomplete files,4.032
+User_114,W_Validate application,79.9219
+User_115,W_Call incomplete files,121.7175
+User_115,W_Validate application,314.04
+User_116,W_Call incomplete files,90.27
+User_116,W_Validate application,558.1986304347826
+User_117,W_Call incomplete files,144.45999999999998
+User_117,W_Validate application,72441.65957746479
+User_118,W_Call incomplete files,79.76566666666666
+User_118,W_Validate application,637.3421612903226
+User_119,W_Call incomplete files,51.30875
+User_119,W_Validate application,1837.8215619834712
+User_12,W_Call after offers,214.84400000000002
+User_12,W_Complete application,677.9730117647058
+User_120,W_Call after offers,58.06
+User_120,W_Call incomplete files,103.67333333333333
+User_120,W_Handle leads,89.834
+User_120,W_Validate application,25321.313467153286
+User_121,W_Call incomplete files,31.500399999999996
+User_121,W_Validate application,14128.069671232879
+User_122,W_Call incomplete files,81.2360909090909
+User_122,W_Validate application,14304.00414084507
+User_123,W_Call incomplete files,98.5707
+User_123,W_Validate application,6924.175231981982
+User_124,W_Call incomplete files,174.905
+User_124,W_Validate application,214.896
+User_125,W_Call incomplete files,196.398
+User_125,W_Validate application,27762.9762
+User_126,W_Call incomplete files,12923.166777777777
+User_126,W_Validate application,25179.515223880597
+User_127,W_Validate application,202.414625
+User_129,W_Validate application,120.73203571428571
+User_13,W_Call after offers,138.454
+User_13,W_Complete application,1306.106990291262
+User_13,W_Handle leads,107.27866666666665
+User_13,W_Validate application,28.413
+User_130,W_Call incomplete files,306.90799999999996
+User_130,W_Validate application,127.16688571428573
+User_131,W_Call incomplete files,209.805375
+User_131,W_Validate application,47.143684782608695
+User_132,W_Complete application,3387.7603050847456
+User_132,W_Validate application,8.697
+User_133,W_Call incomplete files,49400.0993
+User_133,W_Validate application,34975.940329113924
+User_134,W_Call incomplete files,68.96471428571428
+User_134,W_Validate application,4409.831058479532
+User_135,W_Call after offers,632.302
+User_135,W_Complete application,2800.188076923077
+User_136,W_Validate application,66.57566666666666
+User_137,W_Call incomplete files,184.392
+User_137,W_Validate application,9851.178722222223
+User_138,W_Handle leads,6370.361
+User_138,W_Validate application,533.4124285714286
+User_14,W_Call after offers,143.36
+User_14,W_Call incomplete files,4.763
+User_14,W_Complete application,7530.225795698924
+User_14,W_Handle leads,168.72746827794563
+User_14,W_Validate application,113.65366666666667
+User_140,W_Validate application,3.454333333333333
+User_141,W_Complete application,1262.6556666666668
+User_141,W_Handle leads,213.02280000000002
+User_142,W_Handle leads,180.342
+User_143,W_Complete application,38.054
+User_143,W_Validate application,16.6058
+User_144,W_Validate application,94.063
+User_15,W_Call after offers,336.842
+User_15,W_Call incomplete files,84.908
+User_15,W_Complete application,2904.4057692307692
+User_15,W_Handle leads,226.45432142857143
+User_16,W_Call after offers,25.4085
+User_16,W_Complete application,491.79611822660104
+User_16,W_Handle leads,139.48539416058395
+User_16,W_Validate application,21.44
+User_17,W_Call after offers,467.115
+User_17,W_Call incomplete files,5389.568
+User_17,W_Complete application,640.6341301775149
+User_17,W_Handle leads,129.27709615384614
+User_17,W_Validate application,89.752
+User_18,W_Call after offers,82088.94185714285
+User_18,W_Call incomplete files,4.029
+User_18,W_Complete application,1866.3683116883115
+User_18,W_Handle leads,158.8894
+User_18,W_Validate application,91.64733333333334
+User_19,W_Call after offers,73.121
+User_19,W_Complete application,1510.396278606965
+User_19,W_Handle leads,154.94504
+User_19,W_Validate application,32.044
+User_2,W_Call after offers,129.921
+User_2,W_Call incomplete files,807791.659
+User_2,W_Complete application,1513.5443313609467
+User_2,W_Handle leads,499.45043589743585
+User_2,W_Validate application,40.31522222222222
+User_20,W_Complete application,2389.614377777778
+User_20,W_Handle leads,326.2774285714286
+User_21,W_Complete application,1170.3604780487804
+User_21,W_Handle leads,99.598
+User_22,W_Call after offers,741.8723333333334
+User_22,W_Complete application,536.1140625
+User_23,W_Call after offers,135.153
+User_23,W_Complete application,1173.0459904761904
+User_23,W_Handle leads,167.03063076923078
+User_23,W_Validate application,10.673628571428571
+User_24,W_Call incomplete files,2177.7923333333333
+User_24,W_Complete application,1399.912514619883
+User_24,W_Handle leads,167.74664150943397
+User_24,W_Validate application,26.794333333333338
+User_25,W_Call after offers,137.214
+User_25,W_Call incomplete files,7.382
+User_25,W_Complete application,547.7715301204819
+User_25,W_Handle leads,162.80160714285714
+User_26,W_Call after offers,701079.865
+User_26,W_Call incomplete files,225.52
+User_26,W_Complete application,3409.3791011235953
+User_26,W_Handle leads,167.41197777777776
+User_27,W_Call after offers,155.9235
+User_27,W_Call incomplete files,138.01771428571428
+User_27,W_Complete application,1287.7322361111112
+User_27,W_Handle leads,411.94266666666664
+User_27,W_Validate application,5851.984892473118
+User_28,W_Call after offers,519.539
+User_28,W_Call incomplete files,2682.193
+User_28,W_Complete application,1584.4509161490682
+User_28,W_Handle leads,102.15183636363636
+User_28,W_Validate application,64.61016666666666
+User_29,W_Call after offers,9.730225806451612
+User_29,W_Call incomplete files,200753.79637254903
+User_29,W_Complete application,1154.5003333333334
+User_29,W_Validate application,178804.38053333334
+User_3,W_Call after offers,165.923125
+User_3,W_Call incomplete files,285.807
+User_3,W_Complete application,6258.529878192534
+User_3,W_Handle leads,119.10604545454545
+User_3,W_Validate application,39.440749999999994
+User_30,W_Call after offers,22.012928571428574
+User_30,W_Call incomplete files,10241.9677
+User_30,W_Complete application,681.6223076923077
+User_30,W_Validate application,271243.7297977528
+User_31,W_Call after offers,6.831
+User_31,W_Call incomplete files,325867.4266666667
+User_31,W_Complete application,673.1584805194806
+User_31,W_Handle leads,282.2796666666667
+User_31,W_Validate application,154.54733333333334
+User_32,W_Complete application,2852.876930107527
+User_32,W_Handle leads,268.5899166666666
+User_33,W_Call incomplete files,283.128
+User_33,W_Complete application,1274.0151666666668
+User_33,W_Handle leads,128.64111111111112
+User_33,W_Validate application,1241.293
+User_34,W_Call after offers,109.452
+User_34,W_Call incomplete files,2582250.5425
+User_34,W_Complete application,585.3603934426229
+User_34,W_Handle leads,194.621125
+User_34,W_Validate application,78.12066666666668
+User_35,W_Call after offers,442.716
+User_35,W_Complete application,1001.8131845018451
+User_35,W_Handle leads,70.281
+User_35,W_Validate application,43.321
+User_36,W_Call after offers,269.27774999999997
+User_36,W_Call incomplete files,156.0275
+User_36,W_Complete application,619.0472023121387
+User_36,W_Handle leads,376.21772151898733
+User_36,W_Validate application,24.6385
+User_37,W_Call after offers,132.822
+User_37,W_Complete application,1071.6531683168316
+User_37,W_Handle leads,211.40192857142856
+User_37,W_Validate application,3.515
+User_38,W_Complete application,2308.643625
+User_38,W_Handle leads,334.9108235294118
+User_39,W_Call after offers,422.498
+User_39,W_Call incomplete files,9692.926
+User_39,W_Complete application,887.175343220339
+User_39,W_Handle leads,1225.9473636363637
+User_39,W_Validate application,9.400666666666666
+User_4,W_Call after offers,447.82975
+User_4,W_Call incomplete files,18.747
+User_4,W_Complete application,1869.603664285714
+User_4,W_Handle leads,148.59871641791045
+User_4,W_Validate application,36.564
+User_40,W_Call after offers,366.67233333333337
+User_40,W_Complete application,928.8044225352113
+User_40,W_Handle leads,692.4088192771085
+User_41,W_Call after offers,252.79049999999998
+User_41,W_Call incomplete files,875.1135
+User_41,W_Complete application,750.7236029962546
+User_41,W_Handle leads,181.1998888888889
+User_41,W_Validate application,14.584999999999999
+User_42,W_Call after offers,118.613
+User_42,W_Call incomplete files,3.437
+User_42,W_Complete application,892.0199337175793
+User_42,W_Handle leads,388.59014285714284
+User_43,W_Call after offers,692.5505
+User_43,W_Complete application,1045.0513300970874
+User_43,W_Handle leads,149.47138775510203
+User_44,W_Complete application,783.7415947712418
+User_44,W_Handle leads,112.39814285714286
+User_44,W_Validate application,258.17766666666665
+User_45,W_Call after offers,938.005
+User_45,W_Complete application,442.10312280701754
+User_45,W_Handle leads,107.70922580645161
+User_45,W_Validate application,72.7755
+User_46,W_Call after offers,351.512
+User_46,W_Complete application,4426.833563139932
+User_46,W_Handle leads,684.7968545454545
+User_46,W_Validate application,8.3505
+User_47,W_Complete application,671.602731707317
+User_47,W_Handle leads,155.2788181818182
+User_47,W_Validate application,6.248
+User_48,W_Complete application,1091.330984962406
+User_48,W_Handle leads,1320.41
+User_48,W_Validate application,278.457
+User_49,W_Call after offers,164.6225
+User_49,W_Call incomplete files,104282.019
+User_49,W_Complete application,5860.844612476371
+User_49,W_Handle leads,283.8469090909091
+User_49,W_Validate application,7.507
+User_5,W_Call after offers,186.79375
+User_5,W_Call incomplete files,202.35366666666664
+User_5,W_Complete application,5765.689343283582
+User_5,W_Handle leads,284.7790961538461
+User_5,W_Validate application,44.65085714285714
+User_50,W_Complete application,434.9667857142857
+User_50,W_Handle leads,149.11027272727273
+User_50,W_Validate application,1216.136
+User_51,W_Call after offers,4148072.1825
+User_51,W_Complete application,1132.4824444444444
+User_51,W_Validate application,15.958
+User_52,W_Call after offers,187.331
+User_52,W_Complete application,909.6984241071428
+User_52,W_Handle leads,152.65635
+User_52,W_Validate application,37.002
+User_53,W_Call incomplete files,130.92466666666667
+User_53,W_Complete application,1208.4529427312777
+User_53,W_Handle leads,161.74349999999998
+User_53,W_Validate application,335.44351851851854
+User_54,W_Call after offers,168.311
+User_54,W_Call incomplete files,1963.151
+User_54,W_Complete application,458.4411862745098
+User_54,W_Handle leads,534.126421686747
+User_54,W_Validate application,24.205
+User_55,W_Call after offers,602.578
+User_55,W_Complete application,764.897038961039
+User_56,W_Call after offers,156.5685
+User_56,W_Complete application,2703.7713970588234
+User_56,W_Handle leads,173.25308333333336
+User_57,W_Complete application,586.960349726776
+User_57,W_Handle leads,252.0676875
+User_58,W_Call after offers,171.012
+User_58,W_Complete application,616.3161801801803
+User_58,W_Handle leads,200.5308
+User_59,W_Complete application,635.0920588235294
+User_59,W_Handle leads,124.71100000000001
+User_6,W_Complete application,806.9653571428571
+User_6,W_Handle leads,146.236
+User_60,W_Call after offers,66.37
+User_60,W_Call incomplete files,1110.338
+User_60,W_Complete application,1468.0876511627907
+User_60,W_Handle leads,234.5351818181818
+User_61,W_Call after offers,75.74133333333334
+User_61,W_Complete application,929.0823598971722
+User_61,W_Handle leads,307.4790192307692
+User_61,W_Validate application,4.041
+User_62,W_Call after offers,320.7823333333333
+User_62,W_Complete application,766.9597678571429
+User_62,W_Handle leads,152.152
+User_63,W_Complete application,792.5781747572815
+User_63,W_Handle leads,190.47696153846152
+User_64,W_Handle leads,109.65044897959184
+User_65,W_Call after offers,262.93
+User_65,W_Complete application,1022.1821379310345
+User_65,W_Handle leads,166.50133333333335
+User_66,W_Complete application,3792.342372727273
+User_66,W_Handle leads,401.21315789473687
+User_66,W_Validate application,37922.898499999996
+User_67,W_Call after offers,962.2545
+User_67,W_Complete application,2664.2778411764707
+User_67,W_Handle leads,325.79679999999996
+User_67,W_Validate application,90.992
+User_68,W_Call after offers,11.655
+User_68,W_Call incomplete files,241664.37480000002
+User_68,W_Complete application,722.47825
+User_68,W_Validate application,172767.98140506327
+User_69,W_Complete application,13492.953727272727
+User_69,W_Handle leads,92.305
+User_7,W_Call after offers,951.026
+User_7,W_Complete application,1121.0838263888888
+User_7,W_Handle leads,341.852
+User_70,W_Call after offers,241.179
+User_70,W_Complete application,742.3918045977011
+User_70,W_Handle leads,559.577347826087
+User_70,W_Validate application,103.66633333333334
+User_71,W_Call after offers,310.095
+User_71,W_Call incomplete files,461.99249999999995
+User_71,W_Complete application,1369.0117387387388
+User_71,W_Handle leads,83.7326
+User_71,W_Validate application,223.90866666666668
+User_72,W_Complete application,1159.6670344827585
+User_72,W_Validate application,473.317
+User_73,W_Call after offers,191.607
+User_73,W_Complete application,3777.5985312499997
+User_74,W_Call after offers,373.591
+User_74,W_Complete application,776.4462957746479
+User_74,W_Handle leads,112.71833333333332
+User_75,W_Call after offers,16.244814814814816
+User_75,W_Call incomplete files,52449.33065
+User_75,W_Complete application,824.70855
+User_75,W_Validate application,88345.93976190477
+User_76,W_Call after offers,532.826
+User_76,W_Complete application,611.3541538461538
+User_77,W_Call after offers,580.002
+User_77,W_Complete application,8295.81279775281
+User_78,W_Call after offers,76.04033333333334
+User_78,W_Complete application,11493.401702857143
+User_78,W_Handle leads,454.1306666666667
+User_79,W_Call after offers,576.441
+User_79,W_Complete application,1025.7664302325582
+User_79,W_Handle leads,960.0268
+User_8,W_Complete application,759.9855555555555
+User_8,W_Handle leads,76.861
+User_80,W_Complete application,6998.0854311926605
+User_80,W_Handle leads,1000.4078333333333
+User_80,W_Validate application,19.058
+User_81,W_Complete application,1088.3811463414634
+User_81,W_Handle leads,28.753
+User_82,W_Complete application,574.5129999999999
+User_83,W_Call after offers,123.76055555555556
+User_83,W_Call incomplete files,54137.41980000001
+User_83,W_Complete application,755.6179999999999
+User_83,W_Validate application,176600.9109090909
+User_84,W_Call after offers,3.718
+User_84,W_Complete application,4841.7435076923075
+User_84,W_Validate application,3.1
+User_85,W_Complete application,506.9567903225806
+User_85,W_Handle leads,131.20244444444444
+User_85,W_Validate application,3979.975
+User_86,W_Call after offers,708.013
+User_86,W_Complete application,839.8461363636364
+User_86,W_Handle leads,731.4196666666667
+User_87,W_Call after offers,81.56745454545454
+User_87,W_Call incomplete files,94387.384875
+User_87,W_Complete application,665.2201818181818
+User_87,W_Validate application,136640.76927777778
+User_88,W_Call after offers,315.382
+User_88,W_Complete application,2215.607942857143
+User_89,W_Complete application,770.4972727272726
+User_9,W_Complete application,618.0067368421053
+User_9,W_Handle leads,214.29567741935483
+User_90,W_Call after offers,354.34137499999997
+User_90,W_Call incomplete files,29250.014636363638
+User_90,W_Complete application,968.355
+User_90,W_Validate application,86753.58957894737
+User_91,W_Complete application,2447.128806451613
+User_91,W_Handle leads,219.079625
+User_92,W_Complete application,1019.6359
+User_92,W_Handle leads,385.59633333333335
+User_92,W_Validate application,5.06
+User_93,W_Call after offers,71.98777777777778
+User_93,W_Call incomplete files,134542.56399999998
+User_93,W_Complete application,1315.7597777777778
+User_93,W_Validate application,171027.27266666666
+User_94,W_Complete application,1031.2706166666667
+User_95,W_Call after offers,14.622714285714286
+User_95,W_Call incomplete files,339448.5535
+User_95,W_Complete application,982.9911818181819
+User_95,W_Validate application,162878.42778294574
+User_96,W_Complete application,1676.3219369369367
+User_97,W_Call after offers,1787.541
+User_97,W_Complete application,1441.2548727272726
+User_98,W_Complete application,1266.0082499999999
+User_99,W_Call after offers,25.71
+User_99,W_Call incomplete files,187180.15065384615
+User_99,W_Complete application,1104.1432
+User_99,W_Validate application,114702.12709782609
