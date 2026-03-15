@@ -98,11 +98,11 @@ class Engine:
 
                     sec = self.pt.sample(
                         label,
-                        kind="proc",   # only switch to "total" if pt_use_qr is FALSE
+                        kind="total",   # only switch to "total" if pt_use_qr is FALSE
                         now=self.now,
                         instance=act_instance,
                         ctx=pt_ctx,
-                        use_qr=self.pt_use_qr
+                        use_qr=False
                     )
                     duration = timedelta(seconds=float(sec))
                 ''' End Processing Times '''
