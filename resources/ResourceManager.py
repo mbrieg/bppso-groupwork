@@ -8,8 +8,8 @@ from resources.ResourceAllocator import ResourceAllocator, Methods
 
 
 class ResourceManager:
-    def __init__(self, availabilities='availabilities_basic.csv',
-                 permissions='permissions_basic.csv',
+    def __init__(self, availabilities='availabilities_advanced.csv',
+                 permissions='role_permissions.csv',
                  roles='resource_roles.csv', method=Methods.RANDOM, delta=1, batch_k = 5):
         """
         :param availabilities: CSV file with ['Resource', 'DayId', 'StartTime', 'EndTime'] (basic) or
@@ -19,7 +19,7 @@ class ResourceManager:
         """
         avail_adv = availabilities != 'availabilities_basic.csv'
         perm_adv = permissions != 'permissions_basic.csv'
-        self._mode_adv = method == Methods.ADVANCED
+        self._mode_adv = method == [Methods.ADVANCED_GLOBAL, Methods.ADVANCED_LOCAL]
 
         self.availabilities = ResourceAvailabilities(availabilities, avail_adv)
         self.permissions = ResourcePermissions(permissions, perm_adv)
