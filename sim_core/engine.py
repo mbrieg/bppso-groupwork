@@ -95,14 +95,15 @@ class Engine:
                     # Only Basic, because there are no too less features for QR
                     act_instance = self._current_activity_instance(case_id, label)
                     pt_ctx = self._build_pt_context(case_id)
+                    kind = "proc" if self.pt_use_qr else "total"
 
                     sec = self.pt.sample(
                         label,
-                        kind="total",   # only switch to "total" if pt_use_qr is FALSE
+                        kind=kind,   # only switch to "total" if pt_use_qr is FALSE
                         now=self.now,
                         instance=act_instance,
                         ctx=pt_ctx,
-                        use_qr=False
+                        use_qr=self.pt_use_qr
                     )
                     duration = timedelta(seconds=float(sec))
                 ''' End Processing Times '''
