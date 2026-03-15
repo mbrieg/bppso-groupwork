@@ -285,7 +285,7 @@ class ResourceAllocator:
                 remaining_cost += delay
                 projected_start = break_end
 
-            safety_buffer = expected_cost * np.random.uniform(1.0, 1.5)    # To optimise shift/break violations
+            safety_buffer = expected_cost * np.random.uniform(1.0, 1.2)    # To optimise shift/break violations
 
             projected_end = projected_start + timedelta(seconds=safety_buffer)
             if not self.availabilities.is_resource_available(res_id, projected_end):
@@ -349,7 +349,7 @@ class ResourceAllocator:
                         projected_start = break_end
 
                     pred_cost = self._predictor.predict_cost(task['act_name'], res_id)
-                    safety_buffer = np.random.uniform(1.0, 1.5)    # To optimise shift/break violations
+                    safety_buffer = np.random.uniform(1.0, 1.2)    # To optimise shift/break violations
                     cost = pred_cost * safety_buffer
 
                     projected_end = projected_start + timedelta(seconds=cost)
