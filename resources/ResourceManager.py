@@ -19,7 +19,7 @@ class ResourceManager:
         """
         avail_adv = availabilities != 'availabilities_basic.csv'
         perm_adv = permissions != 'permissions_basic.csv'
-        self._mode_adv = method == [Methods.ADVANCED_GLOBAL, Methods.ADVANCED_LOCAL]
+        self._mode_adv = method in [Methods.ADVANCED_GLOBAL, Methods.ADVANCED_LOCAL]
 
         self.availabilities = ResourceAvailabilities(availabilities, avail_adv)
         self.permissions = ResourcePermissions(permissions, perm_adv)
