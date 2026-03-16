@@ -45,7 +45,7 @@ def main():
     #avail_file = 'availabilities_9to5.csv'
     allocation_method = resources.ResourceAllocator.Methods.SHORTEST_QUEUE
     res_manager = ResourceManager(permissions='role_permissions.csv', availabilities=avail_file, method=allocation_method, batch_k=5)
-    dp_manager = DPManager(pn=pn_model, mode="random", model_path=str(model_path), rules_path=str(rules_path))
+    dp_manager = DPManager(pn=pn_model, mode="advanced", model_path=str(model_path), rules_path=str(rules_path))
     pt = ProcessingTimeSampler.from_paths(
         proc_json=proc_json,
         total_json=total_json,
@@ -76,7 +76,7 @@ def main():
     sim_log = pd.DataFrame(engine.log)
     dp_manager.print_routing_stats()
 
-    output_csv = "decision_analysis/sim_output_random.csv"
+    output_csv = "decision_analysis/sim_output_advanced.csv"
     #output_csv = "simulation_evaluation/results/sim_output_9to5.csv"
     print("\n--- Simulation Output ---")
     print(sim_log.head(300))
