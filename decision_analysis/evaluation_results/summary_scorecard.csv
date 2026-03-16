@@ -1,5 +1,5 @@
 Metric,Basic Router,Advanced Router
-Activity Frequency JSD,0.3347,0.3303
-Mean Decision-Point JSD,0.5772,0.5723
-Case Length KS Statistic,0.6904,0.6848
+Activity Frequency JSD,0.3287,0.3277
+Mean Decision-Point JSD,0.5746,0.5732
+Case Length KS Statistic,0.6748,0.6768
 Case Length KS p-value,0,0
