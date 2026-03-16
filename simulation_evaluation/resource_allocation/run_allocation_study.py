@@ -37,6 +37,13 @@ METHODS = {
     "round_robin":    ra.Methods.ROUND_ROBIN,
     "shortest_queue": ra.Methods.SHORTEST_QUEUE,
     "batch_k5":       ra.Methods.BATCHING,
+    "advanced_local":  ra.Methods.ADVANCED_LOCAL,
+    "advanced_global": ra.Methods.ADVANCED_GLOBAL,
+}
+
+METHOD_DELTAS = {
+    "advanced_local": 5,
+    "advanced_global": 10,
 }
 
 OUT_ROOT = STUDY_DIR / "data"
@@ -52,7 +59,7 @@ START_TIME = datetime(2016, 5, 17, 9, 15, 0)
 SIM_DAYS   = 14  # simulated calendar days — same horizon for all methods
 
 
-def build_engine(method: ra.Methods, seed: int) -> Engine:
+def build_engine(method: ra.Methods, seed: int, delta: int = 1) -> Engine:
     bpmn_net, initial_marking, final_marking = read_bpmn(str(BPMN_PATH))
     pn_model = wrap_net(bpmn_net, initial_marking, final_marking)
 
@@ -64,6 +71,7 @@ def build_engine(method: ra.Methods, seed: int) -> Engine:
         permissions=str("role_permissions.csv"),
         availabilities=AVAIL_FILE,
         method=method,
+        delta=delta,
         batch_k=5,
     )
     dp_manager = DPManager(
@@ -93,31 +101,56 @@ def build_engine(method: ra.Methods, seed: int) -> Engine:
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--runs",       type=int, default=5,   help="Replications per method")
+    parser.add_argument(
+        "--run-indices",
+        nargs="+",
+        type=int,
+        help="Explicit run indices to execute (e.g. --run-indices 1 2 3 4)",
+    )
     parser.add_argument("--days",        type=int, default=SIM_DAYS, help="Simulated calendar days per run (same horizon for all methods)")
     parser.add_argument("--max-events", type=int, default=2_000_000, help="Hard safety cap; should never be hit under normal use")
+    parser.add_argument(
+        "--skip-existing",
+        action="store_true",
+        help="Skip run_NN.csv files that already exist",
+    )
+    parser.add_argument(
+        "--methods",
+        nargs="+",
+        choices=list(METHODS.keys()),
+        help="Run only selected methods (default: all methods)",
+    )
     args = parser.parse_args()
 
-    total = len(METHODS) * args.runs
+    selected_methods = {name: METHODS[name] for name in (args.methods or METHODS.keys())}
+    run_indices = args.run_indices if args.run_indices is not None else list(range(args.runs))
+
+    total = len(selected_methods) * len(run_indices)
     done  = 0
 
-    for method_name, method_enum in METHODS.items():
+    for method_name, method_enum in selected_methods.items():
         out_dir = OUT_ROOT / method_name
         out_dir.mkdir(parents=True, exist_ok=True)
 
-        for run_idx in range(args.runs):
+        for run_idx in run_indices:
             seed = 1000 * (list(METHODS).index(method_name) + 1) + run_idx
-            done += 1
-            print(f"\n[{done}/{total}] method={method_name}  run={run_idx:02d}  seed={seed}")
+            out_path = out_dir / f"run_{run_idx:02d}.csv"
+            if args.skip_existing and out_path.exists():
+                print(f"\n[skip] method={method_name}  run={run_idx:02d}  existing={out_path.relative_to(PROJECT_ROOT)}", flush=True)
+                continue
 
-            engine = build_engine(method_enum, seed)
+            done += 1
+            print(f"\n[{done}/{total}] method={method_name}  run={run_idx:02d}  seed={seed}", flush=True)
+
+            delta = METHOD_DELTAS.get(method_name, 1)
+            engine = build_engine(method_enum, seed, delta=delta)
             engine.spawn()
             sim_end = START_TIME + timedelta(days=args.days)
             engine.run(max_events=args.max_events, end_time=sim_end)
 
             df = pd.DataFrame(engine.log)
-            out_path = out_dir / f"run_{run_idx:02d}.csv"
             df.to_csv(out_path, index=False)
-            print(f"  → saved {len(df):,} events to {out_path.relative_to(PROJECT_ROOT)}")
+            print(f"  → saved {len(df):,} events to {out_path.relative_to(PROJECT_ROOT)}", flush=True)
 
     print("\nDone.")
 
