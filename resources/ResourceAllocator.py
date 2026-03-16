@@ -116,7 +116,10 @@ class ResourceAllocator:
         if selected_res.is_occupied():
             task_start = selected_res.get_remaining_working_time(current_now)
         next_time = self.availabilities.get_next_available_time(selected_res.get_id(), current_now)
-        #there is a bug here, engine didnt run
+        
+        #there is a bug here, i fixed it temporarily with but dont know if its correct!
+        if next_time is None:
+            next_time = current_now
         return selected_res.get_id(), next_time + timedelta(seconds=task_start)
 
     def _allocate_batch(self, act_name, start_time, duration, case_id, tid, permitted):
