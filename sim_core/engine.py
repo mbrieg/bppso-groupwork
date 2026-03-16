@@ -47,10 +47,21 @@ class Engine:
     def spawn(self, at_time=None):
         heapq.heappush(self.queue, Event(at_time or self.now, "SPAWN", self.next_case_id + 1))
 
-    def run(self, max_events=1000):
+    def run(self, max_events=1_000_000, end_time=None):
+        """Run the simulation.
+
+        Args:
+            max_events: Hard safety cap on total events processed.
+            end_time:   Optional datetime. If set, the simulation stops as soon
+                        as the next event would occur after this timestamp.
+                        Use this to enforce a fixed calendar horizon across all
+                        methods (fairer comparison than a fixed event count).
+        """
         count = 0
         while self.queue and count < max_events:
             e = heapq.heappop(self.queue)
+            if end_time is not None and e.time > end_time:
+                break
             self.now = e.time
 
             if e.type == "SPAWN":

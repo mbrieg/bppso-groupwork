@@ -1,9 +1,6 @@
 import random
 from enum import Enum
 from datetime import timedelta
-import numpy as np
-import pandas as pd
-from scipy.optimize import linear_sum_assignment
 
 
 class Methods(Enum):
@@ -11,8 +8,7 @@ class Methods(Enum):
     ROUND_ROBIN = 1
     SHORTEST_QUEUE = 2
     BATCHING = 3
-    ADVANCED_LOCAL = 4  # Greedy assignment
-    ADVANCED_GLOBAL = 5  # Adapted assignment problem
+    ADVANCED = 4  # Adapted assignment problem
 
 
 class ResourceAllocator:
@@ -29,16 +25,16 @@ class ResourceAllocator:
         self.batching_ctr = 0
         self.pending_tasks = []
         self.last_batch_assignments = []
-        self.batch_k = batch_k
-        self.pending_task_keys = set()  # Needed to handle Retry events that should not be flushed
-        self.assigned_batch_task_keys = {}  # Needed to handle Retry events that should not be flushed
-        self.dummy_tasks = {}
-        self.pre_assigned_dummies = {}
+        self.batch_k=batch_k
+        self.pending_task_keys = set() # Needed to handle Retry envents that should not be flushed
+        self.assigned_batch_task_keys = {} # Needed to handle Retry envents that should not be flushed
 
-        if method in [Methods.ADVANCED_GLOBAL, Methods.ADVANCED_LOCAL]:
+        if method == Methods.ADVANCED:
             self._predictor = ResourceAllocator._Predictor(delta)
 
     def allocate_resource(self, act_name, start_time, duration, case_id, tid):
+
+
         # Check permissions
         permitted = self.permissions.get_permitted_resources(act_name, self.resources)
         permitted.sort()
@@ -58,12 +54,10 @@ class ResourceAllocator:
             # Debug Print
             #print(f"[BATCH-IN] tid={tid} act={act_name} time={start_time} pending_before={len(self.pending_tasks)}")
             selected_id = self._allocate_batch(act_name, start_time, duration, case_id, tid, permitted)
-        elif self.method == Methods.ADVANCED_LOCAL:
-            selected_id, task_start = self._allocate_advanced_local(act_name, permitted, start_time)
-        elif self.method == Methods.ADVANCED_GLOBAL:
-            selected_id, task_start = self._allocate_advanced_global(act_name, start_time, case_id, tid, permitted)
+        elif self.method == Methods.ADVANCED:
+            selected_id, task_start = self._allocate_advanced(act_name, permitted, start_time)
 
-        if selected_id and task_start:  # Only used for SHQ and ADVANCED allocation for resources' task queues
+        if selected_id and task_start:  # Only used for SHQ and ADVANCED allocation
             act_info = {
                 "activity": act_name,
                 "start": task_start,
@@ -115,22 +109,18 @@ class ResourceAllocator:
         return None
 
     def _allocate_shortest_queue(self, resources, current_now):
-        on_shift = self._get_available_resources(resources, current_now)
-        if not on_shift:
-            return None, None
+        resources = [self.resources[res_id] for res_id in resources]
+        selected_res = min(resources, key=lambda res: res.get_queue_length())
 
-        available_resources = [self.resources[res_id] for res_id in on_shift]
-        selected_res = min(available_resources, key=lambda res: res.get_queue_length())
-        res_id = selected_res.get_id()
-        remaining_working_time = selected_res.get_remaining_working_time(current_now)
-        work_done = current_now + timedelta(seconds=remaining_working_time)
-        break_end = self.availabilities.is_resource_on_break(res_id, work_done)
-
-        if break_end:
-            task_start = break_end
-        else:
-            task_start = work_done
-        return res_id, task_start
+        task_start = 0.0
+        if selected_res.is_occupied():
+            task_start = selected_res.get_remaining_working_time(current_now)
+        next_time = self.availabilities.get_next_available_time(selected_res.get_id(), current_now)
+        
+        #there is a bug here, i fixed it temporarily with but dont know if its correct!
+        if next_time is None:
+            next_time = current_now
+        return selected_res.get_id(), next_time + timedelta(seconds=task_start)
 
     def _allocate_batch(self, act_name, start_time, duration, case_id, tid, permitted):
 
@@ -266,31 +256,15 @@ class ResourceAllocator:
         self.assigned_batch_task_keys = {}
         self.last_batch_assignments = []
 
-    def _allocate_advanced_local(self, act_name, permitted, start_time):
+    def _allocate_advanced(self, act_name, permitted, start_time):
         best_res_id = None
         task_start = 0.0
         min_cost = float('inf')
 
         available = self._get_available_resources(permitted, start_time)
-        for res_id in available:  # Calculate costs for available resources
-            expected_cost = self._predictor.predict_cost(act_name, res_id)
+        for res_id in available:    # Calculate costs for available resources
+            expected_cost = self._predictor.predict_cost(act_name, res_id)  # TODO: Check what other variables are needed for prediction, e.g. LoanGoal, CaseId, etc.
             remaining_cost = self.resources[res_id].get_remaining_working_time(start_time)
-
-            # Check for shift and break violations
-            projected_start = start_time + timedelta(seconds=remaining_cost)
-            break_end = self.availabilities.is_resource_on_break(res_id, projected_start)
-
-            if break_end:  # Add break delay to total cost
-                delay = (break_end - projected_start).total_seconds()
-                remaining_cost += delay
-                projected_start = break_end
-
-            safety_buffer = expected_cost * np.random.uniform(1.0, 1.2)    # To optimise shift/break violations
-
-            projected_end = projected_start + timedelta(seconds=safety_buffer)
-            if not self.availabilities.is_resource_available(res_id, projected_end):
-                remaining_cost += 43200  # Add penalty of 12h for working overtime
-
             total_cost = expected_cost + remaining_cost
 
             if total_cost < min_cost:
@@ -299,135 +273,30 @@ class ResourceAllocator:
                 task_start = remaining_cost
 
         # Check if dummy value more cost-efficient
-        if self._predictor.get_dummy_cost(act_name) < min_cost or not best_res_id:
+        if self._predictor.get_dummy_cost(act_name) < min_cost:
             return None, None
 
         # Update start time
         return best_res_id, (start_time + timedelta(seconds=task_start))
 
-    def _allocate_advanced_global(self, act_name, start_time, case_id, tid, permitted):
-        task_key = f"{case_id}_{tid}"
-
-        # Check whether task was already assigned in previous run
-        if task_key in self.pre_assigned_dummies:
-            res_id = self.pre_assigned_dummies.pop(task_key)['res_id']
-            remaining_time = self.resources[res_id].get_remaining_working_time(start_time)
-            return res_id, start_time + pd.Timedelta(seconds=remaining_time)
-
-        new_task = {'task_key': task_key, 'act_name': act_name, 'permitted': permitted}
-
-        on_shift = self._get_available_resources(self.resources.keys(), start_time)  # Get all resources for cost matrix
-        if not on_shift:
-            self.dummy_tasks[task_key] = new_task
-            return None, None
-
-        # Add up the expected workload of all tasks already pre-assigned
-        pre_queue = {res: 0.0 for res in on_shift}
-        for task in self.pre_assigned_dummies.values():
-            if task['res_id'] in pre_queue:
-                pre_queue[task['res_id']] += task['duration']
-
-        tasks_to_eval = [new_task] + list(self.dummy_tasks.values())
-        num_tasks = len(tasks_to_eval)
-        num_res = len(on_shift)
-
-        # Build cost matrix
-        MAX_COST = 1e9  # Simulates not permitted resources
-        cost_matrix = np.full((num_tasks, num_res + num_tasks), MAX_COST)
-
-        for i, task in enumerate(tasks_to_eval):
-            for j, res_id in enumerate(on_shift):
-                if res_id in task['permitted']:
-                    actual_queue = self.resources[res_id].get_remaining_working_time(start_time)
-                    total_queue = actual_queue + pre_queue[res_id]  # consider pre-assigned tasks duration
-
-                    projected_start = start_time + timedelta(seconds=total_queue)  # Check for shift violations
-                    break_end = self.availabilities.is_resource_on_break(res_id, projected_start)
-                    if break_end:
-                        delay = (break_end - projected_start).total_seconds()
-                        total_queue += delay
-                        projected_start = break_end
-
-                    pred_cost = self._predictor.predict_cost(task['act_name'], res_id)
-                    safety_buffer = np.random.uniform(1.0, 1.2)    # To optimise shift/break violations
-                    cost = pred_cost * safety_buffer
-
-                    projected_end = projected_start + timedelta(seconds=cost)
-                    total_cost = total_queue + cost
-                    if not self.availabilities.is_resource_available(res_id, projected_end):
-                        total_cost += 43200     # Add 12h penalty
-
-                    cost_matrix[i, j] = total_cost
-
-            dummy_cost = self._predictor.get_dummy_cost(task['act_name'])
-            cost_matrix[i, num_res + i] = dummy_cost
-
-        # Solve assignments
-        row_ind, col_ind = linear_sum_assignment(cost_matrix)
-
-        assigned_current_res, assigned_current_start = None, None
-        for row, col in zip(row_ind, col_ind):
-            matched_key = tasks_to_eval[row]['task_key']
-            matched_act = tasks_to_eval[row]['act_name']
-
-            if col < num_res:  # Real resource assigned
-                res_id = on_shift[col]
-                if matched_key == task_key:  # Current task
-                    assigned_current_res = res_id
-                    remaining = self.resources[res_id].get_remaining_working_time(start_time) + pre_queue[res_id]
-                    assigned_current_start = start_time + timedelta(seconds=remaining)
-                else:  # Old dummy task
-                    self.dummy_tasks.pop(matched_key)
-                    self.pre_assigned_dummies[matched_key] = {
-                        'res_id': res_id,
-                        'duration': self._predictor.predict_cost(matched_act, res_id)
-                    }
-            else:  # Postpone task
-                if matched_key == task_key:
-                    self.dummy_tasks[task_key] = new_task
-
-        return assigned_current_res, assigned_current_start
-
     def get_next_available_time_adv(self, act_name, current_time):
-        """
-        Finds the next available worker and wakes the engine up
-        the moment their current queue is finished.
-        """
-        min_remaining = float('inf')
-
+        total_costs = []
         res_costs = self._predictor.get_all_costs(act_name)
-        for res_id, expected_cost in res_costs.items():
-            if self.availabilities.is_resource_available(res_id, current_time):
-                remaining = self.resources[res_id].get_remaining_working_time(current_time)
-                if remaining < min_remaining:
-                    min_remaining = remaining
+        for res_id, cost in res_costs.items():
+            remaining = self.resources[res_id].get_remaining_working_time(current_time)
+            total_costs.append(cost + remaining)
 
-        if min_remaining != float('inf'):
-            wakeup_delay = max(min_remaining, np.random.uniform(0, 1))     # To prevent infinite loops
-            return current_time + timedelta(seconds=wakeup_delay)
-        return None
+        min_cost = min(total_costs)
+        return current_time + timedelta(seconds=min_cost)
 
     class _Predictor:
         """
         costs: dict saving activities to dict of resources and their costs for the activity
         delta: factor variable used for cost estimation
         """
-
-        def __init__(self, delta, averages_path='resources/allocation/resource_activity_averages.csv'):
+        def __init__(self, delta):
             self._costs = {}
             self._delta = delta
-            self.avg_stats = self._load_averages(averages_path)
-
-        def _load_averages(self, path):
-            try:
-                df = pd.read_csv(path)
-                return df.groupby('Activity').apply(
-                    lambda x: dict(zip(x['Resource'], x['AverageDuration'])),
-                    include_groups=False
-                ).to_dict()
-            except FileNotFoundError:
-                print(f"Warning: {path} not found. Starting with empty historical stats.")
-                return {}
 
         def predict_cost(self, act_name, res_id):
             """
@@ -436,16 +305,9 @@ class ResourceAllocator:
             if act_name not in self._costs:
                 self._costs[act_name] = {}
 
+            # TODO Predict using neural net
             if res_id not in self._costs[act_name]:
-                predicted_value = np.random.uniform(0, 1)
-                if act_name.startswith('W_'):  # Processing times only available for W activities
-                    avg = self.avg_stats.get(act_name, {}).get(res_id)
-                    if avg is not None:
-                        predicted_value = avg
-                    else:  # Fallback
-                        activity_data = list(self.avg_stats.get(act_name, {}).values())
-                        if activity_data:
-                            predicted_value = np.mean(activity_data)
+                predicted_value = random.uniform(300, 1800)
                 self._costs[act_name][res_id] = predicted_value
 
             return self._costs[act_name][res_id]
