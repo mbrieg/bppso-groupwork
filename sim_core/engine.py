@@ -47,10 +47,12 @@ class Engine:
     def spawn(self, at_time=None):
         heapq.heappush(self.queue, Event(at_time or self.now, "SPAWN", self.next_case_id + 1))
 
-    def run(self, max_events=1000):
+    def run(self, max_events=1_000_000, end_time=None):
         count = 0
         while self.queue and count < max_events:
             e = heapq.heappop(self.queue)
+            if end_time is not None and e.time > end_time:
+                break
             self.now = e.time
 
             if e.type == "SPAWN":
@@ -95,11 +97,10 @@ class Engine:
                     # Only Basic, because there are no too less features for QR
                     act_instance = self._current_activity_instance(case_id, label)
                     pt_ctx = self._build_pt_context(case_id)
-                    kind = "proc" if self.pt_use_qr else "total"
 
                     sec = self.pt.sample(
                         label,
-                        kind=kind,   # only switch to "total" if pt_use_qr is FALSE
+                        kind="proc",   # only switch to "total" if pt_use_qr is FALSE
                         now=self.now,
                         instance=act_instance,
                         ctx=pt_ctx,

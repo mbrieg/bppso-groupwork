@@ -15,16 +15,16 @@ except ImportError:
 class DPManager:
     BASIC_PREFERRED = {
         # C4.5 learned from real log paths not present in BPMN — Basic is more accurate
-        "W_Call incomplete files",   # real log: A_Validating 99% → path missing in BPMN
+        #"W_Call incomplete files",   # real log: A_Validating 99% → path missing in BPMN
         "A_Incomplete",
-        "W_Call after offers",
-        "W_Complete application",
-        "O_Returned",
-        "A_Accepted",
-        "A_Denied",
-        "O_Accepted",
-        "O_Create Offer",
-        "A_Complete",
+        #"W_Call after offers",
+        #"W_Complete application",
+        #"O_Returned",
+        #"A_Accepted",
+        #"A_Denied",
+        #"O_Accepted",
+        #"O_Create Offer",
+        #"A_Complete",
         "W_Handle leads",
     }
 
@@ -203,7 +203,7 @@ class DPManager:
     def print_routing_stats(self):
         total = self._count_advanced + self._count_fallback_basic + self._count_fallback_random
         if total == 0:
-            print("No routing decisions recorded.")
+            print("BasicRouter - No routing decisions recorded.")
             return
         print(f"Routing stats (multi-choice decisions only):")
         print(f"  C4.5 Advanced:      {self._count_advanced:5d}  ({100*self._count_advanced/total:.1f}%)")
