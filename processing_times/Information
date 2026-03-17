@@ -41,3 +41,17 @@ Quantile Regression:
     but they need contextual data, which we did not include in the simulation to make a noticable difference.
 
     This is the reason why I included basic sampling in our simulator
+
+Information: Run Visualization.py to generate graphics of the report
+
+The evaluation results are done on Sun. March 16th 2026 with the settings:
+    Simulation settings:
+    - Decision mode: advanced
+    - QR enabled: True or False depending on file
+    - Spawner: AdvancedSpawner
+    - Holidays enabled: True
+    - Seed: 42
+    - Allocation method: SHORTEST_QUEUE, RANDOM or ADVANCED_GLOBAL
+    - Start time: 2016-05-17 09:15:00
+    - Max events: 100000
+

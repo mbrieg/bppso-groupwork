@@ -260,7 +260,7 @@ for col in lower_better:
 # Plot heatmap
 plt.figure(figsize=(11, 5.5))
 plt.imshow(heat_norm.values, aspect="auto")
-plt.colorbar(label="Normalized score (higher = better)")
+plt.colorbar(label="Normalized score")
 plt.xticks(range(len(heat_norm.columns)), heat_norm.columns, rotation=35, ha="right")
 plt.yticks(range(len(heat_norm.index)), heat_norm.index)
 plt.title("Heatmap of key evaluation metrics across all setups")

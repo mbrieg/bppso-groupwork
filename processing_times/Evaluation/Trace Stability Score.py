@@ -91,7 +91,13 @@ def compute_tss(row, target_events=38.16, tail_target=15.0):
 # RUN
 # --------------------------------------------------
 ars_scores = df.apply(lambda row: compute_ars(row, empirical), axis=1)
-tss_scores = df.apply(lambda row: compute_tss(row, target_events=empirical["avg_events_per_case"], tail_target=15.0), axis=1)
+df["tail_ratio_internal"] = (
+    df["p95_case_duration_sec"] / df["median_case_duration_sec"].clip(lower=1.0)
+)
+
+tail_target_internal = df["tail_ratio_internal"].median()
+print("Internal tail target:", tail_target_internal)
+tss_scores = df.apply(lambda row: compute_tss(row, target_events=empirical["avg_events_per_case"], tail_target=tail_target_internal), axis=1)
 
 result = pd.concat([df[["setup"]], ars_scores, tss_scores], axis=1)
 
