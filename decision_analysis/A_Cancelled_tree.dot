@@ -1,0 +1,128 @@
+digraph Tree {
+node [shape=box];
+node_0 [label="Split: has_rejection
+(n=6510)", style=filled, fillcolor=lightblue];
+node_1 [label="Split: offer_category
+(n=5903)", style=filled, fillcolor=lightblue];
+node_0 -> node_1 [label="0"];
+node_2 [label="Split: has_accepted_offer
+(n=4644)", style=filled, fillcolor=lightblue];
+node_1 -> node_2 [label="two"];
+node_3 [label="Split: duration_bin
+(n=4615)", style=filled, fillcolor=lightblue];
+node_2 -> node_3 [label="0"];
+node_4 [label="Split: case_age_category
+(n=4578)", style=filled, fillcolor=lightblue];
+node_3 -> node_4 [label="Short"];
+node_5 [label="Split: application_type
+(n=388)", style=filled, fillcolor=lightblue];
+node_4 -> node_5 [label="Old"];
+node_6 [label="Leaf: W_Call after offers
+(n=359)", style=filled, fillcolor=lightyellow];
+node_5 -> node_6 [label="New credit"];
+node_7 [label="Leaf: W_Call after offers
+(n=29)", style=filled, fillcolor=lightyellow];
+node_5 -> node_7 [label="Limit raise"];
+node_8 [label="Split: application_type
+(n=4064)", style=filled, fillcolor=lightblue];
+node_4 -> node_8 [label="Delayed"];
+node_9 [label="Split: amount_category
+(n=3766)", style=filled, fillcolor=lightblue];
+node_8 -> node_9 [label="New credit"];
+node_10 [label="Leaf: W_Validate application
+(n=111)", style=filled, fillcolor=lightyellow];
+node_9 -> node_10 [label="very_high"];
+node_11 [label="Split: prev_activity_2_group
+(n=906)", style=filled, fillcolor=lightblue];
+node_9 -> node_11 [label="low"];
+node_12 [label="Leaf: W_Call after offers
+(n=842)", style=filled, fillcolor=lightyellow];
+node_11 -> node_12 [label="workflow"];
+node_13 [label="Leaf: W_Validate application
+(n=64)", style=filled, fillcolor=lightyellow];
+node_11 -> node_13 [label="offer"];
+node_14 [label="Split: prev_activity_2_group
+(n=673)", style=filled, fillcolor=lightblue];
+node_9 -> node_14 [label="very_low"];
+node_15 [label="Leaf: W_Call after offers
+(n=641)", style=filled, fillcolor=lightyellow];
+node_14 -> node_15 [label="workflow"];
+node_16 [label="Leaf: W_Call incomplete files
+(n=32)", style=filled, fillcolor=lightyellow];
+node_14 -> node_16 [label="offer"];
+node_17 [label="Leaf: W_Validate application
+(n=984)", style=filled, fillcolor=lightyellow];
+node_9 -> node_17 [label="medium"];
+node_18 [label="Split: prev_activity_2_group
+(n=798)", style=filled, fillcolor=lightblue];
+node_9 -> node_18 [label="high"];
+node_19 [label="Leaf: W_Call after offers
+(n=740)", style=filled, fillcolor=lightyellow];
+node_18 -> node_19 [label="workflow"];
+node_20 [label="Leaf: W_Validate application
+(n=58)", style=filled, fillcolor=lightyellow];
+node_18 -> node_20 [label="offer"];
+node_21 [label="Leaf: W_Call after offers
+(n=294)", style=filled, fillcolor=lightyellow];
+node_9 -> node_21 [label="nan"];
+node_22 [label="Leaf: W_Call after offers
+(n=298)", style=filled, fillcolor=lightyellow];
+node_8 -> node_22 [label="Limit raise"];
+node_23 [label="Leaf: W_Call after offers
+(n=103)", style=filled, fillcolor=lightyellow];
+node_4 -> node_23 [label="New"];
+node_24 [label="Leaf: W_Call after offers
+(n=23)", style=filled, fillcolor=lightyellow];
+node_4 -> node_24 [label="Very_New"];
+node_25 [label="Leaf: W_Call after offers
+(n=37)", style=filled, fillcolor=lightyellow];
+node_3 -> node_25 [label="Medium"];
+node_26 [label="Leaf: W_Validate application
+(n=29)", style=filled, fillcolor=lightyellow];
+node_2 -> node_26 [label="1"];
+node_27 [label="Split: amount_category
+(n=1019)", style=filled, fillcolor=lightblue];
+node_1 -> node_27 [label="many"];
+node_28 [label="Split: application_type
+(n=280)", style=filled, fillcolor=lightblue];
+node_27 -> node_28 [label="medium"];
+node_29 [label="Leaf: W_Call after offers
+(n=257)", style=filled, fillcolor=lightyellow];
+node_28 -> node_29 [label="New credit"];
+node_30 [label="Leaf: W_Validate application
+(n=23)", style=filled, fillcolor=lightyellow];
+node_28 -> node_30 [label="Limit raise"];
+node_31 [label="Leaf: W_Call after offers
+(n=272)", style=filled, fillcolor=lightyellow];
+node_27 -> node_31 [label="low"];
+node_32 [label="Leaf: W_Call after offers
+(n=183)", style=filled, fillcolor=lightyellow];
+node_27 -> node_32 [label="very_low"];
+node_33 [label="Leaf: W_Call after offers
+(n=191)", style=filled, fillcolor=lightyellow];
+node_27 -> node_33 [label="high"];
+node_34 [label="Leaf: W_Call after offers
+(n=72)", style=filled, fillcolor=lightyellow];
+node_27 -> node_34 [label="nan"];
+node_35 [label="Leaf: W_Validate application
+(n=21)", style=filled, fillcolor=lightyellow];
+node_27 -> node_35 [label="very_high"];
+node_36 [label="Leaf: W_Complete application
+(n=110)", style=filled, fillcolor=lightyellow];
+node_1 -> node_36 [label="none"];
+node_37 [label="Leaf: O_Created
+(n=62)", style=filled, fillcolor=lightyellow];
+node_1 -> node_37 [label="single"];
+node_38 [label="Leaf: O_Created
+(n=68)", style=filled, fillcolor=lightyellow];
+node_1 -> node_38 [label="three"];
+node_39 [label="Split: application_type
+(n=607)", style=filled, fillcolor=lightblue];
+node_0 -> node_39 [label="1"];
+node_40 [label="Leaf: W_Call after offers
+(n=575)", style=filled, fillcolor=lightyellow];
+node_39 -> node_40 [label="New credit"];
+node_41 [label="Leaf: O_Cancelled
+(n=32)", style=filled, fillcolor=lightyellow];
+node_39 -> node_41 [label="Limit raise"];
+}
