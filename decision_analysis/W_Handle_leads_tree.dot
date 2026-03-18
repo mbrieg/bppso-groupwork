@@ -1,0 +1,167 @@
+digraph Tree {
+node [shape=box];
+node_0 [label="Split: prev_activity_2_group
+(n=37636)", style=filled, fillcolor=lightblue];
+node_1 [label="Leaf: W_Handle leads
+(n=16372)", style=filled, fillcolor=lightyellow];
+node_0 -> node_1 [label="case_start"];
+node_2 [label="Split: is_repeated
+(n=21264)", style=filled, fillcolor=lightblue];
+node_0 -> node_2 [label="workflow"];
+node_3 [label="Split: duration_bin
+(n=7492)", style=filled, fillcolor=lightblue];
+node_2 -> node_3 [label="False"];
+node_4 [label="Split: amount_category
+(n=1194)", style=filled, fillcolor=lightblue];
+node_3 -> node_4 [label="VeryShort"];
+node_5 [label="Leaf: A_Accepted
+(n=268)", style=filled, fillcolor=lightyellow];
+node_4 -> node_5 [label="high"];
+node_6 [label="Split: case_age_category
+(n=328)", style=filled, fillcolor=lightblue];
+node_4 -> node_6 [label="low"];
+node_7 [label="Leaf: O_Create Offer
+(n=80)", style=filled, fillcolor=lightyellow];
+node_6 -> node_7 [label="New"];
+node_8 [label="Split: credit_score_bin
+(n=248)", style=filled, fillcolor=lightblue];
+node_6 -> node_8 [label="Very_New"];
+node_9 [label="Leaf: A_Accepted
+(n=102)", style=filled, fillcolor=lightyellow];
+node_8 -> node_9 [label="excellent"];
+node_10 [label="Leaf: A_Accepted
+(n=24)", style=filled, fillcolor=lightyellow];
+node_8 -> node_10 [label="good"];
+node_11 [label="Leaf: A_Accepted
+(n=122)", style=filled, fillcolor=lightyellow];
+node_8 -> node_11 [label="poor"];
+node_12 [label="Leaf: A_Accepted
+(n=216)", style=filled, fillcolor=lightyellow];
+node_4 -> node_12 [label="very_low"];
+node_13 [label="Split: case_age_category
+(n=342)", style=filled, fillcolor=lightblue];
+node_4 -> node_13 [label="medium"];
+node_14 [label="Split: credit_score_bin
+(n=284)", style=filled, fillcolor=lightblue];
+node_13 -> node_14 [label="Very_New"];
+node_15 [label="Leaf: A_Accepted
+(n=124)", style=filled, fillcolor=lightyellow];
+node_14 -> node_15 [label="excellent"];
+node_16 [label="Leaf: A_Accepted
+(n=128)", style=filled, fillcolor=lightyellow];
+node_14 -> node_16 [label="poor"];
+node_17 [label="Leaf: A_Accepted
+(n=32)", style=filled, fillcolor=lightyellow];
+node_14 -> node_17 [label="good"];
+node_18 [label="Leaf: O_Create Offer
+(n=58)", style=filled, fillcolor=lightyellow];
+node_13 -> node_18 [label="New"];
+node_19 [label="Leaf: A_Accepted
+(n=40)", style=filled, fillcolor=lightyellow];
+node_4 -> node_19 [label="very_high"];
+node_20 [label="Leaf: A_Accepted
+(n=1023)", style=filled, fillcolor=lightyellow];
+node_3 -> node_20 [label="Long"];
+node_21 [label="Split: case_age_category
+(n=4609)", style=filled, fillcolor=lightblue];
+node_3 -> node_21 [label="Short"];
+node_22 [label="Leaf: A_Accepted
+(n=4259)", style=filled, fillcolor=lightyellow];
+node_21 -> node_22 [label="Very_New"];
+node_23 [label="Split: credit_score_bin
+(n=350)", style=filled, fillcolor=lightblue];
+node_21 -> node_23 [label="New"];
+node_24 [label="Leaf: O_Create Offer
+(n=212)", style=filled, fillcolor=lightyellow];
+node_23 -> node_24 [label="poor"];
+node_25 [label="Leaf: O_Create Offer
+(n=87)", style=filled, fillcolor=lightyellow];
+node_23 -> node_25 [label="excellent"];
+node_26 [label="Leaf: O_Create Offer
+(n=51)", style=filled, fillcolor=lightyellow];
+node_23 -> node_26 [label="good"];
+node_27 [label="Leaf: A_Accepted
+(n=503)", style=filled, fillcolor=lightyellow];
+node_3 -> node_27 [label="Medium"];
+node_28 [label="Split: credit_score_bin
+(n=163)", style=filled, fillcolor=lightblue];
+node_3 -> node_28 [label="VeryLong"];
+node_29 [label="Leaf: O_Create Offer
+(n=96)", style=filled, fillcolor=lightyellow];
+node_28 -> node_29 [label="poor"];
+node_30 [label="Leaf: O_Create Offer
+(n=46)", style=filled, fillcolor=lightyellow];
+node_28 -> node_30 [label="excellent"];
+node_31 [label="Leaf: O_Create Offer
+(n=21)", style=filled, fillcolor=lightyellow];
+node_28 -> node_31 [label="good"];
+node_32 [label="Split: duration_bin
+(n=13772)", style=filled, fillcolor=lightblue];
+node_2 -> node_32 [label="True"];
+node_33 [label="Leaf: W_Complete application
+(n=2079)", style=filled, fillcolor=lightyellow];
+node_32 -> node_33 [label="VeryShort"];
+node_34 [label="Leaf: W_Complete application
+(n=1942)", style=filled, fillcolor=lightyellow];
+node_32 -> node_34 [label="Long"];
+node_35 [label="Leaf: W_Complete application
+(n=8447)", style=filled, fillcolor=lightyellow];
+node_32 -> node_35 [label="Short"];
+node_36 [label="Split: amount_category
+(n=963)", style=filled, fillcolor=lightblue];
+node_32 -> node_36 [label="Medium"];
+node_37 [label="Leaf: W_Complete application
+(n=233)", style=filled, fillcolor=lightyellow];
+node_36 -> node_37 [label="very_low"];
+node_38 [label="Split: case_age_category
+(n=264)", style=filled, fillcolor=lightblue];
+node_36 -> node_38 [label="low"];
+node_39 [label="Split: credit_score_bin
+(n=167)", style=filled, fillcolor=lightblue];
+node_38 -> node_39 [label="Very_New"];
+node_40 [label="Leaf: W_Complete application
+(n=96)", style=filled, fillcolor=lightyellow];
+node_39 -> node_40 [label="poor"];
+node_41 [label="Leaf: W_Complete application
+(n=50)", style=filled, fillcolor=lightyellow];
+node_39 -> node_41 [label="excellent"];
+node_42 [label="Leaf: W_Complete application
+(n=21)", style=filled, fillcolor=lightyellow];
+node_39 -> node_42 [label="good"];
+node_43 [label="Leaf: W_Complete application
+(n=97)", style=filled, fillcolor=lightyellow];
+node_38 -> node_43 [label="New"];
+node_44 [label="Split: case_age_category
+(n=193)", style=filled, fillcolor=lightblue];
+node_36 -> node_44 [label="high"];
+node_45 [label="Leaf: W_Complete application
+(n=102)", style=filled, fillcolor=lightyellow];
+node_44 -> node_45 [label="Very_New"];
+node_46 [label="Leaf: W_Complete application
+(n=91)", style=filled, fillcolor=lightyellow];
+node_44 -> node_46 [label="New"];
+node_47 [label="Leaf: W_Complete application
+(n=27)", style=filled, fillcolor=lightyellow];
+node_36 -> node_47 [label="very_high"];
+node_48 [label="Split: credit_score_bin
+(n=246)", style=filled, fillcolor=lightblue];
+node_36 -> node_48 [label="medium"];
+node_49 [label="Leaf: W_Complete application
+(n=151)", style=filled, fillcolor=lightyellow];
+node_48 -> node_49 [label="poor"];
+node_50 [label="Split: case_age_category
+(n=63)", style=filled, fillcolor=lightblue];
+node_48 -> node_50 [label="excellent"];
+node_51 [label="Leaf: W_Complete application
+(n=36)", style=filled, fillcolor=lightyellow];
+node_50 -> node_51 [label="Very_New"];
+node_52 [label="Leaf: W_Complete application
+(n=27)", style=filled, fillcolor=lightyellow];
+node_50 -> node_52 [label="New"];
+node_53 [label="Leaf: W_Complete application
+(n=32)", style=filled, fillcolor=lightyellow];
+node_48 -> node_53 [label="good"];
+node_54 [label="Leaf: A_Concept
+(n=341)", style=filled, fillcolor=lightyellow];
+node_32 -> node_54 [label="VeryLong"];
+}
