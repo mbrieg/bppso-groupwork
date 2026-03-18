@@ -21,3 +21,5 @@ sim_output/
 *.png
 *.svg
 *.pdf
+files/*.pdf
+files/*.html
