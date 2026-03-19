@@ -47,8 +47,11 @@ class Engine:
     def spawn(self, at_time=None):
         heapq.heappush(self.queue, Event(at_time or self.now, "SPAWN", self.next_case_id + 1))
 
-    def run(self, max_events=1_000_000, end_time=None):
+    def run(self, max_events=2_000_000, end_time=None):
         count = 0
+        self.event_counts = {"SPAWN": 0, "START": 0, "COMPLETE": 0, "RETRY": 0}
+        _report_interval = max(1, max_events // 10)
+
         while self.queue and count < max_events:
             e = heapq.heappop(self.queue)
             if end_time is not None and e.time > end_time:
@@ -63,10 +66,35 @@ class Engine:
                 self._process_flow(e.case_id)
             elif e.type == "COMPLETE":
                 self._handle_complete(e)
+
+            self.event_counts[e.type] = self.event_counts.get(e.type, 0) + 1
             count += 1
 
-        #Debug
-        #print(f"[ENGINE-END] now={self.now} flushing remaining batches")
+            if count % _report_interval == 0:
+                logged = self.event_counts["START"] + self.event_counts["COMPLETE"]
+                print(
+                    f"  [{count:>8,} / {max_events:,}]  "
+                    f"SPAWN={self.event_counts['SPAWN']:,}  "
+                    f"START={self.event_counts['START']:,}  "
+                    f"COMPLETE={self.event_counts['COMPLETE']:,}  "
+                    f"RETRY={self.event_counts['RETRY']:,}  "
+                    f"logged={logged:,}  "
+                    f"sim_time={self.now.strftime('%Y-%m-%d %H:%M')}"
+                )
+
+        total = sum(self.event_counts.values())
+        logged = self.event_counts["START"] + self.event_counts["COMPLETE"]
+        print("\n Event Budget Summary")
+        print(f"  SPAWN    : {self.event_counts['SPAWN']:>8,}")
+        print(f"  START    : {self.event_counts['START']:>8,}")
+        print(f"  COMPLETE : {self.event_counts['COMPLETE']:>8,}")
+        print(f"  RETRY    : {self.event_counts['RETRY']:>8,}  ← resource contention")
+        print(f"  ")
+        print(f"  TOTAL    : {total:>8,}  /  {max_events:,}")
+        print(f"  Logged to CSV: {logged:,}  ({logged/total*100:.1f}% of budget)")
+        print(f"  Sim end time : {self.now.strftime('%Y-%m-%d %H:%M')}")
+        print("\n")
+
         self.resource_manager.flush_remaining_batches(self.now)
 
     def _process_flow(self, case_id):
@@ -155,7 +183,8 @@ class Engine:
         # DP
         if self.next_case_id < self.max_cases:
             next_time = self.spawner.calculate_next_spawn(self.now)
-            #next_time = self._shift_to_business_hours(next_time) #Comment out to run simulation for management 9 to 5 question
+            # Comment out to run simulation for management 9 to 5 question
+            #next_time = self._shift_to_business_hours(next_time)
             heapq.heappush(self.queue, Event(next_time, "SPAWN", self.next_case_id + 1))
 
         self._process_flow(e.case_id)
@@ -258,7 +287,8 @@ class Engine:
         self.case_activity_counts[case_id][label] = self._current_activity_instance(case_id, label) + 1
 
 
-    '''function only necessary for managemnet question working 9 to 5'''
+
+    # function only necessary for managemnet question working 9 to 5
     def _shift_to_business_hours(self, dt):
         start = time(9, 0, 0)
         end = time(17, 0, 0)

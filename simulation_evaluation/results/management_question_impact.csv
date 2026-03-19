@@ -1,6 +1,0 @@
-Metric,Advanced (baseline),No-fired (re-sim),Delta,Fired
-# Completed Cases,2015.0,308.0,-1707.0,"['User_95', 'User_66']"
-Avg Cycle Time (h),11.1504,105.0961,93.9457,"['User_95', 'User_66']"
-Avg Resource Occ (%),24.8371,83.0373,58.2002,"['User_95', 'User_66']"
-Fairness MAD (unwt),0.27896,0.27534,-0.003620000000000012,"['User_95', 'User_66']"
-Fairness MAD (wtd),0.28149,0.28134,-0.000150000000000039,"['User_95', 'User_66']"
