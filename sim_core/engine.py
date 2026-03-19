@@ -65,8 +65,6 @@ class Engine:
                 self._handle_complete(e)
             count += 1
 
-        #Debug
-        #print(f"[ENGINE-END] now={self.now} flushing remaining batches")
         self.resource_manager.flush_remaining_batches(self.now)
 
     def _process_flow(self, case_id):
@@ -155,7 +153,8 @@ class Engine:
         # DP
         if self.next_case_id < self.max_cases:
             next_time = self.spawner.calculate_next_spawn(self.now)
-            #next_time = self._shift_to_business_hours(next_time) #Comment out to run simulation for management 9 to 5 question
+            # Comment out to run simulation for management 9 to 5 question
+            #next_time = self._shift_to_business_hours(next_time)
             heapq.heappush(self.queue, Event(next_time, "SPAWN", self.next_case_id + 1))
 
         self._process_flow(e.case_id)
@@ -258,7 +257,8 @@ class Engine:
         self.case_activity_counts[case_id][label] = self._current_activity_instance(case_id, label) + 1
 
 
-    '''function only necessary for managemnet question working 9 to 5'''
+
+    # function only necessary for managemnet question working 9 to 5
     def _shift_to_business_hours(self, dt):
         start = time(9, 0, 0)
         end = time(17, 0, 0)

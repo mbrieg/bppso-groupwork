@@ -41,9 +41,9 @@ def main():
         holidays=holidays,
         seed=42,
     )
-    avail_file = 'availabilities_advanced.csv'
-    #avail_file = 'availabilities_9to5.csv'
-    allocation_method = resources.ResourceAllocator.Methods.ADVANCED_GLOBAL
+    #avail_file = 'availabilities_advanced.csv'
+    avail_file = 'availabilities_9to5.csv'
+    allocation_method = resources.ResourceAllocator.Methods.SHORTEST_QUEUE
     res_manager = ResourceManager(permissions='role_permissions.csv', availabilities=avail_file, method=allocation_method, delta=10 , batch_k=5)
     dp_manager = DPManager(pn=pn_model, mode="advanced", model_path=str(model_path), rules_path=str(rules_path))
     pt = ProcessingTimeSampler.from_paths(
@@ -77,8 +77,7 @@ def main():
     dp_manager.print_routing_stats()
 
     #output_csv = "decision_analysis/sim_output_advanced.csv"
-    #output_csv = "simulation_evaluation/results/sim_output_9to5.csv"
-    output_csv = ("processing_times/Evaluation/simulation_results/QR_proc_ADVANCED.csv")
+    output_csv = "simulation_evaluation/results/sim_output_9to5.csv"
     print("\n--- Simulation Output ---")
     print(sim_log.head(300))
     sim_log.to_csv(output_csv, index=False, chunksize=300)
