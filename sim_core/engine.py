@@ -95,8 +95,6 @@ class Engine:
         print(f"  Sim end time : {self.now.strftime('%Y-%m-%d %H:%M')}")
         print("\n")
 
-        #Debug
-        #print(f"[ENGINE-END] now={self.now} flushing remaining batches")
         self.resource_manager.flush_remaining_batches(self.now)
 
     def _process_flow(self, case_id):
