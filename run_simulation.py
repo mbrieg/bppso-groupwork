@@ -41,9 +41,9 @@ def main():
         holidays=holidays,
         seed=42,
     )
-    avail_file = 'availabilities_advanced.csv'
-    #avail_file = 'availabilities_9to5.csv'
-    allocation_method = resources.ResourceAllocator.Methods.ADVANCED_GLOBAL
+    #avail_file = 'availabilities_advanced.csv'
+    avail_file = 'availabilities_9to5.csv'
+    allocation_method = resources.ResourceAllocator.Methods.SHORTEST_QUEUE
     res_manager = ResourceManager(permissions='role_permissions.csv', availabilities=avail_file, method=allocation_method, delta=10 , batch_k=5)
     dp_manager = DPManager(pn=pn_model, mode="advanced", model_path=str(model_path), rules_path=str(rules_path))
     pt = ProcessingTimeSampler.from_paths(
@@ -63,7 +63,7 @@ def main():
                     decision_manager=dp_manager,
                     pt_sampler=pt,
                     start_time=start_time,
-                    pt_use_qr=False)
+                    pt_use_qr=True)
     print("...Setup complete")
 
     # Run simulation
