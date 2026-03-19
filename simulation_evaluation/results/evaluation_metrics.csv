@@ -1,2 +1,0 @@
-Router,Avg Cycle Time (h),Median Cycle Time (h),Avg Resource Occupation,Fairness MAD (unweighted),Fairness MAD (weighted),Outcome Fidelity (1-JSD)
-Advanced,12.1448,7.2581,0.140001,0.169889,0.177914,0.8219
