@@ -63,7 +63,7 @@ def main():
                     decision_manager=dp_manager,
                     pt_sampler=pt,
                     start_time=start_time,
-                    pt_use_qr=False)
+                    pt_use_qr=True)
     print("...Setup complete")
 
     # Run simulation
@@ -78,7 +78,7 @@ def main():
 
     #output_csv = "decision_analysis/sim_output_advanced.csv"
     #output_csv = "simulation_evaluation/results/sim_output_9to5.csv"
-    output_csv = ("processing_times/Evaluation/simulation_results/Basic_Total_ADVANCED.csv")
+    output_csv = ("processing_times/Evaluation/simulation_results/QR_proc_ADVANCED.csv")
     print("\n--- Simulation Output ---")
     print(sim_log.head(300))
     sim_log.to_csv(output_csv, index=False, chunksize=300)
