@@ -1,29 +1,22 @@
 # Business Process Prediction, Simulation, and Optimization
 ## Group Exercise – Business Process Simulation Model (BPIC 2017)
 
-This repository contains a **event simulation** of the BPIC 2017 Application process.
-The simulator spawns new cases, enforces the **control-flow** defined by the BPMN model, handles **resource availability, processing times & permissions**, and produces a **simulated event log**.
+This repository contains a **discrete event simulation** of the BPIC 2017 loan application process. 
+The simulator spawns new cases, enforces the **control-flow**  defined by the BPMN model, handles **resource availability, processing times & permissions**, and produces a **simulated event log**.
 
 ### Dataset
 Based on the BPIC 2017 Application log (4TU.ResearchData):
 
-**10.4121/uuid:5f3067df-f10b-45da-b98b-86ae4c7a310b**
+DOI: **10.4121/uuid:5f3067df-f10b-45da-b98b-86ae4c7a310b**
 
 ---
 
 ## Quick Start
 
-### 1) Setup environment
-1. Clone the repo
+### 1) Setup Environment
     ```
     git clone https://github.com/mbrieg/bppso-groupwork.git
-    ```
-- **Start the Jupyter Server:**
-    ```
-    jupyter notebook .
-    ```
-- **Install dependencies**
-    ```
+    cd bppso-groupwork
     pip install -r requirements.txt
     ```
 
@@ -31,7 +24,7 @@ Based on the BPIC 2017 Application log (4TU.ResearchData):
 ```
 python run_simulation.py
 ```
-### 3) Output
+### 3) Output Directory
 ```
 sim_output/final_simulation_log.csv
 ```
@@ -73,7 +66,7 @@ sim_output/final_simulation_log.csv
 
 ## How the Simulator Works
 
-Our simulator is a **data driven event Simulation** with a global clock and a **heapq based event queue**. The BPMN model is used as an executable **Petri net**. Events are scheduled as **SPAWN**, **START**, **COMPLETE**, and **RETRY**. The architecture is splitted: spawn rates, routing, resources, and timing.
+Our simulator is a **data-driven discrete-event simulation** built around a global clock and a **heapq-based event queue**. The underlying BPMN model is transformed into an executable **Petri net**. Events are scheduled as **SPAWN**, **START**, **COMPLETE**, and **RETRY**. The architecture is splitted into spawn rates, routing, resources, and processing times.
 
 ## Decision Analysis
 
