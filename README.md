@@ -14,11 +14,11 @@ DOI: **10.4121/uuid:5f3067df-f10b-45da-b98b-86ae4c7a310b**
 ## Quick Start
 
 ### 1) Setup Environment
-    ```
+```
     git clone https://github.com/mbrieg/bppso-groupwork.git
     cd bppso-groupwork
     pip install -r requirements.txt
-    ```
+```
 
 ### 2) Run Simulation
 ```
