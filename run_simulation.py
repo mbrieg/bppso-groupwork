@@ -19,7 +19,6 @@ def main():
 
     # Define paths
     bpmn_path = os.path.join(project_root, "data", "process_model.bpmn")
-    # output_csv = "sim_output/final_simulation_log.csv"
     rules_path = os.path.join(project_root, "decision_analysis", "decision_prob_rules.json")
     model_path = os.path.join(project_root, "decision_analysis", "simulation_brain.pkl")
     proc_json = os.path.join(project_root, "processing_times", "Basic_Models/processing_models_proc.json")
@@ -41,9 +40,9 @@ def main():
         holidays=holidays,
         seed=42,
     )
-    #avail_file = 'availabilities_advanced.csv'
-    avail_file = 'availabilities_9to5.csv'
-    allocation_method = resources.ResourceAllocator.Methods.SHORTEST_QUEUE
+    
+    avail_file = 'availabilities_advanced.csv'
+    allocation_method = resources.ResourceAllocator.Methods.RANDOM
     res_manager = ResourceManager(permissions='role_permissions.csv', availabilities=avail_file, method=allocation_method, delta=10 , batch_k=5)
     dp_manager = DPManager(pn=pn_model, mode="advanced", model_path=str(model_path), rules_path=str(rules_path))
     pt = ProcessingTimeSampler.from_paths(
@@ -71,14 +70,12 @@ def main():
     print("STARTING SIMULATION")
     print("=" * 60)
     engine.spawn()
-    #In order to mock the event log, I increased the num of events to 475 306, you can change again as you want
     engine.run(max_events=2_000_000)
     sim_log = pd.DataFrame(engine.log)
     dp_manager.print_routing_stats()
 
-    output_csv = "decision_analysis/sim_output_advanced.csv"
-    #output_csv = "simulation_evaluation/results/sim_output_9to5.csv"
-    #output_csv = ("processing_times/Evaluation/simulation_results/Basic_Total_ADVANCED.csv")
+    output_csv = "sim_output/final_simulation_log.csv"
+
     print("\n--- Simulation Output ---")
     print(sim_log.head(300))
     sim_log.to_csv(output_csv, index=False, chunksize=300)
