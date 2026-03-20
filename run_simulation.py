@@ -70,7 +70,7 @@ def main():
     print("STARTING SIMULATION")
     print("=" * 60)
     engine.spawn()
-    engine.run(max_events=2_000_000)
+    engine.run(max_events=1_000_000)
     sim_log = pd.DataFrame(engine.log)
     dp_manager.print_routing_stats()
 
