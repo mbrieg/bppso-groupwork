@@ -123,6 +123,10 @@ Generates a uniform 9-to-5 availability schedule and compares metrics against th
 **Processing Times**
 - `processing_times/Processing_Times.ipynb` – processing-time models (basic vs quantile regression)
 
+**Resource Management**
+- `resources/availabilities/resource_availabilities.ipynb` – Extracts availabilities schedule
+- `resources/permissions/resource_permissions.ipynb` - Performs clustering for permission model
+
 **Simulation Evaluation**
 - `simulation_evaluation/resource_allocation/resource_allocation_evaluation.ipynb` – allocation method comparison
 - `simulation_evaluation/evaluation.ipynb` – main evaluation vs real log
